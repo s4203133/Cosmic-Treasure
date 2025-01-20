@@ -5,6 +5,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerMovementInput movement;
     [SerializeField] PlayerJumpInput jump;
 
+    [SerializeField] private PlayerStateMachine stateMachine;
+
+    public PlayerMovement playerMovment => movement.playerMovement;
+    public PlayerJump playerJump => jump.playerJump;
+
     private void OnEnable() {
         SubscribeActionEvents();
     }
@@ -22,64 +27,16 @@ public class PlayerController : MonoBehaviour
         movement.UnsubscribeMoveEvents();
         jump.UnsubscribeJumpEvents();
     }
-}
 
-[System.Serializable]
-public class PlayerMovementInput {
-
-    [SerializeField] private PlayerMovement playerMovement;
-
-    private void StartMovement(Vector2 value) {
-        playerMovement.moveDirection = value;
+    public void Idle() {
+        stateMachine.ChangeState(stateMachine.idleState);
     }
 
-    private void PerformMovement(Vector2 value) {
-        playerMovement.moveDirection = value;
+    public void Move() {
+        stateMachine.ChangeState(stateMachine.runState);
     }
 
-    private void StopMovement(Vector2 value) {
-        playerMovement.moveDirection = value;
-    }
-
-    public void SubscribeMoveEvents() {
-        InputHandler.moveStarted += StartMovement;
-        InputHandler.movePerformed += PerformMovement;
-        InputHandler.moveCancelled += StopMovement;
-    }
-
-    public void UnsubscribeMoveEvents() {
-        InputHandler.moveStarted -= StartMovement;
-        InputHandler.movePerformed -= PerformMovement;
-        InputHandler.moveCancelled -= StopMovement;
-    }
-}
-
-[System.Serializable]
-public class PlayerJumpInput {
-
-    [SerializeField] private PlayerJump playerJump;
-
-    private void StartJump() {
-        Debug.Log("Starting Jump!");
-    }
-
-    private void PerformJump() {
-        Debug.Log("Performing Jump!");
-    }
-
-    private void StopJump() {
-        Debug.Log("Stopping Jump!");
-    }
-
-    public void SubscribeJumpEvents() {
-        InputHandler.jumpStarted += StartJump;
-        InputHandler.jumpPerformed += PerformJump;
-        InputHandler.jumpCancelled += StopJump;
-    }
-
-    public void UnsubscribeJumpEvents() {
-        InputHandler.jumpStarted -= StartJump;
-        InputHandler.jumpPerformed -= PerformJump;
-        InputHandler.jumpCancelled -= StopJump;
+    public void Jump() {
+        stateMachine.ChangeState(stateMachine.jumpState);
     }
 }

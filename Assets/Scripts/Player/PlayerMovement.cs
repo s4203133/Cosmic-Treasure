@@ -1,14 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Rigidbody rigidBody;
     public Vector2 moveDirection;
 
-    private void FixedUpdate() {
-        rb.velocity = new Vector3(moveDirection.x * moveSpeed * Time.fixedDeltaTime, rb.velocity.y, moveDirection.y * moveSpeed * Time.fixedDeltaTime);
+    public void MoveCharacter() {
+        rigidBody.velocity = new Vector3(moveDirection.x * moveSpeed * Time.fixedDeltaTime, rigidBody.velocity.y, moveDirection.y * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public void StopMovement() {
+        rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, 0);
     }
 }
