@@ -5,31 +5,34 @@ public class PlayerJumpState : PlayerBaseState
     private PlayerMovement movement;
     private PlayerJump jump;
 
-    public PlayerJumpState(PlayerStateMachine playerStateMachine, PlayerController playerController, PlayerMovement movement, PlayerJump jump) : base(playerStateMachine, playerController) {
+    public PlayerJumpState(PlayerStateMachine playerStateMachine , PlayerMovement movement, PlayerJump jump) : base(playerStateMachine) {
         this.movement = movement;
         this.jump = jump;
     }
 
     public override void OnStateEnter() {
-        jump.ResetJumpForce();
-        jump.ApplyJumpForce();
+        InputHandler.jumpCancelled += jump.CutOffJump;
+        jump.InitialiseJump();
     }
 
     public override void OnStateUpdate() {
-        if (jump.isGrounded) {
-            if (movement.moveDirection.x == 0 && movement.moveDirection.y == 0) {
-                controller.Idle();
+        if (jump.HasLanded()) {
+            if (movement.moveInput.x == 0 && movement.moveInput.y == 0) {
+                stateMachine.ChangeState(stateMachine.idleState);
             } else {
-                controller.Move();
+                stateMachine.ChangeState(stateMachine.runState);
             }
         }
     }
 
     public override void OnStatePhysicsUpdate() {
         movement.MoveCharacter();
+        jump.ApplyForce();
     }
 
     public override void OnStateExit() {
+        InputHandler.jumpCancelled -= jump.CutOffJump;
+        jump.EndJump();
     }
 
     public override void OnCollisionEnter(Collision collision) {

@@ -4,11 +4,9 @@ using UnityEngine;
 public abstract class PlayerBaseState
 {
     protected PlayerStateMachine stateMachine;
-    protected PlayerController controller;
 
-    public PlayerBaseState(PlayerStateMachine playerStateMachine, PlayerController playerController) {
+    public PlayerBaseState(PlayerStateMachine playerStateMachine) {
         stateMachine = playerStateMachine;
-        controller = playerController;
     }
 
     public abstract void OnStateEnter();

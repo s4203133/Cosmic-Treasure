@@ -12,15 +12,15 @@ public class PlayerMovementInput {
     public PlayerMovement playerMovement;
 
     private void StartMovement(Vector2 value) {
-        playerMovement.moveDirection = value;
+        playerMovement.moveInput = value;
     }
 
     private void PerformMovement(Vector2 value) {
-        playerMovement.moveDirection = value;
+        playerMovement.moveInput = value;
     }
 
     private void StopMovement(Vector2 value) {
-        playerMovement.moveDirection = value;
+        playerMovement.moveInput = value;
     }
 
     public void SubscribeMoveEvents() {

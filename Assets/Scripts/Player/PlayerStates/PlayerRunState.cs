@@ -5,18 +5,17 @@ public class PlayerRunState : PlayerBaseState {
 
     private PlayerMovement movement;
 
-    public PlayerRunState(PlayerStateMachine playerStateMachine, PlayerController playerController, PlayerMovement movement) : base(playerStateMachine, playerController) {
+    public PlayerRunState(PlayerStateMachine playerStateMachine, PlayerMovement movement) : base(playerStateMachine) {
         this.movement = movement;
     }
 
     public override void OnStateEnter() {
-        InputHandler.jumpStarted += controller.Jump;
+        InputHandler.moveCancelled += StopMovement;
+        InputHandler.jumpStarted += Jump;
     }
 
     public override void OnStateUpdate() {
-        if(movement.moveDirection.x == 0 && movement.moveDirection.y == 0) {
-            StopMovement();
-        }
+        
     }
 
     public override void OnStatePhysicsUpdate() {
@@ -24,15 +23,20 @@ public class PlayerRunState : PlayerBaseState {
     }
 
     public override void OnStateExit() {
-        InputHandler.jumpStarted -= controller.Jump;
+        InputHandler.moveCancelled -= StopMovement;
+        InputHandler.jumpStarted -= Jump;
     }
 
     public override void OnCollisionEnter(Collision collision) {
 
     }
 
-    private void StopMovement() {
+    private void StopMovement(Vector2 inputValue) {
         movement.StopMovement();
-        controller.Idle();
+        stateMachine.ChangeState(stateMachine.idleState);
+    }
+
+    private void Jump() {
+        stateMachine.ChangeState(stateMachine.jumpState);
     }
 }

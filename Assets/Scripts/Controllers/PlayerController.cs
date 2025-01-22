@@ -1,11 +1,15 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
-    [SerializeField] PlayerMovementInput movement;
-    [SerializeField] PlayerJumpInput jump;
+public class PlayerController : MonoBehaviour {
+
+    [SerializeField] private InputHandler input;
+
+    [SerializeField] private PlayerMovementInput movement;
+    [SerializeField] private PlayerJumpInput jump;
 
     [SerializeField] private PlayerStateMachine stateMachine;
+
+    public Rigidbody rigidBody;
 
     public PlayerMovement playerMovment => movement.playerMovement;
     public PlayerJump playerJump => jump.playerJump;
@@ -19,24 +23,12 @@ public class PlayerController : MonoBehaviour
     }
 
     private void SubscribeActionEvents() {
-        movement.SubscribeMoveEvents();
+        //movement.SubscribeMoveEvents();
         jump.SubscribeJumpEvents();
     }
 
     private void UnsubscribeActionEvents() {
-        movement.UnsubscribeMoveEvents();
+        //movement.UnsubscribeMoveEvents();
         jump.UnsubscribeJumpEvents();
-    }
-
-    public void Idle() {
-        stateMachine.ChangeState(stateMachine.idleState);
-    }
-
-    public void Move() {
-        stateMachine.ChangeState(stateMachine.runState);
-    }
-
-    public void Jump() {
-        stateMachine.ChangeState(stateMachine.jumpState);
     }
 }

@@ -4,6 +4,7 @@ public class PlayerStateMachine : MonoBehaviour
 {
     [SerializeField]
     private PlayerBaseState currentState;
+    public string stateName;
 
     public PlayerIdleState idleState;
     public PlayerRunState runState;
@@ -14,12 +15,13 @@ public class PlayerStateMachine : MonoBehaviour
 
     void Start()
     {
-        idleState = new PlayerIdleState(this, controller);
-        runState = new PlayerRunState(this, controller, controller.playerMovment);
-        jumpState = new PlayerJumpState(this, controller, controller.playerMovment, controller.playerJump);
-        fallingState = new PlayerFallingState(this, controller);
+        idleState = new PlayerIdleState(this);
+        runState = new PlayerRunState(this, controller.playerMovment);
+        jumpState = new PlayerJumpState(this, controller.playerMovment, controller.playerJump);
+        fallingState = new PlayerFallingState(this, controller.playerMovment, controller.playerJump);
 
         currentState = idleState;
+        stateName = currentState.ToString();
         idleState.OnStateEnter();
     }
 
@@ -35,6 +37,7 @@ public class PlayerStateMachine : MonoBehaviour
     public void ChangeState(PlayerBaseState newState) {
         currentState.OnStateExit();
         currentState = newState;
+        stateName = currentState.ToString();
         currentState.OnStateEnter();
     }
 }

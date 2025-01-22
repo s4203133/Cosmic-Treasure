@@ -3,16 +3,17 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerIdleState : PlayerBaseState {
 
-    public PlayerIdleState(PlayerStateMachine playerStateMachine, PlayerController playerController) : base(playerStateMachine, playerController) {
+
+    public PlayerIdleState(PlayerStateMachine playerStateMachine) : base(playerStateMachine) {
     }
 
     public override void OnStateEnter() {
         InputHandler.moveStarted += StartedMoving;
-        InputHandler.jumpStarted += controller.Jump;
+        InputHandler.jumpStarted += Jump;
     }
 
     public override void OnStateUpdate() {
-        Debug.Log("Idle");
+
     }
 
     public override void OnStatePhysicsUpdate() {
@@ -21,7 +22,7 @@ public class PlayerIdleState : PlayerBaseState {
 
     public override void OnStateExit() {
         InputHandler.moveStarted -= StartedMoving;
-        InputHandler.jumpStarted -= controller.Jump;
+        InputHandler.jumpStarted -= Jump;
     }
 
     public override void OnCollisionEnter(Collision collision) {
@@ -29,7 +30,11 @@ public class PlayerIdleState : PlayerBaseState {
 
     private void StartedMoving(Vector2 value) {
         if(value.x != 0 || value.y != 0) {
-            controller.Move();
+            stateMachine.ChangeState(stateMachine.runState);
         }
+    }
+
+    private void Jump() {
+        stateMachine.ChangeState(stateMachine.jumpState);
     }
 }
