@@ -11,14 +11,14 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerJumpState jumpState;
     public PlayerFallingState fallingState;
 
-    [SerializeField] private PlayerController controller;
+    public PlayerController controller;
 
     void Start()
     {
-        idleState = new PlayerIdleState(this);
-        runState = new PlayerRunState(this, controller.playerMovment);
-        jumpState = new PlayerJumpState(this, controller.playerMovment, controller.playerJump);
-        fallingState = new PlayerFallingState(this, controller.playerMovment, controller.playerJump);
+        idleState = new PlayerIdleState(controller);
+        runState = new PlayerRunState(controller);
+        jumpState = new PlayerJumpState(controller);
+        fallingState = new PlayerFallingState(controller);
 
         currentState = idleState;
         stateName = currentState.ToString();

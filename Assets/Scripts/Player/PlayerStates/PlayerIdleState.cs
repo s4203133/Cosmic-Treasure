@@ -4,12 +4,13 @@ using UnityEngine;
 public class PlayerIdleState : PlayerBaseState {
 
 
-    public PlayerIdleState(PlayerStateMachine playerStateMachine) : base(playerStateMachine) {
+    public PlayerIdleState(PlayerController playerController) : base(playerController) {
     }
 
     public override void OnStateEnter() {
         InputHandler.moveStarted += StartedMoving;
         InputHandler.jumpStarted += Jump;
+        CheckForJumpInput();
     }
 
     public override void OnStateUpdate() {
@@ -35,6 +36,14 @@ public class PlayerIdleState : PlayerBaseState {
     }
 
     private void Jump() {
-        stateMachine.ChangeState(stateMachine.jumpState);
+        if (stateMachine.controller.playerJump.CanJump()) {
+            stateMachine.ChangeState(stateMachine.jumpState);
+        }
+    }
+
+    private void CheckForJumpInput() {
+        if (context.inputBufferHolder.jumpInputBuffer.HasInputBeenRecieved()) {
+            stateMachine.ChangeState(stateMachine.jumpState);
+        }
     }
 }

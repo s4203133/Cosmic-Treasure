@@ -19,12 +19,9 @@ public class PlayerJump : MonoBehaviour {
     private float fallForce;
 
     [Header("Ground Checking")]
-    private bool isGrounded;
-    [SerializeField] private Transform groundPoint;
-    [SerializeField] private LayerMask jumpLayers;
-    private bool hasLeftGround;
-    float framesGrounded;
-
+    [SerializeField] private Grounded grounded;
+    public Grounded groundedSystem => grounded;
+ 
     [Header("Jump Apex")]
     [SerializeField] private float jumpApexThreshold;
     [SerializeField] private float jumpApexGravityReduction;
@@ -36,10 +33,7 @@ public class PlayerJump : MonoBehaviour {
     [SerializeField] Rigidbody rigidBody;
 
     private void Update() {
-        isGrounded = Physics.CheckSphere(groundPoint.position, 0.1f, jumpLayers);
         jumpTimer -= Time.deltaTime;
-        CheckPlayerLeftGround();
-        IncrementGroundedTimer();
     }
 
     public void ApplyForce() {
@@ -58,7 +52,13 @@ public class PlayerJump : MonoBehaviour {
         }
     }
 
-    private void ApplyFallForce() {
+    private void ReduceJumpForce() {
+        if (rigidBody.velocity.y > 0) {
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y * jumpCutOffIntensity, rigidBody.velocity.z);
+        }
+    }
+
+    public void ApplyFallForce() {
         if (rigidBody.velocity.y < 0) {
             fallForce += Mathf.Pow(fallSpeed, 2);
             float yVelocity = Mathf.Max(rigidBody.velocity.y - (fallForce * Time.fixedDeltaTime), -maxFallSpeed);
@@ -68,7 +68,7 @@ public class PlayerJump : MonoBehaviour {
 
     // Apply a speed and gravity modifyer while the player is at the peak of a jump
     private void HandleJumpApex() {
-        if (!isGrounded && Mathf.Abs(rigidBody.velocity.y) < jumpApexThreshold) {
+        if (!grounded.IsOnGround() && Mathf.Abs(rigidBody.velocity.y) < jumpApexThreshold) {
             // Exponensially increase the players speed over time
             jumpApexSpeed += jumpApexSpeedIncrease;
             jumpApexSpeed = Mathf.Min(jumpApexSpeed, jumpApexMaxSpeed);
@@ -81,28 +81,20 @@ public class PlayerJump : MonoBehaviour {
         }
     }
 
-    private void ReduceJumpForce() {
-        if (rigidBody.velocity.y > 0) {
-            rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y * jumpCutOffIntensity, rigidBody.velocity.z);
-        }
-    }
-
     public bool CanJump() {
-        return !isGrounded;
+        return grounded.IsOnGround();
     }
 
     public void InitialiseJump() {
         jumpTimer = maxJumpDuration;
-        framesGrounded = 0;
         jumpApexSpeed = 1;
+        grounded.NotifyLeftGround();
     }
 
     public void EndJump() {
-        hasLeftGround = false;
         fallForce = 0;
         jumpApexSpeed = 1;
         jumpCutoff = false;
-        framesGrounded = 0;
     }
 
     public void CutOffJump() {
@@ -112,34 +104,5 @@ public class PlayerJump : MonoBehaviour {
             jumpTimer = 0;
         }
         jumpCutoff = true;
-    }
-
-    private void CheckPlayerLeftGround() {
-        if (!hasLeftGround) {
-            if (!isGrounded) {
-                hasLeftGround = true;
-            }
-        }
-    }
-
-    public bool IsGrounded() {
-        return isGrounded;
-    }
-
-    private void IncrementGroundedTimer() {
-        if (isGrounded) {
-            framesGrounded++;
-        }
-    }
-
-    public bool HasLanded() {
-        if(framesGrounded > 5) {
-            return true;
-        }
-
-        if (!hasLeftGround) {
-            return false;
-        }
-        return isGrounded;
     }
 }

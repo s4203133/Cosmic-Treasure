@@ -4,10 +4,12 @@ public class PlayerJumpState : PlayerBaseState
 {
     private PlayerMovement movement;
     private PlayerJump jump;
+    private Grounded grounded;
 
-    public PlayerJumpState(PlayerStateMachine playerStateMachine , PlayerMovement movement, PlayerJump jump) : base(playerStateMachine) {
-        this.movement = movement;
-        this.jump = jump;
+    public PlayerJumpState(PlayerController playerController) : base(playerController) {
+        movement = context.playerMovment;
+        jump = context.playerJump;
+        grounded = jump.groundedSystem;
     }
 
     public override void OnStateEnter() {
@@ -16,7 +18,7 @@ public class PlayerJumpState : PlayerBaseState
     }
 
     public override void OnStateUpdate() {
-        if (jump.HasLanded()) {
+        if (grounded.IsOnGround()) {
             if (movement.moveInput.x == 0 && movement.moveInput.y == 0) {
                 stateMachine.ChangeState(stateMachine.idleState);
             } else {

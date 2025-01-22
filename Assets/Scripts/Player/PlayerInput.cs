@@ -65,4 +65,3 @@ public class PlayerJumpInput {
         InputHandler.jumpCancelled -= StopJump;
     }
 }
-

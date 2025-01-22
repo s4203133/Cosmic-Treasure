@@ -4,18 +4,23 @@ using UnityEngine;
 public class PlayerRunState : PlayerBaseState {
 
     private PlayerMovement movement;
+    private Grounded grounded;
 
-    public PlayerRunState(PlayerStateMachine playerStateMachine, PlayerMovement movement) : base(playerStateMachine) {
-        this.movement = movement;
+    public PlayerRunState(PlayerController playerController) : base(playerController) {
+        movement = context.playerMovment;
+        grounded = context.playerJump.groundedSystem;
     }
 
     public override void OnStateEnter() {
         InputHandler.moveCancelled += StopMovement;
         InputHandler.jumpStarted += Jump;
+        CheckForJumpInput();
     }
 
     public override void OnStateUpdate() {
-        
+        if (!grounded.IsOnGround()) {
+            stateMachine.ChangeState(stateMachine.fallingState);
+        }
     }
 
     public override void OnStatePhysicsUpdate() {
@@ -37,6 +42,14 @@ public class PlayerRunState : PlayerBaseState {
     }
 
     private void Jump() {
-        stateMachine.ChangeState(stateMachine.jumpState);
+        if (stateMachine.controller.playerJump.CanJump()) {
+            stateMachine.ChangeState(stateMachine.jumpState);
+        }
+    }
+
+    private void CheckForJumpInput() {
+        if (context.inputBufferHolder.jumpInputBuffer.HasInputBeenRecieved()) {
+            stateMachine.ChangeState(stateMachine.jumpState);
+        }
     }
 }
