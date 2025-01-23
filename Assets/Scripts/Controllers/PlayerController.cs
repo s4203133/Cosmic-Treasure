@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private PlayerMovementInput movement;
     [SerializeField] private PlayerJumpInput jump;
+    [SerializeField] private PlayerSpinAttack spin;
 
     [Header("Components")]
     [SerializeField] private PlayerStateMachine stateMachine;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     public PlayerStateMachine playerStateMachine => stateMachine;
     public PlayerMovement playerMovment => movement.playerMovement;
     public PlayerJump playerJump => jump.playerJump;
+    public PlayerSpinAttack playerSpinAttack => spin;
 
     private void OnEnable() {
         SubscribeActionEvents();

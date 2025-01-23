@@ -10,6 +10,7 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerRunState runState;
     public PlayerJumpState jumpState;
     public PlayerFallingState fallingState;
+    public PlayerSpinState spinState;
 
     public PlayerController controller;
 
@@ -19,6 +20,7 @@ public class PlayerStateMachine : MonoBehaviour
         runState = new PlayerRunState(controller);
         jumpState = new PlayerJumpState(controller);
         fallingState = new PlayerFallingState(controller);
+        spinState = new PlayerSpinState(controller);
 
         currentState = idleState;
         stateName = currentState.ToString();

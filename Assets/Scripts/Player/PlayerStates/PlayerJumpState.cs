@@ -14,6 +14,8 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void OnStateEnter() {
         InputHandler.jumpCancelled += jump.CutOffJump;
+        InputHandler.SpinStarted += Spin;
+
         jump.InitialiseJump();
     }
 
@@ -28,16 +30,22 @@ public class PlayerJumpState : PlayerBaseState
     }
 
     public override void OnStatePhysicsUpdate() {
-        movement.MoveCharacter();
+        movement.HandleMovement();
         jump.ApplyForce();
     }
 
     public override void OnStateExit() {
         InputHandler.jumpCancelled -= jump.CutOffJump;
+        InputHandler.SpinStarted -= Spin;
+
         jump.EndJump();
     }
 
     public override void OnCollisionEnter(Collision collision) {
 
+    }
+
+    private void Spin() {
+        stateMachine.ChangeState(stateMachine.spinState);
     }
 }

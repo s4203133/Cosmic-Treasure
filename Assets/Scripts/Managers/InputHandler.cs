@@ -8,6 +8,7 @@ public class InputHandler : ScriptableObject
 
     private InputAction move;
     private InputAction jump;
+    private InputAction spin;
 
     // Input Delegates
     public delegate void InputEvent();
@@ -21,6 +22,8 @@ public class InputHandler : ScriptableObject
     public static InputEvent jumpStarted;
     public static InputEvent jumpPerformed;
     public static InputEvent jumpCancelled;
+
+    public static InputEvent SpinStarted;
 
     private void OnEnable() {
         EnableInputActions();
@@ -53,9 +56,16 @@ public class InputHandler : ScriptableObject
         }
     }
 
+    private void OnSpin(InputAction.CallbackContext context) {
+        if (context.started) {
+            SpinStarted?.Invoke();
+        }
+    }
+
     private void InitialiseInputActions() {
         move = inputActions.FindAction("Move");
         jump = inputActions.FindAction("Jump");
+        spin = inputActions.FindAction("Spin");
     }
 
     private void SubscribeMoveEvents() {
@@ -82,14 +92,24 @@ public class InputHandler : ScriptableObject
         jump.canceled -= OnJump;
     }
 
+    private void SubscribeSpinEvents() {
+        spin.started += OnSpin;
+    }
+
+    private void UnsubscribeSpinEvents() {
+        spin.started -= OnSpin;
+    }
+
     private void SubscribeInputEvents() {
         SubscribeMoveEvents();
         SubscribeJumpEvents();
+        SubscribeSpinEvents();
     }
 
     private void UnsubscribeInputEvents() {
         UnsubscribeMoveEvents();
         UnsubscribeJumpEvents();
+        UnsubscribeSpinEvents();
     }
 
     private void EnableInputActions() {

@@ -9,7 +9,10 @@ public class PlayerIdleState : PlayerBaseState {
 
     public override void OnStateEnter() {
         InputHandler.moveStarted += StartedMoving;
+        InputHandler.movePerformed += StartedMoving;
         InputHandler.jumpStarted += Jump;
+        InputHandler.SpinStarted += Spin;
+
         CheckForJumpInput();
     }
 
@@ -23,14 +26,17 @@ public class PlayerIdleState : PlayerBaseState {
 
     public override void OnStateExit() {
         InputHandler.moveStarted -= StartedMoving;
+        InputHandler.movePerformed -= StartedMoving;
         InputHandler.jumpStarted -= Jump;
+        InputHandler.SpinStarted -= Spin;
+
     }
 
     public override void OnCollisionEnter(Collision collision) {
     }
 
     private void StartedMoving(Vector2 value) {
-        if(value.x != 0 || value.y != 0) {
+        if(value != Vector2.zero) {
             stateMachine.ChangeState(stateMachine.runState);
         }
     }
@@ -45,5 +51,9 @@ public class PlayerIdleState : PlayerBaseState {
         if (context.inputBufferHolder.jumpInputBuffer.HasInputBeenRecieved()) {
             stateMachine.ChangeState(stateMachine.jumpState);
         }
+    }
+
+    private void Spin() {
+        stateMachine.ChangeState(stateMachine.spinState);
     }
 }

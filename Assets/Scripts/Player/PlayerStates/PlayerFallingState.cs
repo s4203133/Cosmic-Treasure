@@ -18,6 +18,8 @@ public class PlayerFallingState : PlayerBaseState
 
     public override void OnStateEnter() {
         InputHandler.jumpStarted += Jump;
+        InputHandler.SpinStarted += Spin;
+
         countdown = allowJumpDuration;
     }
 
@@ -34,12 +36,14 @@ public class PlayerFallingState : PlayerBaseState
     }
 
     public override void OnStatePhysicsUpdate() {
-        movement.MoveCharacter();
+        movement.HandleMovement();
         jump.ApplyFallForce();
     }
 
     public override void OnStateExit() {
         InputHandler.jumpStarted -= Jump;
+        InputHandler.SpinStarted -= Spin;
+
         jump.EndJump();
     }
 
@@ -51,5 +55,9 @@ public class PlayerFallingState : PlayerBaseState
         if (countdown > 0) {
             stateMachine.ChangeState(stateMachine.jumpState);
         }
+    }
+
+    private void Spin() {
+        stateMachine.ChangeState(stateMachine.spinState);
     }
 }
