@@ -6,17 +6,24 @@ public class PlayerFallingState : PlayerBaseState
     private PlayerJump jump;
     private Grounded grounded;
 
+    private float allowJumpDuration;
+    private float countdown;
+
     public PlayerFallingState(PlayerController playerController) : base(playerController) {
         movement = context.playerMovment;
         jump = context.playerJump;
         grounded = jump.groundedSystem;
+        allowJumpDuration = 0.15f;
     }
 
     public override void OnStateEnter() {
-
+        InputHandler.jumpStarted += Jump;
+        countdown = allowJumpDuration;
     }
 
     public override void OnStateUpdate() {
+        countdown -= Time.deltaTime;
+
         if (grounded.IsOnGround()) {
             if(movement.moveInput == Vector2.zero) {
                 stateMachine.ChangeState(stateMachine.idleState);
@@ -32,10 +39,17 @@ public class PlayerFallingState : PlayerBaseState
     }
 
     public override void OnStateExit() {
+        InputHandler.jumpStarted -= Jump;
         jump.EndJump();
     }
 
     public override void OnCollisionEnter(Collision collision) {
 
+    }
+
+    private void Jump() {
+        if (countdown > 0) {
+            stateMachine.ChangeState(stateMachine.jumpState);
+        }
     }
 }
