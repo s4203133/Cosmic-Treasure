@@ -15,7 +15,9 @@ public class PlayerJumpState : PlayerBaseState
     public override void OnStateEnter() {
         InputHandler.jumpCancelled += jump.CutOffJump;
         InputHandler.SpinStarted += Spin;
+        context.vfx.PlayJumpParticles();
 
+        context.vfx.PlayJumpParticles();
         jump.InitialiseJump();
     }
 
@@ -38,6 +40,8 @@ public class PlayerJumpState : PlayerBaseState
         InputHandler.jumpCancelled -= jump.CutOffJump;
         InputHandler.SpinStarted -= Spin;
 
+        SpawnParticlesIfLanded();
+
         jump.EndJump();
     }
 
@@ -47,5 +51,11 @@ public class PlayerJumpState : PlayerBaseState
 
     private void Spin() {
         stateMachine.ChangeState(stateMachine.spinState);
+    }
+
+    private void SpawnParticlesIfLanded() {
+        if (jump.groundedSystem.IsOnGround()) {
+            context.vfx.PlayLandParticles();
+        }
     }
 }

@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class InteractAnimation : MonoBehaviour
 {
-    private Animator anim;
+    private Animator animator;
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.tag == "Player") {
+        if(other.tag == "Player" || other.tag == "PlayerSpinAttack") {
             Play();
         }
     }
 
     public void Play() {
-        anim.SetTrigger("Interact");
+        animator.SetTrigger("Interact");
     }
 }

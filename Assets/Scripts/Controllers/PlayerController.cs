@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    [Header("Input")]
+    [Header("INPUT")]
     [SerializeField] private InputHandler input;
     [SerializeField] private InputBuffers inputBuffers;
 
@@ -11,7 +11,10 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private PlayerJumpInput jump;
     [SerializeField] private PlayerSpinAttack spin;
 
-    [Header("Components")]
+    [Header("VISUAL EFFECTS")]
+    [SerializeField] private PlayerVFX playerVfxHolder;
+
+    [Header("COMPONENTS")]
     [SerializeField] private PlayerStateMachine stateMachine;
     public Rigidbody rigidBody;
 
@@ -21,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     public PlayerMovement playerMovment => movement.playerMovement;
     public PlayerJump playerJump => jump.playerJump;
     public PlayerSpinAttack playerSpinAttack => spin;
+    public PlayerVFX vfx => playerVfxHolder;
 
     private void OnEnable() {
         SubscribeActionEvents();
