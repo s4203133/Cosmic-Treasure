@@ -12,8 +12,14 @@ public class PlayerVFX : MonoBehaviour
     [SerializeField] private Transform jumpParticlesSpawnPoint;
     float jumpParticleDuration;
 
+    [Header("SPIN PARTICLES")]
+    [SerializeField] private VisualEffect SpinVFX;
+    [SerializeField] private Transform spinVFXSpawnPoint;
+    float spinDuration;
+
     private void Start() {
         jumpParticleDuration = jumpParticles.GetVector2("LifeTimeRange").y;
+        //spinDuration = SpinVFX.get
         StopRunParticles();
     }
 
@@ -33,5 +39,10 @@ public class PlayerVFX : MonoBehaviour
     public void PlayLandParticles() {
         GameObject newJumpParticles = Instantiate(jumpParticles.gameObject, jumpParticlesSpawnPoint.position, Quaternion.identity);
         Destroy(newJumpParticles, jumpParticleDuration);
+    }
+
+    public void PlaySpinVFX() {
+        GameObject newSpinEffect = Instantiate(SpinVFX.gameObject, spinVFXSpawnPoint.position, Quaternion.identity, spinVFXSpawnPoint);
+        Destroy(newSpinEffect, 0.75f);
     }
 }
