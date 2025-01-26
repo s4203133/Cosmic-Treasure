@@ -19,7 +19,7 @@ public class PlayerVFX : MonoBehaviour
 
     private void Start() {
         jumpParticleDuration = jumpParticles.GetVector2("LifeTimeRange").y;
-        //spinDuration = SpinVFX.get
+        spinDuration = SpinVFX.GetFloat("LifeTime");
         StopRunParticles();
     }
 
@@ -43,6 +43,6 @@ public class PlayerVFX : MonoBehaviour
 
     public void PlaySpinVFX() {
         GameObject newSpinEffect = Instantiate(SpinVFX.gameObject, spinVFXSpawnPoint.position, Quaternion.identity, spinVFXSpawnPoint);
-        Destroy(newSpinEffect, 0.75f);
+        Destroy(newSpinEffect, spinDuration);
     }
 }

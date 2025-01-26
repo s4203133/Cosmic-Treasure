@@ -15,7 +15,6 @@ public class PlayerJumpState : PlayerBaseState
     public override void OnStateEnter() {
         InputHandler.jumpCancelled += jump.CutOffJump;
         InputHandler.SpinStarted += Spin;
-        context.vfx.PlayJumpParticles();
 
         context.vfx.PlayJumpParticles();
         jump.InitialiseJump();
@@ -23,7 +22,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void OnStateUpdate() {
         if (grounded.IsOnGround()) {
-            if (movement.moveInput.x == 0 && movement.moveInput.y == 0) {
+            if (movement.moveInput == Vector2.zero) {
                 stateMachine.ChangeState(stateMachine.idleState);
             } else {
                 stateMachine.ChangeState(stateMachine.runState);
