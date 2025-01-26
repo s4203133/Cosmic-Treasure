@@ -29,7 +29,7 @@ public class Coin : MonoBehaviour
         if(other.tag == "Player") {
             collectedVFX.transform.parent = null;
             collectedVFX.Play();
-            Destroy(collectedVFX, collectedVFXDuration);
+            Destroy(collectedVFX.gameObject, collectedVFXDuration);
             Destroy(gameObject);
         }
     }
@@ -39,16 +39,12 @@ public class Coin : MonoBehaviour
         StartCoroutine(ActivateCollision());
     }
 
-    public void AnimatedCoinToPosition() {
-        
-    }
-
     private void AnimateCoin() {
         thisTransform.position = Vector3.Lerp(thisTransform.position, position, spawnAnimateDuration);
     }
 
     private IEnumerator ActivateCollision() {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         coinCollider.enabled = true;
     }
 }
