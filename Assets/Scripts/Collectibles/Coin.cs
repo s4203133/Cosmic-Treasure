@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -5,15 +6,19 @@ public class Coin : MonoBehaviour
 {
     private Transform thisTransform;
     private Vector3 position;
-    private float yPosition;
-    private float timeSinceSpawn;
 
     [SerializeField] private float spawnAnimateDuration;
 
+    [Header("COLLECT VFX")]
     [SerializeField] private VisualEffect collectedVFX;
+    private float collectedVFXDuration;
+
+    private Collider coinCollider;
 
     private void Awake() {
         thisTransform = transform;
+        coinCollider = GetComponent<Collider>();
+        collectedVFXDuration = collectedVFX.GetVector2("LifetimeRange").y;
     }
 
     private void FixedUpdate() {
@@ -22,15 +27,16 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player") {
-            //VisualEffect newParticles = Instantiate(collectedVFX, transform.position, Quaternion.identity);
-            //Destroy(newParticles.gameObject, 0.5f);
+            collectedVFX.transform.parent = null;
+            collectedVFX.Play();
+            Destroy(collectedVFX, collectedVFXDuration);
             Destroy(gameObject);
         }
     }
 
     public void SetPosition(Vector3 newPosition) {
         position = newPosition;
-        yPosition = position.y;
+        StartCoroutine(ActivateCollision());
     }
 
     public void AnimatedCoinToPosition() {
@@ -38,9 +44,11 @@ public class Coin : MonoBehaviour
     }
 
     private void AnimateCoin() {
-        Vector3 targetPosition = position;
-        targetPosition.y = yPosition + Mathf.Sin(timeSinceSpawn * 5);
-        timeSinceSpawn += Time.fixedDeltaTime;
-        thisTransform.position = Vector3.Lerp(thisTransform.position, targetPosition, spawnAnimateDuration);
+        thisTransform.position = Vector3.Lerp(thisTransform.position, position, spawnAnimateDuration);
+    }
+
+    private IEnumerator ActivateCollision() {
+        yield return new WaitForSeconds(1f);
+        coinCollider.enabled = true;
     }
 }

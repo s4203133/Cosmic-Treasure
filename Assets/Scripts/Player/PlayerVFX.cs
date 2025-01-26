@@ -42,7 +42,9 @@ public class PlayerVFX : MonoBehaviour
     }
 
     public void PlaySpinVFX() {
-        GameObject newSpinEffect = Instantiate(SpinVFX.gameObject, spinVFXSpawnPoint.position, Quaternion.identity, spinVFXSpawnPoint);
-        Destroy(newSpinEffect, spinDuration);
+        //GameObject newSpinEffect = Instantiate(SpinVFX.gameObject, spinVFXSpawnPoint.position, Quaternion.identity, spinVFXSpawnPoint);
+        //Destroy(newSpinEffect, spinDuration);
+
+        SpinVFX.Play();
     }
 }
