@@ -16,6 +16,7 @@ public class PlayerJumpState : PlayerBaseState
         InputHandler.jumpCancelled += jump.CutOffJump;
         InputHandler.SpinStarted += Spin;
 
+        jump.jumpSquashAndStretch.Play();
         context.vfx.PlayJumpParticles();
         jump.InitialiseJump();
     }
@@ -55,6 +56,7 @@ public class PlayerJumpState : PlayerBaseState
     private void SpawnParticlesIfLanded() {
         if (jump.groundedSystem.IsOnGround()) {
             context.vfx.PlayLandParticles();
+            jump.landSquashAndStretch.Play();
         }
     }
 }

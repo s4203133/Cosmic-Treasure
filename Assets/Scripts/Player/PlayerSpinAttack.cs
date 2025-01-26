@@ -11,8 +11,9 @@ public class PlayerSpinAttack : MonoBehaviour
     [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private float jumpBoostForce;
 
-    [Header("ANIMATION")]
+    [Header("COMPONENTS")]
     [SerializeField] private Animator animator;
+    public SquashAndStretch squashAndStretch;
 
     public void StartSpin() {
         counter = length;

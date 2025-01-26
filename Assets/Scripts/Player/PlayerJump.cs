@@ -31,6 +31,8 @@ public class PlayerJump : MonoBehaviour {
 
     [Header("Components")]
     [SerializeField] Rigidbody rigidBody;
+    public SquashAndStretch jumpSquashAndStretch;
+    public SquashAndStretch landSquashAndStretch;
 
     private void Update() {
         jumpTimer -= Time.deltaTime;

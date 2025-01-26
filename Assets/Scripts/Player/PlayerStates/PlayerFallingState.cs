@@ -44,6 +44,7 @@ public class PlayerFallingState : PlayerBaseState
         InputHandler.jumpStarted -= Jump;
         InputHandler.SpinStarted -= Spin;
 
+        jump.landSquashAndStretch.Play();
         jump.EndJump();
     }
 

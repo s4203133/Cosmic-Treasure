@@ -19,6 +19,7 @@ public class PlayerSpinState : PlayerBaseState {
 
     public override void OnStateEnter() {
         spin.StartSpin();
+        spin.squashAndStretch.Play();
         context.vfx.PlaySpinVFX();
         if (!grounded.IsOnGround()) {
             spin.ApplyJumpBoost();
