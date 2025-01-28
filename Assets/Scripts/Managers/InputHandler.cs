@@ -9,6 +9,7 @@ public class InputHandler : ScriptableObject
     private InputAction move;
     private InputAction jump;
     private InputAction spin;
+    private InputAction groundPound;
 
     // Input Delegates
     public delegate void InputEvent();
@@ -24,6 +25,8 @@ public class InputHandler : ScriptableObject
     public static InputEvent jumpCancelled;
 
     public static InputEvent SpinStarted;
+
+    public static InputEvent groundPoundStarted;
 
     private void OnEnable() {
         EnableInputActions();
@@ -62,10 +65,17 @@ public class InputHandler : ScriptableObject
         }
     }
 
+    private void OnGroundPound(InputAction.CallbackContext context) {
+        if (context.started) {
+            groundPoundStarted?.Invoke();
+        }
+    }
+
     private void InitialiseInputActions() {
         move = inputActions.FindAction("Move");
         jump = inputActions.FindAction("Jump");
         spin = inputActions.FindAction("Spin");
+        groundPound = inputActions.FindAction("GroundPound");
     }
 
     private void SubscribeMoveEvents() {
@@ -100,27 +110,41 @@ public class InputHandler : ScriptableObject
         spin.started -= OnSpin;
     }
 
+    private void SubscribeGroundPoundEvents() {
+        groundPound.started += OnGroundPound;
+    }
+
+    private void UnsubscribeGroundPoundEvents() {
+        groundPound.started -= OnGroundPound;
+    }
+
     private void SubscribeInputEvents() {
         SubscribeMoveEvents();
         SubscribeJumpEvents();
         SubscribeSpinEvents();
+        SubscribeGroundPoundEvents();
     }
 
     private void UnsubscribeInputEvents() {
         UnsubscribeMoveEvents();
         UnsubscribeJumpEvents();
         UnsubscribeSpinEvents();
+        UnsubscribeGroundPoundEvents();
     }
 
     private void EnableInputActions() {
         inputActions.Enable();
         move?.Enable();
         jump?.Enable();
+        spin?.Enable();
+        groundPound?.Enable();
     }
 
     private void DisableInputActions() {
-        inputActions.Disable();
         move.Disable(); 
         jump.Disable();
+        spin?.Disable();
+        groundPound?.Disable();
+        inputActions.Disable();
     }
 }

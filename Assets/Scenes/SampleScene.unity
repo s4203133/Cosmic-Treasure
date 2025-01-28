@@ -162,7 +162,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2988669}
-  m_Material: {fileID: 13400000, guid: a40d5a4194a3aef4aae9dd926d88d2d7, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -216,7 +216,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34746138}
-  m_Material: {fileID: 13400000, guid: a40d5a4194a3aef4aae9dd926d88d2d7, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -241,7 +241,6 @@ GameObject:
   - component: {fileID: 49162073}
   - component: {fileID: 49162076}
   - component: {fileID: 49162075}
-  - component: {fileID: 49162074}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -264,29 +263,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1361350842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &49162074
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49162072}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &49162075
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -804,7 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.12452829, g: 0.09474914, b: 0.09468849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1337,6 +1313,158 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 369634853}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &381563333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 381563336}
+  - component: {fileID: 381563335}
+  - component: {fileID: 381563334}
+  m_Layer: 0
+  m_Name: GroundPoundShockwave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!73398921 &381563334
+VFXRenderer:
+  serializedVersion: 1
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381563333}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!2083052967 &381563335
+VisualEffect:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381563333}
+  m_Enabled: 1
+  m_Asset: {fileID: 8926484042661614526, guid: 2bcf63f48e22fff40bb1ee01ce670374, type: 3}
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
+  m_StartSeed: 0
+  m_ResetSeedOnPlay: 1
+  m_AllowInstancing: 1
+  m_ResourceVersion: 1
+  m_PropertySheet:
+    m_Float:
+      m_Array:
+      - m_Value: 0.5
+        m_Name: Lifetime
+        m_Overridden: 1
+      - m_Value: 6
+        m_Name: Sharpness
+        m_Overridden: 1
+    m_Vector2f:
+      m_Array: []
+    m_Vector3f:
+      m_Array: []
+    m_Vector4f:
+      m_Array: []
+    m_Uint:
+      m_Array: []
+    m_Int:
+      m_Array: []
+    m_Matrix4x4f:
+      m_Array: []
+    m_AnimationCurve:
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 5.1180243
+            outSlope: 5.1180243
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.018867929
+          - serializedVersion: 3
+            time: 0.37443238
+            value: 1.2233485
+            inSlope: 1.4450916
+            outSlope: 1.4450916
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.0516937
+          - serializedVersion: 3
+            time: 1
+            value: 1.5
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.05105436
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: SizeOverLife
+        m_Overridden: 1
+    m_Gradient:
+      m_Array: []
+    m_NamedObject:
+      m_Array: []
+    m_Bool:
+      m_Array: []
+--- !u!4 &381563336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381563333}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2054662295}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,6 +1708,7 @@ GameObject:
   - component: {fileID: 510436437}
   - component: {fileID: 510436436}
   - component: {fileID: 510436438}
+  - component: {fileID: 510436439}
   m_Layer: 0
   m_Name: Components
   m_TagString: Untagged
@@ -1713,7 +1842,29 @@ MonoBehaviour:
   jumpLayers:
     serializedVersion: 2
     m_Bits: 64
-  groundCheckRadius: 0.15
+  groundCheckRadius: 0.1
+--- !u!114 &510436439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510436434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f2ff747a6e4494ca0ee4b8fda0deba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundPoundCollider: {fileID: 751485589}
+  groundPoundLandCollider: {fileID: 954087596}
+  buildUpDuration: 0.4
+  groundPoundSpeed: 30
+  landDuration: 0.125
+  landed: 0
+  finishedGroundPound: 0
+  rigidBody: {fileID: 8296172668212179655}
+  grounded: {fileID: 510436438}
+  animator: {fileID: 1091862834}
 --- !u!1001 &510569163
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2788,6 +2939,72 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 733412758}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &751485587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751485588}
+  - component: {fileID: 751485589}
+  - component: {fileID: 751485590}
+  m_Layer: 0
+  m_Name: Ground Pound Collider
+  m_TagString: PlayerSpinAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &751485588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751485587}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.125, z: 0}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2054662295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &751485589
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751485587}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &751485590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751485587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767b33841bd1e7d46b9797cdd0290214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &823996133
 GameObject:
   m_ObjectHideFlags: 0
@@ -3409,7 +3626,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946491451}
-  m_Material: {fileID: 13400000, guid: a40d5a4194a3aef4aae9dd926d88d2d7, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3517,6 +3734,72 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 947720279}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &954087593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 954087594}
+  - component: {fileID: 954087596}
+  - component: {fileID: 954087595}
+  m_Layer: 0
+  m_Name: Ground Pound Land Collider
+  m_TagString: PlayerSpinAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &954087594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954087593}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalScale: {x: 1.75, y: 1, z: 1.75}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2054662295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &954087595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954087593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767b33841bd1e7d46b9797cdd0290214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &954087596
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954087593}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &957512484
 GameObject:
   m_ObjectHideFlags: 0
@@ -3609,7 +3892,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982719280}
-  m_Material: {fileID: 13400000, guid: a40d5a4194a3aef4aae9dd926d88d2d7, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3695,7 +3978,7 @@ MonoBehaviour:
   rigidBody: {fileID: 8296172668212179655}
   jumpBoostForce: 10
   animator: {fileID: 1091862834}
-  squashAndStretch: {fileID: 2066589002}
+  vfxSpawnPoint: {fileID: 1699602749}
 --- !u!114 &983716385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3800,7 +4083,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038641769}
-  m_Material: {fileID: 13400000, guid: a40d5a4194a3aef4aae9dd926d88d2d7, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3920,7 +4203,7 @@ GameObject:
   - component: {fileID: 1047818088}
   - component: {fileID: 1047818087}
   m_Layer: 0
-  m_Name: RunParticles
+  m_Name: Run Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4309,6 +4592,87 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1113952704}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1148601170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1148601171}
+  - component: {fileID: 1148601172}
+  m_Layer: 0
+  m_Name: Spin Attack Squash & Stretch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1148601171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148601170}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1582637558}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1148601172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148601170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a711c31a97e40df42aeebddc0372ed9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformToAffect: {fileID: 1361350842}
+  axis: -1
+  duration: 0.25
+  intensity: 1.4
+  motion:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 7.385005
+      outSlope: 7.385005
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.042175364
+    - serializedVersion: 3
+      time: 0.25
+      value: 1
+      inSlope: 0.03592826
+      outSlope: 0.03592826
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.045505006
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.3333334
+      outSlope: -1.3333334
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1204900674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4466,7 +4830,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1242708549}
   m_Layer: 0
-  m_Name: GroundPoint
+  m_Name: Ground Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4990,7 +5354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1361350842}
   m_Layer: 0
-  m_Name: CharacterModel
+  m_Name: Character Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5023,7 +5387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1442000165}
   m_Layer: 0
-  m_Name: RunParticlesSpawnPoint
+  m_Name: Run Particles Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5108,7 +5472,7 @@ GameObject:
   - component: {fileID: 1486726349}
   - component: {fileID: 1486726350}
   m_Layer: 0
-  m_Name: LandSquash&Stretch
+  m_Name: Land Squash & Stretch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5752,8 +6116,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1582637558}
+  - component: {fileID: 1582637559}
   m_Layer: 0
-  m_Name: Squash&Stretches
+  m_Name: Squash & Stretches
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5774,9 +6139,26 @@ Transform:
   m_Children:
   - {fileID: 2077602861}
   - {fileID: 1486726349}
+  - {fileID: 1148601171}
   - {fileID: 2066589001}
   m_Father: {fileID: 5006512736314687663}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1582637559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582637557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91ad7055de79d04098929591269a9c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jump: {fileID: 2077602862}
+  land: {fileID: 1486726350}
+  spinAttack: {fileID: 1148601172}
+  groundPound: {fileID: 2066589002}
 --- !u!1001 &1612635321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5851,6 +6233,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1612635321}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1624802641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1624802642}
+  m_Layer: 0
+  m_Name: Ground Pound Particle Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1624802642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624802641}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2054662295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1627508310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5955,7 +6368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1627632568}
   m_Layer: 0
-  m_Name: JumpParticleSpawnPoint
+  m_Name: Jump Particle Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6409,7 +6822,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699602748}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6456,7 +6869,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709014029}
-  m_Material: {fileID: 13400000, guid: a40d5a4194a3aef4aae9dd926d88d2d7, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7123,7 +7536,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 10, y: 10, z: 10}
@@ -7228,6 +7641,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8774153506756876220}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2054662294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2054662295}
+  m_Layer: 0
+  m_Name: Ground Pound Components
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2054662295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054662294}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 751485588}
+  - {fileID: 954087594}
+  - {fileID: 1624802642}
+  - {fileID: 381563336}
+  m_Father: {fileID: 5006512736314687663}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2061711802
 GameObject:
   m_ObjectHideFlags: 0
@@ -7267,7 +7715,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061711802}
-  m_Material: {fileID: 13400000, guid: a40d5a4194a3aef4aae9dd926d88d2d7, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7292,7 +7740,7 @@ GameObject:
   - component: {fileID: 2066589001}
   - component: {fileID: 2066589002}
   m_Layer: 0
-  m_Name: SpinAttackSquash&Stretch
+  m_Name: Ground Pound Squash & Stretch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7326,38 +7774,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transformToAffect: {fileID: 1361350842}
-  axis: -1
-  duration: 0.25
-  intensity: 1.35
+  axis: 2
+  duration: 0.15
+  intensity: 0.7
   motion:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 7.385005
-      outSlope: 7.385005
+      inSlope: 12.484741
+      outSlope: 12.484741
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.042175364
+      outWeight: 0.0554939
     - serializedVersion: 3
-      time: 0.25
+      time: 0.1
       value: 1
-      inSlope: 0.03592826
-      outSlope: 0.03592826
+      inSlope: -0.62419426
+      outSlope: -0.62419426
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.045505006
+      outWeight: 0.043655198
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -1.3333334
-      outSlope: -1.3333334
-      tangentMode: 34
+      inSlope: -0.8936261
+      outSlope: -0.8936261
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.041928623
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -7419,7 +7867,7 @@ GameObject:
   - component: {fileID: 2077602861}
   - component: {fileID: 2077602862}
   m_Layer: 0
-  m_Name: JumpSquash&Stretch
+  m_Name: Jump Squash & Stretch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7500,7 +7948,7 @@ GameObject:
   - component: {fileID: 2095165415}
   - component: {fileID: 2095165416}
   m_Layer: 0
-  m_Name: VisualEffects
+  m_Name: Visual Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7542,6 +7990,10 @@ MonoBehaviour:
   jumpParticlesSpawnPoint: {fileID: 1627632568}
   SpinVFX: {fileID: 1272377149}
   spinVFXSpawnPoint: {fileID: 1699602749}
+  groundPoundVFX: {fileID: 381563335}
+  groundPoundParticles: {fileID: 2166009737442243610, guid: df53fba9e94a64547a3bb8876aa19459,
+    type: 3}
+  groundPoundParticlesSpawnPoint: {fileID: 1624802642}
 --- !u!1001 &2123624572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10694,6 +11146,7 @@ Transform:
   - {fileID: 1442000165}
   - {fileID: 2095165415}
   - {fileID: 1582637558}
+  - {fileID: 2054662295}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5099688720467407042
@@ -13281,7 +13734,9 @@ MonoBehaviour:
   jump:
     playerJump: {fileID: 510436436}
   spin: {fileID: 983716384}
+  groundPound: {fileID: 510436439}
   playerVfxHolder: {fileID: 2095165416}
+  playerSquashAndStretch: {fileID: 1582637559}
   stateMachine: {fileID: 8296172668212179654}
   rigidBody: {fileID: 8296172668212179655}
 --- !u!114 &8296172668212179654

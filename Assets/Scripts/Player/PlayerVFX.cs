@@ -15,11 +15,16 @@ public class PlayerVFX : MonoBehaviour
     [Header("SPIN PARTICLES")]
     [SerializeField] private VisualEffect SpinVFX;
     [SerializeField] private Transform spinVFXSpawnPoint;
-    float spinDuration;
+
+    [Header("GROUND POUND PARTICLES")]
+    [SerializeField] private VisualEffect groundPoundVFX;
+    [SerializeField] private VisualEffect groundPoundParticles;
+    [SerializeField] private Transform groundPoundParticlesSpawnPoint;
+    float groundPoundParticleDuration;
 
     private void Start() {
         jumpParticleDuration = jumpParticles.GetVector2("LifeTimeRange").y;
-        spinDuration = SpinVFX.GetFloat("LifeTime");
+        groundPoundParticleDuration = groundPoundParticles.GetVector2("LifeTimeRange").y;
         StopRunParticles();
     }
 
@@ -42,9 +47,17 @@ public class PlayerVFX : MonoBehaviour
     }
 
     public void PlaySpinVFX() {
-        //GameObject newSpinEffect = Instantiate(SpinVFX.gameObject, spinVFXSpawnPoint.position, Quaternion.identity, spinVFXSpawnPoint);
-        //Destroy(newSpinEffect, spinDuration);
-
+        SpinVFX.enabled = true;
         SpinVFX.Play();
+    }
+
+    public void StopSpinVFX() {
+        SpinVFX.enabled = false;
+    }
+
+    public void PlayGroundPoundParticles() {
+        //groundPoundVFX.Play();
+        GameObject newGroundPoundParticles = Instantiate(groundPoundParticles.gameObject, groundPoundParticlesSpawnPoint.position, Quaternion.identity);
+        Destroy(newGroundPoundParticles, groundPoundParticleDuration);
     }
 }

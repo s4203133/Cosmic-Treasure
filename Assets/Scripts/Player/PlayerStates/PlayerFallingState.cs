@@ -19,6 +19,7 @@ public class PlayerFallingState : PlayerBaseState
     public override void OnStateEnter() {
         InputHandler.jumpStarted += Jump;
         InputHandler.SpinStarted += Spin;
+        InputHandler.groundPoundStarted += GroundPound;
 
         countdown = allowJumpDuration;
     }
@@ -43,6 +44,7 @@ public class PlayerFallingState : PlayerBaseState
     public override void OnStateExit() {
         InputHandler.jumpStarted -= Jump;
         InputHandler.SpinStarted -= Spin;
+        InputHandler.groundPoundStarted -= GroundPound;
 
         jump.landSquashAndStretch.Play();
         jump.EndJump();
@@ -60,5 +62,9 @@ public class PlayerFallingState : PlayerBaseState
 
     private void Spin() {
         stateMachine.ChangeState(stateMachine.spinState);
+    }
+
+    private void GroundPound() {
+        stateMachine.ChangeState(stateMachine.groundPoundState);
     }
 }

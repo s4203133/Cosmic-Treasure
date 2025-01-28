@@ -15,8 +15,9 @@ public class PlayerJumpState : PlayerBaseState
     public override void OnStateEnter() {
         InputHandler.jumpCancelled += jump.CutOffJump;
         InputHandler.SpinStarted += Spin;
+        InputHandler.groundPoundStarted += GroundPound;
 
-        jump.jumpSquashAndStretch.Play();
+        context.squashAndStretch.Jump.Play();
         context.vfx.PlayJumpParticles();
         jump.InitialiseJump();
     }
@@ -39,6 +40,7 @@ public class PlayerJumpState : PlayerBaseState
     public override void OnStateExit() {
         InputHandler.jumpCancelled -= jump.CutOffJump;
         InputHandler.SpinStarted -= Spin;
+        InputHandler.groundPoundStarted -= GroundPound;
 
         SpawnParticlesIfLanded();
 
@@ -53,10 +55,14 @@ public class PlayerJumpState : PlayerBaseState
         stateMachine.ChangeState(stateMachine.spinState);
     }
 
+    private void GroundPound() {
+        stateMachine.ChangeState(stateMachine.groundPoundState);
+    }
+
     private void SpawnParticlesIfLanded() {
         if (jump.groundedSystem.IsOnGround()) {
             context.vfx.PlayLandParticles();
-            jump.landSquashAndStretch.Play();
+            context.squashAndStretch.Land.Play();
         }
     }
 }

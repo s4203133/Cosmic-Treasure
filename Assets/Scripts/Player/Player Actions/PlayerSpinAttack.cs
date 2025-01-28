@@ -13,7 +13,7 @@ public class PlayerSpinAttack : MonoBehaviour
 
     [Header("COMPONENTS")]
     [SerializeField] private Animator animator;
-    public SquashAndStretch squashAndStretch;
+    [SerializeField] private Transform vfxSpawnPoint;
 
     public void StartSpin() {
         counter = length;
@@ -26,6 +26,7 @@ public class PlayerSpinAttack : MonoBehaviour
     }
 
     public void StopSpin() {
+        counter = 0;
         spinRangeCollider.enabled = false;
     }
 
@@ -35,5 +36,9 @@ public class PlayerSpinAttack : MonoBehaviour
 
     public void ApplyJumpBoost() {
         rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpBoostForce, rigidBody.velocity.z);
+    }
+
+    private void LateUpdate() {
+        vfxSpawnPoint.rotation = Quaternion.Euler(90, vfxSpawnPoint.eulerAngles.y, vfxSpawnPoint.eulerAngles.z);
     }
 }

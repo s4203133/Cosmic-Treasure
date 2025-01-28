@@ -3,13 +3,11 @@ using UnityEngine;
 public class PlayerSpinState : PlayerBaseState {
 
     private PlayerMovement movement;
-    private PlayerJump jump;
     private Grounded grounded;
     private PlayerSpinAttack spin;
 
     public PlayerSpinState(PlayerController playerController) : base(playerController) {
         movement = context.playerMovment;
-        jump = context.playerJump;
         grounded = context.playerJump.groundedSystem;
         spin = context.playerSpinAttack;
     }
@@ -18,8 +16,10 @@ public class PlayerSpinState : PlayerBaseState {
     }
 
     public override void OnStateEnter() {
+        InputHandler.groundPoundStarted += GroundPound;
+
         spin.StartSpin();
-        spin.squashAndStretch.Play();
+        context.squashAndStretch.SpinAttack.Play();
         context.vfx.PlaySpinVFX();
         if (!grounded.IsOnGround()) {
             spin.ApplyJumpBoost();
@@ -38,11 +38,13 @@ public class PlayerSpinState : PlayerBaseState {
     }
 
     public override void OnStateExit() {
+        InputHandler.groundPoundStarted -= GroundPound;
+
         spin.StopSpin();
     }
 
     private void DetermineNewState() {
-        if (!grounded) {
+        if (!grounded.IsOnGround()) {
             stateMachine.ChangeState(stateMachine.fallingState);
             return;
         }
@@ -50,6 +52,14 @@ public class PlayerSpinState : PlayerBaseState {
             stateMachine.ChangeState(stateMachine.idleState);
         } else {
             stateMachine.ChangeState(stateMachine.runState);
+        }
+    }
+
+    private void GroundPound() {
+        if (!grounded.IsOnGround()) {
+            spin.StopSpin();
+            //context.vfx.StopSpinVFX();
+            stateMachine.ChangeState(stateMachine.groundPoundState);
         }
     }
 }
