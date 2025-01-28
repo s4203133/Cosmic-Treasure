@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour {
     [Header("Jumping")]
     [SerializeField] public float jumpForce;
-
+    [SerializeField] public float highJumpForce;
+    private float jump;
     [SerializeField] private float maxJumpDuration;
     [SerializeField] private float minJumpDuration;
     [SerializeField] private float minJumpInput;
@@ -30,9 +31,13 @@ public class PlayerJump : MonoBehaviour {
     private float jumpApexSpeed;
 
     [Header("Components")]
-    [SerializeField] Rigidbody rigidBody;
-    public SquashAndStretch jumpSquashAndStretch;
-    public SquashAndStretch landSquashAndStretch;
+    [SerializeField] private Rigidbody rigidBody;
+    [SerializeField] private Animator animator;
+
+    // Events
+    public delegate void JumpEvent();
+    public JumpEvent OnJump;
+    public JumpEvent OnHighJump;
 
     private void Update() {
         jumpTimer -= Time.deltaTime;
@@ -46,7 +51,7 @@ public class PlayerJump : MonoBehaviour {
 
     private void ApplyJumpForce() {
         if (jumpTimer >= 0) {
-            rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpForce * Time.fixedDeltaTime, rigidBody.velocity.z);
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, jump * Time.fixedDeltaTime, rigidBody.velocity.z);
         } else {
             if (jumpCutoff) {
                 ReduceJumpForce();
@@ -89,8 +94,20 @@ public class PlayerJump : MonoBehaviour {
 
     public void InitialiseJump() {
         jumpTimer = maxJumpDuration;
+        jump = jumpForce;
         jumpApexSpeed = 1;
         grounded.NotifyLeftGround();
+        OnJump?.Invoke();
+    }
+
+    public void InitialiseHighJump() {
+        jumpTimer = maxJumpDuration;
+        jump = highJumpForce;
+        jumpApexSpeed = 1;
+        grounded.NotifyLeftGround();
+        animator.SetTrigger("Spin");
+        OnHighJump?.Invoke();
+
     }
 
     public void EndJump() {

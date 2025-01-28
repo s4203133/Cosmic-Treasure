@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerJumpState : PlayerBaseState
 {
     private PlayerMovement movement;
-    private PlayerJump jump;
+    protected PlayerJump jump;
     private Grounded grounded;
 
     public PlayerJumpState(PlayerController playerController) : base(playerController) {
@@ -17,9 +17,8 @@ public class PlayerJumpState : PlayerBaseState
         InputHandler.SpinStarted += Spin;
         InputHandler.groundPoundStarted += GroundPound;
 
-        context.squashAndStretch.Jump.Play();
         context.vfx.PlayJumpParticles();
-        jump.InitialiseJump();
+        StartJump();
     }
 
     public override void OnStateUpdate() {
@@ -49,6 +48,11 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void OnCollisionEnter(Collision collision) {
 
+    }
+
+    protected virtual void StartJump() {
+        context.squashAndStretch.Jump.Play();
+        jump.InitialiseJump();
     }
 
     private void Spin() {

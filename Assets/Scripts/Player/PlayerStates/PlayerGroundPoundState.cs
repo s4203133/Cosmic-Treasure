@@ -52,7 +52,7 @@ public class PlayerGroundPoundState : PlayerBaseState {
 
     private void CheckJumpInput() {
         if (groundPound.landed) {
-            Debug.Log("Jumping When Landed!");
+            stateMachine.ChangeState(stateMachine.highJumpState);
         }
     }
 

@@ -1743,7 +1743,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc4bd3568a5bddd4c8f6b08cde7962b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 780
+  jumpForce: 785
+  highJumpForce: 925
   maxJumpDuration: 0.1675
   minJumpDuration: 0.075
   minJumpInput: 0.0925
@@ -1756,8 +1757,7 @@ MonoBehaviour:
   jumpApexMaxSpeed: 1.15
   jumpApexSpeedIncrease: 0.05
   rigidBody: {fileID: 8296172668212179655}
-  jumpSquashAndStretch: {fileID: 2077602862}
-  landSquashAndStretch: {fileID: 1486726350}
+  animator: {fileID: 1091862834}
 --- !u!114 &510436437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,7 +1859,7 @@ MonoBehaviour:
   groundPoundLandCollider: {fileID: 954087596}
   buildUpDuration: 0.4
   groundPoundSpeed: 30
-  landDuration: 0.125
+  landDuration: 0.175
   landed: 0
   finishedGroundPound: 0
   rigidBody: {fileID: 8296172668212179655}
@@ -5461,6 +5461,87 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.4, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1464432165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1464432166}
+  - component: {fileID: 1464432167}
+  m_Layer: 0
+  m_Name: High Jump Squash & Stretch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1464432166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464432165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1582637558}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1464432167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464432165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a711c31a97e40df42aeebddc0372ed9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformToAffect: {fileID: 1361350842}
+  axis: 2
+  duration: 0.3
+  intensity: 1.8
+  motion:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 8.496005
+      outSlope: 8.496005
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.03551609
+    - serializedVersion: 3
+      time: 0.25
+      value: 1
+      inSlope: 0.07554888
+      outSlope: 0.07554888
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.04328521
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.3333334
+      outSlope: -1.3333334
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1486726348
 GameObject:
   m_ObjectHideFlags: 0
@@ -6138,6 +6219,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2077602861}
+  - {fileID: 1464432166}
   - {fileID: 1486726349}
   - {fileID: 1148601171}
   - {fileID: 2066589001}
@@ -6156,6 +6238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: {fileID: 2077602862}
+  highJump: {fileID: 1464432167}
   land: {fileID: 1486726350}
   spinAttack: {fileID: 1148601172}
   groundPound: {fileID: 2066589002}
@@ -13654,6 +13737,7 @@ GameObject:
   - component: {fileID: 8296172668212179654}
   - component: {fileID: 8296172668212179653}
   - component: {fileID: 8296172668212179656}
+  - component: {fileID: 8296172668212179657}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -13788,7 +13872,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8296172668212179644}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -13822,7 +13906,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1.5
+  m_Time: 0.4
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -13853,10 +13937,10 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 1, g: 1, b: 1, a: 0.49019608}
+      key2: {r: 0, g: 0, b: 0, a: 1}
+      key3: {r: 0, g: 0, b: 0, a: 1}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
@@ -13870,18 +13954,18 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
+      atime1: 3277
+      atime2: 9830
+      atime3: 32768
+      atime4: 65535
       atime5: 0
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
+      m_NumAlphaKeys: 5
+    numCornerVertices: 5
     numCapVertices: 0
     alignment: 0
     textureMode: 0
@@ -13891,8 +13975,23 @@ TrailRenderer:
   m_MinVertexDistance: 0.05
   m_MaskInteraction: 0
   m_Autodestruct: 0
-  m_Emitting: 1
+  m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &8296172668212179657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296172668212179644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c083007c15ff1d4ba81a95d1f7f3776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trailRenderer: {fileID: 8296172668212179656}
+  duration: 0.375
+  jump: {fileID: 510436436}
 --- !u!1 &8389181125228755687
 GameObject:
   m_ObjectHideFlags: 0
