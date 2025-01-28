@@ -104,6 +104,16 @@ public class PlayerMovement : MonoBehaviour
         speed = 0;
     }
 
+    public void NotifyWallInFront(bool value) {
+        if(value) {
+            UnsubscribeMoveEvents();
+            moveInput = Vector2.zero;
+            moveDirection = Vector2.zero;
+        } else {
+            SubscribeMoveEvents();
+        }
+    }
+
     // Subscribing functions to input events
 
     private void StartMovement(Vector2 value) {

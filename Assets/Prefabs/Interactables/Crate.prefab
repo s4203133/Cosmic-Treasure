@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6827717790891805756}
   - component: {fileID: 3165633329777743942}
   - component: {fileID: 7456399014244113114}
+  - component: {fileID: 4887589591498323548}
   m_Layer: 6
   m_Name: Crate
   m_TagString: Untagged
@@ -143,8 +144,8 @@ Rigidbody:
   m_GameObject: {fileID: 1176323319889452454}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -161,6 +162,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4887589591498323548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176323319889452454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c3e06d5f7a3564fa7d7a8b35443039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friction: 10
+  rotationFriction: 8
 --- !u!1001 &2036841828178605594
 PrefabInstance:
   m_ObjectHideFlags: 0
