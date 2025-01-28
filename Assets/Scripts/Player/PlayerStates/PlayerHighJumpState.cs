@@ -6,6 +6,7 @@ public class PlayerHighJumpState : PlayerJumpState {
     }
 
     protected override void StartJump() {
+        context.squashAndStretch.HighJump.Play();
         jump.InitialiseHighJump();
     }
 }

@@ -27,7 +27,7 @@ public class PlayerFallingState : PlayerBaseState
     public override void OnStateUpdate() {
         countdown -= Time.deltaTime;
 
-        if (grounded.IsOnGround()) {
+        if (grounded.IsOnGround) {
             if(movement.moveInput == Vector2.zero) {
                 stateMachine.ChangeState(stateMachine.idleState);
             } else {
@@ -46,7 +46,9 @@ public class PlayerFallingState : PlayerBaseState
         InputHandler.SpinStarted -= Spin;
         InputHandler.groundPoundStarted -= GroundPound;
 
-        context.squashAndStretch.Land.Play();
+        if (grounded.IsOnGround) {
+            context.squashAndStretch.Land.Play();
+        }
         jump.EndJump();
     }
 

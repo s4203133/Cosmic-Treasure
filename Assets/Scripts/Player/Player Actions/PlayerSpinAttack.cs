@@ -9,7 +9,12 @@ public class PlayerSpinAttack : MonoBehaviour
 
     [Header("JUMP BOOST")]
     [SerializeField] private Rigidbody rigidBody;
-    [SerializeField] private float jumpBoostForce;
+    [SerializeField] private float firstJumpBoostForce;
+    [SerializeField] private float secondJumpBoostForce;
+
+    [Header("AIR SPIN SETTINGS")]
+    [SerializeField] private float maxAirSpins;
+    private float airSpins;
 
     [Header("COMPONENTS")]
     [SerializeField] private Animator animator;
@@ -35,10 +40,39 @@ public class PlayerSpinAttack : MonoBehaviour
     }
 
     public void ApplyJumpBoost() {
-        rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpBoostForce, rigidBody.velocity.z);
+        airSpins++;
+        if (airSpins == 1) {
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, firstJumpBoostForce, rigidBody.velocity.z);
+        } else {
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, secondJumpBoostForce, rigidBody.velocity.z);
+        }
+    }
+
+    public bool CanAirSpin() {
+        return airSpins < maxAirSpins;
+    }
+
+    public void ResetAirSpins() {
+        airSpins = 0;
     }
 
     private void LateUpdate() {
         vfxSpawnPoint.rotation = Quaternion.Euler(90, vfxSpawnPoint.eulerAngles.y, vfxSpawnPoint.eulerAngles.z);
+    }
+
+    private void OnEnable() {
+        SubscribeEvents();
+    }
+
+    private void OnDisable() {
+        UnsubscribeEvents();
+    }
+
+    private void SubscribeEvents() {
+        Grounded.OnLanded += ResetAirSpins;
+    }
+
+    private void UnsubscribeEvents() {
+        Grounded.OnLanded -= ResetAirSpins;
     }
 }

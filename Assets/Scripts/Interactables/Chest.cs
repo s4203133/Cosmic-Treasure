@@ -26,6 +26,7 @@ public class Chest : MonoBehaviour, IBreakable {
     private void OpenChest() {
         if (!isOpen) {
             isOpen = true;
+            IBreakable.OnBroken?.Invoke();
             animator.SetTrigger("Open");
             breakOpenEffect.Play();
             ActivateOpenColliders();

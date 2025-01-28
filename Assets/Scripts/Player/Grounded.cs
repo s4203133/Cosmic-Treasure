@@ -8,11 +8,18 @@ public class Grounded : MonoBehaviour
     [SerializeField] private float groundCheckRadius;
 
     private bool hasStartedJump;
+    private bool sentGroundedEvent;
+
+    public delegate void CustomEvent();
+    public static CustomEvent OnLanded;
+
+    public bool IsOnGround => isGrounded;
 
     void Update()
     {
         CheckIsGrounded();
-        foo();
+        EndStartOfJump();
+        SendGroundedEvent();
     }
 
     private bool DetectingGround() {
@@ -27,17 +34,24 @@ public class Grounded : MonoBehaviour
         isGrounded = DetectingGround();
     }
 
-    private void foo() {
+    private void EndStartOfJump() {
         if(!DetectingGround()) {
             hasStartedJump = false;
         }
     }
 
-    public bool IsOnGround() {
-        return isGrounded;
-    }
-
     public void NotifyLeftGround() {
         hasStartedJump = true;
+    }
+
+    private void SendGroundedEvent() {
+        if(isGrounded) {
+            if (!sentGroundedEvent) {
+                OnLanded?.Invoke();
+                sentGroundedEvent = true;
+            }
+        } else {
+            sentGroundedEvent = false;
+        }
     }
 }

@@ -36,7 +36,7 @@ public class PlayerGroundPound : MonoBehaviour
     }
 
     private void CheckLanded() {
-        if(grounded.IsOnGround() || rigidBody.velocity == Vector3.zero) {
+        if(grounded.IsOnGround || rigidBody.velocity == Vector3.zero) {
             StartCoroutine(EndGroundPounding());
         }
     }

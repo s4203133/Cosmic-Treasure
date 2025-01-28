@@ -75,7 +75,7 @@ public class PlayerJump : MonoBehaviour {
 
     // Apply a speed and gravity modifyer while the player is at the peak of a jump
     private void HandleJumpApex() {
-        if (!grounded.IsOnGround() && Mathf.Abs(rigidBody.velocity.y) < jumpApexThreshold) {
+        if (!grounded.IsOnGround && Mathf.Abs(rigidBody.velocity.y) < jumpApexThreshold) {
             // Exponensially increase the players speed over time
             jumpApexSpeed += jumpApexSpeedIncrease;
             jumpApexSpeed = Mathf.Min(jumpApexSpeed, jumpApexMaxSpeed);
@@ -89,7 +89,7 @@ public class PlayerJump : MonoBehaviour {
     }
 
     public bool CanJump() {
-        return grounded.IsOnGround();
+        return grounded.IsOnGround;
     }
 
     public void InitialiseJump() {
@@ -107,7 +107,6 @@ public class PlayerJump : MonoBehaviour {
         grounded.NotifyLeftGround();
         animator.SetTrigger("Spin");
         OnHighJump?.Invoke();
-
     }
 
     public void EndJump() {

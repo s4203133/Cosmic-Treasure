@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class PlayerGroundPoundState : PlayerBaseState {
 
+    public delegate void CustomEvent();
+    public static CustomEvent OnLanded;
+
     private PlayerGroundPound groundPound;
-    private PlayerJump jump;
     private bool playedLandingVFX;
 
     public PlayerGroundPoundState(PlayerController playerController) : base(playerController) {
         groundPound = context.playerGroundPound;
-        jump = context.playerJump;
     }
 
     public override void OnCollisionEnter(Collision collision) {
@@ -16,6 +17,8 @@ public class PlayerGroundPoundState : PlayerBaseState {
 
     public override void OnStateEnter() {
         InputHandler.jumpStarted += CheckJumpInput;
+        OnLanded += PlayLandEffects;
+
         playedLandingVFX = false;
 
         groundPound.StartGroundPound();
@@ -23,6 +26,7 @@ public class PlayerGroundPoundState : PlayerBaseState {
 
     public override void OnStateExit() {
         InputHandler.jumpStarted -= CheckJumpInput;
+        OnLanded -= PlayLandEffects;
     }
 
     public override void OnStatePhysicsUpdate() {
@@ -43,11 +47,15 @@ public class PlayerGroundPoundState : PlayerBaseState {
     private void CheckLanded() {
         if (groundPound.landed) {
             if(!playedLandingVFX) {
-                context.vfx.PlayGroundPoundParticles();
-                context.squashAndStretch.GroundPound.Play();
-                playedLandingVFX = true;
+                OnLanded?.Invoke();
             }
         }
+    }
+
+    private void PlayLandEffects() {
+        context.vfx.PlayGroundPoundParticles();
+        context.squashAndStretch.GroundPound.Play();
+        playedLandingVFX = true;
     }
 
     private void CheckJumpInput() {

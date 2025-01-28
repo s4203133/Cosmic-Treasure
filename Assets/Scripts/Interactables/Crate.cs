@@ -18,6 +18,8 @@ public class Crate : MonoBehaviour, IBreakable {
     }
 
     public void Break() {
+        IBreakable.OnBroken?.Invoke();
+
         brokenPiecesParent.transform.parent = null;
         brokenPiecesParent.SetActive(true);
 

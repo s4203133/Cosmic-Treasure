@@ -22,7 +22,7 @@ public class PlayerJumpState : PlayerBaseState
     }
 
     public override void OnStateUpdate() {
-        if (grounded.IsOnGround()) {
+        if (grounded.IsOnGround) {
             if (movement.moveInput == Vector2.zero) {
                 stateMachine.ChangeState(stateMachine.idleState);
             } else {
@@ -64,7 +64,7 @@ public class PlayerJumpState : PlayerBaseState
     }
 
     private void SpawnParticlesIfLanded() {
-        if (jump.groundedSystem.IsOnGround()) {
+        if (jump.groundedSystem.IsOnGround) {
             context.vfx.PlayLandParticles();
             context.squashAndStretch.Land.Play();
         }

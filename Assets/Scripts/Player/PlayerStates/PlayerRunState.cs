@@ -59,7 +59,7 @@ public class PlayerRunState : PlayerBaseState {
     }
 
     private void CheckIfPlayerLeftPlatform() {
-        if (!grounded.IsOnGround()) {
+        if (!grounded.IsOnGround) {
             stateMachine.ChangeState(stateMachine.fallingState);
             return;
         }
