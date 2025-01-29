@@ -50,7 +50,7 @@ public class PlayerIdleState : PlayerBaseState {
     }
 
     private void CheckForJumpInput() {
-        if (context.inputBufferHolder.jumpInputBuffer.HasInputBeenRecieved()) {
+        if (context.inputBufferHolder.jump.HasInputBeenRecieved()) {
             stateMachine.ChangeState(stateMachine.jumpState);
         }
     }

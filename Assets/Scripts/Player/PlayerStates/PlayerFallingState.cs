@@ -21,6 +21,8 @@ public class PlayerFallingState : PlayerBaseState
         InputHandler.SpinStarted += Spin;
         InputHandler.groundPoundStarted += GroundPound;
 
+        CheckForSpinInput();
+
         countdown = allowJumpDuration;
     }
 
@@ -64,6 +66,12 @@ public class PlayerFallingState : PlayerBaseState
 
     private void Spin() {
         stateMachine.ChangeState(stateMachine.spinState);
+    }
+
+    private void CheckForSpinInput() {
+        if (context.inputBufferHolder.spin.HasInputBeenRecieved()) {
+            Spin();
+        }
     }
 
     private void GroundPound() {

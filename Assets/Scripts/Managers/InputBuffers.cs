@@ -1,7 +1,12 @@
 using UnityEngine;
 
 public class InputBuffers : MonoBehaviour {
-    public InputBuffer jumpInputBuffer;
+
+    [SerializeField] private InputBuffer jumpInputBuffer;
+    [SerializeField] private InputBuffer spinInputBuffer;
+
+    public InputBuffer jump => jumpInputBuffer;
+    public InputBuffer spin => spinInputBuffer;
 
     private void OnEnable() {
         SubscribeInput();
@@ -13,14 +18,17 @@ public class InputBuffers : MonoBehaviour {
 
     private void Update() {
         jumpInputBuffer.Countdown();
+        spinInputBuffer.Countdown();
     }
 
     private void SubscribeInput() {
         InputHandler.jumpPerformed += jumpInputBuffer.PressInput;
+        InputHandler.SpinStarted += spinInputBuffer.PressInput;
     }
 
     private void UnsubscribeInput() {
         InputHandler.jumpPerformed -= jumpInputBuffer.PressInput;
+        InputHandler.SpinStarted -= spinInputBuffer.PressInput;
     }
 }
 
