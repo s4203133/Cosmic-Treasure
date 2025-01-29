@@ -6,7 +6,6 @@ public class PlayerGroundPoundState : PlayerBaseState {
     public static CustomEvent OnLanded;
 
     private PlayerGroundPound groundPound;
-    private bool playedLandingVFX;
 
     public PlayerGroundPoundState(PlayerController playerController) : base(playerController) {
         groundPound = context.playerGroundPound;
@@ -17,16 +16,12 @@ public class PlayerGroundPoundState : PlayerBaseState {
 
     public override void OnStateEnter() {
         InputHandler.jumpStarted += CheckJumpInput;
-        OnLanded += PlayLandEffects;
-
-        playedLandingVFX = false;
 
         groundPound.StartGroundPound();
     }
 
     public override void OnStateExit() {
         InputHandler.jumpStarted -= CheckJumpInput;
-        OnLanded -= PlayLandEffects;
     }
 
     public override void OnStatePhysicsUpdate() {
@@ -34,7 +29,6 @@ public class PlayerGroundPoundState : PlayerBaseState {
     }
 
     public override void OnStateUpdate() {
-        CheckLanded();
         CheckFinished();
     }
 
@@ -42,20 +36,6 @@ public class PlayerGroundPoundState : PlayerBaseState {
         if (groundPound.finishedGroundPound) {
             MoveToIdleState();
         }
-    }
-
-    private void CheckLanded() {
-        if (groundPound.landed) {
-            if(!playedLandingVFX) {
-                OnLanded?.Invoke();
-            }
-        }
-    }
-
-    private void PlayLandEffects() {
-        context.vfx.PlayGroundPoundParticles();
-        context.squashAndStretch.GroundPound.Play();
-        playedLandingVFX = true;
     }
 
     private void CheckJumpInput() {

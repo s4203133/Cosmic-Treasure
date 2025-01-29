@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -21,10 +22,13 @@ public class PlayerGroundPound : MonoBehaviour
     [Header("COMPONENTS")]
     [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private Grounded grounded;
-    [SerializeField] private Animator animator;
+
+    public Action OnGroundPoundStarted;
+    public Action OnGroundPoundLanded;
 
     public void StartGroundPound() {
-        TriggerStartingAnimation();
+        OnGroundPoundStarted?.Invoke();
+
         DisableVelocity();
         InitialiseGroundPound();
         StartCoroutine(BeginGroundPounding());
@@ -36,6 +40,10 @@ public class PlayerGroundPound : MonoBehaviour
     }
 
     private void CheckLanded() {
+        if (landed) {
+            return;
+        }
+
         if(grounded.IsOnGround || rigidBody.velocity == Vector3.zero) {
             StartCoroutine(EndGroundPounding());
         }
@@ -52,6 +60,7 @@ public class PlayerGroundPound : MonoBehaviour
 
     private IEnumerator EndGroundPounding() {
         // Notify the player has landed and disable the collider
+        OnGroundPoundLanded?.Invoke();
         landed = true;
         groundPoundCollider.enabled = false;
         groundPoundLandCollider.enabled = true;
@@ -61,10 +70,6 @@ public class PlayerGroundPound : MonoBehaviour
         finishedGroundPound = true;
         isGroundPounding = false;
         groundPoundLandCollider.enabled = false;
-    }
-
-    private void TriggerStartingAnimation() {
-        animator.SetTrigger("StartGroundPound");
     }
 
     private void DisableVelocity() {

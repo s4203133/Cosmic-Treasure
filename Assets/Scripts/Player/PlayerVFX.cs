@@ -28,6 +28,10 @@ public class PlayerVFX : MonoBehaviour
         StopRunParticles();
     }
 
+    private void LateUpdate() {
+        spinVFXSpawnPoint.rotation = Quaternion.Euler(90, spinVFXSpawnPoint.eulerAngles.y, spinVFXSpawnPoint.eulerAngles.z);
+    }
+
     public void StartRunParticles() {
         runParticles.Play();
     }

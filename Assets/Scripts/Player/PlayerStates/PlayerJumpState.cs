@@ -17,7 +17,6 @@ public class PlayerJumpState : PlayerBaseState
         InputHandler.SpinStarted += Spin;
         InputHandler.groundPoundStarted += GroundPound;
 
-        context.vfx.PlayJumpParticles();
         StartJump();
     }
 
@@ -51,7 +50,6 @@ public class PlayerJumpState : PlayerBaseState
     }
 
     protected virtual void StartJump() {
-        context.squashAndStretch.Jump.Play();
         jump.InitialiseJump();
     }
 

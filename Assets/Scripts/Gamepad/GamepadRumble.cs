@@ -21,6 +21,9 @@ public class GamepadRumble : ScriptableObject {
     }
 
     public IEnumerator StopRumble() {
+        if(gamePad == null) {
+            yield break;
+        }
         float t = 0;
         while (t < duration) {
             t += Time.deltaTime;

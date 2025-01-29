@@ -32,8 +32,6 @@ public class PlayerSpinState : PlayerBaseState {
         OnSpin?.Invoke();
 
         spin.StartSpin();
-        context.squashAndStretch.SpinAttack.Play();
-        context.vfx.PlaySpinVFX();
         if (!grounded.IsOnGround) {
             spin.ApplyJumpBoost();
         }

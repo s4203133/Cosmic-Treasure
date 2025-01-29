@@ -1,7 +1,8 @@
+using System;
+
 public interface IBreakable
 {
-    public delegate void BreakEvent();
-    public static BreakEvent OnBroken;
+    public static Action OnBroken;
 
     public void Break();
 }

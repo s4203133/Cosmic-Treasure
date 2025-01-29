@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class CameraShaker : MonoBehaviour
@@ -14,18 +12,17 @@ public class CameraShaker : MonoBehaviour
 
     [Header("CAMERA SHAKES")]
     [SerializeField] private CameraShakes cameraShakes;
+    public CameraShakes shakeTypes => cameraShakes;
 
     private float duration;
     private float magnitude;
     private float intensity;
 
     private void OnEnable() {
-        cameraShakes.SubscribeCameraShakeActions();
         SubscribeCameraShakes();
     }
 
     private void OnDisable() {
-        cameraShakes.UnsubscribeCameraShakeActions();
         UnsubscribeCameraShakes();
     }
 
@@ -113,72 +110,18 @@ public class CameraShakeType {
     public delegate void CustomEvent(CameraShake shakey);
     public CustomEvent OnShake;
 
-    public virtual void SubscribeToActions() {
-
-    }
-
-    public virtual void UnsubscribeToActions() {
-
-    }
-
-    protected void Shake() {
+    public void Shake() {
         OnShake?.Invoke(camShake);
     }
 }
 
 [System.Serializable]
-public class SmallCameraShake : CameraShakeType {
-
-    public override void SubscribeToActions() {
-        PlayerGroundPoundState.OnLanded += Shake;
-        IBreakable.OnBroken += Shake;
-    }
-
-    public override void UnsubscribeToActions() {
-        PlayerGroundPoundState.OnLanded += Shake;
-        IBreakable.OnBroken -= Shake;
-    }
-}
-
-[System.Serializable]
-public class MediumCameraShake : CameraShakeType {
-
-    public override void SubscribeToActions() {
-    }
-
-    public override void UnsubscribeToActions() {
-    }
-}
-
-[System.Serializable]
-public class LargeCameraShake : CameraShakeType {
-
-    public override void SubscribeToActions() {
-    }
-
-    public override void UnsubscribeToActions() {
-    }
-}
-
-[System.Serializable]
 public class CameraShakes {
-    [SerializeField] private SmallCameraShake smallCameraShake;
-    [SerializeField] private MediumCameraShake mediumCameraShake;
-    [SerializeField] private LargeCameraShake largeCameraShake;
+    [SerializeField] private CameraShakeType smallCameraShake;
+    [SerializeField] private CameraShakeType mediumCameraShake;
+    [SerializeField] private CameraShakeType largeCameraShake;
 
-    public SmallCameraShake small => smallCameraShake;
-    public MediumCameraShake medium => mediumCameraShake;
-    public LargeCameraShake large => largeCameraShake;
-
-    public void SubscribeCameraShakeActions() {
-        smallCameraShake.SubscribeToActions();
-        mediumCameraShake.SubscribeToActions();
-        largeCameraShake.SubscribeToActions();
-    }
-
-    public void UnsubscribeCameraShakeActions() {
-        smallCameraShake.UnsubscribeToActions();
-        mediumCameraShake.UnsubscribeToActions();
-        largeCameraShake.UnsubscribeToActions();
-    }
+    public CameraShakeType small => smallCameraShake;
+    public CameraShakeType medium => mediumCameraShake;
+    public CameraShakeType large => largeCameraShake;
 }

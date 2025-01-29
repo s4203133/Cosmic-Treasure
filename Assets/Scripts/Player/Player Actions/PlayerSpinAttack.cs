@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerSpinAttack : MonoBehaviour
@@ -16,14 +17,12 @@ public class PlayerSpinAttack : MonoBehaviour
     [SerializeField] private float maxAirSpins;
     private float airSpins;
 
-    [Header("COMPONENTS")]
-    [SerializeField] private Animator animator;
-    [SerializeField] private Transform vfxSpawnPoint;
+    public Action OnSpin;
 
     public void StartSpin() {
         counter = length;
         spinRangeCollider.enabled = true;
-        animator.SetTrigger("Spin");
+        OnSpin?.Invoke();
     }
 
     public void Countdown() {
@@ -54,10 +53,6 @@ public class PlayerSpinAttack : MonoBehaviour
 
     public void ResetAirSpins() {
         airSpins = 0;
-    }
-
-    private void LateUpdate() {
-        vfxSpawnPoint.rotation = Quaternion.Euler(90, vfxSpawnPoint.eulerAngles.y, vfxSpawnPoint.eulerAngles.z);
     }
 
     private void OnEnable() {
