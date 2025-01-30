@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerGroundPound : MonoBehaviour
 {
+    public bool canGroundPound => !grounded.IsOnGround;
+
     [Header("GROUND POUND COLLIDERS")]
     [SerializeField] private Collider groundPoundCollider;
     [SerializeField] private Collider groundPoundLandCollider;
@@ -16,8 +18,10 @@ public class PlayerGroundPound : MonoBehaviour
     private bool isGroundPounding;
 
     [SerializeField] private float landDuration;
-    [HideInInspector] public bool landed;
-    [HideInInspector] public bool finishedGroundPound;
+    //[HideInInspector]
+    public bool landed;
+    //[HideInInspector]
+    public bool finishedGroundPound;
 
     [Header("COMPONENTS")]
     [SerializeField] private Rigidbody rigidBody;

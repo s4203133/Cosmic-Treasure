@@ -7,6 +7,8 @@ public class PlayerSpinAttack : MonoBehaviour
     [SerializeField] private Collider spinRangeCollider;
     [SerializeField] private float length;
     private float counter;
+    public bool SpinFinished => counter <= 0;
+
 
     [Header("JUMP BOOST")]
     [SerializeField] private Rigidbody rigidBody;
@@ -16,6 +18,7 @@ public class PlayerSpinAttack : MonoBehaviour
     [Header("AIR SPIN SETTINGS")]
     [SerializeField] private float maxAirSpins;
     private float airSpins;
+    public bool CanAirSpin => airSpins < maxAirSpins;
 
     public Action OnSpin;
 
@@ -34,10 +37,6 @@ public class PlayerSpinAttack : MonoBehaviour
         spinRangeCollider.enabled = false;
     }
 
-    public bool SpinFinished() {
-        return counter <= 0;
-    }
-
     public void ApplyJumpBoost() {
         airSpins++;
         if (airSpins == 1) {
@@ -47,27 +46,7 @@ public class PlayerSpinAttack : MonoBehaviour
         }
     }
 
-    public bool CanAirSpin() {
-        return airSpins < maxAirSpins;
-    }
-
     public void ResetAirSpins() {
         airSpins = 0;
-    }
-
-    private void OnEnable() {
-        SubscribeEvents();
-    }
-
-    private void OnDisable() {
-        UnsubscribeEvents();
-    }
-
-    private void SubscribeEvents() {
-        Grounded.OnLanded += ResetAirSpins;
-    }
-
-    private void UnsubscribeEvents() {
-        Grounded.OnLanded -= ResetAirSpins;
     }
 }

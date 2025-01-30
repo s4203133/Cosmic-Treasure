@@ -3,10 +3,10 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerIdleState : PlayerBaseState {
 
-    PlayerJump jump;
+    private PlayerIdle idle;
 
     public PlayerIdleState(PlayerController playerController) : base(playerController) {
-        jump = context.playerJump;
+        idle = context.playerIdle;
     }
 
     public override void OnStateEnter() {
@@ -23,7 +23,7 @@ public class PlayerIdleState : PlayerBaseState {
     }
 
     public override void OnStatePhysicsUpdate() {
-
+        idle.Idle();
     }
 
     public override void OnStateExit() {

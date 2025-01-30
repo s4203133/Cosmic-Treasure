@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Grounded : MonoBehaviour
@@ -13,8 +14,9 @@ public class Grounded : MonoBehaviour
     private float notGroundedTimer;
     public float timeSinceLeftGround => notGroundedTimer;
 
-    public delegate void CustomEvent();
-    public static CustomEvent OnLanded;
+    //ublic delegate void CustomEvent();
+    //public static CustomEvent OnLanded;
+    public Action OnLanded;
 
     public bool IsOnGround => isGrounded;
 
@@ -37,8 +39,8 @@ public class Grounded : MonoBehaviour
         isGrounded = DetectingGround();
     }
 
-    private void EndStartOfJump() {
-        if(!DetectingGround()) {
+    public void EndStartOfJump() {
+        if(!DetectingGround() || !IsOnGround) {
             hasStartedJump = false;
         }
     }

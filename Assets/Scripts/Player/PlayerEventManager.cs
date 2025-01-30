@@ -4,6 +4,7 @@ public class PlayerEventManager : EventManager {
 
     [SerializeField] private PlayerRunEvent runEvent;
     [SerializeField] private PlayerJumpEvent jumpEvent;
+    [SerializeField] private PlayerGroundedEvent groundedEvents;
     [SerializeField] private PlayerHighJumpEvent highJumpEvent;
     [SerializeField] private PlayerSpinEvent spinEvent;
     [SerializeField] private PlayerGroundPoundEvent groundPoundEvent;
@@ -20,6 +21,7 @@ public class PlayerEventManager : EventManager {
     protected override void SubscribeEvents() {
         runEvent.SubscribeEvents();
         jumpEvent.SubscribeEvents();
+        groundedEvents.SubscribeEvents();
         highJumpEvent.SubscribeEvents();
         spinEvent.SubscribeEvents();
         groundPoundEvent.SubscribeEvents();
@@ -29,6 +31,7 @@ public class PlayerEventManager : EventManager {
     protected override void UnsubscribeEvents() { 
         runEvent.UnsubscribeEvents();
         jumpEvent.UnsubscribeEvents();
+        groundedEvents.UnsubscribeEvents();
         highJumpEvent.UnsubscribeEvents();
         spinEvent.UnsubscribeEvents();
         groundPoundEvent.UnsubscribeEvents();
@@ -96,6 +99,39 @@ public class PlayerJumpEvent : PlayerEvent {
         }
         playerJump.OnJump -= playerVFX.PlayJumpParticles;
         playerJump.OnJump -= squishy.Jump.Play;
+    }
+}
+
+
+[System.Serializable]
+public class PlayerGroundedEvent : PlayerEvent {
+    [Header("SUBJECT")]
+    [SerializeField] private Grounded playerGrounded;
+
+    [Header("OBSERVERS")]
+    [SerializeField] private PlayerVFX playerVFX;
+    [SerializeField] private PlayerSquashAndStretch squishy;
+    [SerializeField] private PlayerSpinAttack playerSpin;
+    [SerializeField] private PlayerHover playerHover;
+
+    public override void SubscribeEvents() {
+        if (playerGrounded == null) {
+            return;
+        }
+        playerGrounded.OnLanded += playerVFX.PlayLandParticles;
+        playerGrounded.OnLanded += squishy.Land.Play;
+        playerGrounded.OnLanded += playerSpin.ResetAirSpins;
+        playerGrounded.OnLanded += playerHover.EnableHover;
+    }
+
+    public override void UnsubscribeEvents() {
+        if (playerGrounded == null) {
+            return;
+        }
+        playerGrounded.OnLanded -= playerVFX.PlayLandParticles;
+        playerGrounded.OnLanded -= squishy.Land.Play;
+        playerGrounded.OnLanded -= playerSpin.ResetAirSpins;
+        playerGrounded.OnLanded -= playerHover.EnableHover;
     }
 }
 

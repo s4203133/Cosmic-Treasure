@@ -2165,11 +2165,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 1e133a9c72edfb44bbc1c84c4db8e060, type: 2}
+  idle: {fileID: 8606754823468929195}
   movement: {fileID: 206686688638887194}
   jump: {fileID: 2382843153380030292}
   spin: {fileID: 3561373731851348127}
   groundPound: {fileID: 5094970154213670217}
   hover: {fileID: 2531349977570256341}
+  hoverMovement: {fileID: 3358665352266293669}
   stateMachine: {fileID: 7060376922986637114}
 --- !u!96 &3122159775490753441
 TrailRenderer:
@@ -2659,11 +2661,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6216925978334233683}
+  - component: {fileID: 8606754823468929195}
   - component: {fileID: 206686688638887194}
   - component: {fileID: 2382843153380030292}
   - component: {fileID: 5799883070491449932}
   - component: {fileID: 5094970154213670217}
   - component: {fileID: 2531349977570256341}
+  - component: {fileID: 3358665352266293669}
   m_Layer: 0
   m_Name: Components
   m_TagString: Untagged
@@ -2686,6 +2690,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5397066190690244712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8606754823468929195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3154632523717800585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9893162e041d8b94ba91c8db73d1e744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 7767721875659057005}
 --- !u!114 &206686688638887194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2797,7 +2814,7 @@ MonoBehaviour:
   jumpLayers:
     serializedVersion: 2
     m_Bits: 64
-  groundCheckRadius: 0.1
+  groundCheckRadius: 0.125
 --- !u!114 &5094970154213670217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2812,7 +2829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundPoundCollider: {fileID: 1188488720994741672}
   groundPoundLandCollider: {fileID: 325219592430378425}
-  buildUpDuration: 0.4
+  buildUpDuration: 0.3
   groundPoundSpeed: 30
   landDuration: 0.175
   landed: 0
@@ -2831,10 +2848,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36af8a734e13d8843a487f0a058509cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHoverDuration: 0.825
-  airBoost: 2.5
-  airBoostTime: 0.175
+  maxHoverDuration: 1.25
+  AirForce:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.75
+      inSlope: 3.9981015
+      outSlope: 3.9981015
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.085963055
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7
+      value: 0.5
+      inSlope: -4.398159
+      outSlope: -4.398159
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09350715
+      outWeight: 0.041246645
+    - serializedVersion: 3
+      time: 1
+      value: -0.75
+      inSlope: -0.46007133
+      outSlope: -0.46007133
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13333632
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  airBoost: 4.5
   rigidBody: {fileID: 7767721875659057005}
+--- !u!114 &3358665352266293669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3154632523717800585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e084e8b8303d94c85f1e1e6ab97623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 7767721875659057005}
+  maxForce: 400
+  forceIncrease: 50
 --- !u!1 &3385001459319417314
 GameObject:
   m_ObjectHideFlags: 0
@@ -4719,8 +4801,8 @@ Transform:
   m_GameObject: {fileID: 5452101067949738481}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5}
-  m_LocalScale: {x: 0.5, y: 1.5, z: 2.25}
+  m_LocalPosition: {x: 0, y: 0, z: 1.575}
+  m_LocalScale: {x: 0.5, y: 1.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1900314742301447273}
@@ -7602,7 +7684,7 @@ Transform:
   m_GameObject: {fileID: 8811426619965771425}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

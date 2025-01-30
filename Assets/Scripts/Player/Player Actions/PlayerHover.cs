@@ -8,8 +8,8 @@ public class PlayerHover : MonoBehaviour {
     public bool finished => timer <= 0;
     private bool hoverEnded;
 
+    [SerializeField] private AnimationCurve AirForce;
     [SerializeField] private float airBoost;
-    [SerializeField] private float airBoostTime;
     private float airBoostTimer;
     private float yVelocityLimit;
 
@@ -22,19 +22,6 @@ public class PlayerHover : MonoBehaviour {
     public Action OnHoverStarted;
     public Action OnHoverEnded;
 
-    private void OnEnable() {
-        EnableHover();
-        Grounded.OnLanded += EnableHover;
-    }
-
-    private void OnDisable() {
-        Grounded.OnLanded -= EnableHover;
-    }
-
-    private void OnDestroy() {
-        Grounded.OnLanded -= EnableHover;
-    }
-
     public void StartHover() {
         OnHoverStarted?.Invoke();
 
@@ -42,7 +29,7 @@ public class PlayerHover : MonoBehaviour {
         hoverEnded = false;
         rigidBody.velocity = Vector3.zero;
         timer = maxHoverDuration;
-        airBoostTimer = airBoostTime;
+        airBoostTimer = 0;
     }
 
     public void ApplyHoverForce() {
@@ -52,16 +39,14 @@ public class PlayerHover : MonoBehaviour {
     }
 
     public void ApplyAirBoost() {
-        yVelocityLimit = rigidBody.velocity.y + airBoost;
-        airBoostTimer -= Time.fixedDeltaTime;
-        if (airBoostTimer <= 0) {
-            yVelocityLimit = 1;
-        }
+        float time = (airBoostTimer * (100f / maxHoverDuration)) / 100f;
+        yVelocityLimit = AirForce.Evaluate(time) * airBoost;
+        airBoostTimer += Time.fixedDeltaTime;
     }
 
     public void CuttOffHover() {
         timer = 0;
-        airBoostTimer = 0;
+        airBoostTimer = maxHoverDuration;
         rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0, rigidBody.velocity.z);
     }
 

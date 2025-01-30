@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class PlayerGroundPoundState : PlayerBaseState {
 
-    public delegate void CustomEvent();
-    public static CustomEvent OnLanded;
-
     private PlayerGroundPound groundPound;
 
     public PlayerGroundPoundState(PlayerController playerController) : base(playerController) {
@@ -16,6 +13,11 @@ public class PlayerGroundPoundState : PlayerBaseState {
 
     public override void OnStateEnter() {
         InputHandler.jumpStarted += CheckJumpInput;
+
+        if (!groundPound.canGroundPound) {
+            stateMachine.ChangeState(stateMachine.idleState);
+            return;
+        }
 
         groundPound.StartGroundPound();
     }

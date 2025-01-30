@@ -4678,6 +4678,12 @@ MonoBehaviour:
     playerJump: {fileID: 1595825503}
     playerVFX: {fileID: 1595825502}
     squishy: {fileID: 1595825504}
+  groundedEvents:
+    playerGrounded: {fileID: 1638226776}
+    playerVFX: {fileID: 1595825502}
+    squishy: {fileID: 1595825504}
+    playerSpin: {fileID: 1595825505}
+    playerHover: {fileID: 728482338}
   highJumpEvent:
     playerJump: {fileID: 1595825503}
     playerVFX: {fileID: 1595825502}
@@ -5606,6 +5612,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1627508310}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1638226776 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5799883070491449932, guid: b2d6b1dd7f39efb448b5b8e305585947,
+    type: 3}
+  m_PrefabInstance: {fileID: 1595825500}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b7f2fa55e28fb46b1db0b18c39b784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1643298147
 PrefabInstance:
   m_ObjectHideFlags: 0

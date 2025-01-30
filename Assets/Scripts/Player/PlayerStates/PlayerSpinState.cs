@@ -19,8 +19,9 @@ public class PlayerSpinState : PlayerBaseState {
     }
 
     public override void OnStateEnter() {
+        grounded.EndStartOfJump();
         if (!grounded.IsOnGround) {
-            if (!spin.CanAirSpin()) {
+            if (!spin.CanAirSpin) {
                 DetermineNewState();
                 return;
             }
@@ -39,7 +40,7 @@ public class PlayerSpinState : PlayerBaseState {
 
     public override void OnStateUpdate() {
         spin.Countdown();
-        if (spin.SpinFinished()) {
+        if (spin.SpinFinished) {
             DetermineNewState();
         }
     }
@@ -76,7 +77,6 @@ public class PlayerSpinState : PlayerBaseState {
 
     private void GroundPound() {
         if (!grounded.IsOnGround) {
-            spin.StopSpin();
             stateMachine.ChangeState(stateMachine.groundPoundState);
         }
     }

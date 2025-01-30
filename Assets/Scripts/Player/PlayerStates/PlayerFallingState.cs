@@ -73,7 +73,7 @@ public class PlayerFallingState : PlayerBaseState {
     }
 
     private void CheckForSpinInput() {
-        if (!spin.CanAirSpin()) {
+        if (!spin.CanAirSpin) {
             return;
         }
         if (InputBuffers.instance.spin.HasInputBeenRecieved()) {
