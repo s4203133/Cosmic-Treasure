@@ -1146,6 +1146,18 @@ MonoBehaviour:
       camShake: {fileID: 11400000, guid: ede6dc4305c03e04aac398501b57abed, type: 2}
     largeCameraShake:
       camShake: {fileID: 11400000, guid: 59ff954fb88ee6a4fa6c7d3c51ea9c62, type: 2}
+--- !u!114 &354659851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 119473119383886109, guid: b2d6b1dd7f39efb448b5b8e305585947,
+    type: 3}
+  m_PrefabInstance: {fileID: 1595825500}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ccec775b022027439864fc202dfa6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &369634853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4702,6 +4714,10 @@ MonoBehaviour:
   hoverEvent:
     playerHover: {fileID: 728482338}
     playerVFX: {fileID: 1595825502}
+  diveEvent:
+    playerDive: {fileID: 354659851}
+    playerVFX: {fileID: 1595825502}
+    animator: {fileID: 1097014581}
 --- !u!1001 &1489267844
 PrefabInstance:
   m_ObjectHideFlags: 0

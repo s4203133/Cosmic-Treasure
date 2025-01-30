@@ -14,6 +14,7 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerGroundPoundState groundPoundState;
     public PlayerHighJumpState highJumpState;
     public PlayerHoverState hoverState;
+    public PlayerDiveState diveState;
 
     public PlayerController controller;
 
@@ -27,6 +28,7 @@ public class PlayerStateMachine : MonoBehaviour
         groundPoundState = new PlayerGroundPoundState(controller);
         highJumpState = new PlayerHighJumpState(controller);
         hoverState = new PlayerHoverState(controller);
+        diveState = new PlayerDiveState(controller);
 
         currentState = idleState;
         stateName = currentState.ToString();

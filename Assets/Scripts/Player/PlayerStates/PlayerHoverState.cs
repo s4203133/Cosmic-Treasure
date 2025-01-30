@@ -3,15 +3,12 @@ using UnityEngine;
 public class PlayerHoverState : PlayerBaseState {
 
     PlayerHover hover;
-    PlayerHoverMovement hoverMmovement;
 
     PlayerMovement movement;
 
     public PlayerHoverState(PlayerController playerController) : base(playerController) {
         hover = context.playerHover;
         movement = context.playerMovment;
-
-        hoverMmovement = context.playerHoverMovement;
     }
 
     public override void OnStateEnter() {
@@ -23,6 +20,7 @@ public class PlayerHoverState : PlayerBaseState {
         InputHandler.jumpCancelled += hover.CuttOffHover;
         InputHandler.groundPoundStarted += GroundPound;
 
+        movement.ReduceRotateSpeed();
         hover.StartHover();
     }
 
@@ -34,9 +32,6 @@ public class PlayerHoverState : PlayerBaseState {
 
     public override void OnStatePhysicsUpdate() {
         movement.HandleMovement();
-
-        //hoverMmovement.HandleMovement();
-
         hover.ApplyHoverForce();
     }
 
@@ -44,6 +39,7 @@ public class PlayerHoverState : PlayerBaseState {
         InputHandler.groundPoundStarted -= GroundPound;
         InputHandler.jumpCancelled -= hover.CuttOffHover;
 
+        movement.ResetRotateSpeed();
         hover.EndHover();
     }
 

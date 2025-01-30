@@ -2171,7 +2171,7 @@ MonoBehaviour:
   spin: {fileID: 3561373731851348127}
   groundPound: {fileID: 5094970154213670217}
   hover: {fileID: 2531349977570256341}
-  hoverMovement: {fileID: 3358665352266293669}
+  dive: {fileID: 119473119383886109}
   stateMachine: {fileID: 7060376922986637114}
 --- !u!96 &3122159775490753441
 TrailRenderer:
@@ -2667,7 +2667,7 @@ GameObject:
   - component: {fileID: 5799883070491449932}
   - component: {fileID: 5094970154213670217}
   - component: {fileID: 2531349977570256341}
-  - component: {fileID: 3358665352266293669}
+  - component: {fileID: 119473119383886109}
   m_Layer: 0
   m_Name: Components
   m_TagString: Untagged
@@ -2715,8 +2715,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4849023d53f99bb42a2b5dbbbf838c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 400
+  maxSpeed: 425
   rotateSpeed: 1080
+  reducedRotateSpeed: 480
   changeDirectionThreshhold: 0.5
   acceleration:
     velocityCurve:
@@ -2831,7 +2832,7 @@ MonoBehaviour:
   groundPoundLandCollider: {fileID: 325219592430378425}
   buildUpDuration: 0.3
   groundPoundSpeed: 30
-  landDuration: 0.175
+  landDuration: 0.15
   landed: 0
   finishedGroundPound: 0
   rigidBody: {fileID: 7767721875659057005}
@@ -2902,7 +2903,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   airBoost: 4.5
   rigidBody: {fileID: 7767721875659057005}
---- !u!114 &3358665352266293669
+--- !u!114 &119473119383886109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2911,12 +2912,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 3154632523717800585}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e084e8b8303d94c85f1e1e6ab97623, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ccec775b022027439864fc202dfa6f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diveForce: 575
+  diveMomentum:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.5
+      inSlope: -2.8108552
+      outSlope: -2.8108552
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03773582
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  initialAirBoost: 12
+  playerTransform: {fileID: 1900314742301447273}
   rigidBody: {fileID: 7767721875659057005}
-  maxForce: 400
-  forceIncrease: 50
 --- !u!1 &3385001459319417314
 GameObject:
   m_ObjectHideFlags: 0

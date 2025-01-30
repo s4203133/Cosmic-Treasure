@@ -14,8 +14,6 @@ public class Grounded : MonoBehaviour
     private float notGroundedTimer;
     public float timeSinceLeftGround => notGroundedTimer;
 
-    //ublic delegate void CustomEvent();
-    //public static CustomEvent OnLanded;
     public Action OnLanded;
 
     public bool IsOnGround => isGrounded;

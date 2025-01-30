@@ -9,6 +9,7 @@ public class PlayerEventManager : EventManager {
     [SerializeField] private PlayerSpinEvent spinEvent;
     [SerializeField] private PlayerGroundPoundEvent groundPoundEvent;
     [SerializeField] private PlayerHoverEvent hoverEvent;
+    [SerializeField] private PlayerDiveEvent diveEvent;
 
     private void Start() {
         SpawnPlayer.OnPlayerSpawned += SubscribeToPlayer;
@@ -26,6 +27,7 @@ public class PlayerEventManager : EventManager {
         spinEvent.SubscribeEvents();
         groundPoundEvent.SubscribeEvents();
         hoverEvent.SubscribeEvents();
+        diveEvent.SubscribeEvents();
     }
 
     protected override void UnsubscribeEvents() { 
@@ -36,6 +38,7 @@ public class PlayerEventManager : EventManager {
         spinEvent.UnsubscribeEvents();
         groundPoundEvent.UnsubscribeEvents();
         hoverEvent.UnsubscribeEvents();
+        diveEvent.UnsubscribeEvents();
     }
 }
 
@@ -258,5 +261,35 @@ public class PlayerHoverEvent : PlayerEvent {
         }
         playerHover.OnHoverStarted -= playerVFX.PlayHoverVFX;
         playerHover.OnHoverEnded -= playerVFX.StopHoverVFX;
+    }
+}
+
+
+
+[System.Serializable]
+public class PlayerDiveEvent : PlayerEvent {
+    [Header("SUBJECT")]
+    [SerializeField] private PlayerDive playerDive;
+
+    [Header("OBSERVERS")]
+    [SerializeField] private PlayerVFX playerVFX;
+    [SerializeField] private Animator animator;
+
+    public override void SubscribeEvents() {
+        if (playerDive == null) {
+            return;
+        }
+        playerDive.OnDive += TriggerAnimation;
+    }
+
+    public override void UnsubscribeEvents() {
+        if (playerDive == null) {
+            return;
+        }
+        playerDive.OnDive -= TriggerAnimation;
+    }
+
+    private void TriggerAnimation() {
+        animator.SetTrigger("Dive");
     }
 }

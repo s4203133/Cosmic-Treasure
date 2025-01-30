@@ -71,7 +71,7 @@ public class WallDetector : MonoBehaviour
     private void NotifyMovement() {
         if(movingTowardsWall != oldMovingTowardsWall) {
             oldMovingTowardsWall = movingTowardsWall;
-            movement.NotifyWallInFront(movingTowardsWall);
+            //movement.NotifyWallInFront(movingTowardsWall);
         }
     }
 

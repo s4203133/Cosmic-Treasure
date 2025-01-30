@@ -13,15 +13,15 @@ public class PlayerGroundPound : MonoBehaviour
     [Header("GROUND POUND SETTINGS")]
     [SerializeField] private float buildUpDuration;
     private bool starting;
+    private Coroutine start;
 
     [SerializeField] private float groundPoundSpeed;
     private bool isGroundPounding;
+    public bool PerformingGroundPound => isGroundPounding;
 
     [SerializeField] private float landDuration;
-    //[HideInInspector]
-    public bool landed;
-    //[HideInInspector]
-    public bool finishedGroundPound;
+    [HideInInspector] public bool landed;
+    [HideInInspector] public bool finishedGroundPound;
 
     [Header("COMPONENTS")]
     [SerializeField] private Rigidbody rigidBody;
@@ -35,7 +35,7 @@ public class PlayerGroundPound : MonoBehaviour
 
         DisableVelocity();
         InitialiseGroundPound();
-        StartCoroutine(BeginGroundPounding());
+        start = StartCoroutine(BeginGroundPounding());
     }
 
     public void ApplyGroundPoundForce() {
@@ -56,6 +56,10 @@ public class PlayerGroundPound : MonoBehaviour
     private IEnumerator BeginGroundPounding() {
         // Wait a short delay, then end starting phase, re-enable physics, and activate thr ground pound movement
         yield return new WaitForSeconds(buildUpDuration);
+        EndGroundPoundBuildUp();
+    }
+
+    private void EndGroundPoundBuildUp() {
         starting = false;
         rigidBody.useGravity = true;
         isGroundPounding = true;
@@ -107,5 +111,16 @@ public class PlayerGroundPound : MonoBehaviour
         isGroundPounding = false;
         groundPoundCollider.enabled = false;
         groundPoundLandCollider.enabled = false;
+    }
+
+    public void ResetGroundPound() {
+        StopCoroutine(start);
+        EndGroundPoundBuildUp();
+        starting = false;
+        rigidBody.useGravity = true;
+        groundPoundCollider.enabled = false;
+        groundPoundLandCollider.enabled = false;
+        finishedGroundPound = false;
+        FinishGroundPound();
     }
 }

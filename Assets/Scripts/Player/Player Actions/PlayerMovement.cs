@@ -4,28 +4,34 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("MOVEMENT SETTINGS")]
-    [SerializeField] private float maxSpeed;
-    private float speed;
-    [SerializeField] private float rotateSpeed;
+    [SerializeField] protected float maxSpeed;
+    protected float speed;
+    [SerializeField] protected float rotateSpeed;
+    private float originalRotateSpeed;
+    [SerializeField] protected float reducedRotateSpeed;
     [Range(0.1f, 1f)]
-    [SerializeField] private float changeDirectionThreshhold;
-    private Vector3 velocity;
+    [SerializeField] protected float changeDirectionThreshhold;
+    protected Vector3 velocity;
 
     [SerializeField] private MotionCurve acceleration;
     [SerializeField] private MotionCurve deceleration;
 
     [Header("COMPONENTS")]
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private Rigidbody rigidBody;
+    [SerializeField] protected Transform playerTransform;
+    [SerializeField] protected Rigidbody rigidBody;
 
     [HideInInspector] public Vector2 moveInput;
-    private Vector3 moveDirection;
+    protected Vector3 moveDirection;
 
     // Difference between current velocity and target velocity
-    private float velocityDifference;
+    protected float velocityDifference;
 
     public Action OnMoveStarted;
     public Action OnMoveStopped;
+
+    private void Awake() {
+        originalRotateSpeed = rotateSpeed;
+    }
 
     private void OnEnable() {
         SubscribeMoveEvents();
@@ -83,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
     // If the player is making a large change in direction, make them move directly towards their target direction,
     // otherwise move in the direction they are facing
-    private void CalculateFinalVelocity() {
+    protected virtual void CalculateFinalVelocity() {
         if (velocityDifference > 1) {
             velocity = moveDirection * speed * Time.deltaTime;
         } else {
@@ -108,14 +114,12 @@ public class PlayerMovement : MonoBehaviour
         speed = 0;
     }
 
-    public void NotifyWallInFront(bool value) {
-        if(value) {
-            UnsubscribeMoveEvents();
-            moveInput = Vector2.zero;
-            moveDirection = Vector2.zero;
-        } else {
-            SubscribeMoveEvents();
-        }
+    public void ReduceRotateSpeed() {
+        rotateSpeed = reducedRotateSpeed;
+    }
+
+    public void ResetRotateSpeed() {
+        rotateSpeed = originalRotateSpeed;
     }
 
     // Subscribing functions to input events
@@ -175,6 +179,14 @@ public class MotionCurve {
 
     public bool Finished() {
         return (timer >= timerLength);
+    }
+
+    public void SetTimer(float value) {
+        timer = value;
+    }
+
+    public float GetTimerValue() {
+        return timer;
     }
 }
 

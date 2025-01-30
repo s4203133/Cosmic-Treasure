@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private PlayerSpinAttack spin;
     [SerializeField] private PlayerGroundPound groundPound;
     [SerializeField] private PlayerHover hover;
-    [SerializeField] private PlayerHoverMovement hoverMovement;
+    [SerializeField] private PlayerDive dive;
 
     [Header("STATE MACHINE")]
     [SerializeField] private PlayerStateMachine stateMachine;
@@ -25,5 +25,5 @@ public class PlayerController : MonoBehaviour {
     public PlayerSpinAttack playerSpinAttack => spin;
     public PlayerGroundPound playerGroundPound => groundPound;
     public PlayerHover playerHover => hover;
-    public PlayerHoverMovement playerHoverMovement => hoverMovement;
+    public PlayerDive playerDive => dive;
 }
