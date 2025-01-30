@@ -2135,6 +2135,7 @@ MonoBehaviour:
     playerJump: {fileID: 2382843153380030292}
   spin: {fileID: 3561373731851348127}
   groundPound: {fileID: 5094970154213670217}
+  hover: {fileID: 2531349977570256341}
   playerVfxHolder: {fileID: 4602263979456288892}
   playerSquashAndStretch: {fileID: 5133414509471756890}
   stateMachine: {fileID: 7060376922986637114}
@@ -2631,6 +2632,7 @@ GameObject:
   - component: {fileID: 2382843153380030292}
   - component: {fileID: 5799883070491449932}
   - component: {fileID: 5094970154213670217}
+  - component: {fileID: 2531349977570256341}
   m_Layer: 0
   m_Name: Components
   m_TagString: Untagged
@@ -2786,7 +2788,22 @@ MonoBehaviour:
   finishedGroundPound: 0
   rigidBody: {fileID: 7767721875659057005}
   grounded: {fileID: 5799883070491449932}
-  animator: {fileID: 6364324496339578538}
+--- !u!114 &2531349977570256341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3154632523717800585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36af8a734e13d8843a487f0a058509cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHoverDuration: 0.825
+  airBoost: 2.5
+  airBoostTime: 0.175
+  rigidBody: {fileID: 7767721875659057005}
 --- !u!1 &3385001459319417314
 GameObject:
   m_ObjectHideFlags: 0
@@ -4550,8 +4567,6 @@ MonoBehaviour:
   firstJumpBoostForce: 10
   secondJumpBoostForce: 18
   maxAirSpins: 2
-  animator: {fileID: 6364324496339578538}
-  vfxSpawnPoint: {fileID: 6861070182327694558}
 --- !u!114 &1518830850503715681
 MonoBehaviour:
   m_ObjectHideFlags: 0

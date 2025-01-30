@@ -5,32 +5,33 @@ public class PlayerFallingState : PlayerBaseState
     private PlayerMovement movement;
     private PlayerJump jump;
     private Grounded grounded;
+    private PlayerSpinAttack spin;
 
-    private float allowJumpDuration;
-    private float countdown;
+    private float coyoteTime;
+
+    private bool hasPerformedAirMove;
 
     public PlayerFallingState(PlayerController playerController) : base(playerController) {
         movement = context.playerMovment;
         jump = context.playerJump;
         grounded = jump.groundedSystem;
-        allowJumpDuration = 0.15f;
+        spin = context.playerSpinAttack;
+
+        coyoteTime = 0.1f;
     }
 
     public override void OnStateEnter() {
-        InputHandler.jumpStarted += Jump;
+        InputHandler.jumpStarted += JumpOrHover;
         InputHandler.SpinStarted += Spin;
         InputHandler.groundPoundStarted += GroundPound;
 
         CheckForSpinInput();
-
-        countdown = allowJumpDuration;
     }
 
     public override void OnStateUpdate() {
-        countdown -= Time.deltaTime;
-
         if (grounded.IsOnGround) {
-            if(movement.moveInput == Vector2.zero) {
+            hasPerformedAirMove = false;
+            if (movement.moveInput == Vector2.zero) {
                 stateMachine.ChangeState(stateMachine.idleState);
             } else {
                 stateMachine.ChangeState(stateMachine.runState);
@@ -44,7 +45,7 @@ public class PlayerFallingState : PlayerBaseState
     }
 
     public override void OnStateExit() {
-        InputHandler.jumpStarted -= Jump;
+        InputHandler.jumpStarted -= JumpOrHover;
         InputHandler.SpinStarted -= Spin;
         InputHandler.groundPoundStarted -= GroundPound;
 
@@ -58,9 +59,14 @@ public class PlayerFallingState : PlayerBaseState
 
     }
 
-    private void Jump() {
-        if (countdown > 0) {
-            stateMachine.ChangeState(stateMachine.jumpState);
+    private void JumpOrHover() {
+        if (!hasPerformedAirMove) {
+            if (grounded.timeSinceLeftGround <= coyoteTime) {
+                stateMachine.ChangeState(stateMachine.jumpState);
+            } else {
+                stateMachine.ChangeState(stateMachine.hoverState);
+            }
+            hasPerformedAirMove = true;
         }
     }
 
@@ -69,6 +75,9 @@ public class PlayerFallingState : PlayerBaseState
     }
 
     private void CheckForSpinInput() {
+        if (!spin.CanAirSpin()) {
+            return;
+        }
         if (context.inputBufferHolder.spin.HasInputBeenRecieved()) {
             Spin();
         }

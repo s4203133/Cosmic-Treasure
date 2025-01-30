@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private PlayerJumpInput jump;
     [SerializeField] private PlayerSpinAttack spin;
     [SerializeField] private PlayerGroundPound groundPound;
+    [SerializeField] private PlayerHover hover;
 
     [Header("VISUAL EFFECTS")]
     [SerializeField] private PlayerVFX playerVfxHolder;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour {
     public PlayerJump playerJump => jump.playerJump;
     public PlayerSpinAttack playerSpinAttack => spin;
     public PlayerGroundPound playerGroundPound => groundPound;
+    public PlayerHover playerHover => hover;
     public PlayerVFX vfx => playerVfxHolder;
     public PlayerSquashAndStretch squashAndStretch => playerSquashAndStretch;
 

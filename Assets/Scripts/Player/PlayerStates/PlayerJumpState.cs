@@ -16,6 +16,7 @@ public class PlayerJumpState : PlayerBaseState
         InputHandler.jumpCancelled += jump.CutOffJump;
         InputHandler.SpinStarted += Spin;
         InputHandler.groundPoundStarted += GroundPound;
+        InputHandler.jumpStarted += Hover;
 
         StartJump();
     }
@@ -39,6 +40,7 @@ public class PlayerJumpState : PlayerBaseState
         InputHandler.jumpCancelled -= jump.CutOffJump;
         InputHandler.SpinStarted -= Spin;
         InputHandler.groundPoundStarted -= GroundPound;
+        InputHandler.jumpStarted -= Hover;
 
         SpawnParticlesIfLanded();
 
@@ -59,6 +61,10 @@ public class PlayerJumpState : PlayerBaseState
 
     private void GroundPound() {
         stateMachine.ChangeState(stateMachine.groundPoundState);
+    }
+
+    private void Hover() {
+        stateMachine.ChangeState(stateMachine.hoverState);
     }
 
     private void SpawnParticlesIfLanded() {

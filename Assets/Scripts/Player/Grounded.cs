@@ -10,6 +10,9 @@ public class Grounded : MonoBehaviour
     private bool hasStartedJump;
     private bool sentGroundedEvent;
 
+    private float notGroundedTimer;
+    public float timeSinceLeftGround => notGroundedTimer;
+
     public delegate void CustomEvent();
     public static CustomEvent OnLanded;
 
@@ -46,11 +49,13 @@ public class Grounded : MonoBehaviour
 
     private void SendGroundedEvent() {
         if(isGrounded) {
+            notGroundedTimer = 0;
             if (!sentGroundedEvent) {
                 OnLanded?.Invoke();
                 sentGroundedEvent = true;
             }
         } else {
+            notGroundedTimer += Time.deltaTime;
             sentGroundedEvent = false;
         }
     }

@@ -13,6 +13,7 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerSpinState spinState;
     public PlayerGroundPoundState groundPoundState;
     public PlayerHighJumpState highJumpState;
+    public PlayerHoverState hoverState;
 
     public PlayerController controller;
 
@@ -25,6 +26,7 @@ public class PlayerStateMachine : MonoBehaviour
         spinState = new PlayerSpinState(controller);
         groundPoundState = new PlayerGroundPoundState(controller);
         highJumpState = new PlayerHighJumpState(controller);
+        hoverState = new PlayerHoverState(controller);
 
         currentState = idleState;
         stateName = currentState.ToString();
