@@ -36,6 +36,8 @@ public class PlayerHoverState : PlayerBaseState {
     public override void OnStateExit() {
         InputHandler.groundPoundStarted -= GroundPound;
         InputHandler.jumpCancelled -= hover.CuttOffHover;
+
+        hover.EndHover();
     }
 
     public override void OnCollisionEnter(Collision collision) {

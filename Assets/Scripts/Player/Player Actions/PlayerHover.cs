@@ -6,6 +6,7 @@ public class PlayerHover : MonoBehaviour {
     [SerializeField] private float maxHoverDuration;
     private float timer;
     public bool finished => timer <= 0;
+    private bool hoverEnded;
 
     [SerializeField] private float airBoost;
     [SerializeField] private float airBoostTime;
@@ -19,6 +20,7 @@ public class PlayerHover : MonoBehaviour {
     [SerializeField] private Rigidbody rigidBody;
 
     public Action OnHoverStarted;
+    public Action OnHoverEnded;
 
     private void OnEnable() {
         EnableHover();
@@ -37,6 +39,7 @@ public class PlayerHover : MonoBehaviour {
         OnHoverStarted?.Invoke();
 
         canHover = false;
+        hoverEnded = false;
         rigidBody.velocity = Vector3.zero;
         timer = maxHoverDuration;
         airBoostTimer = airBoostTime;
@@ -60,6 +63,13 @@ public class PlayerHover : MonoBehaviour {
         timer = 0;
         airBoostTimer = 0;
         rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0, rigidBody.velocity.z);
+    }
+
+    public void EndHover() {
+        if (!hoverEnded) {
+            OnHoverEnded?.Invoke();
+            hoverEnded = true;
+        }
     }
 
     public void EnableHover() {

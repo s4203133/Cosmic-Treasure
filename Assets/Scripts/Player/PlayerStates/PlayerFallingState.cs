@@ -26,6 +26,7 @@ public class PlayerFallingState : PlayerBaseState
         InputHandler.groundPoundStarted += GroundPound;
 
         CheckForSpinInput();
+        CheckForHoverInput();
     }
 
     public override void OnStateUpdate() {
@@ -80,6 +81,17 @@ public class PlayerFallingState : PlayerBaseState
         }
         if (context.inputBufferHolder.spin.HasInputBeenRecieved()) {
             Spin();
+        }
+    }
+
+    private void CheckForHoverInput() {
+        if (hasPerformedAirMove || grounded.timeSinceLeftGround <= coyoteTime) {
+            return;
+        }
+
+        if (InputHandler.jumpBeingPressed) {
+            hasPerformedAirMove = true;
+            stateMachine.ChangeState(stateMachine.hoverState);
         }
     }
 

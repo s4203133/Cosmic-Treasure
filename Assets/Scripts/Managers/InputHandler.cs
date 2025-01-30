@@ -7,7 +7,7 @@ public class InputHandler : ScriptableObject
     [SerializeField] private InputActionAsset inputActions;
 
     private InputAction move;
-    private InputAction jump;
+    private static InputAction jump;
     private InputAction spin;
     private InputAction groundPound;
     private InputAction select;
@@ -30,6 +30,8 @@ public class InputHandler : ScriptableObject
     public static InputEvent groundPoundStarted;
 
     public static InputEvent selectedStarted;
+
+    public static bool jumpBeingPressed => jump.IsPressed();
 
     private void OnEnable() {
         EnableInputActions();

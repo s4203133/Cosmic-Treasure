@@ -6,12 +6,14 @@ public class PlayerEventManager : EventManager {
     [SerializeField] private PlayerHighJumpEvent highJumpEvent;
     [SerializeField] private PlayerSpinEvent spinEvent;
     [SerializeField] private PlayerGroundPoundEvent groundPoundEvent;
+    [SerializeField] private PlayerHoverEvent hoverEvent;
 
     protected override void SubscribeEvents() {
         jumpEvent.SubscribeEvents();
         highJumpEvent.SubscribeEvents();
         spinEvent.SubscribeEvents();
         groundPoundEvent.SubscribeEvents();
+        hoverEvent.SubscribeEvents();
     }
 
     protected override void UnsubscribeEvents() { 
@@ -19,6 +21,7 @@ public class PlayerEventManager : EventManager {
         highJumpEvent.UnsubscribeEvents();
         spinEvent.UnsubscribeEvents();
         groundPoundEvent.UnsubscribeEvents();
+        hoverEvent.UnsubscribeEvents();
     }
 }
 
@@ -156,5 +159,30 @@ public class PlayerGroundPoundEvent : PlayerEvent {
 
     private void AnimateSpin() {
         animator.SetTrigger("StartGroundPound");
+    }
+}
+
+[System.Serializable]
+public class PlayerHoverEvent : PlayerEvent {
+    [Header("SUBJECT")]
+    [SerializeField] private PlayerHover playerHover;
+
+    [Header("OBSERVERS")]
+    [SerializeField] private PlayerVFX playerVFX;
+
+    public override void SubscribeEvents() {
+        if (playerHover == null) {
+            return;
+        }
+        playerHover.OnHoverStarted += playerVFX.PlayHoverVFX;
+        playerHover.OnHoverEnded += playerVFX.StopHoverVFX;
+    }
+
+    public override void UnsubscribeEvents() {
+        if (playerHover == null) {
+            return;
+        }
+        playerHover.OnHoverStarted -= playerVFX.PlayHoverVFX;
+        playerHover.OnHoverEnded -= playerVFX.StopHoverVFX;
     }
 }

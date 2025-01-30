@@ -22,6 +22,9 @@ public class PlayerVFX : MonoBehaviour
     [SerializeField] private Transform groundPoundParticlesSpawnPoint;
     float groundPoundParticleDuration;
 
+    [Header("HOVER VFX")]
+    [SerializeField] private VisualEffect[] hoverVFX;
+
     private void Start() {
         jumpParticleDuration = jumpParticles.GetVector2("LifeTimeRange").y;
         groundPoundParticleDuration = groundPoundParticles.GetVector2("LifeTimeRange").y;
@@ -63,5 +66,18 @@ public class PlayerVFX : MonoBehaviour
         //groundPoundVFX.Play();
         GameObject newGroundPoundParticles = Instantiate(groundPoundParticles.gameObject, groundPoundParticlesSpawnPoint.position, Quaternion.identity);
         Destroy(newGroundPoundParticles, groundPoundParticleDuration);
+    }
+
+    public void PlayHoverVFX() {
+        for(int i = 0; i < hoverVFX.Length; i++) {
+            hoverVFX[i].Reinit();
+            hoverVFX[i].Play();
+        }
+    }
+
+    public void StopHoverVFX() {
+        for (int i = 0; i < hoverVFX.Length; i++) {
+            hoverVFX[i].Stop();
+        }
     }
 }
