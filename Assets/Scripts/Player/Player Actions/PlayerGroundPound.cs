@@ -66,10 +66,7 @@ public class PlayerGroundPound : MonoBehaviour
         groundPoundLandCollider.enabled = true;
         yield return new WaitForSeconds(landDuration);
         // Finish movement and reset variables
-        landed = false;
-        finishedGroundPound = true;
-        isGroundPounding = false;
-        groundPoundLandCollider.enabled = false;
+        FinishGroundPound();
     }
 
     private void DisableVelocity() {
@@ -95,5 +92,16 @@ public class PlayerGroundPound : MonoBehaviour
             rigidBody.velocity = new Vector3(0, -groundPoundSpeed, 0);
             CheckLanded();
         }
+    }
+
+    public void FinishGroundPound() {
+        if(finishedGroundPound) {
+            return;
+        }
+        landed = false;
+        finishedGroundPound = true;
+        isGroundPounding = false;
+        groundPoundCollider.enabled = false;
+        groundPoundLandCollider.enabled = false;
     }
 }

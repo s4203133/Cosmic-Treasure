@@ -2,13 +2,23 @@ using UnityEngine;
 
 public class PlayerEventManager : EventManager {
 
+    [SerializeField] private PlayerRunEvent runEvent;
     [SerializeField] private PlayerJumpEvent jumpEvent;
     [SerializeField] private PlayerHighJumpEvent highJumpEvent;
     [SerializeField] private PlayerSpinEvent spinEvent;
     [SerializeField] private PlayerGroundPoundEvent groundPoundEvent;
     [SerializeField] private PlayerHoverEvent hoverEvent;
 
+    private void Start() {
+        SpawnPlayer.OnPlayerSpawned += SubscribeToPlayer;
+    }
+
+    private void SubscribeToPlayer(GameObject player) {
+        SubscribeEvents();
+    }
+
     protected override void SubscribeEvents() {
+        runEvent.SubscribeEvents();
         jumpEvent.SubscribeEvents();
         highJumpEvent.SubscribeEvents();
         spinEvent.SubscribeEvents();
@@ -17,6 +27,7 @@ public class PlayerEventManager : EventManager {
     }
 
     protected override void UnsubscribeEvents() { 
+        runEvent.UnsubscribeEvents();
         jumpEvent.UnsubscribeEvents();
         highJumpEvent.UnsubscribeEvents();
         spinEvent.UnsubscribeEvents();
@@ -31,6 +42,33 @@ public abstract class PlayerEvent {
     public abstract void SubscribeEvents();
 
     public abstract void UnsubscribeEvents();
+}
+
+
+
+[System.Serializable]
+public class PlayerRunEvent : PlayerEvent {
+    [Header("SUBJECT")]
+    [SerializeField] private PlayerMovement playerMovement;
+
+    [Header("OBSERVERS")]
+    [SerializeField] private PlayerVFX playerVFX;
+
+    public override void SubscribeEvents() {
+        if (playerMovement == null) {
+            return;
+        }
+        playerMovement.OnMoveStarted += playerVFX.StartRunParticles;
+        playerMovement.OnMoveStopped += playerVFX.StopRunParticles;
+    }
+
+    public override void UnsubscribeEvents() {
+        if (playerMovement == null) {
+            return;
+        }
+        playerMovement.OnMoveStarted -= playerVFX.StartRunParticles;
+        playerMovement.OnMoveStopped -= playerVFX.StopRunParticles;
+    }
 }
 
 

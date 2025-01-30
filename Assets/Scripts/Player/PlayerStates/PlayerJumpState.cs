@@ -42,8 +42,6 @@ public class PlayerJumpState : PlayerBaseState
         InputHandler.groundPoundStarted -= GroundPound;
         InputHandler.jumpStarted -= Hover;
 
-        SpawnParticlesIfLanded();
-
         jump.EndJump();
     }
 
@@ -64,13 +62,8 @@ public class PlayerJumpState : PlayerBaseState
     }
 
     private void Hover() {
-        stateMachine.ChangeState(stateMachine.hoverState);
-    }
-
-    private void SpawnParticlesIfLanded() {
-        if (jump.groundedSystem.IsOnGround) {
-            context.vfx.PlayLandParticles();
-            context.squashAndStretch.Land.Play();
+        if (!grounded.IsOnGround) {
+            stateMachine.ChangeState(stateMachine.hoverState);
         }
     }
 }

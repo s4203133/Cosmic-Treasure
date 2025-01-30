@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class PlayerFallingState : PlayerBaseState
-{
+public class PlayerFallingState : PlayerBaseState {
+
     private PlayerMovement movement;
     private PlayerJump jump;
     private Grounded grounded;
@@ -50,9 +50,6 @@ public class PlayerFallingState : PlayerBaseState
         InputHandler.SpinStarted -= Spin;
         InputHandler.groundPoundStarted -= GroundPound;
 
-        if (grounded.IsOnGround) {
-            context.squashAndStretch.Land.Play();
-        }
         jump.EndJump();
     }
 
@@ -79,7 +76,7 @@ public class PlayerFallingState : PlayerBaseState
         if (!spin.CanAirSpin()) {
             return;
         }
-        if (context.inputBufferHolder.spin.HasInputBeenRecieved()) {
+        if (InputBuffers.instance.spin.HasInputBeenRecieved()) {
             Spin();
         }
     }
@@ -89,7 +86,7 @@ public class PlayerFallingState : PlayerBaseState
             return;
         }
 
-        if (InputHandler.jumpBeingPressed) {
+        if (InputBuffers.instance.jump.HasInputBeenRecieved() && InputHandler.jumpBeingPressed) {
             hasPerformedAirMove = true;
             stateMachine.ChangeState(stateMachine.hoverState);
         }

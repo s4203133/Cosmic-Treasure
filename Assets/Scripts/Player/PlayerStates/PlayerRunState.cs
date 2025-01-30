@@ -16,8 +16,7 @@ public class PlayerRunState : PlayerBaseState {
         InputHandler.jumpStarted += Jump;
         InputHandler.SpinStarted += Spin;
 
-        context.vfx.StartRunParticles();
-
+        movement.OnMoveStarted?.Invoke();
         CheckForJumpInput();
     }
 
@@ -31,11 +30,11 @@ public class PlayerRunState : PlayerBaseState {
     }
 
     public override void OnStateExit() {
-        context.vfx.StopRunParticles();
-
         InputHandler.moveCancelled -= StopMovement;
         InputHandler.jumpStarted -= Jump;
         InputHandler.SpinStarted -= Spin;
+
+        movement.OnMoveStopped?.Invoke();
     }
 
     public override void OnCollisionEnter(Collision collision) {
@@ -53,7 +52,7 @@ public class PlayerRunState : PlayerBaseState {
     }
 
     private void CheckForJumpInput() {
-        if (context.inputBufferHolder.jump.HasInputBeenRecieved()) {
+        if (InputBuffers.instance.jump.HasInputBeenRecieved()) {
             stateMachine.ChangeState(stateMachine.jumpState);
         }
     }

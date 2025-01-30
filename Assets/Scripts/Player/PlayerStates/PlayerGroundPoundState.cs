@@ -22,6 +22,8 @@ public class PlayerGroundPoundState : PlayerBaseState {
 
     public override void OnStateExit() {
         InputHandler.jumpStarted -= CheckJumpInput;
+
+        groundPound.FinishGroundPound();
     }
 
     public override void OnStatePhysicsUpdate() {

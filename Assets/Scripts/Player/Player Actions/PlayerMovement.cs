@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -22,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
 
     // Difference between current velocity and target velocity
     private float velocityDifference;
+
+    public Action OnMoveStarted;
+    public Action OnMoveStopped;
 
     private void OnEnable() {
         SubscribeMoveEvents();

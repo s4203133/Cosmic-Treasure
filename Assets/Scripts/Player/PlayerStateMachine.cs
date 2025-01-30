@@ -48,4 +48,8 @@ public class PlayerStateMachine : MonoBehaviour
         stateName = currentState.ToString();
         currentState.OnStateEnter();
     }
+
+    private void OnDisable() {
+        currentState.OnStateExit();
+    }
 }

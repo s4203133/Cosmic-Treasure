@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
@@ -9,10 +7,6 @@ public class EventManager : MonoBehaviour
     }
 
     private void OnDisable() {
-        UnsubscribeEvents();
-    }
-
-    private void OnDestroy() {
         UnsubscribeEvents();
     }
 

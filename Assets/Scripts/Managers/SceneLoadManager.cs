@@ -34,7 +34,7 @@ public class SceneLoadManager : MonoBehaviour
 
         IEnumerator DelayLoad() {
             yield return new WaitForSeconds(loadDelay);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 

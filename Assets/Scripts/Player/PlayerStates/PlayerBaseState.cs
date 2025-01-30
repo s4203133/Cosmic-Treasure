@@ -20,4 +20,5 @@ public abstract class PlayerBaseState
     public abstract void OnStateExit();
 
     public abstract void OnCollisionEnter(Collision collision);
+
 }

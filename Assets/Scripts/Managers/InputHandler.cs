@@ -78,7 +78,7 @@ public class InputHandler : ScriptableObject
 
     private void OnSelect(InputAction.CallbackContext context) {
         if (context.started) {
-            //selectedStarted?.Invoke();
+            selectedStarted?.Invoke();
         }
     }
 

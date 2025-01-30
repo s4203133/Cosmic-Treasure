@@ -2,11 +2,22 @@ using UnityEngine;
 
 public class InputBuffers : MonoBehaviour {
 
+    public static InputBuffers instance;
+
     [SerializeField] private InputBuffer jumpInputBuffer;
     [SerializeField] private InputBuffer spinInputBuffer;
 
     public InputBuffer jump => jumpInputBuffer;
     public InputBuffer spin => spinInputBuffer;
+
+    private void Awake() {
+        if(instance != null) {
+            Debug.LogWarning("There are multiple Input Buffers in the scene. Please Ensure there are only one.", this);
+            Destroy(this);
+        } else {
+            instance = this;
+        }
+    }
 
     private void OnEnable() {
         SubscribeInput();
