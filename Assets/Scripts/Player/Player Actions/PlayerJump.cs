@@ -93,10 +93,10 @@ public class PlayerJump : MonoBehaviour {
     }
 
     public void InitialiseJump() {
+        grounded.NotifyLeftGround();
         jumpTimer = maxJumpDuration;
         jump = jumpForce;
         jumpApexSpeed = 1;
-        grounded.NotifyLeftGround();
         OnJump?.Invoke();
     }
 
@@ -105,7 +105,6 @@ public class PlayerJump : MonoBehaviour {
         jump = highJumpForce;
         jumpApexSpeed = 1;
         grounded.NotifyLeftGround();
-        animator.SetTrigger("Spin");
         OnHighJump?.Invoke();
     }
 

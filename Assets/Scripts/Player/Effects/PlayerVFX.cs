@@ -25,9 +25,15 @@ public class PlayerVFX : MonoBehaviour
     [Header("HOVER VFX")]
     [SerializeField] private VisualEffect[] hoverVFX;
 
+    [Header("DIVE VFX")]
+    [SerializeField] private VisualEffect diveVFX;
+    [SerializeField] private Transform diveVFXSpawnPoint;
+    private float diveVFXDuration;
+
     private void Start() {
         jumpParticleDuration = jumpParticles.GetVector2("LifeTimeRange").y;
         groundPoundParticleDuration = groundPoundParticles.GetVector2("LifeTimeRange").y;
+        diveVFXDuration = diveVFX.GetVector2("Lifetime Range").y;
         StopRunParticles();
     }
 
@@ -49,8 +55,8 @@ public class PlayerVFX : MonoBehaviour
     }
 
     public void PlayLandParticles() {
-        GameObject newJumpParticles = Instantiate(jumpParticles.gameObject, jumpParticlesSpawnPoint.position, Quaternion.identity);
-        Destroy(newJumpParticles, jumpParticleDuration);
+        GameObject newLandParticles = Instantiate(jumpParticles.gameObject, jumpParticlesSpawnPoint.position, Quaternion.identity);
+        Destroy(newLandParticles, jumpParticleDuration);
     }
 
     public void PlaySpinVFX() {
@@ -79,5 +85,10 @@ public class PlayerVFX : MonoBehaviour
         for (int i = 0; i < hoverVFX.Length; i++) {
             hoverVFX[i].Stop();
         }
+    }
+
+    public void PlayDiveVFX() {
+        VisualEffect newDiveVFX = Instantiate(diveVFX, diveVFXSpawnPoint.position, diveVFXSpawnPoint.rotation);
+        Destroy(newDiveVFX.gameObject, diveVFXDuration);
     }
 }

@@ -11,14 +11,6 @@ public class PlayerEventManager : EventManager {
     [SerializeField] private PlayerHoverEvent hoverEvent;
     [SerializeField] private PlayerDiveEvent diveEvent;
 
-    private void Start() {
-        SpawnPlayer.OnPlayerSpawned += SubscribeToPlayer;
-    }
-
-    private void SubscribeToPlayer(GameObject player) {
-        SubscribeEvents();
-    }
-
     protected override void SubscribeEvents() {
         runEvent.SubscribeEvents();
         jumpEvent.SubscribeEvents();
@@ -45,6 +37,7 @@ public class PlayerEventManager : EventManager {
 
 
 public abstract class PlayerEvent {
+
     public abstract void SubscribeEvents();
 
     public abstract void UnsubscribeEvents();
@@ -148,6 +141,8 @@ public class PlayerHighJumpEvent : PlayerEvent {
     [Header("OBSERVERS")]
     [SerializeField] private PlayerVFX playerVFX;
     [SerializeField] private PlayerSquashAndStretch squishy;
+    [SerializeField] private Animator animator;
+    [SerializeField] private HighJumpTrail jumpTrail;
 
     public override void SubscribeEvents() {
         if (playerJump == null) {
@@ -155,6 +150,8 @@ public class PlayerHighJumpEvent : PlayerEvent {
         }
         playerJump.OnHighJump += playerVFX.PlayJumpParticles;
         playerJump.OnHighJump += squishy.HighJump.Play;
+        playerJump.OnHighJump += TriggerAnimation;
+        playerJump.OnHighJump += jumpTrail.StartTrail;
     }
 
     public override void UnsubscribeEvents() {
@@ -163,6 +160,12 @@ public class PlayerHighJumpEvent : PlayerEvent {
         }
         playerJump.OnHighJump -= playerVFX.PlayJumpParticles;
         playerJump.OnHighJump -= squishy.HighJump.Play;
+        playerJump.OnHighJump -= TriggerAnimation;
+        playerJump.OnHighJump -= jumpTrail.StartTrail;
+    }
+
+    private void TriggerAnimation() {
+        animator.SetTrigger("Spin");
     }
 }
 
@@ -273,13 +276,18 @@ public class PlayerDiveEvent : PlayerEvent {
 
     [Header("OBSERVERS")]
     [SerializeField] private PlayerVFX playerVFX;
+    [SerializeField] private PlayerSquashAndStretch squishy;
     [SerializeField] private Animator animator;
+    [SerializeField] private HighJumpTrail jumpTrail;
 
     public override void SubscribeEvents() {
         if (playerDive == null) {
             return;
         }
         playerDive.OnDive += TriggerAnimation;
+        playerDive.OnDive += playerVFX.PlayDiveVFX;
+        playerDive.OnDive += squishy.Dive.Play;
+        playerDive.OnDive += jumpTrail.StartTrail;
     }
 
     public override void UnsubscribeEvents() {
@@ -287,6 +295,9 @@ public class PlayerDiveEvent : PlayerEvent {
             return;
         }
         playerDive.OnDive -= TriggerAnimation;
+        playerDive.OnDive -= playerVFX.PlayDiveVFX;
+        playerDive.OnDive -= squishy.Dive.Play;
+        playerDive.OnDive -= jumpTrail.StartTrail;
     }
 
     private void TriggerAnimation() {

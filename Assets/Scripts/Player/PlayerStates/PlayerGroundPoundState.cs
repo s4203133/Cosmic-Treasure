@@ -34,7 +34,10 @@ public class PlayerGroundPoundState : PlayerBaseState {
 
     public override void OnStatePhysicsUpdate() {
         if (diveRegistered) {
-            ValidateDive();
+            bool diving = ValidateDive();
+            if (diving) {
+                return;
+            }
         }
 
         groundPound.ApplyGroundPoundForce();
@@ -42,8 +45,10 @@ public class PlayerGroundPoundState : PlayerBaseState {
 
     public override void OnStateUpdate() {
         if (diveRegistered) {
-            ValidateDive();
-            return;
+            bool diving = ValidateDive();
+            if (diving) {
+                return;
+            }
         }
 
         CheckFinished();
@@ -70,16 +75,13 @@ public class PlayerGroundPoundState : PlayerBaseState {
         diveRegistered = true;
     }
 
-    private void ValidateDive() {
-/*        if (groundPound.PerformingGroundPound && !groundPound.landed) {
+    private bool ValidateDive() {
+        if (groundPound.canInitiateDifferentAction) {
             groundPound.ResetGroundPound();
             Dive();
-        }*/
-
-        if (!groundPound.landed) {
-            groundPound.ResetGroundPound();
-            Dive();
+            return true;
         }
+        return false;
     }
 
     private void Dive() {

@@ -14,6 +14,9 @@ public class PlayerGroundPound : MonoBehaviour
     [SerializeField] private float buildUpDuration;
     private bool starting;
     private Coroutine start;
+    // How long of the action needs to run before allowing the player to transition to another move
+    [SerializeField] private float timeUntilMoveCanBeOverwritten;
+    [HideInInspector] public bool canInitiateDifferentAction;
 
     [SerializeField] private float groundPoundSpeed;
     private bool isGroundPounding;
@@ -35,6 +38,7 @@ public class PlayerGroundPound : MonoBehaviour
 
         DisableVelocity();
         InitialiseGroundPound();
+        canInitiateDifferentAction = false;
         start = StartCoroutine(BeginGroundPounding());
     }
 
@@ -54,8 +58,10 @@ public class PlayerGroundPound : MonoBehaviour
     }
 
     private IEnumerator BeginGroundPounding() {
-        // Wait a short delay, then end starting phase, re-enable physics, and activate thr ground pound movement
-        yield return new WaitForSeconds(buildUpDuration);
+        // Wait a short delay, then end starting phase, re-enable physics, and activate the ground pound movement
+        yield return new WaitForSeconds(timeUntilMoveCanBeOverwritten);
+        canInitiateDifferentAction = true;
+        yield return new WaitForSeconds(buildUpDuration - timeUntilMoveCanBeOverwritten);
         EndGroundPoundBuildUp();
     }
 
@@ -69,6 +75,7 @@ public class PlayerGroundPound : MonoBehaviour
     private IEnumerator EndGroundPounding() {
         // Notify the player has landed and disable the collider
         OnGroundPoundLanded?.Invoke();
+        canInitiateDifferentAction = false;
         landed = true;
         groundPoundCollider.enabled = false;
         groundPoundLandCollider.enabled = true;
@@ -114,6 +121,7 @@ public class PlayerGroundPound : MonoBehaviour
     }
 
     public void ResetGroundPound() {
+        canInitiateDifferentAction = false;
         StopCoroutine(start);
         EndGroundPoundBuildUp();
         starting = false;

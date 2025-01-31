@@ -45,6 +45,7 @@ public class Grounded : MonoBehaviour
 
     public void NotifyLeftGround() {
         hasStartedJump = true;
+        isGrounded = false;
     }
 
     private void SendGroundedEvent() {

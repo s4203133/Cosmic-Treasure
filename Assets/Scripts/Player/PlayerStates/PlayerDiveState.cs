@@ -27,7 +27,7 @@ public class PlayerDiveState : PlayerBaseState {
     }
 
     public override void OnStatePhysicsUpdate() {
-        dive.ApplyDiveForce();
+        dive.HandleDive();
     }
 
     public override void OnCollisionEnter(Collision collision) {

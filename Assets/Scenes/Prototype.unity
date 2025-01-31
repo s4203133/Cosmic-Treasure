@@ -2842,6 +2842,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 40, y: 10, z: 20}
   m_Center: {x: 0, y: -5, z: 0}
+--- !u!114 &902468039 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4349260929245988759, guid: b2d6b1dd7f39efb448b5b8e305585947,
+    type: 3}
+  m_PrefabInstance: {fileID: 1595825500}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c083007c15ff1d4ba81a95d1f7f3776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &912348070
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4700,6 +4712,8 @@ MonoBehaviour:
     playerJump: {fileID: 1595825503}
     playerVFX: {fileID: 1595825502}
     squishy: {fileID: 1595825504}
+    animator: {fileID: 1097014581}
+    jumpTrail: {fileID: 902468039}
   spinEvent:
     playerSpin: {fileID: 1595825505}
     playerVFX: {fileID: 1595825502}
@@ -4717,7 +4731,9 @@ MonoBehaviour:
   diveEvent:
     playerDive: {fileID: 354659851}
     playerVFX: {fileID: 1595825502}
+    squishy: {fileID: 1595825504}
     animator: {fileID: 1097014581}
+    jumpTrail: {fileID: 902468039}
 --- !u!1001 &1489267844
 PrefabInstance:
   m_ObjectHideFlags: 0

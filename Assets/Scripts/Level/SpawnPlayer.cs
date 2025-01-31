@@ -17,6 +17,5 @@ public class SpawnPlayer : MonoBehaviour
     private IEnumerator SpawnPlayerAfterDelay() {
         yield return new WaitForSeconds(delay);
         GameObject Player = Instantiate(player);
-        OnPlayerSpawned?.Invoke(Player);
     }
 }

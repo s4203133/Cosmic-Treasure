@@ -7,15 +7,7 @@ public class HighJumpTrail : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private PlayerJump jump;
 
-    private void OnEnable() {
-        jump.OnHighJump += StartTrail;
-    }
-
-    private void OnDisable() {
-        jump.OnHighJump -= StartTrail;
-    }
-
-    private void StartTrail() {
+    public void StartTrail() {
         trailRenderer.emitting = true;
         StartCoroutine(StopTrail());
     }

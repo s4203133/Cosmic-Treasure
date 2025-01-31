@@ -31,7 +31,6 @@ public class PlayerIdleState : PlayerBaseState {
         InputHandler.movePerformed -= StartedMoving;
         InputHandler.jumpStarted -= Jump;
         InputHandler.SpinStarted -= Spin;
-
     }
 
     public override void OnCollisionEnter(Collision collision) {
