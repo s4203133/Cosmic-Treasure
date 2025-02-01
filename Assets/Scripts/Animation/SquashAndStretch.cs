@@ -9,12 +9,10 @@ public class SquashAndStretch : MonoBehaviour
 
     [SerializeField, Range(0f, 1f)] private float duration;
 
-    [SerializeField] private float intensity;
+    [SerializeField] private float scale;
     [SerializeField] private AnimationCurve motion;
 
     private Coroutine currentAnimation;
-
-    bool playing;
 
     private bool affectX => (axis & Axis.X) != 0;
     private bool affectY => (axis & Axis.Y) != 0;
@@ -25,6 +23,7 @@ public class SquashAndStretch : MonoBehaviour
         currentAnimation = StartCoroutine(Animate());
     }
 
+    // Check an axis has been assigned and stop the current animation if one is playing
     private void ValidateStart() {
         if(axis == 0) {
             Debug.LogWarning("Axis is set to 'None'", this);
@@ -44,8 +43,10 @@ public class SquashAndStretch : MonoBehaviour
             t += Time.deltaTime;
             float curvePos = t / duration;
             float value = motion.Evaluate(curvePos);
-            float remappedValue = 1 + (value * (intensity - 1));
+            float remappedValue = 1 + (value * (scale - 1));
 
+            // Affect the chosen axis'
+            // Any un-chosen axis' will be scaled in the opposite way  
             if (affectX) {
                 modifiedScale.x *= remappedValue;
             } else {
@@ -68,6 +69,7 @@ public class SquashAndStretch : MonoBehaviour
 
             yield return null;
         }
+        // Reset the scale after the animation has finished
         transformToAffect.localScale = Vector3.one;
     }
 }

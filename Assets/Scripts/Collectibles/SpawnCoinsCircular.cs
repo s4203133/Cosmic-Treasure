@@ -16,6 +16,7 @@ public class SpawnCoinsCircular : CoinSpawner {
     }
 
     private void SpawnCoinsInCircle() {
+        // Get equally spaced position around a circle of a given radius to spawn the coins
         for(int i = 0; i < numberOfCoins; i++) {
             float segment = 2 * Mathf.PI * i / numberOfCoins;
             float horizontalValue = Mathf.Cos(segment);

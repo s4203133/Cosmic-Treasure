@@ -1,21 +1,23 @@
 using UnityEngine;
 
-public class InteractAnimation : MonoBehaviour
-{
-    private Animator animator;
+namespace LMO.Interactables {
 
-    void Start()
-    {
-        animator = GetComponentInChildren<Animator>();
-    }
+    public class InteractAnimation : MonoBehaviour {
+        private Animator animator;
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.tag == "Player" || other.tag == "PlayerSpinAttack") {
-            Play();
+        void Start() {
+            animator = GetComponentInChildren<Animator>();
         }
-    }
 
-    public void Play() {
-        animator.SetTrigger("Interact");
+        private void OnTriggerEnter(Collider other) {
+            // When the player touches this object, play an animatation
+            if (other.tag == "Player" || other.tag == "PlayerSpinAttack") {
+                Play();
+            }
+        }
+
+        public void Play() {
+            animator.SetTrigger("Interact");
+        }
     }
 }

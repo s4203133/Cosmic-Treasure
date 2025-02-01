@@ -1,39 +1,45 @@
 using UnityEngine;
+using LMO.Interfaces;
 
-public class EventManager : MonoBehaviour
-{
-    [SerializeField] protected ICustomEvent[] events;
-    private bool init;
+namespace LMO.CustomEvents {
 
-    private void OnEnable() {
-        if(!init) {
-            Initialise();
+    public class EventManager : MonoBehaviour {
+        [SerializeField] protected ICustomEvent[] events;
+        private bool init;
+
+        private void OnEnable() {
+            if (!init) {
+                Initialise();
+            }
+            SubscribeEvents();
         }
-        SubscribeEvents();
-    }
 
-    private void OnDisable() {
-        UnsubscribeEvents();
-    }
-
-    protected virtual void SubscribeEvents() {
-        for (int i = 0; i < events.Length; i++) {
-            events[i].SubscribeEvents();
+        private void OnDisable() {
+            UnsubscribeEvents();
         }
-    }
 
-    protected virtual void UnsubscribeEvents() {
-        for (int i = 0; i < events.Length; i++) {
-            events[i].SubscribeEvents();
-        }
-    }
-
-    protected virtual void Initialise() {
-        if (events != null) {
+        // Subscribe all events to their subjects
+        protected virtual void SubscribeEvents() {
             for (int i = 0; i < events.Length; i++) {
-                events[i].Initialise(this);
+                events[i].SubscribeEvents();
             }
         }
-        init = true;
+
+        // Un-subscribr all events from their subjects
+        protected virtual void UnsubscribeEvents() {
+            for (int i = 0; i < events.Length; i++) {
+                events[i].SubscribeEvents();
+            }
+        }
+
+        // Initialse the events if required
+        protected virtual void Initialise() {
+            if (events != null) {
+                for (int i = 0; i < events.Length; i++) {
+                    events[i].Initialise(this);
+                }
+            }
+            init = true;
+        }
     }
 }

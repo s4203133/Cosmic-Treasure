@@ -24,6 +24,7 @@ public class GamepadRumble : ScriptableObject {
         if(gamePad == null) {
             yield break;
         }
+        // Rumble the controller for the specified duration
         float t = 0;
         while (t < duration) {
             t += Time.deltaTime;

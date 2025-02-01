@@ -1,95 +1,95 @@
 using UnityEngine;
 
-public class WallDetector : MonoBehaviour
-{
-    [SerializeField] private Transform playerTransform;
+namespace LMO.Player {
 
-    private bool wallInFront;
-    private Transform thisTransform;
-    [SerializeField] private LayerMask detectableLayers;
+    public class WallDetector : MonoBehaviour {
+        [SerializeField] private Transform playerTransform;
 
-    [SerializeField] private float inputThreshold;
-    private Vector2 input;
-    private Vector2 directionToWall;
+        private bool wallInFront;
+        private Transform thisTransform;
+        [SerializeField] private LayerMask detectableLayers;
 
-    [SerializeField] private PlayerMovement movement;
-    private bool movingTowardsWall;
-    private bool oldMovingTowardsWall;
+        [SerializeField] private float inputThreshold;
+        private Vector2 input;
+        private Vector2 directionToWall;
 
-    private float dot;
+        [SerializeField] private PlayerMovement movement;
+        private bool movingTowardsWall;
+        private bool oldMovingTowardsWall;
 
-    void Awake()
-    {
-        thisTransform = transform;
-        SubscribeInputEvent();
-    }
+        private float dot;
 
-    void Update()
-    {
-        DetectWall();
-        GetDirectionToWall();
+        void Awake() {
+            thisTransform = transform;
+            SubscribeInputEvent();
+        }
 
-        TestInput();
-        NotifyMovement();
-    }
-
-    private void GetInput(Vector2 value) {
-        input = value;
-    }
-
-    private void SubscribeInputEvent() {
-        InputHandler.moveStarted += GetInput;
-        InputHandler.movePerformed += GetInput;
-        InputHandler.moveCancelled += GetInput;
-    }
-
-    private void DetectWall() {
-        wallInFront = Physics.CheckSphere(thisTransform.position, 0.15f, detectableLayers);
-        if(wallInFront) {
+        void Update() {
+            DetectWall();
             GetDirectionToWall();
-        }
-    }
 
-    private void GetDirectionToWall() {
-        directionToWall = new Vector2(thisTransform.position.x - playerTransform.position.x, thisTransform.position.z -playerTransform.position.z);
-    }
-
-    private void TestInput() {
-        if (!wallInFront || input == Vector2.zero) {
-            movingTowardsWall = false;
-            return;
+            TestInput();
+            NotifyMovement();
         }
 
-        dot = Vector2.Dot(input, directionToWall);
-        if (dot > inputThreshold) {
-            movingTowardsWall = true;
-        } else {
-            movingTowardsWall = false;
-        }
-    }
-
-    private void NotifyMovement() {
-        if(movingTowardsWall != oldMovingTowardsWall) {
-            oldMovingTowardsWall = movingTowardsWall;
-            //movement.NotifyWallInFront(movingTowardsWall);
-        }
-    }
-
-    private void OnDrawGizmosSelected() {
-        Gizmos.color = Color.red;
-
-        Vector3 dirToWall = new Vector3(directionToWall.x, 0, directionToWall.y);
-        Vector3 inp = new Vector3(input.x, 0.25f, input.y);
-        Vector3 startPosition = playerTransform.position + Vector3.up * 0.5f;
-
-        Gizmos.DrawLine(startPosition, startPosition + dirToWall * 3);
-
-        if (dot > inputThreshold) {
-            Gizmos.color = Color.yellow;
-        } else {
-            Gizmos.color = Color.blue;
+        private void GetInput(Vector2 value) {
+            input = value;
         }
 
-        Gizmos.DrawLine(startPosition, startPosition + inp * 3);
+        private void SubscribeInputEvent() {
+            InputHandler.moveStarted += GetInput;
+            InputHandler.movePerformed += GetInput;
+            InputHandler.moveCancelled += GetInput;
+        }
+
+        private void DetectWall() {
+            wallInFront = Physics.CheckSphere(thisTransform.position, 0.15f, detectableLayers);
+            if (wallInFront) {
+                GetDirectionToWall();
+            }
+        }
+
+        private void GetDirectionToWall() {
+            directionToWall = new Vector2(thisTransform.position.x - playerTransform.position.x, thisTransform.position.z - playerTransform.position.z);
+        }
+
+        private void TestInput() {
+            if (!wallInFront || input == Vector2.zero) {
+                movingTowardsWall = false;
+                return;
+            }
+
+            dot = Vector2.Dot(input, directionToWall);
+            if (dot > inputThreshold) {
+                movingTowardsWall = true;
+            } else {
+                movingTowardsWall = false;
+            }
+        }
+
+        private void NotifyMovement() {
+            if (movingTowardsWall != oldMovingTowardsWall) {
+                oldMovingTowardsWall = movingTowardsWall;
+                //movement.NotifyWallInFront(movingTowardsWall);
+            }
+        }
+
+        private void OnDrawGizmosSelected() {
+            Gizmos.color = Color.red;
+
+            Vector3 dirToWall = new Vector3(directionToWall.x, 0, directionToWall.y);
+            Vector3 inp = new Vector3(input.x, 0.25f, input.y);
+            Vector3 startPosition = playerTransform.position + Vector3.up * 0.5f;
+
+            Gizmos.DrawLine(startPosition, startPosition + dirToWall * 3);
+
+            if (dot > inputThreshold) {
+                Gizmos.color = Color.yellow;
+            } else {
+                Gizmos.color = Color.blue;
+            }
+
+            Gizmos.DrawLine(startPosition, startPosition + inp * 3);
+        }
     }
 }

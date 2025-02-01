@@ -1,5 +1,6 @@
 
-public interface IHittable
-{
-    public void OnHit();
+namespace LMO.Interfaces {
+    public interface IHittable {
+        public void OnHit();
+    }
 }

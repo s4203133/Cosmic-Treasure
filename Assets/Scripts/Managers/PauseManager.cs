@@ -1,24 +1,24 @@
 using UnityEngine;
 
-public class PauseManager : MonoBehaviour
-{
+namespace LMO {
 
-    private void OnEnable() {
-        SubscribeInput();
-    }
+    public class PauseManager : MonoBehaviour {
 
-    private void OnDisable() {
-        UnsubscribeInput();
-    }
+        private void OnEnable() {
+            SubscribeInput();
+        }
 
-    private void SubscribeInput() {
-        InputHandler.selectedStarted += GlobalEventManager.OnSceneRestarted;
-        // InputHandler.selectedStarted += SceneLoadManager.instance.RestartScene;
-    }
+        private void OnDisable() {
+            UnsubscribeInput();
+        }
 
-    private void UnsubscribeInput() {
-        InputHandler.selectedStarted -= GlobalEventManager.OnSceneRestarted;
-        // InputHandler.selectedStarted -= SceneLoadManager.instance.RestartScene;
+        private void SubscribeInput() {
+            InputHandler.selectedStarted += GlobalEventManager.OnSceneRestarted;
+        }
 
+        private void UnsubscribeInput() {
+            InputHandler.selectedStarted -= GlobalEventManager.OnSceneRestarted;
+
+        }
     }
 }

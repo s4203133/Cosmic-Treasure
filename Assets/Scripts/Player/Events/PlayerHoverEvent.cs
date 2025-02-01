@@ -1,30 +1,37 @@
 ﻿using UnityEngine;
+using LMO.Interfaces;
+using LMO.Player;
 
-public class PlayerHoverEvent : MonoBehaviour, ICustomEvent {
-    [Header("SUBJECT")]
-    [SerializeField] private PlayerHover playerHover;
+namespace LMO.CustomEvents {
 
-    // Observers
-    private PlayerVFX playerVFX;
+    public class PlayerHoverEvent : MonoBehaviour, ICustomEvent {
+        [Header("SUBJECT")]
+        [SerializeField] private PlayerHover playerHover;
 
-    public void Initialise(EventManager manager) {
-        PlayerEventManager player = manager as PlayerEventManager;
-        playerVFX = player.VFX;
-    }
+        // Observers
+        private PlayerVFX playerVFX;
 
-    public  void SubscribeEvents() {
-        if (playerHover == null) {
-            return;
+        public void Initialise(EventManager manager) {
+            PlayerEventManager player = manager as PlayerEventManager;
+            playerVFX = player.VFX;
         }
-        playerHover.OnHoverStarted += playerVFX.PlayHoverVFX;
-        playerHover.OnHoverEnded += playerVFX.StopHoverVFX;
-    }
 
-    public  void UnsubscribeEvents() {
-        if (playerHover == null) {
-            return;
+        // When the player dives, notify other systems so they can respond
+
+        public void SubscribeEvents() {
+            if (playerHover == null) {
+                return;
+            }
+            playerHover.OnHoverStarted += playerVFX.PlayHoverVFX;
+            playerHover.OnHoverEnded += playerVFX.StopHoverVFX;
         }
-        playerHover.OnHoverStarted -= playerVFX.PlayHoverVFX;
-        playerHover.OnHoverEnded -= playerVFX.StopHoverVFX;
+
+        public void UnsubscribeEvents() {
+            if (playerHover == null) {
+                return;
+            }
+            playerHover.OnHoverStarted -= playerVFX.PlayHoverVFX;
+            playerHover.OnHoverEnded -= playerVFX.StopHoverVFX;
+        }
     }
 }

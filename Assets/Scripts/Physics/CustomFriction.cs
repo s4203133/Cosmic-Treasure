@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class CustomFriction : MonoBehaviour {
+
     private Rigidbody rigidBody;
 
     [Range(0f, 10f)]
@@ -19,6 +20,7 @@ public class CustomFriction : MonoBehaviour {
         ReduceVelocity();
     }
 
+    // Apply artifitial friction by adding a force in the opposite direction an object is moving
     private void ReduceVelocity() {
         if (rigidBody.velocity.sqrMagnitude < 0.25f) {
             rigidBody.velocity = Vector3.zero;

@@ -1,29 +1,35 @@
 using UnityEngine;
 
-public class BrokenCratePieces : MonoBehaviour {
+namespace LMO.Interactables {
 
-    private Transform thisTransform;
+    public class BrokenCratePieces : MonoBehaviour {
 
-    [SerializeField] private AnimationCurve sizeReduction;
-    private float timer;
-    private float duration;
+        private Transform thisTransform;
 
-    void Awake() {
-        thisTransform = transform;
-        duration = sizeReduction.keys[sizeReduction.keys.Length - 1].time;
-    }
+        [SerializeField] private AnimationCurve sizeReduction;
+        private float timer;
+        private float duration;
 
-    void FixedUpdate() {
-        thisTransform.localScale = CalculateSize();
-        timer += Time.deltaTime;
-
-        if(timer > duration ) {
-            Destroy(thisTransform.parent.gameObject);
+        void Awake() {
+            thisTransform = transform;
+            duration = sizeReduction.keys[sizeReduction.keys.Length - 1].time;
         }
-    }
 
-    private Vector3 CalculateSize() {
-        float size = sizeReduction.Evaluate(timer);
-        return new Vector3(size, size, size);
+        void FixedUpdate() {
+            // Reduce the size of the game object across the animation curve
+            thisTransform.localScale = CalculateSize();
+            timer += Time.deltaTime;
+
+            // Destroy the game object once the time is up
+            if (timer > duration) {
+                Destroy(thisTransform.parent.gameObject);
+            }
+        }
+
+        // Return the point of the animation curve based on the timer
+        private Vector3 CalculateSize() {
+            float size = sizeReduction.Evaluate(timer);
+            return new Vector3(size, size, size);
+        }
     }
 }

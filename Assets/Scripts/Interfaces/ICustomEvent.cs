@@ -1,9 +1,12 @@
-﻿
-public interface ICustomEvent {
+﻿using LMO.CustomEvents;
 
-    public void Initialise(EventManager manager);
+namespace LMO.Interfaces {
+    public interface ICustomEvent {
 
-    public void SubscribeEvents();
+        public void Initialise(EventManager manager);
 
-    public void UnsubscribeEvents();
+        public void SubscribeEvents();
+
+        public void UnsubscribeEvents();
+    }
 }

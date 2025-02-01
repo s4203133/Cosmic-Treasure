@@ -1,8 +1,9 @@
 using System;
 
-public interface IBreakable
-{
-    public static Action OnBroken;
+namespace LMO.Interfaces {
+    public interface IBreakable {
+        public static Action OnBroken;
 
-    public void Break();
+        public void Break();
+    }
 }

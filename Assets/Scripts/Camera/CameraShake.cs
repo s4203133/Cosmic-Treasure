@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Camera/Camera Shake", fileName = "New Camera Shake")]

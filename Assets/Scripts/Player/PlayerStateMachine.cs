@@ -1,57 +1,57 @@
 using UnityEngine;
 
-public class PlayerStateMachine : MonoBehaviour
-{
-    [SerializeField]
-    private PlayerBaseState currentState;
-    public string stateName;
+namespace LMO.Player {
 
-    public PlayerIdleState idleState;
-    public PlayerRunState runState;
-    public PlayerJumpState jumpState;
-    public PlayerFallingState fallingState;
-    public PlayerSpinState spinState;
-    public PlayerGroundPoundState groundPoundState;
-    public PlayerHighJumpState highJumpState;
-    public PlayerHoverState hoverState;
-    public PlayerDiveState diveState;
+    public class PlayerStateMachine : MonoBehaviour {
+        [SerializeField]
+        private PlayerBaseState currentState;
+        public string stateName;
 
-    public PlayerController controller;
+        public PlayerIdleState idleState;
+        public PlayerRunState runState;
+        public PlayerJumpState jumpState;
+        public PlayerFallingState fallingState;
+        public PlayerSpinState spinState;
+        public PlayerGroundPoundState groundPoundState;
+        public PlayerHighJumpState highJumpState;
+        public PlayerHoverState hoverState;
+        public PlayerDiveState diveState;
 
-    void Start()
-    {
-        idleState = new PlayerIdleState(controller);
-        runState = new PlayerRunState(controller);
-        jumpState = new PlayerJumpState(controller);
-        fallingState = new PlayerFallingState(controller);
-        spinState = new PlayerSpinState(controller);
-        groundPoundState = new PlayerGroundPoundState(controller);
-        highJumpState = new PlayerHighJumpState(controller);
-        hoverState = new PlayerHoverState(controller);
-        diveState = new PlayerDiveState(controller);
+        public PlayerController controller;
 
-        currentState = idleState;
-        stateName = currentState.ToString();
-        idleState.OnStateEnter();
-    }
+        void Start() {
+            idleState = new PlayerIdleState(controller);
+            runState = new PlayerRunState(controller);
+            jumpState = new PlayerJumpState(controller);
+            fallingState = new PlayerFallingState(controller);
+            spinState = new PlayerSpinState(controller);
+            groundPoundState = new PlayerGroundPoundState(controller);
+            highJumpState = new PlayerHighJumpState(controller);
+            hoverState = new PlayerHoverState(controller);
+            diveState = new PlayerDiveState(controller);
 
-    void Update()
-    {
-        currentState.OnStateUpdate();
-    }
+            currentState = idleState;
+            stateName = currentState.ToString();
+            idleState.OnStateEnter();
+        }
 
-    private void FixedUpdate() {
-        currentState.OnStatePhysicsUpdate();
-    }
+        void Update() {
+            currentState.OnStateUpdate();
+        }
 
-    public void ChangeState(PlayerBaseState newState) {
-        currentState.OnStateExit();
-        currentState = newState;
-        stateName = currentState.ToString();
-        currentState.OnStateEnter();
-    }
+        private void FixedUpdate() {
+            currentState.OnStatePhysicsUpdate();
+        }
 
-    private void OnDisable() {
-        currentState.OnStateExit();
+        public void ChangeState(PlayerBaseState newState) {
+            currentState.OnStateExit();
+            currentState = newState;
+            stateName = currentState.ToString();
+            currentState.OnStateEnter();
+        }
+
+        private void OnDisable() {
+            currentState.OnStateExit();
+        }
     }
 }

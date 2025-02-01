@@ -1,71 +1,77 @@
 using UnityEngine;
 
-public class PlayerJumpState : PlayerBaseState
-{
-    private PlayerMovement movement;
-    protected PlayerJump jump;
-    private Grounded grounded;
-    private PlayerInput input;
+namespace LMO.Player {
 
-    public PlayerJumpState(PlayerController playerController) : base(playerController) {
-        movement = context.playerMovment;
-        jump = context.playerJump;
-        grounded = jump.groundedSystem;
-        input = context.playerInput;
-    }
+    public class PlayerJumpState : PlayerBaseState {
 
-    public override void OnStateEnter() {
-        InputHandler.jumpCancelled += jump.CutOffJump;
-        InputHandler.SpinStarted += Spin;
-        InputHandler.groundPoundStarted += GroundPound;
-        InputHandler.jumpStarted += Hover;
+        private PlayerMovement movement;
+        protected PlayerJump jump;
+        private Grounded grounded;
+        private PlayerInput input;
 
-        StartJump();
-    }
+        public PlayerJumpState(PlayerController playerController) : base(playerController) {
+            movement = context.playerMovment;
+            jump = context.playerJump;
+            grounded = jump.groundedSystem;
+            input = context.playerInput;
+        }
 
-    public override void OnStateUpdate() {
-        if (grounded.IsOnGround) {
-            if (input.moveInput == Vector2.zero) {
-                stateMachine.ChangeState(stateMachine.idleState);
-            } else {
-                stateMachine.ChangeState(stateMachine.runState);
+        public override void OnStateEnter() {
+            InputHandler.jumpCancelled += jump.CutOffJump;
+            InputHandler.SpinStarted += Spin;
+            InputHandler.groundPoundStarted += GroundPound;
+            InputHandler.jumpStarted += Hover;
+
+            StartJump();
+        }
+
+        public override void OnStateUpdate() {
+            // Once the player has landed on the ground, determine which state to transition to
+            if (grounded.IsOnGround) {
+                if (input.moveInput == Vector2.zero) {
+                    stateMachine.ChangeState(stateMachine.idleState);
+                } else {
+                    stateMachine.ChangeState(stateMachine.runState);
+                }
             }
         }
-    }
 
-    public override void OnStatePhysicsUpdate() {
-        movement.HandleMovement();
-        jump.ApplyForce();
-    }
+        public override void OnStatePhysicsUpdate() {
+            movement.HandleMovement();
+            jump.ApplyForce();
+        }
 
-    public override void OnStateExit() {
-        InputHandler.jumpCancelled -= jump.CutOffJump;
-        InputHandler.SpinStarted -= Spin;
-        InputHandler.groundPoundStarted -= GroundPound;
-        InputHandler.jumpStarted -= Hover;
+        public override void OnStateExit() {
+            InputHandler.jumpCancelled -= jump.CutOffJump;
+            InputHandler.SpinStarted -= Spin;
+            InputHandler.groundPoundStarted -= GroundPound;
+            InputHandler.jumpStarted -= Hover;
 
-        jump.EndJump();
-    }
+            jump.EndJump();
+        }
 
-    public override void OnCollisionEnter(Collision collision) {
+        public override void OnCollisionEnter(Collision collision) {
 
-    }
+        }
 
-    protected virtual void StartJump() {
-        jump.InitialiseJump();
-    }
+        // Transition states based off input
 
-    private void Spin() {
-        stateMachine.ChangeState(stateMachine.spinState);
-    }
+        protected virtual void StartJump() {
+            jump.InitialiseJump();
+        }
 
-    private void GroundPound() {
-        stateMachine.ChangeState(stateMachine.groundPoundState);
-    }
+        private void Spin() {
+            stateMachine.ChangeState(stateMachine.spinState);
+        }
 
-    private void Hover() {
-        if (!grounded.IsOnGround) {
-            stateMachine.ChangeState(stateMachine.hoverState);
+        private void GroundPound() {
+            stateMachine.ChangeState(stateMachine.groundPoundState);
+        }
+
+        private void Hover() {
+            if (!grounded.IsOnGround) {
+                stateMachine.ChangeState(stateMachine.hoverState);
+            }
         }
     }
 }

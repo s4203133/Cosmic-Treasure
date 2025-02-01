@@ -1,50 +1,49 @@
 using UnityEngine;
 using UnityEngine.VFX;
+using LMO.Interfaces;
 
-public class Chest : MonoBehaviour, IBreakable {
+namespace LMO.Interactables {
 
-    [SerializeField] private VisualEffect breakOpenEffect;
-    private Animator animator;
+    public class Chest : MonoBehaviour, IBreakable {
 
-    private bool isOpen;
+        [SerializeField] private VisualEffect breakOpenEffect;
+        private Animator animator;
 
-    [Header("COLLIDERS")]
-    [SerializeField] private Collider closedCollider;
-    [SerializeField] private Collider[] openColliders;
+        private bool isOpen;
 
-    [Header("SPAWNING ITEMS")]
-    [SerializeField] private CoinSpawner coinSpawner;
+        [Header("COLLIDERS")]
+        [SerializeField] private Collider closedCollider;
+        [SerializeField] private Collider[] openColliders;
 
-    void Awake() {
-        animator = GetComponent<Animator>();
-    }
+        [Header("SPAWNING ITEMS")]
+        [SerializeField] private CoinSpawner coinSpawner;
 
-    public void Break() {
-        OpenChest();
-    }
-
-    private void OpenChest() {
-        if (!isOpen) {
-            isOpen = true;
-            IBreakable.OnBroken?.Invoke();
-            animator.SetTrigger("Open");
-            breakOpenEffect.Play();
-            ActivateOpenColliders();
-            coinSpawner.SpawnCoin();
+        void Awake() {
+            animator = GetComponent<Animator>();
         }
-    }
 
-    private void ActivateClosedColliders() {
-        for (int i = 0; i < openColliders.Length; i++) {
-            openColliders[i].enabled = false;
+        public void Break() {
+            OpenChest();
         }
-        closedCollider.enabled = true;
-    }
 
-    private void ActivateOpenColliders() {
-        closedCollider.enabled = false;
-        for(int i = 0; i < openColliders.Length; i++) {
-            openColliders[i].enabled = true;
+        private void OpenChest() {
+            if (!isOpen) {
+                // Open the chest by playing an animtion and VFX, enabling new colliders, and spawning the specified item
+                isOpen = true;
+                IBreakable.OnBroken?.Invoke();
+                animator.SetTrigger("Open");
+                breakOpenEffect.Play();
+                ActivateOpenColliders();
+                coinSpawner.SpawnCoin();
+            }
+        }
+
+        // When the chest is open, activate the new colliders
+        private void ActivateOpenColliders() {
+            closedCollider.enabled = false;
+            for (int i = 0; i < openColliders.Length; i++) {
+                openColliders[i].enabled = true;
+            }
         }
     }
 }

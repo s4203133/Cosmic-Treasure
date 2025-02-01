@@ -1,174 +1,179 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(menuName ="Input/Input Handler", fileName = "New Input Handler")]
-public class InputHandler : ScriptableObject
-{
-    [SerializeField] private InputActionAsset inputActions;
+namespace LMO {
 
-    private InputAction move;
-    private static InputAction jump;
-    private InputAction spin;
-    private InputAction groundPound;
-    private InputAction select;
+    [CreateAssetMenu(menuName = "Input/Input Handler", fileName = "New Input Handler")]
+    public class InputHandler : ScriptableObject {
+        [SerializeField] private InputActionAsset inputActions;
 
-    // Input Delegates
-    public delegate void InputEvent();
-    public delegate void Vector2Event(Vector2 value);
+        // All possible inputs
+        private InputAction move;
+        private static InputAction jump;
+        private InputAction spin;
+        private InputAction groundPound;
+        private InputAction select;
 
-    // Input Events (Other scripts can subscribe to these to respond when input is recieved)
-    public static Vector2Event moveStarted;
-    public static Vector2Event movePerformed;
-    public static Vector2Event moveCancelled;
+        // Input Delegates
+        public delegate void InputEvent();
+        public delegate void Vector2Event(Vector2 value);
 
-    public static InputEvent jumpStarted;
-    public static InputEvent jumpPerformed;
-    public static InputEvent jumpCancelled;
+        // Input Events (Other scripts can subscribe to these to respond when input is recieved)
+        public static Vector2Event moveStarted;
+        public static Vector2Event movePerformed;
+        public static Vector2Event moveCancelled;
 
-    public static InputEvent SpinStarted;
+        public static InputEvent jumpStarted;
+        public static InputEvent jumpPerformed;
+        public static InputEvent jumpCancelled;
 
-    public static InputEvent groundPoundStarted;
+        public static InputEvent SpinStarted;
 
-    public static InputEvent selectedStarted;
+        public static InputEvent groundPoundStarted;
 
-    public static bool jumpBeingPressed => jump.IsPressed();
+        public static InputEvent selectedStarted;
 
-    private void OnEnable() {
-        EnableInputActions();
-        InitialiseInputActions();
-        SubscribeInputEvents();
-    }
+        public static bool jumpBeingPressed => jump.IsPressed();
 
-    private void OnDisable() {
-        UnsubscribeInputEvents();
-        DisableInputActions();
-    }
-
-    private void OnMove(InputAction.CallbackContext context) {
-        if (context.started) {
-            moveStarted?.Invoke(context.ReadValue<Vector2>());
-        } else if (context.performed) {
-            movePerformed?.Invoke(context.ReadValue<Vector2>());
-        } else if (context.canceled) {
-            moveCancelled?.Invoke(context.ReadValue<Vector2>());
+        private void OnEnable() {
+            EnableInputActions();
+            InitialiseInputActions();
+            SubscribeInputEvents();
         }
-    }
 
-    private void OnJump(InputAction.CallbackContext context) {
-        if (context.started) {
-            jumpStarted?.Invoke();
-        } else if (context.performed) {
-            jumpPerformed?.Invoke();
-        } else if (context.canceled) {
-            jumpCancelled?.Invoke();
+        private void OnDisable() {
+            UnsubscribeInputEvents();
+            DisableInputActions();
         }
-    }
 
-    private void OnSpin(InputAction.CallbackContext context) {
-        if (context.started) {
-            SpinStarted?.Invoke();
+        // Invoke events when input is recieved, updated, or cancelled
+
+        private void OnMove(InputAction.CallbackContext context) {
+            if (context.started) {
+                moveStarted?.Invoke(context.ReadValue<Vector2>());
+            } else if (context.performed) {
+                movePerformed?.Invoke(context.ReadValue<Vector2>());
+            } else if (context.canceled) {
+                moveCancelled?.Invoke(context.ReadValue<Vector2>());
+            }
         }
-    }
 
-    private void OnGroundPound(InputAction.CallbackContext context) {
-        if (context.started) {
-            groundPoundStarted?.Invoke();
+        private void OnJump(InputAction.CallbackContext context) {
+            if (context.started) {
+                jumpStarted?.Invoke();
+            } else if (context.performed) {
+                jumpPerformed?.Invoke();
+            } else if (context.canceled) {
+                jumpCancelled?.Invoke();
+            }
         }
-    }
 
-    private void OnSelect(InputAction.CallbackContext context) {
-        if (context.started) {
-            selectedStarted?.Invoke();
+        private void OnSpin(InputAction.CallbackContext context) {
+            if (context.started) {
+                SpinStarted?.Invoke();
+            }
         }
-    }
 
-    private void InitialiseInputActions() {
-        move = inputActions.FindAction("Move");
-        jump = inputActions.FindAction("Jump");
-        spin = inputActions.FindAction("Spin");
-        groundPound = inputActions.FindAction("GroundPound");
-        select = inputActions.FindAction("Select");
-    }
+        private void OnGroundPound(InputAction.CallbackContext context) {
+            if (context.started) {
+                groundPoundStarted?.Invoke();
+            }
+        }
 
-    private void SubscribeMoveEvents() {
-        move.started += OnMove;
-        move.performed += OnMove;
-        move.canceled += OnMove;
-    }
+        private void OnSelect(InputAction.CallbackContext context) {
+            if (context.started) {
+                selectedStarted?.Invoke();
+            }
+        }
 
-    private void UnsubscribeMoveEvents() {
-        move.started -= OnMove;
-        move.performed -= OnMove;
-        move.canceled -= OnMove;
-    }
+        private void InitialiseInputActions() {
+            move = inputActions.FindAction("Move");
+            jump = inputActions.FindAction("Jump");
+            spin = inputActions.FindAction("Spin");
+            groundPound = inputActions.FindAction("GroundPound");
+            select = inputActions.FindAction("Select");
+        }
 
-    private void SubscribeJumpEvents() {
-        jump.started += OnJump;
-        jump.performed += OnJump;
-        jump.canceled += OnJump;
-    }
+        private void SubscribeMoveEvents() {
+            move.started += OnMove;
+            move.performed += OnMove;
+            move.canceled += OnMove;
+        }
 
-    private void UnsubscribeJumpEvents() {
-        jump.started -= OnJump;
-        jump.performed -= OnJump;
-        jump.canceled -= OnJump;
-    }
+        private void UnsubscribeMoveEvents() {
+            move.started -= OnMove;
+            move.performed -= OnMove;
+            move.canceled -= OnMove;
+        }
 
-    private void SubscribeSpinEvents() {
-        spin.started += OnSpin;
-    }
+        private void SubscribeJumpEvents() {
+            jump.started += OnJump;
+            jump.performed += OnJump;
+            jump.canceled += OnJump;
+        }
 
-    private void UnsubscribeSpinEvents() {
-        spin.started -= OnSpin;
-    }
+        private void UnsubscribeJumpEvents() {
+            jump.started -= OnJump;
+            jump.performed -= OnJump;
+            jump.canceled -= OnJump;
+        }
 
-    private void SubscribeGroundPoundEvents() {
-        groundPound.started += OnGroundPound;
-    }
+        private void SubscribeSpinEvents() {
+            spin.started += OnSpin;
+        }
 
-    private void UnsubscribeGroundPoundEvents() {
-        groundPound.started -= OnGroundPound;
-    }
+        private void UnsubscribeSpinEvents() {
+            spin.started -= OnSpin;
+        }
 
-    private void SubscribeSelectEvents() {
-        select.started += OnSelect;
-    }
+        private void SubscribeGroundPoundEvents() {
+            groundPound.started += OnGroundPound;
+        }
 
-    private void UnsubscribeSelectEvents() {
-        select.started -= OnSelect;
-    }
+        private void UnsubscribeGroundPoundEvents() {
+            groundPound.started -= OnGroundPound;
+        }
 
-    private void SubscribeInputEvents() {
-        SubscribeMoveEvents();
-        SubscribeJumpEvents();
-        SubscribeSpinEvents();
-        SubscribeGroundPoundEvents();
-        SubscribeSelectEvents();
-    }
+        private void SubscribeSelectEvents() {
+            select.started += OnSelect;
+        }
 
-    private void UnsubscribeInputEvents() {
-        UnsubscribeMoveEvents();
-        UnsubscribeJumpEvents();
-        UnsubscribeSpinEvents();
-        UnsubscribeGroundPoundEvents();
-        UnsubscribeSelectEvents();
-    }
+        private void UnsubscribeSelectEvents() {
+            select.started -= OnSelect;
+        }
 
-    private void EnableInputActions() {
-        inputActions.Enable();
-        move?.Enable();
-        jump?.Enable();
-        spin?.Enable();
-        groundPound?.Enable();
-        select?.Enable();
-    }
+        private void SubscribeInputEvents() {
+            SubscribeMoveEvents();
+            SubscribeJumpEvents();
+            SubscribeSpinEvents();
+            SubscribeGroundPoundEvents();
+            SubscribeSelectEvents();
+        }
 
-    private void DisableInputActions() {
-        move?.Disable(); 
-        jump?.Disable();
-        spin?.Disable();
-        groundPound?.Disable();
-        inputActions?.Disable();
-        select?.Disable();
+        private void UnsubscribeInputEvents() {
+            UnsubscribeMoveEvents();
+            UnsubscribeJumpEvents();
+            UnsubscribeSpinEvents();
+            UnsubscribeGroundPoundEvents();
+            UnsubscribeSelectEvents();
+        }
+
+        private void EnableInputActions() {
+            inputActions.Enable();
+            move?.Enable();
+            jump?.Enable();
+            spin?.Enable();
+            groundPound?.Enable();
+            select?.Enable();
+        }
+
+        private void DisableInputActions() {
+            move?.Disable();
+            jump?.Disable();
+            spin?.Disable();
+            groundPound?.Disable();
+            inputActions?.Disable();
+            select?.Disable();
+        }
     }
 }

@@ -1,50 +1,57 @@
 using UnityEngine;
 using UnityEngine.VFX;
+using LMO.Interfaces;
 
-public class Crate : MonoBehaviour, IBreakable {
+namespace LMO.Interactables {
 
-    [Header("BREAKABLE SETTINGS")]
-    [SerializeField] private VisualEffect breakParticles;
-    private float breakParticlesDuration;
+    public class Crate : MonoBehaviour, IBreakable {
 
-    [SerializeField] private GameObject brokenPiecesParent;
-    [SerializeField] private Rigidbody[] brokenPieces;
+        [Header("BREAKABLE SETTINGS")]
+        [SerializeField] private VisualEffect breakParticles;
+        private float breakParticlesDuration;
 
-    [SerializeField] private Vector2 breakForceRange;
-    [SerializeField] private float breakTorqueRange;
+        [SerializeField] private GameObject brokenPiecesParent;
+        [SerializeField] private Rigidbody[] brokenPieces;
 
-    private void Awake() {
-        breakParticlesDuration = breakParticles.GetVector2("LifeTimeRange").y;
-    }
+        [SerializeField] private Vector2 breakForceRange;
+        [SerializeField] private float breakTorqueRange;
 
-    public void Break() {
-        IBreakable.OnBroken?.Invoke();
-
-        brokenPiecesParent.transform.parent = null;
-        brokenPiecesParent.SetActive(true);
-
-        breakParticles.transform.parent = null;
-        breakParticles.Play();
-  
-        ApplyForceToBrokenPieces();
-
-        Destroy(breakParticles.gameObject, breakParticlesDuration);
-        Destroy(gameObject);
-    }
-
-
-    private Vector3 RandomTorqueValue() {
-        float RandomNumber() {
-            return Random.Range(-breakTorqueRange, breakTorqueRange);
+        private void Awake() {
+            breakParticlesDuration = breakParticles.GetVector2("LifeTimeRange").y;
         }
-        return new Vector3(RandomNumber(), RandomNumber(), RandomNumber());
-    }
 
-    private void ApplyForceToBrokenPieces() {
-        for(int i = 0; i < brokenPieces.Length; i++) {
-            Vector3 forceDirection = (brokenPieces[i].transform.position - transform.position).normalized;
-            brokenPieces[i].AddForce(forceDirection * Random.Range(breakForceRange.x, breakForceRange.y), ForceMode.Impulse);
-            brokenPieces[i].AddTorque(RandomTorqueValue(), ForceMode.Impulse);
+        public void Break() {
+            IBreakable.OnBroken?.Invoke();
+
+            // Activate the broken pieces and apply force to them
+            brokenPiecesParent.transform.parent = null;
+            brokenPiecesParent.SetActive(true);
+            ApplyForceToBrokenPieces();
+
+            // Spawn VFX
+            breakParticles.transform.parent = null;
+            breakParticles.Play();
+
+            // Destroy VFX after delay, and crate game object
+            Destroy(breakParticles.gameObject, breakParticlesDuration);
+            Destroy(gameObject);
+        }
+
+        // Apply force to each broken piece in a random direction
+        private void ApplyForceToBrokenPieces() {
+            for (int i = 0; i < brokenPieces.Length; i++) {
+                Vector3 forceDirection = (brokenPieces[i].transform.position - transform.position).normalized;
+                brokenPieces[i].AddForce(forceDirection * Random.Range(breakForceRange.x, breakForceRange.y), ForceMode.Impulse);
+                brokenPieces[i].AddTorque(RandomTorqueValue(), ForceMode.Impulse);
+            }
+        }
+
+        // Apply random torque to each broken piece to make them spin
+        private Vector3 RandomTorqueValue() {
+            float RandomNumber() {
+                return Random.Range(-breakTorqueRange, breakTorqueRange);
+            }
+            return new Vector3(RandomNumber(), RandomNumber(), RandomNumber());
         }
     }
 }

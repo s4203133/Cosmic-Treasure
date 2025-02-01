@@ -1,63 +1,64 @@
 using System;
 using UnityEngine;
 
-public class Grounded : MonoBehaviour
-{
-    private bool isGrounded;
-    [SerializeField] private Transform groundPoint;
-    [SerializeField] private LayerMask jumpLayers;
-    [SerializeField] private float groundCheckRadius;
+namespace LMO.Player {
 
-    private bool hasStartedJump;
-    private bool sentGroundedEvent;
+    public class Grounded : MonoBehaviour {
+        private bool isGrounded;
+        [SerializeField] private Transform groundPoint;
+        [SerializeField] private LayerMask jumpLayers;
+        [SerializeField] private float groundCheckRadius;
 
-    private float notGroundedTimer;
-    public float timeSinceLeftGround => notGroundedTimer;
+        private bool hasStartedJump;
+        private bool sentGroundedEvent;
 
-    public Action OnLanded;
+        private float notGroundedTimer;
+        public float timeSinceLeftGround => notGroundedTimer;
 
-    public bool IsOnGround => isGrounded;
+        public Action OnLanded;
 
-    void Update()
-    {
-        CheckIsGrounded();
-        EndStartOfJump();
-        SendGroundedEvent();
-    }
+        public bool IsOnGround => isGrounded;
 
-    private bool DetectingGround() {
-        return Physics.CheckSphere(groundPoint.position, groundCheckRadius, jumpLayers);
-    }
-
-    private void CheckIsGrounded() {
-        if(hasStartedJump) { 
-            isGrounded = false; 
-            return; 
+        void Update() {
+            CheckIsGrounded();
+            EndStartOfJump();
+            SendGroundedEvent();
         }
-        isGrounded = DetectingGround();
-    }
 
-    public void EndStartOfJump() {
-        if(!DetectingGround() || !IsOnGround) {
-            hasStartedJump = false;
+        private bool DetectingGround() {
+            return Physics.CheckSphere(groundPoint.position, groundCheckRadius, jumpLayers);
         }
-    }
 
-    public void NotifyLeftGround() {
-        hasStartedJump = true;
-        isGrounded = false;
-    }
-
-    private void SendGroundedEvent() {
-        if(isGrounded) {
-            notGroundedTimer = 0;
-            if (!sentGroundedEvent) {
-                OnLanded?.Invoke();
-                sentGroundedEvent = true;
+        private void CheckIsGrounded() {
+            if (hasStartedJump) {
+                isGrounded = false;
+                return;
             }
-        } else {
-            notGroundedTimer += Time.deltaTime;
-            sentGroundedEvent = false;
+            isGrounded = DetectingGround();
+        }
+
+        public void EndStartOfJump() {
+            if (!DetectingGround() || !IsOnGround) {
+                hasStartedJump = false;
+            }
+        }
+
+        public void NotifyLeftGround() {
+            hasStartedJump = true;
+            isGrounded = false;
+        }
+
+        private void SendGroundedEvent() {
+            if (isGrounded) {
+                notGroundedTimer = 0;
+                if (!sentGroundedEvent) {
+                    OnLanded?.Invoke();
+                    sentGroundedEvent = true;
+                }
+            } else {
+                notGroundedTimer += Time.deltaTime;
+                sentGroundedEvent = false;
+            }
         }
     }
 }

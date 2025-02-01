@@ -1,14 +1,19 @@
 using UnityEngine;
+using LMO.Interfaces;
 
-public class InteractableEventManager : EventManager
-{
-    [SerializeField] private CameraShaker cameraShaker;
+namespace LMO.CustomEvents {
 
-    protected override void SubscribeEvents() {
-        IBreakable.OnBroken += cameraShaker.shakeTypes.small.Shake;
-    }
+    public class InteractableEventManager : EventManager 
+    {
+        [SerializeField] private CameraShaker cameraShaker;
 
-    protected override void UnsubscribeEvents() {
-        IBreakable.OnBroken -= cameraShaker.shakeTypes.small.Shake;
+        // When an item is broken, add a small amount of shake to the camera
+        protected override void SubscribeEvents() {
+            IBreakable.OnBroken += cameraShaker.shakeTypes.small.Shake;
+        }
+
+        protected override void UnsubscribeEvents() {
+            IBreakable.OnBroken -= cameraShaker.shakeTypes.small.Shake;
+        }
     }
 }

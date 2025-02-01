@@ -1,44 +1,50 @@
 ﻿using UnityEngine;
+using LMO.Interfaces;
+using LMO.Player;
 
-public class PlayerGroundPoundEvent : MonoBehaviour, ICustomEvent {
-    [Header("SUBJECT")]
-    [SerializeField] private PlayerGroundPound playerGroundPound;
+namespace LMO.CustomEvents {
 
-    // Observers
-    private PlayerVFX playerVFX;
-    private PlayerSquashAndStretch squishy;
-    private Animator animator;
-    private CameraShaker cameraShaker;
+    public class PlayerGroundPoundEvent : MonoBehaviour, ICustomEvent {
+        [Header("SUBJECT")]
+        [SerializeField] private PlayerGroundPound playerGroundPound;
 
-    public void Initialise(EventManager manager) {
-        PlayerEventManager player = manager as PlayerEventManager;
-        playerVFX = player.VFX;
-        squishy = player.SqashAndStretch;
-        animator = player.Anim;
-        cameraShaker = player.CameraShake;
-    }
+        // Observers
+        private PlayerVFX playerVFX;
+        private PlayerSquashAndStretch squishy;
+        private Animator animator;
+        private CameraShaker cameraShaker;
 
-    public  void SubscribeEvents() {
-        if (playerGroundPound == null) {
-            return;
+        public void Initialise(EventManager manager) {
+            PlayerEventManager player = manager as PlayerEventManager;
+            playerVFX = player.VFX;
+            squishy = player.SqashAndStretch;
+            animator = player.Anim;
+            cameraShaker = player.CameraShake;
         }
-        playerGroundPound.OnGroundPoundInitialised += AnimateSpin;
-        playerGroundPound.OnGroundPoundLanded += playerVFX.PlayGroundPoundParticles;
-        playerGroundPound.OnGroundPoundLanded += squishy.GroundPound.Play;
-        playerGroundPound.OnGroundPoundLanded += cameraShaker.shakeTypes.small.Shake;
-    }
 
-    public  void UnsubscribeEvents() {
-        if (playerGroundPound == null) {
-            return;
+        // When the player dives, notify other systems so they can respond
+        public void SubscribeEvents() {
+            if (playerGroundPound == null) {
+                return;
+            }
+            playerGroundPound.OnGroundPoundInitialised += AnimateSpin;
+            playerGroundPound.OnGroundPoundLanded += playerVFX.PlayGroundPoundParticles;
+            playerGroundPound.OnGroundPoundLanded += squishy.GroundPound.Play;
+            playerGroundPound.OnGroundPoundLanded += cameraShaker.shakeTypes.small.Shake;
         }
-        playerGroundPound.OnGroundPoundInitialised -= AnimateSpin;
-        playerGroundPound.OnGroundPoundLanded -= playerVFX.PlayGroundPoundParticles;
-        playerGroundPound.OnGroundPoundLanded -= squishy.GroundPound.Play;
-        playerGroundPound.OnGroundPoundLanded -= cameraShaker.shakeTypes.small.Shake;
-    }
 
-    private void AnimateSpin() {
-        animator.SetTrigger("StartGroundPound");
+        public void UnsubscribeEvents() {
+            if (playerGroundPound == null) {
+                return;
+            }
+            playerGroundPound.OnGroundPoundInitialised -= AnimateSpin;
+            playerGroundPound.OnGroundPoundLanded -= playerVFX.PlayGroundPoundParticles;
+            playerGroundPound.OnGroundPoundLanded -= squishy.GroundPound.Play;
+            playerGroundPound.OnGroundPoundLanded -= cameraShaker.shakeTypes.small.Shake;
+        }
+
+        private void AnimateSpin() {
+            animator.SetTrigger("StartGroundPound");
+        }
     }
 }

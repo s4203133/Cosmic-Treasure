@@ -25,6 +25,7 @@ public class Coin : MonoBehaviour
         AnimateCoin();
     }
 
+    // If the player picks the coin up, play a VFX and destroy it after a delay, and destroy the coin
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player") {
             collectedVFX.transform.parent = null;
@@ -44,7 +45,7 @@ public class Coin : MonoBehaviour
     }
 
     private IEnumerator ActivateCollision() {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
         coinCollider.enabled = true;
     }
 }

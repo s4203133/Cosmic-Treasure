@@ -32,6 +32,7 @@ public class CameraShaker : MonoBehaviour
     }
 
     private void ShakeCamera(CameraShake shake) {
+        // Increase the shake and duration, but ensure it stays within the range of 0 to 1
         duration += shake.Duration;
         intensity += shake.Magnitude;
         duration = Mathf.Clamp(duration, 0.0f, 1.0f);
@@ -39,6 +40,7 @@ public class CameraShaker : MonoBehaviour
     }
 
     private void Shake() {
+        // Get a new random rotation and position to set the camera
         magnitude = Mathf.Pow(intensity, 2);
 
         float seed = Time.time;
@@ -49,6 +51,7 @@ public class CameraShaker : MonoBehaviour
     }
 
     private void ReduceShake() {
+        // Reduce the duration and intesity of the shake across time
         duration -= Time.deltaTime;
         if(duration < 0) { 
             duration = 0;
@@ -61,6 +64,7 @@ public class CameraShaker : MonoBehaviour
         }
     }
 
+    // Return a random position for the camera
     private Vector3 GetTranslationalShake(float seed) {
         float xOffset = maxPositionOffset * magnitude * Mathf.PerlinNoise(seed + 3, seed + 3) * RandomMultiplier();
         float yOffset = maxPositionOffset * magnitude * Mathf.PerlinNoise(seed + 4, seed + 4) * RandomMultiplier();
@@ -68,6 +72,7 @@ public class CameraShaker : MonoBehaviour
         return new Vector3(xOffset, yOffset, zOffset);
     }
 
+    // Return a random rotation for the camera
     private Quaternion GetRotationalShake(float seed) {
         float yaw = maxYaw * magnitude * Mathf.PerlinNoise(seed, seed) * RandomMultiplier();
         float pitch = maxPitch * magnitude * Mathf.PerlinNoise(seed + 1, seed + 1) * RandomMultiplier();
@@ -84,6 +89,7 @@ public class CameraShaker : MonoBehaviour
         return Random.Range(-1f, 1f);
     }
 
+    // Sets the camera to its original position and rotation
     private void ResetCamera() {
         _camera.localRotation = Quaternion.Euler(Vector3.zero);
         _camera.localPosition = Vector3.zero;
@@ -100,28 +106,4 @@ public class CameraShaker : MonoBehaviour
         cameraShakes.medium.OnShake -= ShakeCamera;
         cameraShakes.large.OnShake -= ShakeCamera;
     }
-}
-
-
-
-[System.Serializable]
-public class CameraShakeType {
-    [SerializeField] protected CameraShake camShake;
-    public delegate void CustomEvent(CameraShake shakey);
-    public CustomEvent OnShake;
-
-    public void Shake() {
-        OnShake?.Invoke(camShake);
-    }
-}
-
-[System.Serializable]
-public class CameraShakes {
-    [SerializeField] private CameraShakeType smallCameraShake;
-    [SerializeField] private CameraShakeType mediumCameraShake;
-    [SerializeField] private CameraShakeType largeCameraShake;
-
-    public CameraShakeType small => smallCameraShake;
-    public CameraShakeType medium => mediumCameraShake;
-    public CameraShakeType large => largeCameraShake;
 }

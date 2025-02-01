@@ -37,6 +37,7 @@ public class PlayerSpinAttack : MonoBehaviour
         spinRangeCollider.enabled = false;
     }
 
+    // If the player is in the air apply a jump boost when spinning
     public void ApplyJumpBoost() {
         airSpins++;
         if (airSpins == 1) {
