@@ -5,6 +5,7 @@ public class PlayerSpinState : PlayerBaseState {
     private PlayerMovement movement;
     private Grounded grounded;
     private PlayerSpinAttack spin;
+    private PlayerInput input;
 
     public delegate void CustomEvent();
     public static CustomEvent OnSpin;
@@ -13,6 +14,7 @@ public class PlayerSpinState : PlayerBaseState {
         movement = context.playerMovment;
         grounded = context.playerJump.groundedSystem;
         spin = context.playerSpinAttack;
+        input = context.playerInput;
     }
 
     public override void OnCollisionEnter(Collision collision) {
@@ -61,7 +63,7 @@ public class PlayerSpinState : PlayerBaseState {
             stateMachine.ChangeState(stateMachine.fallingState);
             return;
         }
-        if(movement.moveInput == Vector2.zero) {
+        if(input.moveInput == Vector2.zero) {
             stateMachine.ChangeState(stateMachine.idleState);
         } else {
             stateMachine.ChangeState(stateMachine.runState);

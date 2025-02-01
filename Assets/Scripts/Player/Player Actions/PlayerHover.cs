@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerHover : MonoBehaviour {
     [Header("HOVER SETTINGS")]
+    public PlayerMovementSettings movementSettings;
     [SerializeField] private float maxHoverDuration;
     private float timer;
     public bool finished => timer <= 0;

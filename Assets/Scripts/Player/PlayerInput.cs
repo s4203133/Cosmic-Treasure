@@ -1,9 +1,35 @@
 using UnityEngine;
 
-public class PlayerInput {
+public class PlayerInput : MonoBehaviour {
     public Vector2 moveInput;
-    static public bool jumpPressed;
-    public bool groundPoundPressed;
+
+    [SerializeField] private PlayerMovementInput playerMoveInput;
+
+    public void OnEnable() {
+        playerMoveInput.SubscribeMoveEvents();
+        SubscribeInputEvents();
+    }
+
+    public void OnDisable() {
+        playerMoveInput.UnsubscribeMoveEvents();
+        UnsubscribeInputEvents();
+    }
+
+    private void SubscribeInputEvents() {
+        InputHandler.moveStarted += GetMovement;
+        InputHandler.movePerformed += GetMovement;
+        InputHandler.moveCancelled += GetMovement;
+    }
+
+    private void UnsubscribeInputEvents() {
+        InputHandler.moveStarted -= GetMovement;
+        InputHandler.movePerformed -= GetMovement;
+        InputHandler.moveCancelled -= GetMovement;
+    }
+
+    private void GetMovement(Vector2 value) {
+        moveInput = value;
+    }
 }
 
 [System.Serializable]
@@ -12,26 +38,21 @@ public class PlayerMovementInput {
     public PlayerMovement playerMovement;
 
     private void StartMovement(Vector2 value) {
-        playerMovement.moveInput = value;
-    }
-
-    private void PerformMovement(Vector2 value) {
-        playerMovement.moveInput = value;
+        playerMovement.OnMoveStarted?.Invoke();
+        playerMovement.isStopping = false;
     }
 
     private void StopMovement(Vector2 value) {
-        playerMovement.moveInput = value;
+        playerMovement.ResetVelocityVariables();
     }
 
     public void SubscribeMoveEvents() {
         InputHandler.moveStarted += StartMovement;
-        InputHandler.movePerformed += PerformMovement;
         InputHandler.moveCancelled += StopMovement;
     }
 
     public void UnsubscribeMoveEvents() {
         InputHandler.moveStarted -= StartMovement;
-        InputHandler.movePerformed -= PerformMovement;
         InputHandler.moveCancelled -= StopMovement;
     }
 }
@@ -42,15 +63,12 @@ public class PlayerJumpInput {
     public PlayerJump playerJump;
 
     private void StartJump() {
-        PlayerInput.jumpPressed = true;
     }
 
     private void PerformJump() {
-        PlayerInput.jumpPressed = true;
     }
 
     private void StopJump() {
-        PlayerInput.jumpPressed = false;
     }
 
     public void SubscribeJumpEvents() {

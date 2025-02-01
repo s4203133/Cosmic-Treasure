@@ -6,9 +6,9 @@ public class PlayerFallingState : PlayerBaseState {
     private PlayerJump jump;
     private Grounded grounded;
     private PlayerSpinAttack spin;
+    private PlayerInput input;
 
     private float coyoteTime;
-
     private bool hasPerformedAirMove;
 
     public PlayerFallingState(PlayerController playerController) : base(playerController) {
@@ -16,6 +16,7 @@ public class PlayerFallingState : PlayerBaseState {
         jump = context.playerJump;
         grounded = jump.groundedSystem;
         spin = context.playerSpinAttack;
+        input = context.playerInput;
 
         coyoteTime = 0.1f;
     }
@@ -32,7 +33,7 @@ public class PlayerFallingState : PlayerBaseState {
     public override void OnStateUpdate() {
         if (grounded.IsOnGround) {
             hasPerformedAirMove = false;
-            if (movement.moveInput == Vector2.zero) {
+            if (input.moveInput == Vector2.zero) {
                 stateMachine.ChangeState(stateMachine.idleState);
             } else {
                 stateMachine.ChangeState(stateMachine.runState);

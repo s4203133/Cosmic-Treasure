@@ -4,47 +4,39 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("MOVEMENT SETTINGS")]
-    [SerializeField] protected float maxSpeed;
-    protected float speed;
-    [SerializeField] protected float rotateSpeed;
-    private float originalRotateSpeed;
-    [SerializeField] protected float reducedRotateSpeed;
-    [Range(0.1f, 1f)]
-    [SerializeField] protected float changeDirectionThreshhold;
-    protected Vector3 velocity;
+    [SerializeField] private PlayerMovementSettings settings;
+    public PlayerMovementSettings CurrentMovementSettings => settings;
 
-    [SerializeField] private MotionCurve acceleration;
-    [SerializeField] private MotionCurve deceleration;
+    private CalculateMoveVelocity velocityCalculator;
+    private RotateCharacter rotation;
 
     [Header("COMPONENTS")]
-    [SerializeField] protected Transform playerTransform;
-    [SerializeField] protected Rigidbody rigidBody;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Rigidbody rigidBody;
 
-    [HideInInspector] public Vector2 moveInput;
-    protected Vector3 moveDirection;
-
+    [SerializeField] private PlayerInput playerInput;
+    private float speed;
+    private Vector3 velocity;
+    private Vector3 moveDirection;
     // Difference between current velocity and target velocity
-    protected float velocityDifference;
+    private float velocityDifference;
+    [HideInInspector] public bool isStopping;
 
     public Action OnMoveStarted;
     public Action OnMoveStopped;
 
     private void Awake() {
-        originalRotateSpeed = rotateSpeed;
+        velocityCalculator = new CalculateMoveVelocity(playerTransform);
+        rotation = new RotateCharacter(playerTransform);
     }
 
     private void OnEnable() {
-        SubscribeMoveEvents();
-        acceleration.Initialise();
-        deceleration.Initialise();
-    }
-
-    private void OnDestroy() {
-        UnsubscribeMoveEvents();
+        settings.Acceleration.Initialise();
+        settings.Deceleration.Initialise();
     }
 
     public void HandleMovement() {
-        if (moveInput != Vector2.zero) {
+        if (!isStopping) {
             MoveCharacter();
         } else {
             DecelerateCharacter();
@@ -53,140 +45,94 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveCharacter() {
         GetMoveDirection();
-        CalculateVelocityDifference();
-        RotateTowardsMoveDirection();
-        CalculateChangeInSpeed(acceleration);
-        CalculateFinalVelocity();
+        rotation.RotateTowardsDirection(moveDirection, settings.RotationSpeed);
+        CalculateVelocity(settings.Acceleration);
         ApplyVelocity();
     }
 
     public void DecelerateCharacter() {
-        CalculateVelocityDifference();
-        CalculateChangeInSpeed(deceleration);
-        CalculateFinalVelocity();
+        CalculateVelocity(settings.Deceleration);
         ApplyVelocity();
     }
 
     private void GetMoveDirection() {
-        moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+        moveDirection = new Vector3(playerInput.moveInput.x, 0, playerInput.moveInput.y).normalized;
     }
 
-    private void CalculateVelocityDifference() {
-        velocityDifference = Vector3.SqrMagnitude((playerTransform.position + (moveDirection * 10)) - (playerTransform.position + (playerTransform.forward * 10)));
-        velocityDifference = Mathf.Max(1, velocityDifference * changeDirectionThreshhold);
-    }
-
-    private void RotateTowardsMoveDirection() {
-        if (moveInput != Vector2.zero) {
-            Quaternion moveRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            playerTransform.rotation = Quaternion.RotateTowards(playerTransform.rotation, moveRotation, rotateSpeed * Time.fixedDeltaTime);
-        }
-    }
-
-    private void CalculateChangeInSpeed(MotionCurve speedChange) {
-        speed = speedChange.CalculateValue(maxSpeed);
-    }
-
-    // If the player is making a large change in direction, make them move directly towards their target direction,
-    // otherwise move in the direction they are facing
-    protected virtual void CalculateFinalVelocity() {
-        if (velocityDifference > 1) {
-            velocity = moveDirection * speed * Time.deltaTime;
-        } else {
-            velocity = playerTransform.forward * speed * Time.deltaTime;
-        }
-        // Keep the y velocity the same as the RigidBodies current one
-        velocity.y = rigidBody.velocity.y;
+    private void CalculateVelocity(MotionCurve motion) {
+        velocityDifference = velocityCalculator.CalculateVelocityDifference(moveDirection, settings.ChangeDirectionThreshhold);
+        speed = velocityCalculator.CalculateChangeInSpeed(motion, settings.MaxSpeed);
+        velocity = velocityCalculator.CalculateVelocity(settings.CanChangeDirectionQuickly, moveDirection, speed, velocityDifference);
     }
 
     private void ApplyVelocity() {
+        velocity.y = rigidBody.velocity.y;
         rigidBody.velocity = velocity;
     }
 
     public bool HasStopped() {
-        return (Mathf.Abs(rigidBody.velocity.x) < Mathf.Epsilon && 
-                Mathf.Abs(rigidBody.velocity.z) < Mathf.Epsilon);
+        return (speed < Mathf.Epsilon);
     }
 
     public void ResetVelocityVariables() {
-        acceleration.Reset();
-        deceleration.Reset();
-        speed = 0;
+        settings.Acceleration.Reset();
+        settings.Deceleration.Reset();
+        isStopping = true;
     }
 
-    public void ReduceRotateSpeed() {
-        rotateSpeed = reducedRotateSpeed;
-    }
-
-    public void ResetRotateSpeed() {
-        rotateSpeed = originalRotateSpeed;
-    }
-
-    // Subscribing functions to input events
-
-    private void StartMovement(Vector2 value) {
-        moveInput = value;
-        ResetVelocityVariables();
-    }
-
-    private void PerformMovement(Vector2 value) {
-        moveInput = value;
-    }
-
-    private void StopMovement(Vector2 value) {
-        moveInput = Vector2.zero;
-        deceleration.Reset();
-    }
-
-    public void SubscribeMoveEvents() {
-        InputHandler.moveStarted += StartMovement;
-        InputHandler.movePerformed += PerformMovement;
-        InputHandler.moveCancelled += StopMovement;
-    }
-
-    public void UnsubscribeMoveEvents() {
-        InputHandler.moveStarted -= StartMovement;
-        InputHandler.movePerformed -= PerformMovement;
-        InputHandler.moveCancelled -= StopMovement;
+    public void ChangeMovementSettings(PlayerMovementSettings newSettings) {
+        settings = newSettings;
+        settings.Acceleration.Initialise();
+        settings.Deceleration.Initialise();
     }
 }
 
+public class CalculateMoveVelocity {
 
+    private Transform _transform;
 
-[System.Serializable]
-public class MotionCurve {
-
-    [SerializeField] private AnimationCurve velocityCurve;
-    private float timerLength;
-    private float timer;
-
-    public void Initialise() {
-        timerLength = velocityCurve.keys[velocityCurve.length - 1].time;
+    public CalculateMoveVelocity(Transform targetTransform) {
+        _transform = targetTransform;
     }
 
-    public float CalculateValue(float maxValue) {
-        if (timer < timerLength) {
-            timer += Time.deltaTime;
+    public float CalculateVelocityDifference(Vector3 direction, float threshold) {
+        float returnValue = Vector3.SqrMagnitude((_transform.position + (direction * 10)) - (_transform.position + (_transform.forward * 10)));
+        return(Mathf.Max(1, returnValue * threshold));
+    }
+
+    public float CalculateChangeInSpeed(MotionCurve speedChange, float maxSpeed) {
+        return(speedChange.CalculateValue(maxSpeed));
+    }
+
+    // If the player is making a large change in direction, make them move directly towards their target direction,
+    // otherwise move in the direction they are facing
+    public Vector3 CalculateVelocity(bool canChangeDirectionQuickly, Vector3 direction, float speed, float velocityDifference) {
+        Vector3 returnValue;
+        if (!canChangeDirectionQuickly) {
+            returnValue = _transform.forward * speed * Time.deltaTime;
         } else {
-            timer = timerLength;
+            if (velocityDifference > 1) {
+                returnValue = direction * speed * Time.deltaTime;
+            } else {
+                returnValue = _transform.forward * speed * Time.deltaTime;
+            }
         }
-        return maxValue * velocityCurve.Evaluate(timer);
-    }
-
-    public void Reset() {
-        timer = 0;
-    }
-
-    public bool Finished() {
-        return (timer >= timerLength);
-    }
-
-    public void SetTimer(float value) {
-        timer = value;
-    }
-
-    public float GetTimerValue() {
-        return timer;
+        return returnValue;
     }
 }
 
+public class RotateCharacter {
+
+    private Transform _transform;
+
+    public RotateCharacter(Transform targetTransform) {
+        _transform = targetTransform;
+    }
+
+    public void RotateTowardsDirection(Vector3 direction, float speed) {
+        if (direction != Vector3.zero) {
+            Quaternion moveRotation = Quaternion.LookRotation(direction, Vector3.up);
+            _transform.rotation = Quaternion.RotateTowards(_transform.rotation, moveRotation, speed * Time.fixedDeltaTime);
+        }
+    }
+}

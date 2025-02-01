@@ -5,18 +5,23 @@ public class PlayerRunState : PlayerBaseState {
 
     private PlayerMovement movement;
     private Grounded grounded;
+    private PlayerInput input;
+
+    private PlayerMovementSettings moveSettings;
 
     public PlayerRunState(PlayerController playerController) : base(playerController) {
         movement = context.playerMovment;
         grounded = context.playerJump.groundedSystem;
+        input = context.playerInput;
+        moveSettings = movement.CurrentMovementSettings;
     }
 
     public override void OnStateEnter() {
-        InputHandler.moveCancelled += StopMovement;
         InputHandler.jumpStarted += Jump;
         InputHandler.SpinStarted += Spin;
 
         movement.OnMoveStarted?.Invoke();
+        movement.ChangeMovementSettings(moveSettings);
         CheckForJumpInput();
     }
 
@@ -27,10 +32,10 @@ public class PlayerRunState : PlayerBaseState {
 
     public override void OnStatePhysicsUpdate() {
         movement.HandleMovement();
+
     }
 
     public override void OnStateExit() {
-        InputHandler.moveCancelled -= StopMovement;
         InputHandler.jumpStarted -= Jump;
         InputHandler.SpinStarted -= Spin;
 
@@ -39,10 +44,6 @@ public class PlayerRunState : PlayerBaseState {
 
     public override void OnCollisionEnter(Collision collision) {
 
-    }
-
-    private void StopMovement(Vector2 inputValue) {
-        movement.ResetVelocityVariables();
     }
 
     private void Jump() {
@@ -60,15 +61,13 @@ public class PlayerRunState : PlayerBaseState {
     private void CheckIfPlayerLeftPlatform() {
         if (!grounded.IsOnGround) {
             stateMachine.ChangeState(stateMachine.fallingState);
-            return;
         }
     }
 
     private void CheckIfFinishedMoving() {
-        if (movement.moveInput == Vector2.zero) {
+        if (input.moveInput == Vector2.zero) {
             if (movement.HasStopped()) {
                 stateMachine.ChangeState(stateMachine.idleState);
-                return;
             }
         }
     }

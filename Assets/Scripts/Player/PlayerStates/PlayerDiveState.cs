@@ -5,11 +5,13 @@ public class PlayerDiveState : PlayerBaseState {
     PlayerDive dive;
     Grounded grounded;
     PlayerMovement movement;
+    PlayerInput input;
 
     public PlayerDiveState(PlayerController playerController) : base(playerController) {
         dive = context.playerDive;
         grounded = context.playerJump.groundedSystem;
         movement = context.playerMovment;
+        input = context.playerInput;
     }
 
     public override void OnStateEnter() {
@@ -35,7 +37,7 @@ public class PlayerDiveState : PlayerBaseState {
     }
 
     private void MoveToIdleState() {
-        if (movement.moveInput == Vector2.zero) {
+        if (input.moveInput == Vector2.zero) {
             stateMachine.ChangeState(stateMachine.idleState);
         } else {
             stateMachine.ChangeState(stateMachine.runState);

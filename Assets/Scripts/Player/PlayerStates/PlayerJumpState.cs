@@ -5,11 +5,13 @@ public class PlayerJumpState : PlayerBaseState
     private PlayerMovement movement;
     protected PlayerJump jump;
     private Grounded grounded;
+    private PlayerInput input;
 
     public PlayerJumpState(PlayerController playerController) : base(playerController) {
         movement = context.playerMovment;
         jump = context.playerJump;
         grounded = jump.groundedSystem;
+        input = context.playerInput;
     }
 
     public override void OnStateEnter() {
@@ -23,7 +25,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void OnStateUpdate() {
         if (grounded.IsOnGround) {
-            if (movement.moveInput == Vector2.zero) {
+            if (input.moveInput == Vector2.zero) {
                 stateMachine.ChangeState(stateMachine.idleState);
             } else {
                 stateMachine.ChangeState(stateMachine.runState);

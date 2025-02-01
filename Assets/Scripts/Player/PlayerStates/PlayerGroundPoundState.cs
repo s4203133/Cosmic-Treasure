@@ -15,6 +15,9 @@ public class PlayerGroundPoundState : PlayerBaseState {
     public override void OnStateEnter() {
         InputHandler.jumpStarted += CheckJumpInput;
         InputHandler.SpinStarted += RegisterDiveInput;
+
+        groundPound.OnGroundPoundFinished += MoveToIdleState;
+
         diveRegistered = false;
 
         if (!groundPound.canGroundPound) {
@@ -29,7 +32,7 @@ public class PlayerGroundPoundState : PlayerBaseState {
         InputHandler.jumpStarted -= CheckJumpInput;
         InputHandler.SpinStarted -= RegisterDiveInput;
 
-        groundPound.FinishGroundPound();
+        groundPound.OnGroundPoundFinished -= MoveToIdleState;
     }
 
     public override void OnStatePhysicsUpdate() {
@@ -39,8 +42,7 @@ public class PlayerGroundPoundState : PlayerBaseState {
                 return;
             }
         }
-
-        groundPound.ApplyGroundPoundForce();
+        groundPound.HandleGroundPound();
     }
 
     public override void OnStateUpdate() {
@@ -50,19 +52,10 @@ public class PlayerGroundPoundState : PlayerBaseState {
                 return;
             }
         }
-
-        CheckFinished();
-    }
-
-    private void CheckFinished() {
-        if (groundPound.finishedGroundPound) {
-            MoveToIdleState();
-            return;
-        }
     }
 
     private void CheckJumpInput() {
-        if (groundPound.landed) {
+        if (groundPound.hasLanded) {
             stateMachine.ChangeState(stateMachine.highJumpState);
         }
     }
@@ -76,8 +69,8 @@ public class PlayerGroundPoundState : PlayerBaseState {
     }
 
     private bool ValidateDive() {
-        if (groundPound.canInitiateDifferentAction) {
-            groundPound.ResetGroundPound();
+        if (groundPound.canDive) {
+            groundPound.FinishGroundPound();
             Dive();
             return true;
         }

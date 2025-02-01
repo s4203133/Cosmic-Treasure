@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header("INPUT")]
     [SerializeField] private InputHandler input;
+    public PlayerInput playerInput;
 
     [Header("COMPONENTS")]
     [SerializeField] private PlayerIdle idle;
