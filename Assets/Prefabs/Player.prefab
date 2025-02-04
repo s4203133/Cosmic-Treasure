@@ -2916,7 +2916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSettings: {fileID: 11400000, guid: f75628d83bcc79340b69f6b2f7309e72, type: 2}
-  maxHoverDuration: 1.5
+  maxHoverDuration: 0.875
   AirForce:
     serializedVersion: 2
     m_Curve:
@@ -2982,7 +2982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ccec775b022027439864fc202dfa6f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diveForce: 650
+  diveForce: 775
   diveMomentum:
     serializedVersion: 2
     m_Curve:
@@ -3025,7 +3025,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  initialAirBoost: 18
+  initialAirBoost: 12
   moveStrength: 5
   acceleration: 36
   playerTransform: {fileID: 1900314742301447273}
