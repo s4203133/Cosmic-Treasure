@@ -11,6 +11,7 @@ namespace LMO.Player {
 
         private CalculateMoveVelocity velocityCalculator;
         private RotateCharacter rotation;
+        private CameraDirection camDirection;
 
         [Header("COMPONENTS")]
         [SerializeField] private Transform playerTransform;
@@ -24,12 +25,16 @@ namespace LMO.Player {
         private float velocityDifference;
         [HideInInspector] public bool isStopping;
 
+        [Header("CAMERA")]
+        [SerializeField] private Transform cameraTransform;
+
         public Action OnMoveStarted;
         public Action OnMoveStopped;
 
         private void Awake() {
             velocityCalculator = new CalculateMoveVelocity(playerTransform);
             rotation = new RotateCharacter(playerTransform);
+            camDirection = new CameraDirection(cameraTransform);
         }
 
         private void OnEnable() {
@@ -38,6 +43,7 @@ namespace LMO.Player {
         }
 
         public void HandleMovement() {
+            camDirection.CalculateDirection();
             if (!isStopping) {
                 MoveCharacter();
             } else {
@@ -60,7 +66,9 @@ namespace LMO.Player {
         }
 
         private void GetMoveDirection() {
-            moveDirection = new Vector3(playerInput.moveInput.x, 0, playerInput.moveInput.y).normalized;
+            Vector3 forwardMovement = camDirection.Forward * playerInput.moveInput.y; 
+            Vector3 rightMovement = camDirection.Right * playerInput.moveInput.x; 
+            moveDirection = forwardMovement + rightMovement;
         }
 
         private void CalculateVelocity(MotionCurve motion) {

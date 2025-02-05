@@ -2833,6 +2833,7 @@ MonoBehaviour:
   rigidBody: {fileID: 7767721875659057005}
   playerInput: {fileID: 3298407487859252853}
   isStopping: 0
+  cameraTransform: {fileID: 0}
 --- !u!114 &2382843153380030292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2899,7 +2900,7 @@ MonoBehaviour:
     fallingCollider: {fileID: 1188488720994741672}
     landCollider: {fileID: 325219592430378425}
   diveTimer:
-    timeUntilDiveCanStart: 0.1
+    timeUntilDiveCanStart: 0.15
     canInitiateDive: 0
   rigidBody: {fileID: 7767721875659057005}
   grounded: {fileID: 5799883070491449932}
@@ -2982,7 +2983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ccec775b022027439864fc202dfa6f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diveForce: 775
+  diveForce: 800
   diveMomentum:
     serializedVersion: 2
     m_Curve:
@@ -3025,11 +3026,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  initialAirBoost: 12
+  initialAirBoost: 14
   moveStrength: 5
-  acceleration: 36
+  acceleration: 25
   playerTransform: {fileID: 1900314742301447273}
   rigidBody: {fileID: 7767721875659057005}
+  cameraTransform: {fileID: 0}
 --- !u!1 &3385001459319417314
 GameObject:
   m_ObjectHideFlags: 0

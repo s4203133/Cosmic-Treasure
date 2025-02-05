@@ -27,7 +27,15 @@ namespace LMO.Player {
         [SerializeField] private Transform playerTransform;
         [SerializeField] private Rigidbody rigidBody;
 
+        [Header("CAMERA")]
+        [SerializeField] private Transform cameraTransform;
+        private CameraDirection camDirection;
+
         public Action OnDive;
+
+        private void Awake() {
+            camDirection = new CameraDirection(cameraTransform);
+        }
 
         // Initialise dive variables and and apply air boost to the player
         public void StartDive() {
@@ -42,6 +50,7 @@ namespace LMO.Player {
         }
 
         public void HandleDive() {
+            camDirection.CalculateDirection();
             GetVelocity();
             GetMoveDirection();
             AddMoveDirection();
@@ -61,7 +70,9 @@ namespace LMO.Player {
         }
 
         private void GetMoveDirection() {
-            moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
+            Vector3 forwardMovement = camDirection.Forward * moveInput.y;
+            Vector3 rightMovement = camDirection.Right * moveInput.x;
+            moveDirection = forwardMovement + rightMovement;
         }
 
         private void AddMoveDirection() {
