@@ -27,6 +27,7 @@ namespace LMO.Player {
             InputHandler.jumpStarted += JumpOrHover;
             InputHandler.SpinStarted += Spin;
             InputHandler.groundPoundStarted += GroundPound;
+            InputHandler.grappleStarted += Grapple;
 
             CheckForSpinInput();
             CheckForHoverInput();
@@ -53,6 +54,7 @@ namespace LMO.Player {
             InputHandler.jumpStarted -= JumpOrHover;
             InputHandler.SpinStarted -= Spin;
             InputHandler.groundPoundStarted -= GroundPound;
+            InputHandler.grappleStarted -= Grapple;
 
             jump.EndJump();
         }
@@ -104,6 +106,10 @@ namespace LMO.Player {
 
         private void GroundPound() {
             stateMachine.ChangeState(stateMachine.groundPoundState);
+        }
+
+        private void Grapple() {
+            stateMachine.ChangeState(stateMachine.swingState);
         }
     }
 }

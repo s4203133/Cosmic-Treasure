@@ -1,14 +1,15 @@
+using Cinemachine;
 using UnityEngine;
 
 public class CameraShaker : MonoBehaviour
 {
-    [SerializeField] private Transform _camera;
-    [SerializeField] private Transform cameraParent;
+    [Header("CAMERA SHAKE SETTINGS")]
+    [SerializeField] private CinemachineFreeLook cinemachine;
+    private CinemachineBasicMultiChannelPerlin[] cinemachineShakes = new CinemachineBasicMultiChannelPerlin[3];
 
-    [SerializeField] private float maxYaw;
-    [SerializeField] private float maxPitch;
-    [SerializeField] private float maxRoll;
-    [SerializeField] private float maxPositionOffset;
+    [SerializeField] private float maxDuration;
+    [SerializeField] private float maxMagnitude;
+    [SerializeField] private float magnitudeReductionRate;
 
     [Header("CAMERA SHAKES")]
     [SerializeField] private CameraShakes cameraShakes;
@@ -19,6 +20,7 @@ public class CameraShaker : MonoBehaviour
     private float intensity;
 
     private void OnEnable() {
+        GetCameras();
         SubscribeCameraShakes();
     }
 
@@ -27,27 +29,32 @@ public class CameraShaker : MonoBehaviour
     }
 
     private void Update() {
-        ReduceShake();
         Shake();
+        ReduceShake();
     }
 
     private void ShakeCamera(CameraShake shake) {
         // Increase the shake and duration, but ensure it stays within the range of 0 to 1
-        duration += shake.Duration;
         intensity += shake.Magnitude;
-        duration = Mathf.Clamp(duration, 0.0f, 1.0f);
-        intensity = Mathf.Clamp(intensity, 0.0f, 1.0f);
+        magnitude = Mathf.Pow(intensity, 3);
+        duration += shake.Duration;
+
+        magnitude = Mathf.Clamp(magnitude, 0f, maxMagnitude);
+        duration = Mathf.Clamp(duration, 0f, maxDuration);
     }
 
     private void Shake() {
         // Get a new random rotation and position to set the camera
-        magnitude = Mathf.Pow(intensity, 2);
+        for (int i = 0; i < 3; i++) {
+            cinemachineShakes[i].m_AmplitudeGain = magnitude;
+            cinemachineShakes[i].m_FrequencyGain = duration;
+        }
+    }
 
-        float seed = Time.time;
-        Vector3 newPosition = GetTranslationalShake(seed);
-        Quaternion newRotation = GetRotationalShake(seed);
-
-        ApplyCameraShake(newPosition, newRotation);
+    private void GetCameras() {
+        for(int i = 0; i < 3; i++) {
+            cinemachineShakes[i] = cinemachine.GetRig(i).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        }
     }
 
     private void ReduceShake() {
@@ -55,44 +62,13 @@ public class CameraShaker : MonoBehaviour
         duration -= Time.deltaTime;
         if(duration < 0) { 
             duration = 0;
-            ResetCamera();
         }
 
-        intensity -= Time.deltaTime;
-        if(intensity < 0) {
+        intensity -= (Time.deltaTime * magnitudeReductionRate);
+        if (intensity < 0) {
             intensity = 0; 
         }
-    }
-
-    // Return a random position for the camera
-    private Vector3 GetTranslationalShake(float seed) {
-        float xOffset = maxPositionOffset * magnitude * Mathf.PerlinNoise(seed + 3, seed + 3) * RandomMultiplier();
-        float yOffset = maxPositionOffset * magnitude * Mathf.PerlinNoise(seed + 4, seed + 4) * RandomMultiplier();
-        float zOffset = maxPositionOffset * magnitude * Mathf.PerlinNoise(seed + 5, seed + 5) * RandomMultiplier();
-        return new Vector3(xOffset, yOffset, zOffset);
-    }
-
-    // Return a random rotation for the camera
-    private Quaternion GetRotationalShake(float seed) {
-        float yaw = maxYaw * magnitude * Mathf.PerlinNoise(seed, seed) * RandomMultiplier();
-        float pitch = maxPitch * magnitude * Mathf.PerlinNoise(seed + 1, seed + 1) * RandomMultiplier();
-        float roll = maxRoll * magnitude * Mathf.PerlinNoise(seed + 2, seed + 2) * RandomMultiplier();
-        return Quaternion.Euler(yaw, pitch, roll);
-    }
-
-    private void ApplyCameraShake(Vector3 translation, Quaternion rotation) {
-        _camera.localPosition = translation;
-        _camera.localRotation = rotation;
-    }
-
-    private float RandomMultiplier() {
-        return Random.Range(-1f, 1f);
-    }
-
-    // Sets the camera to its original position and rotation
-    private void ResetCamera() {
-        _camera.localRotation = Quaternion.Euler(Vector3.zero);
-        _camera.localPosition = Vector3.zero;
+        magnitude = Mathf.Pow(intensity, 2);
     }
 
     private void SubscribeCameraShakes() {
