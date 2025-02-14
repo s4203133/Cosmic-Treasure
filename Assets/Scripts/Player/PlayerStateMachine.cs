@@ -16,6 +16,7 @@ namespace LMO.Player {
         public PlayerHighJumpState highJumpState;
         public PlayerHoverState hoverState;
         public PlayerDiveState diveState;
+        public PlayerSwingState swingState;
 
         public PlayerController controller;
 
@@ -29,6 +30,7 @@ namespace LMO.Player {
             highJumpState = new PlayerHighJumpState(controller);
             hoverState = new PlayerHoverState(controller);
             diveState = new PlayerDiveState(controller);
+            swingState = new PlayerSwingState(controller);
 
             currentState = idleState;
             stateName = currentState.ToString();

@@ -16,9 +16,14 @@ namespace LMO.Player {
         [SerializeField] private PlayerGroundPound groundPound;
         [SerializeField] private PlayerHover hover;
         [SerializeField] private PlayerDive dive;
+        [SerializeField] private PlayerSwing swing;
 
         [Header("STATE MACHINE")]
         [SerializeField] private PlayerStateMachine stateMachine;
+
+        [Space(15)]
+        [Header("TESTING")]
+        public GameObject testSwingObject;
 
         // Public Accessors
         public PlayerStateMachine playerStateMachine => stateMachine;
@@ -29,5 +34,6 @@ namespace LMO.Player {
         public PlayerGroundPound playerGroundPound => groundPound;
         public PlayerHover playerHover => hover;
         public PlayerDive playerDive => dive;
+        public PlayerSwing playerSwing => swing;
     }
 }

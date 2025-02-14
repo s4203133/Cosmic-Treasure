@@ -5,6 +5,8 @@ namespace LMO.Player {
     [System.Serializable]
     public class GroundPoundBuildUp : GroundPoundComponent {
         [SerializeField] private float buildUpDuration;
+        [SerializeField] private float buildUpAirForce;
+        [SerializeField] private AnimationCurve buildUpAirBoost;
         private float buildUpTimer;
         private bool starting;
 
@@ -24,7 +26,7 @@ namespace LMO.Player {
 
         public void StartGroundPound() {
             starting = true;
-            buildUpTimer = buildUpDuration;
+            buildUpTimer = 0;
             DisableVelocity();
         }
 
@@ -36,15 +38,17 @@ namespace LMO.Player {
         // While the ground pound is starting, remove all velocity from the player
         public void HandleGroundPoundBuildUp() {
             if (starting) {
-                rigidBody.velocity = Vector3.zero;
+                float t = (buildUpTimer * (100 / buildUpDuration)) / 100;
+                float airForce = buildUpAirBoost.Evaluate(t) * buildUpAirForce;
+                rigidBody.velocity = new Vector3(0, airForce, 0);
                 CountdownBuildUp();
             }
         }
 
         // Once the build up has ended, the falling state of the ground pound can start
         private void CountdownBuildUp() {
-            buildUpTimer -= Time.fixedDeltaTime;
-            if (buildUpTimer <= 0) {
+            buildUpTimer += Time.fixedDeltaTime;
+            if (buildUpTimer >= buildUpDuration) {
                 EndGroundPoundBuildUp();
             }
         }
