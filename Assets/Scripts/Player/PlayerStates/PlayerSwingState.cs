@@ -5,11 +5,21 @@ namespace LMO.Player {
 public class PlayerSwingState : PlayerBaseState {
 
         PlayerSwing swing;
-        GameObject targetPoint;
+        SwingManager swingManager;
+
+        PlayerMovement movement;
+
+        public delegate void CustomEvent();
+        public delegate void CustomEventV3(Vector3 targetPosition);
+
+        public static CustomEventV3 OnSwingStart;
+        public static CustomEvent OnJumpFromSwing;
+        public static CustomEvent OnSwingEnd;
 
         public PlayerSwingState(PlayerController playerController) : base(playerController) {
             swing = playerController.playerSwing;
-            targetPoint = playerController.testSwingObject;
+            swingManager = playerController.playerSwingManager;
+            movement = playerController.playerMovment;
         }
 
         public override void OnCollisionEnter(Collision collision) {
@@ -17,26 +27,40 @@ public class PlayerSwingState : PlayerBaseState {
         }
 
         public override void OnStateEnter() {
+            if(!swingManager.CanSwing) {
+                stateMachine.ChangeState(stateMachine.fallingState);
+                return;
+            }
+
             InputHandler.grappleStarted += DisconnectGrapple;
+            InputHandler.jumpStarted += JumpFromGrapple;
 
-            swing.StartSwing(targetPoint);
-        }
-
-        public override void OnStateExit() {
-            InputHandler.grappleStarted -= DisconnectGrapple;
-
-            swing.EndSwing();
+            movement.ChangeMovementSettings(swing.MovementSettings);
+            OnSwingStart?.Invoke(swingManager.SwingTarget.transform.position);
         }
 
         public override void OnStatePhysicsUpdate() {
             swing.PerformSwing();
         }
 
+        public override void OnStateExit() {
+            InputHandler.grappleStarted -= DisconnectGrapple;
+            InputHandler.jumpStarted -= JumpFromGrapple;
+
+            OnSwingEnd?.Invoke();
+        }
+
         public override void OnStateUpdate() {
+            swing.CountdownConnectionTimer();
         }
 
         private void DisconnectGrapple() {
             stateMachine.ChangeState(stateMachine.fallingState);
+        }
+
+        private void JumpFromGrapple() {
+            OnJumpFromSwing?.Invoke();
+            stateMachine.ChangeState(stateMachine.jumpState);
         }
     }
 }

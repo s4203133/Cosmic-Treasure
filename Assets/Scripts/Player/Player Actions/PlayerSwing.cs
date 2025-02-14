@@ -1,46 +1,106 @@
+using LMO.Player;
 using UnityEngine;
 
-public class PlayerSwing : MonoBehaviour
-{
-    [SerializeField] private float speed;
+namespace LMO {
 
-    [Header("JOINT SETTINGS")]
-    [SerializeField] private float minDistance;
-    [SerializeField] private float maxDistance;
-    [SerializeField] private float spring;
-    [SerializeField] private float damper;
-    [SerializeField] private float massScale;
+    public class PlayerSwing : MonoBehaviour {
 
+        [Header("CONNECTING SETTINGS")]
+        [SerializeField] private float duration;
+        private float timer;
+        private bool connected;
 
-    [Header("COMPONENTS")]
-    [SerializeField] private Rigidbody rigidBody;
-    private SpringJoint currentJoint;
+        [Header("MOVEMENT SETTINGS")]
+        [SerializeField] private PlayerMovementSettings movementSettings;
+        public PlayerMovementSettings MovementSettings => movementSettings;
 
+        [SerializeField] private Transform playerTransform;
+        [SerializeField] private float swingSpeed;
+        private Vector3 moveDirection;
+        private bool hasMomentum;
 
-    public void StartSwing(GameObject swingPoint) {
-        rigidBody.velocity = Vector3.zero;
-        InitialiseJoint(swingPoint.transform.position);
-    }
+        [SerializeField] private float rotateSpeed;
+        private RotateCharacter rotation;
+        private Vector3 rotateDirection;
 
-    private void InitialiseJoint(Vector3 connectPoint) {
-        currentJoint = transform.parent.gameObject.AddComponent<SpringJoint>();
-        currentJoint.autoConfigureConnectedAnchor = false;
-        //currentJoint.connectedBody = swingPoint.GetComponent<Rigidbody>();
-        currentJoint.connectedAnchor = connectPoint;
+        [Header("JOINT SETTINGS")]
+        [SerializeField] private SwingJointSettings jointSettings;
+        private Vector3 jointPosition;
 
-        currentJoint.maxDistance = maxDistance;
-        currentJoint.minDistance = minDistance;
+        [Header("COMPONENTS")]
+        [SerializeField] private PlayerInput playerInput;
+        [SerializeField] private Rigidbody rigidBody;
 
-        currentJoint.spring = spring;
-        currentJoint.damper = damper;
-        currentJoint.massScale = massScale;
-    }
+        [Header("CAMERA")]
+        [SerializeField] private Transform camTransform;
+        private CameraDirection camDirection;
 
-    public void PerformSwing() {
+        private void Awake() {
+            rotation = new RotateCharacter(playerTransform);
+            camDirection = new CameraDirection(camTransform);
+        }
 
-    }
+        public void StartSwing(Vector3 swingPoint) {
+            jointPosition = swingPoint;
 
-    public void EndSwing() {
-        Destroy(currentJoint);
+            //if (!hasMomentum) {
+                rigidBody.useGravity = false;
+                rigidBody.velocity = Vector3.zero;
+                timer = duration;
+                hasMomentum = true;
+            //} else {
+                //InitialiseSwing();
+            //}
+         }
+
+        public void CountdownConnectionTimer() {
+            if (connected) {
+                return;
+            }
+            timer -= Time.deltaTime;
+            rigidBody.velocity = Vector3.zero;
+            if (timer <= 0) {
+                InitialiseSwing();
+            }
+        }
+
+        private void InitialiseSwing() {
+            rigidBody.useGravity = true;
+            jointSettings.InitialiseJoint(playerTransform, jointPosition);
+            connected = true;
+        }
+
+        public void PerformSwing() {
+            if (!connected) { 
+                return; 
+            }
+            
+            camDirection.CalculateDirection();
+            GetRotateDirection();
+            rotation.RotateTowardsDirection(rotateDirection, rotateSpeed);
+
+            GetMoveDirection();
+            rigidBody.AddForce(moveDirection * swingSpeed * Time.fixedDeltaTime);
+        }
+
+        public void EndSwing() {
+            connected = false;
+            Destroy(jointSettings.Joint);
+        }
+
+        private void GetRotateDirection() {
+            Vector3 forwardMovement = camDirection.Forward * Mathf.Abs(playerInput.moveInput.y);
+            rotateDirection = forwardMovement;
+        }
+
+        private void GetMoveDirection() {
+            Vector3 forwardMovement = camDirection.Forward * playerInput.moveInput.y;
+            Vector3 rightMovement = camDirection.Right * playerInput.moveInput.x;
+            moveDirection = forwardMovement + rightMovement;
+        }
+
+        public void EndMomentum() {
+            hasMomentum = false;
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace LMO.CustomEvents {
         // Un-subscribr all events from their subjects
         protected virtual void UnsubscribeEvents() {
             for (int i = 0; i < events.Length; i++) {
-                events[i].SubscribeEvents();
+                events[i].UnsubscribeEvents();
             }
         }
 

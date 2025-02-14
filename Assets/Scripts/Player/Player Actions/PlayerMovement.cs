@@ -19,6 +19,7 @@ namespace LMO.Player {
 
         [SerializeField] private PlayerInput playerInput;
         private float speed;
+
         private Vector3 velocity;
         private Vector3 moveDirection;
         // Difference between current velocity and target velocity

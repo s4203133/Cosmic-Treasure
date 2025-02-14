@@ -8,6 +8,7 @@ namespace LMO.Player {
         [Header("RUN PARTICLES")]
         [SerializeField] private VisualEffect runParticles;
         [SerializeField] private Transform runParticlesEmissionPoint;
+        [SerializeField] private Grounded grounded;
 
         [Header("JUMP PARTICLES")]
         [SerializeField] private VisualEffect jumpParticles;
@@ -48,7 +49,9 @@ namespace LMO.Player {
         // Functions for triggering and stopping each VFX
 
         public void StartRunParticles() {
-            runParticles.Play();
+            if (grounded.IsOnGround) {
+                runParticles.Play();
+            }
         }
 
         public void StopRunParticles() {
