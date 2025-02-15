@@ -91,6 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1999623422692407523}
   - component: {fileID: 4080224080502451679}
+  - component: {fileID: 4744340031178724491}
+  - component: {fileID: 8174247727957389958}
   m_Layer: 8
   m_Name: Swing Point Detector
   m_TagString: Untagged
@@ -125,7 +127,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960d5cc685d6d5f4580bbe968af91694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingJointDetector: {fileID: 0}
+  swingJointDetector: {fileID: 4744340031178724491}
+--- !u!114 &4744340031178724491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226806069458702062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c18c22c6d40848419d96295f26178a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 5397066190690244712}
+  cameraTransform: {fileID: 0}
+  distance: 15
+  angle: 0.1
+--- !u!114 &8174247727957389958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226806069458702062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f99b3abff23ca46bf34f92d2366e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newFOV: 74
+  changeSpeed: 0.2
+  returnSpeed: 0.5
 --- !u!1 &288742710677242850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,13 +2503,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3247411871437110242}
-  - {fileID: 7302330980179213470}
   - {fileID: 1900314742301447273}
+  - {fileID: 7302330980179213470}
   - {fileID: 6216925978334233683}
+  - {fileID: 494791879658573880}
   - {fileID: 6421783899692009777}
   - {fileID: 4563288002320115224}
   - {fileID: 8874274053168229485}
-  - {fileID: 494791879658573880}
   - {fileID: 2741039930790367102}
   - {fileID: 1999623422692407523}
   m_Father: {fileID: 0}
@@ -2598,8 +2631,8 @@ MonoBehaviour:
   hover: {fileID: 2531349977570256341}
   dive: {fileID: 119473119383886109}
   swing: {fileID: 6318716073648655653}
+  swingManager: {fileID: 4080224080502451679}
   stateMachine: {fileID: 7060376922986637114}
-  testSwingObject: {fileID: 0}
 --- !u!114 &3298407487859252853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8764,7 +8797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7302330980179213470}
   m_Layer: 8
-  m_Name: Ground Point
+  m_Name: Ground Detection Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

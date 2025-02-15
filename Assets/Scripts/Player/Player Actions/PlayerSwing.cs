@@ -17,7 +17,6 @@ namespace LMO {
         [SerializeField] private Transform playerTransform;
         [SerializeField] private float swingSpeed;
         private Vector3 moveDirection;
-        private bool hasMomentum;
 
         [SerializeField] private float rotateSpeed;
         private RotateCharacter rotation;
@@ -35,6 +34,9 @@ namespace LMO {
         [SerializeField] private Transform camTransform;
         private CameraDirection camDirection;
 
+        private bool landedFromSwing;
+        public bool Landed => landedFromSwing;
+
         private void Awake() {
             rotation = new RotateCharacter(playerTransform);
             camDirection = new CameraDirection(camTransform);
@@ -42,16 +44,10 @@ namespace LMO {
 
         public void StartSwing(Vector3 swingPoint) {
             jointPosition = swingPoint;
-
-            //if (!hasMomentum) {
-                rigidBody.useGravity = false;
-                rigidBody.velocity = Vector3.zero;
-                timer = duration;
-                hasMomentum = true;
-            //} else {
-                //InitialiseSwing();
-            //}
-         }
+            rigidBody.useGravity = false;
+            rigidBody.velocity = Vector3.zero;
+            timer = duration;
+        }
 
         public void CountdownConnectionTimer() {
             if (connected) {
@@ -60,11 +56,12 @@ namespace LMO {
             timer -= Time.deltaTime;
             rigidBody.velocity = Vector3.zero;
             if (timer <= 0) {
-                InitialiseSwing();
+                InitialiseSwinging();
             }
         }
 
-        private void InitialiseSwing() {
+        private void InitialiseSwinging() {
+            landedFromSwing = false;
             rigidBody.useGravity = true;
             jointSettings.InitialiseJoint(playerTransform, jointPosition);
             connected = true;
@@ -99,8 +96,8 @@ namespace LMO {
             moveDirection = forwardMovement + rightMovement;
         }
 
-        public void EndMomentum() {
-            hasMomentum = false;
+        public void RegisterLanded() {
+            landedFromSwing = true;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace LMO.CustomEvents {
         private PlayerSquashAndStretch squishy;
         private Animator animator;
         private HighJumpTrail jumpTrail;
+        private FOVChanger fovChanger;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
@@ -20,6 +21,7 @@ namespace LMO.CustomEvents {
             squishy = player.SqashAndStretch;
             animator = player.Anim;
             jumpTrail = player.Trail;
+            fovChanger = player.FOV_Changer;
         }
 
         // When the player dives, notify other systems so they can respond
@@ -31,6 +33,7 @@ namespace LMO.CustomEvents {
             playerDive.OnDive += playerVFX.PlayDiveVFX;
             playerDive.OnDive += squishy.Dive.Play;
             playerDive.OnDive += jumpTrail.StartTrail;
+            playerDive.OnDive += fovChanger.StartChange;
         }
 
         public void UnsubscribeEvents() {
@@ -41,6 +44,7 @@ namespace LMO.CustomEvents {
             playerDive.OnDive -= playerVFX.PlayDiveVFX;
             playerDive.OnDive -= squishy.Dive.Play;
             playerDive.OnDive -= jumpTrail.StartTrail;
+            playerDive.OnDive += fovChanger.StartChange;
         }
 
         private void TriggerAnimation() {

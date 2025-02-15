@@ -13,6 +13,7 @@ namespace LMO.CustomEvents {
         private PlayerSquashAndStretch squishy;
         private PlayerSpinAttack playerSpin;
         private PlayerHover playerHover;
+        private FOVChanger fovChanger;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
@@ -20,6 +21,7 @@ namespace LMO.CustomEvents {
             squishy = player.SqashAndStretch;
             playerSpin = player.Controller.playerSpinAttack;
             playerHover = player.Controller.playerHover;
+            fovChanger = player.FOV_Changer;
         }
 
         // When the player dives, notify other systems so they can respond
@@ -31,6 +33,7 @@ namespace LMO.CustomEvents {
             playerGrounded.OnLanded += squishy.GroundPound.Play;
             playerGrounded.OnLanded += playerSpin.ResetAirSpins;
             playerGrounded.OnLanded += playerHover.EnableHover;
+            playerGrounded.OnLanded += fovChanger.EndChange;
         }
 
         public void UnsubscribeEvents() {
@@ -41,6 +44,7 @@ namespace LMO.CustomEvents {
             playerGrounded.OnLanded -= squishy.GroundPound.Play;
             playerGrounded.OnLanded -= playerSpin.ResetAirSpins;
             playerGrounded.OnLanded -= playerHover.EnableHover;
+            playerGrounded.OnLanded -= fovChanger.EndChange;
         }
     }
 }

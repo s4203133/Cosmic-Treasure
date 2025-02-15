@@ -11,6 +11,7 @@ namespace LMO.CustomEvents {
         [SerializeField] private Animator animator;
         [SerializeField] private CameraShaker cameraShake;
         [SerializeField] private HighJumpTrail trail;
+        [SerializeField] private FOVChanger fovChanger;
 
         public PlayerController Controller => controller;
         public PlayerVFX VFX => vfx;
@@ -18,6 +19,7 @@ namespace LMO.CustomEvents {
         public Animator Anim => animator;
         public CameraShaker CameraShake => cameraShake;
         public HighJumpTrail Trail => trail;
+        public FOVChanger FOV_Changer => fovChanger;
 
         protected override void Initialise() {
             events = GetComponentsInChildren<ICustomEvent>();
