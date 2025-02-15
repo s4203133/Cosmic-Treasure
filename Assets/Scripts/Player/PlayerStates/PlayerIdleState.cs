@@ -35,7 +35,7 @@ namespace LMO.Player {
             InputHandler.SpinStarted -= Spin;
         }
 
-        public override void OnCollisionEnter(Collision collision) {
+        public override void OnTriggerEnter(Collider other) {
         }
 
         // Transition to state based off input 

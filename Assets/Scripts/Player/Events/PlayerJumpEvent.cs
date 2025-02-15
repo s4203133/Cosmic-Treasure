@@ -11,11 +11,19 @@ namespace LMO.CustomEvents {
         // Observers
         private PlayerVFX playerVFX;
         private PlayerSquashAndStretch squishy;
+        private CameraShaker camShake;
+        private PlayerStateMachine stateMachine;
+        private Animator animator;
+        private HighJumpTrail trail;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
             playerVFX = player.VFX;
             squishy = player.SqashAndStretch;
+            camShake = player.CameraShake;
+            stateMachine = player.Controller.playerStateMachine;
+            animator = player.Anim;
+            trail = player.Trail;
         }
 
         // When the player dives, notify other systems so they can respond
@@ -23,16 +31,29 @@ namespace LMO.CustomEvents {
             if (playerJump == null) {
                 return;
             }
-            playerJump.OnJump += playerVFX.PlayJumpParticles;
-            playerJump.OnJump += squishy.Jump.Play;
+            playerJump.OnJump += PlayerJumpEvents;
+            SpringPad.OnPlayerJumpedOffSpring += PlayerSpringJumpEvents;
         }
 
         public void UnsubscribeEvents() {
             if (playerJump == null) {
                 return;
             }
-            playerJump.OnJump -= playerVFX.PlayJumpParticles;
-            playerJump.OnJump -= squishy.Jump.Play;
+            playerJump.OnJump -= PlayerJumpEvents;
+            SpringPad.OnPlayerJumpedOffSpring -= PlayerSpringJumpEvents;
+        }
+
+        private void PlayerJumpEvents() {
+            squishy.Jump.Play();
+            playerVFX.PlayJumpParticles();
+        }
+
+        private void PlayerSpringJumpEvents() {
+            PlayerJumpEvents();
+            camShake.shakeTypes.small.Shake();
+            stateMachine.Fall();
+            animator.SetTrigger("Spin");
+            trail.StartTrail();
         }
     }
 }

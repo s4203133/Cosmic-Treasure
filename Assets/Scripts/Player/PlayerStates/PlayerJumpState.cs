@@ -52,7 +52,7 @@ namespace LMO.Player {
             jump.EndJump();
         }
 
-        public override void OnCollisionEnter(Collision collision) {
+        public override void OnTriggerEnter(Collider other) {
 
         }
 

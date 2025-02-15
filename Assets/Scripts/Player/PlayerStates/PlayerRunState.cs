@@ -45,7 +45,7 @@ namespace LMO.Player {
             movement.OnMoveStopped?.Invoke();
         }
 
-        public override void OnCollisionEnter(Collision collision) {
+        public override void OnTriggerEnter(Collider collider) {
 
         }
 

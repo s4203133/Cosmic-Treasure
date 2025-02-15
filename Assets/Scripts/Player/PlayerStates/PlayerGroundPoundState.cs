@@ -11,7 +11,7 @@ namespace LMO.Player {
             groundPound = context.playerGroundPound;
         }
 
-        public override void OnCollisionEnter(Collision collision) {
+        public override void OnTriggerEnter(Collider collider) {
         }
 
         public override void OnStateEnter() {

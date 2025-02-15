@@ -55,5 +55,17 @@ namespace LMO.Player {
         private void OnDisable() {
             currentState.OnStateExit();
         }
+
+        private void OnTriggerEnter(Collider other) {
+            currentState.OnTriggerEnter(other);
+        }
+
+        public void Idle() {
+            ChangeState(idleState);
+        }
+
+        public void Fall() {
+            ChangeState(fallingState);
+        }
     }
 }

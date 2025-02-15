@@ -32,7 +32,7 @@ namespace LMO.Player {
             dive.HandleDive();
         }
 
-        public override void OnCollisionEnter(Collision collision) {
+        public override void OnTriggerEnter(Collider collider) {
 
         }
 

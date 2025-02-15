@@ -48,7 +48,7 @@ namespace LMO.Player {
             hover.EndHover();
         }
 
-        public override void OnCollisionEnter(Collision collision) {
+        public override void OnTriggerEnter(Collider collider) {
 
         }
 

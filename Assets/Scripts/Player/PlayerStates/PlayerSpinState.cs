@@ -19,7 +19,7 @@ namespace LMO.Player {
             input = context.playerInput;
         }
 
-        public override void OnCollisionEnter(Collision collision) {
+        public override void OnTriggerEnter(Collider collider) {
         }
 
         public override void OnStateEnter() {

@@ -22,7 +22,7 @@ public class PlayerSwingState : PlayerBaseState {
             movement = playerController.playerMovment;
         }
 
-        public override void OnCollisionEnter(Collision collision) {
+        public override void OnTriggerEnter(Collider collider) {
 
         }
 

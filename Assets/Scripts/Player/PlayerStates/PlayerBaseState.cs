@@ -20,7 +20,7 @@ namespace LMO.Player {
 
         public abstract void OnStateExit();
 
-        public abstract void OnCollisionEnter(Collision collision);
+        public abstract void OnTriggerEnter(Collider collider);
 
     }
 }

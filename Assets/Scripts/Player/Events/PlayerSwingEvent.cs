@@ -12,9 +12,8 @@ namespace LMO.CustomEvents {
         private FOVChanger fovChanger;
         private CameraShaker camShake;
         private Grounded grounded;
-
-
         private Animator animator;
+        private HighJumpTrail trail;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
@@ -22,6 +21,7 @@ namespace LMO.CustomEvents {
             fovChanger = player.FOV_Changer;
             camShake = player.CameraShake;
             grounded = player.Controller.playerJump.groundedSystem;
+            trail = player.Trail;
         }
 
         public void SubscribeEvents() {
@@ -51,6 +51,7 @@ namespace LMO.CustomEvents {
 
         private void JumpFromSwing() {
             animator.SetTrigger("BackFlip");
+            trail.StartTrail();
             fovChanger.StartChange();
         }
 
