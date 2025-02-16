@@ -15,7 +15,7 @@ namespace LMO.Player {
         private float notGroundedTimer;
         public float timeSinceLeftGround => notGroundedTimer;
 
-        public Action OnLanded;
+        public static Action OnLanded;
 
         public bool IsOnGround => isGrounded;
 

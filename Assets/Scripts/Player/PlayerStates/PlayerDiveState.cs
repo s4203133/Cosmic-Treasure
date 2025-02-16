@@ -5,23 +5,21 @@ namespace LMO.Player {
     public class PlayerDiveState : PlayerBaseState {
 
         PlayerDive dive;
-        Grounded grounded;
         PlayerInput input;
 
         public PlayerDiveState(PlayerController playerController) : base(playerController) {
             dive = context.playerDive;
-            grounded = context.playerJump.groundedSystem;
             input = context.playerInput;
         }
 
         public override void OnStateEnter() {
-            grounded.OnLanded += MoveToIdleState;
+            Grounded.OnLanded += MoveToIdleState;
 
             dive.StartDive();
         }
 
         public override void OnStateExit() {
-            grounded.OnLanded -= MoveToIdleState;
+            Grounded.OnLanded -= MoveToIdleState;
         }
 
         public override void OnStateUpdate() {

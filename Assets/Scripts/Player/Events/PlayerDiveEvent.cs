@@ -26,29 +26,19 @@ namespace LMO.CustomEvents {
 
         // When the player dives, notify other systems so they can respond
         public void SubscribeEvents() {
-            if (playerDive == null) {
-                return;
-            }
-            playerDive.OnDive += TriggerAnimation;
-            playerDive.OnDive += playerVFX.PlayDiveVFX;
-            playerDive.OnDive += squishy.Dive.Play;
-            playerDive.OnDive += jumpTrail.StartTrail;
-            playerDive.OnDive += fovChanger.StartChange;
+            playerDive.OnDive += OnPLayerDive;
         }
 
         public void UnsubscribeEvents() {
-            if (playerDive == null) {
-                return;
-            }
-            playerDive.OnDive -= TriggerAnimation;
-            playerDive.OnDive -= playerVFX.PlayDiveVFX;
-            playerDive.OnDive -= squishy.Dive.Play;
-            playerDive.OnDive -= jumpTrail.StartTrail;
-            playerDive.OnDive += fovChanger.StartChange;
+            playerDive.OnDive -= OnPLayerDive;
         }
 
-        private void TriggerAnimation() {
+        private void OnPLayerDive() {
             animator.SetTrigger("Dive");
+            playerVFX.PlayDiveVFX();
+            squishy.Dive.Play();
+            jumpTrail.StartTrail();
+            fovChanger.StartChange();
         }
     }
 }

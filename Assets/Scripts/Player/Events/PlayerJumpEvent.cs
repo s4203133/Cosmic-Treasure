@@ -26,7 +26,6 @@ namespace LMO.CustomEvents {
             trail = player.Trail;
         }
 
-        // When the player dives, notify other systems so they can respond
         public void SubscribeEvents() {
             if (playerJump == null) {
                 return;

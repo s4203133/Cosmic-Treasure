@@ -17,6 +17,7 @@ public class SwingJointSettings {
         currentJoint = player.gameObject.AddComponent<SpringJoint>();
         currentJoint.autoConfigureConnectedAnchor = false;
         currentJoint.connectedAnchor = connectPoint;
+        currentJoint.anchor = new Vector3(0, 1, 0);
 
         currentJoint.maxDistance = maxDistance;
         currentJoint.minDistance = minDistance;

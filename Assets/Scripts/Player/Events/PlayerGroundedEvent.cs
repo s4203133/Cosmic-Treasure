@@ -5,9 +5,6 @@ using LMO.Player;
 namespace LMO.CustomEvents {
 
     public class PlayerGroundedEvent : MonoBehaviour, ICustomEvent {
-        [Header("SUBJECT")]
-        [SerializeField] private Grounded playerGrounded;
-
         // Observers
         private PlayerVFX playerVFX;
         private PlayerSquashAndStretch squishy;
@@ -24,27 +21,20 @@ namespace LMO.CustomEvents {
             fovChanger = player.FOV_Changer;
         }
 
-        // When the player dives, notify other systems so they can respond
         public void SubscribeEvents() {
-            if (playerGrounded == null) {
-                return;
-            }
-            playerGrounded.OnLanded += playerVFX.PlayLandParticles;
-            playerGrounded.OnLanded += squishy.GroundPound.Play;
-            playerGrounded.OnLanded += playerSpin.ResetAirSpins;
-            playerGrounded.OnLanded += playerHover.EnableHover;
-            playerGrounded.OnLanded += fovChanger.EndChange;
+            Grounded.OnLanded += OnPLayerLanded;
         }
 
         public void UnsubscribeEvents() {
-            if (playerGrounded == null) {
-                return;
-            }
-            playerGrounded.OnLanded -= playerVFX.PlayLandParticles;
-            playerGrounded.OnLanded -= squishy.GroundPound.Play;
-            playerGrounded.OnLanded -= playerSpin.ResetAirSpins;
-            playerGrounded.OnLanded -= playerHover.EnableHover;
-            playerGrounded.OnLanded -= fovChanger.EndChange;
+            Grounded.OnLanded -= OnPLayerLanded;
+        }
+
+        public void OnPLayerLanded() {
+            playerVFX.PlayLandParticles();
+            squishy.GroundPound.Play();
+            playerSpin.ResetAirSpins();
+            playerHover.EnableHover();
+            fovChanger.EndChange();
         }
     }
 }

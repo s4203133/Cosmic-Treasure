@@ -50,7 +50,12 @@ public class DetectSwingJoints : MonoBehaviour {
 
     private void FindAllSwingJointsInRange() {
         for (int i = 0; i < allJointsCount; i++) {
-            Vector3 jointPosition = allJoints[i].transform.position;
+            SwingJoint thisJoint = allJoints[i];
+/*            if (thisJoint == closestSwingPoint) {
+                continue;
+            }*/
+
+            Vector3 jointPosition = thisJoint.transform.position;
             float distance = (jointPosition - playerTransform.position).sqrMagnitude;
             if (distance > distanceSqrd) {
                 continue;
@@ -60,7 +65,7 @@ public class DetectSwingJoints : MonoBehaviour {
                 continue;
             }
 
-            RegisterNeabySwingPoint(allJoints[i]);
+            RegisterNeabySwingPoint(thisJoint);
         }
     }
 

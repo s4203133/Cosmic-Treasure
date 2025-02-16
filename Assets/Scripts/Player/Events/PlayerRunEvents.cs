@@ -16,7 +16,6 @@ namespace LMO.CustomEvents {
             playerVFX = player.VFX;
         }
 
-        // When the player dives, notify other systems so they can respond
         public void SubscribeEvents() {
             if (playerMovement == null) {
                 return;

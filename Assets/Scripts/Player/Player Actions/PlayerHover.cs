@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace LMO.Player {
@@ -8,9 +7,9 @@ namespace LMO.Player {
 
         [Header("HOVER SETTINGS")]
         public PlayerMovementSettings movementSettings;
-        [SerializeField] private float maxHoverDuration;
-        private float timer;
-        public bool finished => timer <= 0;
+        [SerializeField] private FloatVariable maxHoverDuration;
+        [SerializeField] private FloatVariable timer;
+        public bool finished => timer.value <= 0;
         private bool hoverEnded;
 
         [SerializeField] private AnimationCurve AirForce;
@@ -24,8 +23,8 @@ namespace LMO.Player {
         [Header("COMPONENTS")]
         [SerializeField] private Rigidbody rigidBody;
 
-        public Action OnHoverStarted;
-        public Action OnHoverEnded;
+        public static Action OnHoverStarted;
+        public static Action OnHoverEnded;
 
         // Initialise hover movement
         public void StartHover() {
@@ -34,7 +33,7 @@ namespace LMO.Player {
             canHover = false;
             hoverEnded = false;
             rigidBody.velocity = Vector3.zero;
-            timer = maxHoverDuration;
+            timer.value = maxHoverDuration.value;
             airBoostTimer = 0;
         }
 
@@ -42,20 +41,20 @@ namespace LMO.Player {
         public void ApplyHoverForce() {
             ApplyAirBoost();
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, yVelocityLimit, rigidBody.velocity.z);
-            timer -= Time.fixedDeltaTime;
+            timer.value -= Time.fixedDeltaTime;
         }
 
         // Get air force based off current value of the animation curve
         public void ApplyAirBoost() {
-            float time = (airBoostTimer * (100f / maxHoverDuration)) / 100f;
+            float time = (airBoostTimer * (100f / maxHoverDuration.value)) / 100f;
             yVelocityLimit = AirForce.Evaluate(time) * airBoost;
             airBoostTimer += Time.fixedDeltaTime;
         }
 
         // If player releases input button early, stop the hover
         public void CuttOffHover() {
-            timer = 0;
-            airBoostTimer = maxHoverDuration;
+            timer.value = 0;
+            airBoostTimer = maxHoverDuration.value;
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0, rigidBody.velocity.z);
         }
 

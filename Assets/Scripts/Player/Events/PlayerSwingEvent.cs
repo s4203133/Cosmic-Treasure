@@ -11,7 +11,6 @@ namespace LMO.CustomEvents {
         [SerializeField] private SwingRope rope;
         private FOVChanger fovChanger;
         private CameraShaker camShake;
-        private Grounded grounded;
         private Animator animator;
         private HighJumpTrail trail;
 
@@ -20,7 +19,6 @@ namespace LMO.CustomEvents {
             animator = player.Anim;
             fovChanger = player.FOV_Changer;
             camShake = player.CameraShake;
-            grounded = player.Controller.playerJump.groundedSystem;
             trail = player.Trail;
         }
 
@@ -28,14 +26,14 @@ namespace LMO.CustomEvents {
             PlayerSwingState.OnSwingStart += StartSwing;
             PlayerSwingState.OnSwingEnd += EndSwing;
             PlayerSwingState.OnJumpFromSwing += JumpFromSwing;
-            grounded.OnLanded += Land;
+            Grounded.OnLanded += Land;
         }
 
         public void UnsubscribeEvents() {
             PlayerSwingState.OnSwingStart -= StartSwing;
             PlayerSwingState.OnSwingEnd -= EndSwing;
             PlayerSwingState.OnJumpFromSwing -= JumpFromSwing;
-            grounded.OnLanded -= Land;
+            Grounded.OnLanded -= Land;
         }
 
         private void StartSwing(Vector3 targetPos) {
