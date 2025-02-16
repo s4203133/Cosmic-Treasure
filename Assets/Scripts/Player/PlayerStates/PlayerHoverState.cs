@@ -24,6 +24,7 @@ namespace LMO.Player {
 
             InputHandler.jumpCancelled += hover.CuttOffHover;
             InputHandler.groundPoundStarted += GroundPound;
+            InputHandler.grappleStarted += Grapple;
 
             // Change the variables used in the movement component
             movement.ChangeMovementSettings(moveSettings);
@@ -44,6 +45,7 @@ namespace LMO.Player {
         public override void OnStateExit() {
             InputHandler.groundPoundStarted -= GroundPound;
             InputHandler.jumpCancelled -= hover.CuttOffHover;
+            InputHandler.grappleStarted -= Grapple;
 
             hover.EndHover();
         }
@@ -56,6 +58,11 @@ namespace LMO.Player {
         private void GroundPound() {
             hover.CuttOffHover();
             stateMachine.ChangeState(stateMachine.groundPoundState);
+        }
+
+        private void Grapple() {
+            hover.CuttOffHover();
+            stateMachine.ChangeState(stateMachine.swingState);
         }
     }
 }

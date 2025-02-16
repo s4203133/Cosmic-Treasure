@@ -27,17 +27,11 @@ namespace LMO.CustomEvents {
         }
 
         public void SubscribeEvents() {
-            if (playerJump == null) {
-                return;
-            }
             playerJump.OnJump += PlayerJumpEvents;
             SpringPad.OnPlayerJumpedOffSpring += PlayerSpringJumpEvents;
         }
 
         public void UnsubscribeEvents() {
-            if (playerJump == null) {
-                return;
-            }
             playerJump.OnJump -= PlayerJumpEvents;
             SpringPad.OnPlayerJumpedOffSpring -= PlayerSpringJumpEvents;
         }

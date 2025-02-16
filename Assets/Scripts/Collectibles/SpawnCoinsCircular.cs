@@ -24,7 +24,7 @@ public class SpawnCoinsCircular : CoinSpawner {
             Vector3 direction = new Vector3(horizontalValue, 0, verticalValue);
             Vector3 position = spawnPosition + direction * radius;
             position.y = spawnPosition.y + yOffset;
-            Coin newCoin = Instantiate(coin, spawnPosition, Quaternion.identity);
+            CoinSpawnAnimated newCoin = (CoinSpawnAnimated)Instantiate(coin, spawnPosition, Quaternion.identity);
             newCoin.SetPosition(position);
             coin.name = "Coin " + i;
         }
