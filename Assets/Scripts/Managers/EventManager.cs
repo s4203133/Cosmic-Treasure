@@ -4,6 +4,7 @@ using LMO.Interfaces;
 namespace LMO.CustomEvents {
 
     public class EventManager : MonoBehaviour {
+
         [SerializeField] protected ICustomEvent[] events;
         private bool init;
 
