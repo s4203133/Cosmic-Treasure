@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4826798686311958147}
   - component: {fileID: 8454347498201106726}
   - component: {fileID: 5960257956182081004}
+  - component: {fileID: 1056247421510872443}
   m_Layer: 0
   m_Name: TwoDirectionSandAreax4
   m_TagString: Untagged
@@ -83,3 +84,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1056247421510872443
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5311973188035550265}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 59684120416863091, guid: 604a6c83ac4a80842ae8d33711157a9e, type: 3}
