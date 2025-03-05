@@ -14,6 +14,7 @@ namespace LMO {
         private InputAction groundPound;
         private InputAction select;
         private InputAction grapple;
+        private InputAction quit;
 
         // Input Delegates
         public delegate void InputEvent();
@@ -36,6 +37,8 @@ namespace LMO {
 
         public static InputEvent grappleStarted;
         public static InputEvent grappleEnded;
+
+        public static InputEvent quitStarted;
 
         public static bool jumpBeingPressed => jump.IsPressed();
 
@@ -98,6 +101,12 @@ namespace LMO {
             }
         }
 
+        private void OnQuit(InputAction.CallbackContext context) {
+            if (context.started) {
+                quitStarted?.Invoke();
+            }
+        }
+
         private void InitialiseInputActions() {
             move = inputActions.FindAction("Move");
             jump = inputActions.FindAction("Jump");
@@ -105,6 +114,7 @@ namespace LMO {
             groundPound = inputActions.FindAction("GroundPound");
             select = inputActions.FindAction("Select");
             grapple = inputActions.FindAction("Grapple");
+            quit = inputActions.FindAction("Quit");
         }
 
         private void SubscribeMoveEvents() {
@@ -163,6 +173,14 @@ namespace LMO {
             grapple.started -= OnGrapple;
         }
 
+        private void SubscribeQuitEvents() {
+            quit.started += OnQuit;
+        }
+
+        private void UnsubscribeQuitEvents() {
+            quit.started -= OnQuit;
+        }
+
         private void SubscribeInputEvents() {
             SubscribeMoveEvents();
             SubscribeJumpEvents();
@@ -170,6 +188,7 @@ namespace LMO {
             SubscribeGroundPoundEvents();
             SubscribeSelectEvents();
             SubscribeGrappleEvents();
+            SubscribeQuitEvents();
         }
 
         private void UnsubscribeInputEvents() {
@@ -179,6 +198,7 @@ namespace LMO {
             UnsubscribeGroundPoundEvents();
             UnsubscribeSelectEvents();
             UnsubscribeGrappleEvents();
+            UnsubscribeQuitEvents();
         }
 
         private void EnableInputActions() {
@@ -189,6 +209,7 @@ namespace LMO {
             groundPound?.Enable();
             select?.Enable();
             grapple?.Enable();
+            quit?.Enable();
         }
 
         private void DisableInputActions() {
@@ -199,6 +220,7 @@ namespace LMO {
             inputActions?.Disable();
             select?.Disable();
             grapple?.Disable();
+            quit?.Disable();
         }
     }
 }
