@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using LMO.Interfaces;
-using LMO.Player;
 
-namespace LMO.CustomEvents {
+namespace LMO {
 
     public class PlayerRunEvents : MonoBehaviour, ICustomEvent {
         [Header("SUBJECT")]
@@ -10,26 +8,40 @@ namespace LMO.CustomEvents {
 
         // Observers
         private PlayerVFX playerVFX;
+        private Animator animator;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
-            playerVFX = player.VFX;
+            PlayerController controller = player.Controller;
+
+            playerVFX = controller.playerVFX;
+            animator = controller.playerAnimator;
         }
 
         public void SubscribeEvents() {
             if (playerMovement == null) {
                 return;
             }
-            playerMovement.OnMoveStarted += playerVFX.StartRunParticles;
-            playerMovement.OnMoveStopped += playerVFX.StopRunParticles;
+            playerMovement.OnMoveStarted += StartRun;
+            playerMovement.OnMoveStopped += StopRun;
         }
 
         public void UnsubscribeEvents() {
             if (playerMovement == null) {
                 return;
             }
-            playerMovement.OnMoveStarted -= playerVFX.StartRunParticles;
-            playerMovement.OnMoveStopped -= playerVFX.StopRunParticles;
+            playerMovement.OnMoveStarted -= StartRun;
+            playerMovement.OnMoveStopped -= StopRun;
+        }
+
+        private void StartRun() {
+            playerVFX.StartRunParticles();
+            animator.SetFloat("Speed", 1);
+        }
+
+        private void StopRun() {
+            playerVFX?.StopRunParticles();
+            animator.SetFloat("Speed", 0);
         }
     }
 }

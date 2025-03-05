@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LMO.Player {
+namespace LMO {
 
     public class PlayerController : MonoBehaviour {
 
@@ -18,6 +18,10 @@ namespace LMO.Player {
         [SerializeField] private PlayerDive dive;
         [SerializeField] private PlayerSwing swing;
         [SerializeField] private SwingManager swingManager;
+        [SerializeField] private PlayerVFX vfx;
+        [SerializeField] private Animator animator;
+        [SerializeField] private PlayerSquashAndStretch squashAndStretch;
+        [SerializeField] private HighJumpTrail effectTrail;
 
         [Header("STATE MACHINE")]
         [SerializeField] private PlayerStateMachine stateMachine;
@@ -33,5 +37,9 @@ namespace LMO.Player {
         public PlayerDive playerDive => dive;
         public PlayerSwing playerSwing => swing;
         public SwingManager playerSwingManager => swingManager;
+        public PlayerVFX playerVFX => vfx;
+        public Animator playerAnimator => animator;
+        public PlayerSquashAndStretch playerSquashAndStretch => squashAndStretch;
+        public HighJumpTrail PlayerEffectTrail => effectTrail;
     }
 }

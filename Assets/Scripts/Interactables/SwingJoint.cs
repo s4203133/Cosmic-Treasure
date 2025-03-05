@@ -1,8 +1,10 @@
-using System;
 using UnityEngine;
 
-public class SwingJoint : MonoBehaviour {
+namespace LMO {
 
-    public float distanceFromPlayer;
-    public float angleToPlayer;
+    public class SwingJoint : MonoBehaviour {
+
+        public float distanceFromPlayer;
+        public float angleToPlayer;
+    }
 }

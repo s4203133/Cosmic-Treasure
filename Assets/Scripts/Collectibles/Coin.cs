@@ -3,47 +3,49 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class Coin : MonoBehaviour
-{
-    [SerializeField] private FloatVariable coinCounter;
+namespace LMO {
 
-    [Header("COLLECT VFX")]
-    [SerializeField] private VisualEffect collectedVFX;
-    private float collectedVFXDuration;
+    public class Coin : MonoBehaviour {
+        [SerializeField] private FloatVariable coinCounter;
 
-    private Collider coinCollider;
+        [Header("COLLECT VFX")]
+        [SerializeField] private VisualEffect collectedVFX;
+        private float collectedVFXDuration;
 
-    public static Action OnCoinActivated;
-    public static Action OnCoinCollected;
+        private Collider coinCollider;
 
-    private void Awake() {
-        Initialise();
-    }
+        public static Action OnCoinActivated;
+        public static Action OnCoinCollected;
 
-    private void Start() {
-        StartCoroutine(ActivateCollision());
-    }
-
-    protected virtual void Initialise() {
-        coinCollider = GetComponent<Collider>();
-        collectedVFXDuration = collectedVFX.GetVector2("LifetimeRange").y;
-    }
-
-    // If the player picks the coin up, play a VFX and destroy it after a delay, and destroy the coin
-    private void OnTriggerEnter(Collider other) {
-        if(other.tag == "Player") {
-            coinCounter.value++;
-            OnCoinCollected?.Invoke();
-            collectedVFX.transform.parent = null;
-            collectedVFX.Play();
-            Destroy(collectedVFX.gameObject, collectedVFXDuration);
-            Destroy(gameObject);
+        private void Awake() {
+            Initialise();
         }
-    }
 
-    private IEnumerator ActivateCollision() {
-        yield return new WaitForSeconds(0.5f);
-        OnCoinActivated?.Invoke();
-        coinCollider.enabled = true;
+        private void Start() {
+            StartCoroutine(ActivateCollision());
+        }
+
+        protected virtual void Initialise() {
+            coinCollider = GetComponent<Collider>();
+            collectedVFXDuration = collectedVFX.GetVector2("LifetimeRange").y;
+        }
+
+        // If the player picks the coin up, play a VFX and destroy it after a delay, and destroy the coin
+        private void OnTriggerEnter(Collider other) {
+            if (other.tag == "Player") {
+                coinCounter.value++;
+                OnCoinCollected?.Invoke();
+                collectedVFX.transform.parent = null;
+                collectedVFX.Play();
+                Destroy(collectedVFX.gameObject, collectedVFXDuration);
+                Destroy(gameObject);
+            }
+        }
+
+        private IEnumerator ActivateCollision() {
+            yield return new WaitForSeconds(0.5f);
+            OnCoinActivated?.Invoke();
+            coinCollider.enabled = true;
+        }
     }
 }

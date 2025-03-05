@@ -1,7 +1,6 @@
 using UnityEngine;
-using LMO.Interfaces;
 
-namespace LMO.CustomEvents {
+namespace LMO {
 
     public class InteractableEventManager : EventManager 
     {

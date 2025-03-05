@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using LMO.Interfaces;
-using LMO.Player;
 
-namespace LMO.CustomEvents {
+namespace LMO {
 
     public class PlayerJumpEvent : MonoBehaviour, ICustomEvent {
         [Header("SUBJECT")]
@@ -18,12 +16,13 @@ namespace LMO.CustomEvents {
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
-            playerVFX = player.VFX;
-            squishy = player.SqashAndStretch;
+            PlayerController controller = player.Controller;
+            playerVFX = controller.playerVFX;
+            squishy = controller.playerSquashAndStretch;
             camShake = player.CameraShake;
-            stateMachine = player.Controller.playerStateMachine;
-            animator = player.Anim;
-            trail = player.Trail;
+            stateMachine = controller.playerStateMachine;
+            animator = controller.playerAnimator;
+            trail = controller.PlayerEffectTrail;
         }
 
         public void SubscribeEvents() {
@@ -39,13 +38,14 @@ namespace LMO.CustomEvents {
         private void PlayerJumpEvents() {
             squishy.Jump.Play();
             playerVFX.PlayJumpParticles();
+            animator.SetBool("Jumping", true);
         }
 
         private void PlayerSpringJumpEvents() {
             PlayerJumpEvents();
             camShake.shakeTypes.small.Shake();
             stateMachine.Fall();
-            animator.SetTrigger("Spin");
+            //animator.SetTrigger("Spin");
             trail.StartTrail();
         }
     }

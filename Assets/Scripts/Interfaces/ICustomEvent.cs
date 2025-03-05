@@ -1,6 +1,5 @@
-﻿using LMO.CustomEvents;
-
-namespace LMO.Interfaces {
+﻿
+namespace LMO {
     public interface ICustomEvent {
 
         public void Initialise(EventManager manager);

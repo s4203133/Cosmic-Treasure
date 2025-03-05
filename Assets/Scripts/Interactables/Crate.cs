@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.VFX;
-using LMO.Interfaces;
 
-namespace LMO.Interactables {
+namespace LMO {
 
     public class Crate : MonoBehaviour, IBreakable {
 

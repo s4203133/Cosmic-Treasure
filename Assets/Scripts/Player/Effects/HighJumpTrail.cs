@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace LMO.Player {
+namespace LMO {
 
     public class HighJumpTrail : MonoBehaviour {
         [SerializeField] private TrailRenderer trailRenderer;

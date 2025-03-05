@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace LMO.Player {
+namespace LMO {
 
     public class PlayerGroundPound : MonoBehaviour {
 

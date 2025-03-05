@@ -1,8 +1,7 @@
 using UnityEngine;
-using LMO.Interfaces;
-using LMO.Player;
 
-namespace LMO.CustomEvents {
+namespace LMO {
+
     public class PlayerEventManager : EventManager {
 
         [SerializeField] private PlayerController controller;

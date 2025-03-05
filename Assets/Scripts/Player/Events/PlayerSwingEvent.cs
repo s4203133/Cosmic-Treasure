@@ -1,8 +1,6 @@
-using LMO.Interfaces;
-using LMO.Player;
 using UnityEngine;
 
-namespace LMO.CustomEvents {
+namespace LMO {
 
     public class PlayerSwingEvent : MonoBehaviour, ICustomEvent {
 

@@ -1,18 +1,20 @@
 using LMO;
 using UnityEngine;
 
-public class QuitInput : MonoBehaviour
-{
-    private void OnEnable() {
-        InputHandler.quitStarted += CloseGame;
-    }
+namespace LMO {
 
-    private void OnDisable() {
-        InputHandler.quitStarted -= CloseGame;
-    }
+    public class QuitInput : MonoBehaviour {
 
-    private void CloseGame() {
-        Debug.Log("Quitting");
-        Application.Quit();
+        private void OnEnable() {
+            InputHandler.quitStarted += CloseGame;
+        }
+
+        private void OnDisable() {
+            InputHandler.quitStarted -= CloseGame;
+        }
+
+        private void CloseGame() {
+            Application.Quit();
+        }
     }
 }

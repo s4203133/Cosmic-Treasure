@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace LMO.Player {
+namespace LMO {
 
-public class PlayerSwingState : PlayerBaseState {
+    public class PlayerSwingState : PlayerBaseState {
 
         PlayerSwing swing;
         SwingManager swingManager;

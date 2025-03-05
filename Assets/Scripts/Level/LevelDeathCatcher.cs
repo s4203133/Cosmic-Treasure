@@ -1,7 +1,6 @@
 using UnityEngine;
-using LMO.Player;
 
-namespace LMO.LevelMechanics {
+namespace LMO {
 
     public class LevelDeathCatcher : MonoBehaviour {
         [SerializeField] private Vector3 respawnPosition;

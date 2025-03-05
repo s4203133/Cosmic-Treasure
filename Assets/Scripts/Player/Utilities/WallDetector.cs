@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LMO.Player {
+namespace LMO {
 
     public class WallDetector : MonoBehaviour {
         [SerializeField] private Transform playerTransform;

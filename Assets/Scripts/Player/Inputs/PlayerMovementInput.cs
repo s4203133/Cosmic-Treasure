@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using LMO.Player;
 
 namespace LMO {
 

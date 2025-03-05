@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace LMO.Player {
+namespace LMO {
 
     public class PlayerStateMachine : MonoBehaviour {
-        [SerializeField]
-        private PlayerBaseState currentState;
+
+        [SerializeField] protected PlayerBaseState currentState;
         public string stateName;
 
         public PlayerIdleState idleState;
@@ -21,20 +21,8 @@ namespace LMO.Player {
         public PlayerController controller;
 
         void Start() {
-            idleState = new PlayerIdleState(controller);
-            runState = new PlayerRunState(controller);
-            jumpState = new PlayerJumpState(controller);
-            fallingState = new PlayerFallingState(controller);
-            spinState = new PlayerSpinState(controller);
-            groundPoundState = new PlayerGroundPoundState(controller);
-            highJumpState = new PlayerHighJumpState(controller);
-            hoverState = new PlayerHoverState(controller);
-            diveState = new PlayerDiveState(controller);
-            swingState = new PlayerSwingState(controller);
-
-            currentState = idleState;
-            stateName = currentState.ToString();
-            idleState.OnStateEnter();
+            InitialiseStates();
+            StartStateMachine();
         }
 
         void Update() {
@@ -58,6 +46,25 @@ namespace LMO.Player {
 
         private void OnTriggerEnter(Collider other) {
             currentState.OnTriggerEnter(other);
+        }
+
+        protected virtual void InitialiseStates() {
+            idleState = new PlayerIdleState(controller);
+            runState = new PlayerRunState(controller);
+            jumpState = new PlayerJumpState(controller);
+            fallingState = new PlayerFallingState(controller);
+            spinState = new PlayerSpinState(controller);
+            groundPoundState = new PlayerGroundPoundState(controller);
+            highJumpState = new PlayerHighJumpState(controller);
+            hoverState = new PlayerHoverState(controller);
+            diveState = new PlayerDiveState(controller);
+            swingState = new PlayerSwingState(controller);
+        }
+
+        protected virtual void StartStateMachine() {
+            currentState = idleState;
+            stateName = currentState.ToString();
+            currentState.OnStateEnter();
         }
 
         public void Idle() {

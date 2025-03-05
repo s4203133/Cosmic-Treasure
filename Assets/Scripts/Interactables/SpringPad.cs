@@ -1,21 +1,23 @@
 using System;
 using UnityEngine;
 
-public class SpringPad : MonoBehaviour
-{
-    [SerializeField] private float boostForce;
+namespace LMO {
 
-    public static Action OnPlayerJumpedOffSpring;
+    public class SpringPad : MonoBehaviour {
+        [SerializeField] private float boostForce;
 
-    private void ApplyForce(Rigidbody rigidBody) {
-        rigidBody.velocity = Vector3.zero;
-        rigidBody.AddForce(new Vector3 (0f, boostForce, 0f), ForceMode.Impulse);
-    }
+        public static Action OnPlayerJumpedOffSpring;
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.tag == "Player") {
-            OnPlayerJumpedOffSpring?.Invoke();
-            ApplyForce(other.GetComponent<Rigidbody>());
+        private void ApplyForce(Rigidbody rigidBody) {
+            rigidBody.velocity = Vector3.zero;
+            rigidBody.AddForce(new Vector3(0f, boostForce, 0f), ForceMode.Impulse);
+        }
+
+        private void OnTriggerEnter(Collider other) {
+            if (other.tag == "Player") {
+                OnPlayerJumpedOffSpring?.Invoke();
+                ApplyForce(other.GetComponent<Rigidbody>());
+            }
         }
     }
 }

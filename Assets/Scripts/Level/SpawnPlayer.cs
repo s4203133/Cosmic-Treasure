@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace LMO.LevelMechanics {
+namespace LMO {
 
     public class SpawnPlayer : MonoBehaviour {
         [SerializeField] private GameObject player;

@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using LMO.Interfaces;
-using LMO.Player;
 
-namespace LMO.CustomEvents {
+namespace LMO {
 
     public class PlayerSpinEvent : MonoBehaviour, ICustomEvent {
+
         [Header("SUBJECT")]
         [SerializeField] private PlayerSpinAttack playerSpin;
 
@@ -25,22 +24,26 @@ namespace LMO.CustomEvents {
             if (playerSpin == null) {
                 return;
             }
-            playerSpin.OnSpin += playerVFX.PlaySpinVFX;
-            playerSpin.OnSpin += squishy.SpinAttack.Play;
-            playerSpin.OnSpin += AnimateSpin;
+            playerSpin.OnSpin += StartSpin;
+            playerSpin.OnSpinEnd += EndSpin;
         }
 
         public void UnsubscribeEvents() {
             if (playerSpin == null) {
                 return;
             }
-            playerSpin.OnSpin -= playerVFX.PlaySpinVFX;
-            playerSpin.OnSpin -= squishy.SpinAttack.Play;
-            playerSpin.OnSpin -= AnimateSpin;
+            playerSpin.OnSpin -= StartSpin;
+            playerSpin.OnSpinEnd -= EndSpin;
         }
 
-        private void AnimateSpin() {
-            animator.SetTrigger("Spin");
+        private void StartSpin() {
+            playerVFX.PlaySpinVFX();
+            squishy.SpinAttack.Play();
+            animator.SetBool("SpinAttacking", true);
+        }
+
+        private void EndSpin() {
+            animator.SetBool("SpinAttacking", false);
         }
     }
 }

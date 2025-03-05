@@ -1,6 +1,6 @@
 using System;
 
-namespace LMO.Interfaces {
+namespace LMO {
     public interface IBreakable {
         public static Action OnBroken;
 

@@ -1,41 +1,44 @@
 using UnityEngine;
 
-public class SwingManager : MonoBehaviour {
+namespace LMO {
 
-    [SerializeField] private DetectSwingJoints swingJointDetector;
-    private bool canSwing;
-    public bool CanSwing => canSwing;
+    public class SwingManager : MonoBehaviour {
 
-    private GameObject swingTarget;
-    public GameObject SwingTarget => swingTarget;
+        [SerializeField] private DetectSwingJoints swingJointDetector;
+        private bool canSwing;
+        public bool CanSwing => canSwing;
 
-    //[SerializeField] private SwingPointUI swingPointUI;
+        private GameObject swingTarget;
+        public GameObject SwingTarget => swingTarget;
 
-    void Start() {
-        swingJointDetector.Initialise();
-    }
+        //[SerializeField] private SwingPointUI swingPointUI;
 
-    private void OnEnable() {
-        swingJointDetector.OnSwingPointFound += EnableSwing;
-        swingJointDetector.OnSwingPointOutOfRange += DisableSwing;
-    }
+        void Start() {
+            swingJointDetector.Initialise();
+        }
 
-    private void OnDisable() {
-        swingJointDetector.OnSwingPointFound -= EnableSwing;
-        swingJointDetector.OnSwingPointOutOfRange -= DisableSwing;
-    }
+        private void OnEnable() {
+            swingJointDetector.OnSwingPointFound += EnableSwing;
+            swingJointDetector.OnSwingPointOutOfRange += DisableSwing;
+        }
 
-    void Update() {
-        swingJointDetector.GetClosestJoint();
-    }
+        private void OnDisable() {
+            swingJointDetector.OnSwingPointFound -= EnableSwing;
+            swingJointDetector.OnSwingPointOutOfRange -= DisableSwing;
+        }
 
-    private void EnableSwing(GameObject target) {
-        swingTarget = target;
-        canSwing = true;
-    }
+        void Update() {
+            swingJointDetector.GetClosestJoint();
+        }
 
-    private void DisableSwing(GameObject target) {
-        swingTarget = null;
-        canSwing = false;
+        private void EnableSwing(GameObject target) {
+            swingTarget = target;
+            canSwing = true;
+        }
+
+        private void DisableSwing(GameObject target) {
+            swingTarget = null;
+            canSwing = false;
+        }
     }
 }

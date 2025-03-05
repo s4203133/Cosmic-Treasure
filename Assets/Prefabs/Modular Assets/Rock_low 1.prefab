@@ -1615,17 +1615,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f9f7b6a8e751284438cfac4c7c1534ad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.3641
+      value: 0.49419633
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f9f7b6a8e751284438cfac4c7c1534ad,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0016503
+      value: 0.771
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f9f7b6a8e751284438cfac4c7c1534ad,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.582479
+      value: 121.387
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f9f7b6a8e751284438cfac4c7c1534ad,
         type: 3}
@@ -1705,10 +1705,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f9f7b6a8e751284438cfac4c7c1534ad,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7206496389019828273}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f9f7b6a8e751284438cfac4c7c1534ad,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6815405157021423288}
   m_SourcePrefab: {fileID: 100100000, guid: f9f7b6a8e751284438cfac4c7c1534ad, type: 3}
 --- !u!1 &1410701921144848138 stripped
@@ -1754,20 +1750,6 @@ MonoBehaviour:
   - {fileID: 5997876303237253541}
   breakForceRange: {x: 6, y: 20}
   breakTorqueRange: 2
---- !u!114 &7206496389019828273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410701921144848138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29c3e06d5f7a3564fa7d7a8b35443039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  friction: 10
-  rotationFriction: 8
 --- !u!65 &6815405157021423288
 BoxCollider:
   m_ObjectHideFlags: 0

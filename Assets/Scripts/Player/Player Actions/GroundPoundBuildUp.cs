@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LMO.Player {
+namespace LMO {
 
     [System.Serializable]
     public class GroundPoundBuildUp : GroundPoundComponent {

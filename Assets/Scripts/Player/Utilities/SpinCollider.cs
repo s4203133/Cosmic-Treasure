@@ -1,7 +1,6 @@
 using UnityEngine;
-using LMO.Interfaces;
 
-namespace LMO.Player {
+namespace LMO {
 
     public class SpinCollider : MonoBehaviour {
         private void OnTriggerEnter(Collider other) {

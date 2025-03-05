@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace LMO.Player {
+namespace LMO {
 
     public class PlayerVFX : MonoBehaviour {
 

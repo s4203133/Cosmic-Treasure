@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LMO.Interactables {
+namespace LMO {
 
     public class InteractAnimation : MonoBehaviour {
         private Animator animator;

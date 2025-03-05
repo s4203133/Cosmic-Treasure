@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LMO.Player {
+namespace LMO {
 
     [CreateAssetMenu(menuName = "Player/Player Movement Settings", fileName = "New Player Movement Settings")]
     public class PlayerMovementSettings : ScriptableObject {

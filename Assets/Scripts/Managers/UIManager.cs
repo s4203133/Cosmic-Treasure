@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LMO.UI {
+namespace LMO {
 
     public class UIManager : MonoBehaviour {
         public static UIManager instance;

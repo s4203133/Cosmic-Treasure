@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using LMO.Interfaces;
-using LMO.Player;
 
-namespace LMO.CustomEvents {
+namespace LMO {
 
     public class PlayerGroundPoundEvent : MonoBehaviour, ICustomEvent {
         [Header("SUBJECT")]

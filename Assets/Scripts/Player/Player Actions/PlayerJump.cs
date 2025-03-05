@@ -1,37 +1,20 @@
 using UnityEngine;
 
-namespace LMO.Player {
+namespace LMO {
 
     public class PlayerJump : MonoBehaviour {
 
-        [Header("Jumping")]
-        [SerializeField] public float jumpForce;
-        [SerializeField] public float highJumpForce;
+        [SerializeField] private PlayerJumpSettings settings;
+
         private float jump;
-        [SerializeField] private float maxJumpDuration;
-        [SerializeField] private float minJumpDuration;
-        [SerializeField] private float minJumpInput;
-
         private bool jumpCutoff;
-        [Range(0.1f, 0.99f)]
-        [SerializeField] private float jumpCutOffIntensity;
         private float jumpTimer;
-
-        [Header("Falling")]
-        [SerializeField] private float fallSpeed;
-        [SerializeField] private float maxFallSpeed;
+        private float jumpApexSpeed;
         private float fallForce;
 
         [Header("Ground Checking")]
         [SerializeField] private Grounded grounded;
         public Grounded groundedSystem => grounded;
-
-        [Header("Jump Apex")]
-        [SerializeField] private float jumpApexThreshold;
-        [SerializeField] private float jumpApexGravityReduction;
-        [SerializeField] private float jumpApexMaxSpeed;
-        [SerializeField] private float jumpApexSpeedIncrease;
-        private float jumpApexSpeed;
 
         [Header("Components")]
         [SerializeField] private Rigidbody rigidBody;
@@ -67,30 +50,30 @@ namespace LMO.Player {
         // Gradually decrease the players air velocity
         private void ReduceJumpForce() {
             if (rigidBody.velocity.y > 0) {
-                rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y * jumpCutOffIntensity, rigidBody.velocity.z);
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y * settings.JumpCutOffIntensity, rigidBody.velocity.z);
             }
         }
 
         // While the player is falling, gradually increase their speed until it reaches a max limit
         public void ApplyFallForce() {
             if (rigidBody.velocity.y < 0) {
-                fallForce += Mathf.Pow(fallSpeed, 2);
-                float yVelocity = Mathf.Max(rigidBody.velocity.y - (fallForce * Time.fixedDeltaTime), -maxFallSpeed);
+                fallForce += Mathf.Pow(settings.FallSpeed, 2);
+                float yVelocity = Mathf.Max(rigidBody.velocity.y - (fallForce * Time.fixedDeltaTime), -settings.MaxFallSpeed);
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, yVelocity, rigidBody.velocity.z);
             }
         }
 
         // Apply a speed and gravity modifyer while the player is at the peak of a jump
         private void HandleJumpApex() {
-            if (!grounded.IsOnGround && Mathf.Abs(rigidBody.velocity.y) < jumpApexThreshold) {
+            if (!grounded.IsOnGround && Mathf.Abs(rigidBody.velocity.y) < settings.JumpApexThreshold) {
                 // Exponensially increase the players speed over time
-                jumpApexSpeed += jumpApexSpeedIncrease;
-                jumpApexSpeed = Mathf.Min(jumpApexSpeed, jumpApexMaxSpeed);
+                jumpApexSpeed += settings.JumpApexSpeedIncrease;
+                jumpApexSpeed = Mathf.Min(jumpApexSpeed, settings.JumpApexMaxSpeed);
 
                 // Apply the speed and gravity multiplyers to the RigidBody velocity 
                 rigidBody.velocity = new Vector3(
                     rigidBody.velocity.x * jumpApexSpeed,
-                    rigidBody.velocity.y * jumpApexGravityReduction,
+                    rigidBody.velocity.y * settings.JumpApexGravityReduction,
                     rigidBody.velocity.z * jumpApexSpeed);
             }
         }
@@ -101,16 +84,16 @@ namespace LMO.Player {
 
         public void InitialiseJump() {
             grounded.NotifyLeftGround();
-            jumpTimer = maxJumpDuration;
-            jump = jumpForce;
+            jumpTimer = settings.MaxJumpDuration;
+            jump = settings.JumpForce;
             jumpApexSpeed = 1;
             OnJump?.Invoke();
         }
 
         public void InitialiseHighJump() {
             grounded.NotifyLeftGround();
-            jumpTimer = maxJumpDuration;
-            jump = highJumpForce;
+            jumpTimer = settings.MaxJumpDuration;
+            jump = settings.HighJumpForce;
             jumpApexSpeed = 1;
             OnHighJump?.Invoke();
         }
@@ -122,8 +105,8 @@ namespace LMO.Player {
         }
 
         public void CutOffJump() {
-            if (jumpTimer >= maxJumpDuration - minJumpInput) {
-                jumpTimer = minJumpDuration;
+            if (jumpTimer >= settings.MaxJumpDuration - settings.MinJumpInput) {
+                jumpTimer = settings.MinJumpDuration;
             } else {
                 jumpTimer = 0;
             }

@@ -1,46 +1,48 @@
 using UnityEngine;
 
-public class CoinCollector : MonoBehaviour
-{
-    [SerializeField] private float speed;
-    private Transform thisTransform;
-    private Transform player;
+namespace LMO {
 
-    private bool canCollect;
-    private bool collected;
+    public class CoinCollector : MonoBehaviour {
+        [SerializeField] private float speed;
+        private Transform thisTransform;
+        private Transform player;
 
-    public bool CoinInRange => canCollect;
+        private bool canCollect;
+        private bool collected;
 
-    private void OnEnable() => Coin.OnCoinActivated += AllowCollect;
+        public bool CoinInRange => canCollect;
 
-    private void OnDisable() => Coin.OnCoinActivated -= AllowCollect;
+        private void OnEnable() => Coin.OnCoinActivated += AllowCollect;
 
-    private void Update() => Collect();
+        private void OnDisable() => Coin.OnCoinActivated -= AllowCollect;
 
-    private void Awake() {
-        thisTransform = transform.parent;
-        Coin.OnCoinActivated += AllowCollect;
-    }
+        private void Update() => Collect();
 
-    private void OnTriggerEnter(Collider other) {
-        if (!canCollect) {
-            return;
+        private void Awake() {
+            thisTransform = transform.parent;
+            Coin.OnCoinActivated += AllowCollect;
         }
 
-        if(other.tag == "Player") {
-            collected = true;
-            player = other.transform;
-        }
-    }
+        private void OnTriggerEnter(Collider other) {
+            if (!canCollect) {
+                return;
+            }
 
-    private void Collect() {
-        if(collected) {
-            thisTransform.position = Vector3.Lerp(thisTransform.position, player.position, speed);
-            speed += Time.deltaTime;
+            if (other.tag == "Player") {
+                collected = true;
+                player = other.transform;
+            }
         }
-    }
 
-    private void AllowCollect() {
-        canCollect = true;
+        private void Collect() {
+            if (collected) {
+                thisTransform.position = Vector3.Lerp(thisTransform.position, player.position, speed);
+                speed += Time.deltaTime;
+            }
+        }
+
+        private void AllowCollect() {
+            canCollect = true;
+        }
     }
 }

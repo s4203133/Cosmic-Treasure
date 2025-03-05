@@ -1,11 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Camera/Camera Shake", fileName = "New Camera Shake")]
-public class CameraShake : ScriptableObject
-{
-    [SerializeField] private float duration;
-    [SerializeField] private float magnitude;
+namespace LMO {
 
-    public float Duration => duration;
-    public float Magnitude => magnitude;    
+    [CreateAssetMenu(menuName = "Camera/Camera Shake", fileName = "New Camera Shake")]
+    public class CameraShake : ScriptableObject {
+        [SerializeField] private float duration;
+        [SerializeField] private float magnitude;
+
+        public float Duration => duration;
+        public float Magnitude => magnitude;
+    }
 }

@@ -1,31 +1,33 @@
 using UnityEngine;
 
-public class CoinSpawnAnimated : Coin
-{
-    [SerializeField] private float spawnAnimateSmoothness;
-    private Transform thisTransform;
-    private Vector3 position;
+namespace LMO {
 
-    private CoinCollector collector;
+    public class CoinSpawnAnimated : Coin {
+        [SerializeField] private float spawnAnimateSmoothness;
+        private Transform thisTransform;
+        private Vector3 position;
 
-    protected override void Initialise() {
-        base.Initialise();
-        thisTransform = transform;
-        collector = GetComponentInChildren<CoinCollector>();
-    }
+        private CoinCollector collector;
 
-    private void FixedUpdate() {
-        AnimateCoin();
-    }
-
-    private void AnimateCoin() {
-        if (collector.CoinInRange) {
-            return;
+        protected override void Initialise() {
+            base.Initialise();
+            thisTransform = transform;
+            collector = GetComponentInChildren<CoinCollector>();
         }
-        thisTransform.position = Vector3.Lerp(thisTransform.position, position, spawnAnimateSmoothness);
-    }
 
-    public void SetPosition(Vector3 newPosition) {
-        position = newPosition;
+        private void FixedUpdate() {
+            AnimateCoin();
+        }
+
+        private void AnimateCoin() {
+            if (collector.CoinInRange) {
+                return;
+            }
+            thisTransform.position = Vector3.Lerp(thisTransform.position, position, spawnAnimateSmoothness);
+        }
+
+        public void SetPosition(Vector3 newPosition) {
+            position = newPosition;
+        }
     }
 }

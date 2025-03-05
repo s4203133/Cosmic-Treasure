@@ -1,24 +1,26 @@
 using TMPro;
 using UnityEngine;
 
-public class CoinCounterUI : MonoBehaviour
-{
-    private TextMeshProUGUI coinText;
-    [SerializeField] private FloatVariable cointCounter;
+namespace LMO {
 
-    private void Awake() {
-        coinText = GetComponent<TextMeshProUGUI>();
-    }
+    public class CoinCounterUI : MonoBehaviour {
+        private TextMeshProUGUI coinText;
+        [SerializeField] private FloatVariable cointCounter;
 
-    private void OnEnable() => Coin.OnCoinCollected += UpdateText;
-   
-    private void OnDisable() => Coin.OnCoinCollected -= UpdateText;
+        private void Awake() {
+            coinText = GetComponent<TextMeshProUGUI>();
+        }
 
-    private void UpdateText() {
-        coinText.text = cointCounter.value.ToString("000");
-    }
+        private void OnEnable() => Coin.OnCoinCollected += UpdateText;
 
-    private void OnApplicationQuit() {
-        cointCounter.value = 0;
+        private void OnDisable() => Coin.OnCoinCollected -= UpdateText;
+
+        private void UpdateText() {
+            coinText.text = cointCounter.value.ToString("000");
+        }
+
+        private void OnApplicationQuit() {
+            cointCounter.value = 0;
+        }
     }
 }

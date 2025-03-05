@@ -1,5 +1,5 @@
 
-namespace LMO.Player {
+namespace LMO {
 
     public class PlayerHighJumpState : PlayerJumpState {
 
