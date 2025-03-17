@@ -20,16 +20,27 @@ namespace LMO {
 
         public PlayerController controller;
 
+        private bool Active;
+
         void Start() {
+            Active = true;
             InitialiseStates();
             StartStateMachine();
         }
 
         void Update() {
+            if (!Active)
+            {
+                return;
+            }
             currentState.OnStateUpdate();
         }
 
         private void FixedUpdate() {
+            if (!Active)
+            {
+                return;
+            }
             currentState.OnStatePhysicsUpdate();
         }
 
@@ -40,7 +51,13 @@ namespace LMO {
             currentState.OnStateEnter();
         }
 
+        private void OnEnable()
+        {
+            RegisterDeActivators();
+        }
+
         private void OnDisable() {
+            DeRegisterDeActivators();
             currentState.OnStateExit();
         }
 
@@ -62,6 +79,10 @@ namespace LMO {
         }
 
         protected virtual void StartStateMachine() {
+            if (!Active)
+            {
+                return;
+            }
             currentState = idleState;
             stateName = currentState.ToString();
             currentState.OnStateEnter();
@@ -73,6 +94,22 @@ namespace LMO {
 
         public void Fall() {
             ChangeState(fallingState);
+        }
+
+        private void RegisterDeActivators()
+        {
+            Cannon.OnLevelEnded += Deactivate;
+        }
+
+        private void DeRegisterDeActivators()
+        {
+            Cannon.OnLevelEnded -= Deactivate;
+        }
+
+        private void Deactivate()
+        {
+            Idle();
+            Active = false;
         }
     }
 }

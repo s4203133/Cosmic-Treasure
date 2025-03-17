@@ -40,12 +40,21 @@ namespace LMO {
                 Destroy(collectedVFX.gameObject, collectedVFXDuration);
                 Destroy(gameObject);
             }
+            else if(other.gameObject.layer == 6)
+            {
+                HitGround();
+            }
         }
 
         private IEnumerator ActivateCollision() {
             yield return new WaitForSeconds(0.5f);
             OnCoinActivated?.Invoke();
             coinCollider.enabled = true;
+        }
+
+        protected virtual void HitGround()
+        {
+
         }
     }
 }
