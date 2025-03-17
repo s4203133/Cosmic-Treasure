@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5159704718288880260}
   m_Layer: 6
   m_Name: MovableBarrle
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6882c2df324ef5741a1c040c5547eb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitForce: 10
-  upwardsForce: 15
-  torqueForce: 18
+  hitForce: 12
+  upwardsForce: 18
+  torqueForce: 15
 --- !u!114 &5159704718288880260
 MonoBehaviour:
   m_ObjectHideFlags: 0
