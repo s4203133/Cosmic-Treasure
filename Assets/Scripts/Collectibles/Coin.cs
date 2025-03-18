@@ -46,7 +46,7 @@ namespace LMO {
             }
         }
 
-        private IEnumerator ActivateCollision() {
+        protected virtual IEnumerator ActivateCollision() {
             yield return new WaitForSeconds(0.5f);
             OnCoinActivated?.Invoke();
             coinCollider.enabled = true;

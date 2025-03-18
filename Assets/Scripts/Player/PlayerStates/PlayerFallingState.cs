@@ -68,10 +68,14 @@ namespace LMO {
             if (!hasPerformedAirMove) {
                 if (grounded.timeSinceLeftGround <= coyoteTime) {
                     stateMachine.ChangeState(stateMachine.jumpState);
-                } else {
+                }
+                else {
                     stateMachine.ChangeState(stateMachine.hoverState);
                 }
                 hasPerformedAirMove = true;
+            }
+            else {
+                stateMachine.ChangeState(stateMachine.hoverState);
             }
         }
 

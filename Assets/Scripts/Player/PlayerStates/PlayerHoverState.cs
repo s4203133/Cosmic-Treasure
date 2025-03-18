@@ -17,12 +17,13 @@ namespace LMO {
 
         public override void OnStateEnter() {
             // Validate that the hover move can be performed
-            if (!hover.CheckCanHover) {
+            if (!hover.CanHover) {
                 stateMachine.ChangeState(stateMachine.fallingState);
                 return;
             }
 
             InputHandler.jumpCancelled += hover.CuttOffHover;
+            InputHandler.jumpCancelled += TransitionToFallState;
             InputHandler.groundPoundStarted += GroundPound;
             InputHandler.grappleStarted += Grapple;
 
@@ -33,7 +34,7 @@ namespace LMO {
 
         public override void OnStateUpdate() {
             if (hover.finished) {
-                stateMachine.ChangeState(stateMachine.fallingState);
+                TransitionToFallState();
             }
         }
 
@@ -44,14 +45,18 @@ namespace LMO {
 
         public override void OnStateExit() {
             InputHandler.groundPoundStarted -= GroundPound;
+            InputHandler.jumpCancelled -= TransitionToFallState;
             InputHandler.jumpCancelled -= hover.CuttOffHover;
             InputHandler.grappleStarted -= Grapple;
-
-            hover.EndHover();
         }
 
         public override void OnTriggerEnter(Collider collider) {
 
+        }
+
+        private void TransitionToFallState()
+        {
+            stateMachine.ChangeState(stateMachine.fallingState);
         }
 
         // If ground pounding, finish hover and change states

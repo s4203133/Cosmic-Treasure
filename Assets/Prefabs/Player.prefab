@@ -2709,6 +2709,10 @@ MonoBehaviour:
   dive: {fileID: 119473119383886109}
   swing: {fileID: 6318716073648655653}
   swingManager: {fileID: 4080224080502451679}
+  vfx: {fileID: 4602263979456288892}
+  animator: {fileID: 6364324496339578538}
+  squashAndStretch: {fileID: 5133414509471756890}
+  effectTrail: {fileID: 4349260929245988759}
   stateMachine: {fileID: 7060376922986637114}
 --- !u!114 &3298407487859252853
 MonoBehaviour:
@@ -3263,7 +3267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverTimer: {fileID: 11400000, guid: 40403431cdeab944cabbf886706bf648, type: 2}
   hoverDuration: {fileID: 11400000, guid: 07752477a6a2de7489a836dd7835f1e7, type: 2}
-  sliderCountdownSmoothness: 0.5
+  sliderCountdownSmoothness: 0.3
 --- !u!95 &8006845554259644303
 Animator:
   serializedVersion: 5
@@ -3398,19 +3402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc4bd3568a5bddd4c8f6b08cde7962b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 815
-  highJumpForce: 1000
-  maxJumpDuration: 0.1675
-  minJumpDuration: 0.08
-  minJumpInput: 0.0925
-  jumpCutOffIntensity: 0.775
-  fallSpeed: 1.75
-  maxFallSpeed: 30
+  settings: {fileID: 11400000, guid: af6f99a2d86d66341b9b7cdc563f90aa, type: 2}
   grounded: {fileID: 5799883070491449932}
-  jumpApexThreshold: 4
-  jumpApexGravityReduction: 0.7
-  jumpApexMaxSpeed: 1.15
-  jumpApexSpeedIncrease: 0.05
   rigidBody: {fileID: 7767721875659057005}
   animator: {fileID: 6364324496339578538}
 --- !u!114 &5799883070491449932
@@ -3514,6 +3507,7 @@ MonoBehaviour:
   movementSettings: {fileID: 11400000, guid: f75628d83bcc79340b69f6b2f7309e72, type: 2}
   maxHoverDuration: {fileID: 11400000, guid: 07752477a6a2de7489a836dd7835f1e7, type: 2}
   timer: {fileID: 11400000, guid: 40403431cdeab944cabbf886706bf648, type: 2}
+  cutoffForceMultiplier: 0.75
   AirForce:
     serializedVersion: 2
     m_Curve:

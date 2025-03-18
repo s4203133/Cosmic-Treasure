@@ -11,6 +11,8 @@ namespace LMO {
         [SerializeField] private FloatVariable timer;
         public bool finished => timer.value <= 0;
         private bool hoverEnded;
+        [Range(0f, 1f)]
+        [SerializeField] private float cutoffForceMultiplier;
 
         [SerializeField] private AnimationCurve AirForce;
         [SerializeField] private float airBoost;
@@ -18,19 +20,25 @@ namespace LMO {
         private float yVelocityLimit;
 
         private bool canHover;
-        public bool CheckCanHover => canHover;
+        public bool CanHover => canHover;
 
         [Header("COMPONENTS")]
         [SerializeField] private Rigidbody rigidBody;
 
         public static Action OnHoverStarted;
+        public static Action OnHoverContinued;
         public static Action OnHoverEnded;
 
         // Initialise hover movement
         public void StartHover() {
+            if (!hoverEnded)
+            {
+                OnHoverContinued?.Invoke();
+                return;
+            }
+
             OnHoverStarted?.Invoke();
-            
-            canHover = false;
+
             hoverEnded = false;
             rigidBody.velocity = Vector3.zero;
             timer.value = maxHoverDuration.value;
@@ -42,6 +50,11 @@ namespace LMO {
             ApplyAirBoost();
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, yVelocityLimit, rigidBody.velocity.z);
             timer.value -= Time.fixedDeltaTime;
+            if(timer.value < 0)
+            {
+                canHover = false;
+                EndHover();
+            }
         }
 
         // Get air force based off current value of the animation curve
@@ -53,16 +66,14 @@ namespace LMO {
 
         // If player releases input button early, stop the hover
         public void CuttOffHover() {
-            timer.value = 0;
-            airBoostTimer = maxHoverDuration.value;
-            rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0, rigidBody.velocity.z);
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x * cutoffForceMultiplier, 0, rigidBody.velocity.z * cutoffForceMultiplier);
         }
 
         // Finish the hover movement
         public void EndHover() {
             if (!hoverEnded) {
                 OnHoverEnded?.Invoke();
-                hoverEnded = true;
+                    hoverEnded = true;
             }
         }
 
