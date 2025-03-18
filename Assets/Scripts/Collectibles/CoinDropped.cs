@@ -2,66 +2,63 @@ using LMO;
 using System.Collections;
 using UnityEngine;
 
-public class CoinDropped : Coin
-{
-    private Rigidbody rigidBody;
-    private MeshRenderer mesh;
-    private SphereCollider[] colliders;
-    private Animator animator;
+namespace LMO {
 
-    private bool hasDropped;
-    private bool hasBounced;
+    public class CoinDropped : Coin {
+        private Rigidbody rigidBody;
+        private MeshRenderer mesh;
+        private SphereCollider[] colliders;
+        private Animator animator;
 
-    private WaitForSeconds registerDropDelay;
+        private bool hasDropped;
+        private bool hasBounced;
 
-    public void Initialse()
-    {
-        rigidBody = GetComponent<Rigidbody>();
-        mesh = GetComponentInChildren<MeshRenderer>();
-        colliders = GetComponentsInChildren<SphereCollider>();
-        animator = GetComponent<Animator>();
+        private WaitForSeconds registerDropDelay;
 
-        mesh.enabled = false;
-        EnableCollision(false);
-        rigidBody.isKinematic = true;
+        public void Initialse() {
+            rigidBody = GetComponent<Rigidbody>();
+            mesh = GetComponentInChildren<MeshRenderer>();
+            colliders = GetComponentsInChildren<SphereCollider>();
+            animator = GetComponent<Animator>();
 
-        hasDropped = false;
-        hasBounced = false;
-        registerDropDelay = new WaitForSeconds(0.5f);
-    }
+            mesh.enabled = false;
+            EnableCollision(false);
+            rigidBody.isKinematic = true;
 
-    public void Drop()
-    {
-        mesh.enabled = true;
-        EnableCollision(true);
-        rigidBody.isKinematic = false;
-        StartCoroutine(SetDropped());
-    }
-
-    private IEnumerator SetDropped()
-    {
-        yield return registerDropDelay;
-        hasDropped = true;
-    }
-
-    protected override void HitGround()
-    {
-        if (!hasDropped || hasBounced)
-        {
-            return;
+            hasDropped = false;
+            hasBounced = false;
+            registerDropDelay = new WaitForSeconds(0.5f);
         }
-        rigidBody.isKinematic = true;
-        animator.SetTrigger("Bounce");
-        hasBounced = true;
-    }
 
-    private void EnableCollision(bool value) {
-        for (int i = 0; i < colliders.Length; i++) {
-            colliders[i].enabled = value;
+        public void Drop() {
+            mesh.enabled = true;
+            EnableCollision(true);
+            rigidBody.isKinematic = false;
+            StartCoroutine(SetDropped());
         }
-    }
 
-    protected override IEnumerator ActivateCollision() {
-        yield return null;
+        private IEnumerator SetDropped() {
+            yield return registerDropDelay;
+            hasDropped = true;
+        }
+
+        protected override void HitGround() {
+            if (!hasDropped || hasBounced) {
+                return;
+            }
+            rigidBody.isKinematic = true;
+            animator.SetTrigger("Bounce");
+            hasBounced = true;
+        }
+
+        private void EnableCollision(bool value) {
+            for (int i = 0; i < colliders.Length; i++) {
+                colliders[i].enabled = value;
+            }
+        }
+
+        protected override IEnumerator ActivateCollision() {
+            yield return null;
+        }
     }
 }
