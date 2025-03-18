@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 namespace LMO {
 
@@ -51,13 +52,7 @@ namespace LMO {
             currentState.OnStateEnter();
         }
 
-        private void OnEnable()
-        {
-            RegisterDeActivators();
-        }
-
         private void OnDisable() {
-            DeRegisterDeActivators();
             currentState.OnStateExit();
         }
 
@@ -96,19 +91,9 @@ namespace LMO {
             ChangeState(fallingState);
         }
 
-        private void RegisterDeActivators()
-        {
-            Cannon.OnLevelEnded += Deactivate;
-        }
-
-        private void DeRegisterDeActivators()
-        {
-            Cannon.OnLevelEnded -= Deactivate;
-        }
-
-        private void Deactivate()
-        {
+        public void Deactivate() {
             Idle();
+            controller.DisablePhysics();
             Active = false;
         }
     }

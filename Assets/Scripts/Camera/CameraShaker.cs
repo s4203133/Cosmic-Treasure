@@ -8,6 +8,8 @@ namespace LMO {
         [SerializeField] private CinemachineFreeLook cinemachine;
         private CinemachineBasicMultiChannelPerlin[] cinemachineShakes = new CinemachineBasicMultiChannelPerlin[3];
 
+        private CinemachineBasicMultiChannelPerlin alternateCameraShake;
+
         [SerializeField] private float maxDuration;
         [SerializeField] private float maxMagnitude;
         [SerializeField] private float magnitudeReductionRate;
@@ -50,12 +52,25 @@ namespace LMO {
                 cinemachineShakes[i].m_AmplitudeGain = magnitude;
                 cinemachineShakes[i].m_FrequencyGain = duration;
             }
+
+            if(alternateCameraShake != null) {
+                alternateCameraShake.m_AmplitudeGain = magnitude;
+                alternateCameraShake.m_FrequencyGain = duration;
+            }
         }
 
         private void GetCameras() {
             for (int i = 0; i < 3; i++) {
                 cinemachineShakes[i] = cinemachine.GetRig(i).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             }
+        }
+
+        public void RegisterAlternateCamera(CinemachineVirtualCamera camera) {
+            alternateCameraShake = camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        }
+
+        public void UnRegisterAlternateCamera() {
+            alternateCameraShake = null;
         }
 
         private void ReduceShake() {

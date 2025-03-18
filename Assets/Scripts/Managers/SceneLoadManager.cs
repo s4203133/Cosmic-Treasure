@@ -8,6 +8,7 @@ namespace LMO {
 
         public static SceneLoadManager instance;
         [SerializeField] private float loadDelay;
+        private WaitForSeconds delay;
 
         public delegate void SceneLoadEvent();
         public SceneLoadEvent SceneStartedLoading;
@@ -19,6 +20,8 @@ namespace LMO {
             } else {
                 instance = this;
             }
+
+            delay = new WaitForSeconds(loadDelay);
         }
 
         private void OnEnable() {
@@ -36,7 +39,7 @@ namespace LMO {
             // Load the scene after a delay
             StartCoroutine(DelayLoad());
             IEnumerator DelayLoad() {
-                yield return new WaitForSeconds(loadDelay);
+                yield return delay;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
@@ -48,7 +51,7 @@ namespace LMO {
             // Load the scene after a delay
             StartCoroutine(DelayLoad());
             IEnumerator DelayLoad() {
-                yield return new WaitForSeconds(loadDelay);
+                yield return delay;
                 SceneManager.LoadScene(sceneIndex);
             }
         }

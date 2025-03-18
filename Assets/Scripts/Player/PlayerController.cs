@@ -9,6 +9,7 @@ namespace LMO {
         public PlayerInput playerInput;
 
         [Header("COMPONENTS")]
+        [SerializeField] private Rigidbody rigidBody;
         [SerializeField] private PlayerIdle idle;
         [SerializeField] private PlayerMovement movement;
         [SerializeField] private PlayerJump jump;
@@ -41,5 +42,13 @@ namespace LMO {
         public Animator playerAnimator => animator;
         public PlayerSquashAndStretch playerSquashAndStretch => squashAndStretch;
         public HighJumpTrail PlayerEffectTrail => effectTrail;
+
+        public void EnablePhysics() {
+            rigidBody.isKinematic = false;
+        }
+
+        public void DisablePhysics() {
+            rigidBody.isKinematic = true;
+        }
     }
 }

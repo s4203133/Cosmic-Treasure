@@ -23,10 +23,7 @@ namespace LMO {
         }
 
         private void OnTriggerEnter(Collider other) {
-            Debug.Log("Object hit checkpoint");
-
             if (other.CompareTag("Player")) {
-                Debug.Log("Player hit checkpoint");
                 SetSpawnData();
                 TriggerCheckpointAnimation();
             }
