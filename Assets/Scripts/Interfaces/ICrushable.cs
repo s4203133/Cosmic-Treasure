@@ -1,6 +1,7 @@
 
 namespace LMO {
-    public interface IHittable {
+
+    public interface ICrushable {
         public void OnHit();
     }
 }

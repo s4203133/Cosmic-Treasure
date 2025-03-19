@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="New Level Stats")]
+[CreateAssetMenu(menuName ="Player/Player Level Stats")]
 public class PlayersLevelStats : ScriptableObject
 {
     private int coinsCollected;
