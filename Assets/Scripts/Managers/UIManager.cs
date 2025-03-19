@@ -36,10 +36,14 @@ namespace LMO {
         // When the scene is ending, fade out the screen
         private void SubscribeToEvents() {
             GlobalEventManager.SceneRestarted += FadeScreenIn;
+            SpawnPlayer.OnLevelReset += FadeScreenIn;
+            SpawnPlayer.OnPlayerRespawned += FadeScreenOut;
         }
 
         private void UnsubscribeFromEvents() {
             GlobalEventManager.SceneRestarted -= FadeScreenIn;
+            SpawnPlayer.OnLevelReset -= FadeScreenIn;
+            SpawnPlayer.OnPlayerRespawned -= FadeScreenOut;
         }
     }
 }

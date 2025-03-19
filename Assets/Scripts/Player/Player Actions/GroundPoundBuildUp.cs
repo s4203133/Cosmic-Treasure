@@ -47,7 +47,7 @@ namespace LMO {
 
         // Once the build up has ended, the falling state of the ground pound can start
         private void CountdownBuildUp() {
-            buildUpTimer += Time.fixedDeltaTime;
+            buildUpTimer += TimeValues.FixedDelta;
             if (buildUpTimer >= buildUpDuration) {
                 EndGroundPoundBuildUp();
             }

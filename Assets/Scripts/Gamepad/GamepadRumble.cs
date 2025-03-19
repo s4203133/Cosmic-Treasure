@@ -29,7 +29,7 @@ namespace LMO {
             // Rumble the controller for the specified duration
             float t = 0;
             while (t < duration) {
-                t += Time.deltaTime;
+                t += TimeValues.Delta;
                 yield return null;
             }
             gamePad.SetMotorSpeeds(0, 0);

@@ -26,7 +26,7 @@ namespace LMO {
             StartAnimation();
 
             while (timer < animationLength) {
-                timer += Time.deltaTime;
+                timer += TimeValues.Delta;
                 Vector3 newPosition = Vector3.Lerp(originalPosition, cannonTransform.localPosition, velocity.Evaluate(timer));
                 transform.localPosition = new Vector3(newPosition.x, originalPosition.y + jump.Evaluate(timer), newPosition.z);
                 yield return null;

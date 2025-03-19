@@ -27,7 +27,7 @@ namespace LMO {
             if (rigidBody.velocity.sqrMagnitude < 0.25f) {
                 rigidBody.velocity = Vector3.zero;
             } else if (rigidBody.velocity.sqrMagnitude > 0) {
-                rigidBody.velocity -= (rigidBody.velocity * friction * Time.fixedDeltaTime);
+                rigidBody.velocity -= (rigidBody.velocity * friction * TimeValues.FixedDelta);
             }
         }
     }

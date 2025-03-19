@@ -6,7 +6,7 @@ namespace LMO {
         [Header("CHECK POINT SPAWN POSITION")]
         [SerializeField] private Vector3 spawnPosition;
         [SerializeField] private Vector3 spawnRotation;
-        [SerializeField] private LevelDeathCatcher deathCatcher;
+        [SerializeField] private SpawnPlayer spawnPlayer;
 
         [Header("CHECK POINT ANIMATION")]
         [SerializeField] private Animator checkPointAnimator;
@@ -15,8 +15,8 @@ namespace LMO {
         private bool triggered;
 
         private void Start() {
-            if (deathCatcher == null) {
-                deathCatcher = FindObjectOfType<LevelDeathCatcher>();
+            if (spawnPlayer == null) {
+                spawnPlayer = FindObjectOfType<SpawnPlayer>();
             }
             GetComponent<MeshRenderer>().enabled = false;
             triggered = false;
@@ -31,8 +31,8 @@ namespace LMO {
 
         private void SetSpawnData() {
             if (!triggered) {
-                deathCatcher.SetRespawnPosition(spawnPosition);
-                deathCatcher.SetRespawnRotation(spawnRotation);
+                spawnPlayer.SetRespawnPosition(spawnPosition);
+                spawnPlayer.SetRespawnRotation(spawnRotation);
                 triggered = true;
             }
         }

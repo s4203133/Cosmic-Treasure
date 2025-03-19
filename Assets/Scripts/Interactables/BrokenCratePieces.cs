@@ -18,7 +18,7 @@ namespace LMO {
         void FixedUpdate() {
             // Reduce the size of the game object across the animation curve
             thisTransform.localScale = CalculateSize();
-            timer += Time.deltaTime;
+            timer += TimeValues.Delta;
 
             // Destroy the game object once the time is up
             if (timer > duration) {

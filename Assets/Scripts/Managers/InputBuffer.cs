@@ -16,7 +16,7 @@ namespace LMO {
             // If the input has been recently, reduce a timer until it is disabled
             // (allows the input to still be recognised for a short period of time)
             if (inputPressed) {
-                countdown -= Time.deltaTime;
+                countdown -= TimeValues.Delta;
                 if (countdown <= 0) {
                     inputPressed = false;
                 }

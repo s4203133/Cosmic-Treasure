@@ -40,7 +40,7 @@ namespace LMO {
 
             spring.SetDamper(damping);
             spring.SetStrength(strength);
-            spring.Update(Time.deltaTime);
+            spring.Update(TimeValues.Delta);
 
             Vector3 startPos = ropeStartPoint.position;
             Vector3 endPos = ropeEndPoint;

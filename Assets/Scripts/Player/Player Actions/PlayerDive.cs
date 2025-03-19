@@ -46,7 +46,7 @@ namespace LMO {
         }
 
         public void Countdown() {
-            timer += Time.deltaTime;
+            timer += TimeValues.Delta;
         }
 
         public void HandleDive() {
@@ -66,7 +66,7 @@ namespace LMO {
         private void GetVelocity() {
             // Get the speed based off the animation curve
             speed = diveMomentum.Evaluate(timer);
-            velocity = playerTransform.forward * (speed * diveForce * Time.fixedDeltaTime);
+            velocity = playerTransform.forward * (speed * diveForce * TimeValues.FixedDelta);
         }
 
         private void GetMoveDirection() {
@@ -78,7 +78,7 @@ namespace LMO {
         private void AddMoveDirection() {
             // If the player is pressing input in direction they're diving in, don't add additional speed
             if (Vector3.Dot(playerTransform.forward, moveDirection) < 0.3) {
-                moveSpeed += acceleration * Time.fixedDeltaTime;
+                moveSpeed += acceleration * TimeValues.FixedDelta;
                 moveSpeed = MathF.Min(moveSpeed, moveStrength);
                 appliedVelocity = velocity + (moveDirection * moveSpeed);
             } else {

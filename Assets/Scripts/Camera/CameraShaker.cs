@@ -75,12 +75,12 @@ namespace LMO {
 
         private void ReduceShake() {
             // Reduce the duration and intesity of the shake across time
-            duration -= Time.deltaTime;
+            duration -= TimeValues.Delta;
             if (duration < 0) {
                 duration = 0;
             }
 
-            intensity -= (Time.deltaTime * magnitudeReductionRate);
+            intensity -= (TimeValues.Delta * magnitudeReductionRate);
             if (intensity < 0) {
                 intensity = 0;
             }

@@ -52,7 +52,7 @@ namespace LMO {
             if (connected) {
                 return;
             }
-            timer -= Time.deltaTime;
+            timer -= TimeValues.Delta;
             rigidBody.velocity = Vector3.zero;
             if (timer <= 0) {
                 InitialiseSwinging();
@@ -76,7 +76,7 @@ namespace LMO {
             rotation.RotateTowardsDirection(rotateDirection, rotateSpeed);
 
             GetMoveDirection();
-            rigidBody.AddForce(moveDirection * swingSpeed * Time.fixedDeltaTime);
+            rigidBody.AddForce(moveDirection * swingSpeed * TimeValues.FixedDelta);
         }
 
         public void EndSwing() {

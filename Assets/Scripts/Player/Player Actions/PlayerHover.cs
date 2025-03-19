@@ -49,7 +49,7 @@ namespace LMO {
         public void ApplyHoverForce() {
             ApplyAirBoost();
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, yVelocityLimit, rigidBody.velocity.z);
-            timer.value -= Time.fixedDeltaTime;
+            timer.value -= TimeValues.FixedDelta;
             if(timer.value < 0)
             {
                 canHover = false;
@@ -61,7 +61,7 @@ namespace LMO {
         public void ApplyAirBoost() {
             float time = (airBoostTimer * (100f / maxHoverDuration.value)) / 100f;
             yVelocityLimit = AirForce.Evaluate(time) * airBoost;
-            airBoostTimer += Time.fixedDeltaTime;
+            airBoostTimer += TimeValues.FixedDelta;
         }
 
         // If player releases input button early, stop the hover

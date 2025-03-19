@@ -19,7 +19,7 @@ namespace LMO {
         private void Update() {
             if (closed) return;
 
-            timer -= Time.deltaTime;
+            timer -= TimeValues.Delta;
             if (timer <= 0) {
                 CloseDisplay();
             }

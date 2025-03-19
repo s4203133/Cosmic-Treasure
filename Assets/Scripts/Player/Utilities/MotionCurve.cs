@@ -15,7 +15,7 @@ namespace LMO {
 
         public float CalculateValue(float maxValue) {
             if (timer < timerLength) {
-                timer += Time.deltaTime;
+                timer += TimeValues.Delta;
             } else {
                 timer = timerLength;
             }

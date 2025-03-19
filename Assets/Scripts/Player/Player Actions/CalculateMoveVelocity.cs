@@ -23,14 +23,14 @@ namespace LMO {
             // If the player can't make quick changes in direction, only allow them to move in the direction they're facing
             Vector3 returnValue;
             if (!canChangeDirectionQuickly) {
-                returnValue = _transform.forward * speed * Time.deltaTime;
+                returnValue = _transform.forward * speed * TimeValues.FixedDelta;
             } else {
                 // If the player is making a large change in direction, make them move directly towards their target direction,
                 // otherwise move in the direction they are facing
                 if (velocityDifference > 1) {
-                    returnValue = direction * speed * Time.deltaTime;
+                    returnValue = direction * speed * TimeValues.FixedDelta;
                 } else {
-                    returnValue = _transform.forward * speed * Time.deltaTime;
+                    returnValue = _transform.forward * speed * TimeValues.FixedDelta;
                 }
             }
             return returnValue;

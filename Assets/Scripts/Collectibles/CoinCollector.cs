@@ -37,7 +37,7 @@ namespace LMO {
         private void Collect() {
             if (collected) {
                 thisTransform.position = Vector3.Lerp(thisTransform.position, player.position, speed);
-                speed += Time.deltaTime;
+                speed += TimeValues.Delta;
             }
         }
 

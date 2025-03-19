@@ -31,7 +31,7 @@ namespace LMO {
         }
 
         public void CountdownTimer() {
-            allowDiveTimer -= Time.fixedDeltaTime;
+            allowDiveTimer -= TimeValues.FixedDelta;
             if (allowDiveTimer <= 0) {
                 canInitiateDive = true;
             }

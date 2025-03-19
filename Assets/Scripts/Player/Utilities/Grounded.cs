@@ -56,7 +56,7 @@ namespace LMO {
                     sentGroundedEvent = true;
                 }
             } else {
-                notGroundedTimer += Time.deltaTime;
+                notGroundedTimer += TimeValues.Delta;
                 sentGroundedEvent = false;
             }
         }

@@ -26,7 +26,7 @@ namespace LMO {
         public JumpEvent OnHighJump;
 
         private void Update() {
-            jumpTimer -= Time.deltaTime;
+            jumpTimer -= TimeValues.Delta;
         }
 
         public void ApplyForce() {
@@ -38,7 +38,7 @@ namespace LMO {
         // Apply upwards force while the player is jumping
         private void ApplyJumpForce() {
             if (jumpTimer >= 0) {
-                rigidBody.velocity = new Vector3(rigidBody.velocity.x, jump * Time.fixedDeltaTime, rigidBody.velocity.z);
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, jump * TimeValues.FixedDelta, rigidBody.velocity.z);
             } else {
                 // Reduce the force if the player releases the jump button early
                 if (jumpCutoff) {
@@ -58,7 +58,7 @@ namespace LMO {
         public void ApplyFallForce() {
             if (rigidBody.velocity.y < 0) {
                 fallForce += Mathf.Pow(settings.FallSpeed, 2);
-                float yVelocity = Mathf.Max(rigidBody.velocity.y - (fallForce * Time.fixedDeltaTime), -settings.MaxFallSpeed);
+                float yVelocity = Mathf.Max(rigidBody.velocity.y - (fallForce * TimeValues.FixedDelta), -settings.MaxFallSpeed);
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, yVelocity, rigidBody.velocity.z);
             }
         }

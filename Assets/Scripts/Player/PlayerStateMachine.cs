@@ -91,6 +91,12 @@ namespace LMO {
             ChangeState(fallingState);
         }
 
+        public void Activate() {
+            controller.EnablePhysics();
+            Active = true;
+            Idle();
+        }
+
         public void Deactivate() {
             Idle();
             controller.DisablePhysics();

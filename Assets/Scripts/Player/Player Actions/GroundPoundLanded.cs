@@ -23,7 +23,7 @@ namespace LMO {
         }
 
         public void HandleLand() {
-            landTimer -= Time.fixedDeltaTime;
+            landTimer -= TimeValues.FixedDelta;
         }
 
         public bool FinishedLand() {

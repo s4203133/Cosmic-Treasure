@@ -48,7 +48,10 @@ namespace LMO {
         }
 
         public void DisablePhysics() {
-            rigidBody.isKinematic = true;
+            if (!rigidBody.isKinematic) {
+                rigidBody.velocity = Vector3.zero;
+                rigidBody.isKinematic = true;
+            }
         }
     }
 }

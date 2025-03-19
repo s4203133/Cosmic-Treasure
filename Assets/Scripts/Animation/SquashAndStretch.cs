@@ -41,7 +41,7 @@ namespace LMO {
             while (t < duration) {
                 Vector3 modifiedScale = Vector3.one;
 
-                t += Time.deltaTime;
+                t += TimeValues.Delta;
                 float curvePos = t / duration;
                 float value = motion.Evaluate(curvePos);
                 float remappedValue = 1 + (value * (scale - 1));

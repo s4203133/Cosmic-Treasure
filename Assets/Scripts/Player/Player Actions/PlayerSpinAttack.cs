@@ -31,7 +31,7 @@ namespace LMO {
         }
 
         public void Countdown() {
-            counter -= Time.deltaTime;
+            counter -= TimeValues.Delta;
         }
 
         public void StopSpin() {
