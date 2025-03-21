@@ -5,6 +5,7 @@ namespace LMO {
     public class PlayerJump : MonoBehaviour {
 
         [SerializeField] private PlayerJumpSettings settings;
+        public PlayerJumpSettings JumpSettings;
 
         private float jump;
         private bool jumpCutoff;
@@ -111,6 +112,10 @@ namespace LMO {
                 jumpTimer = 0;
             }
             jumpCutoff = true;
+        }
+
+        public void ChangeJumpSettings(PlayerJumpSettings newSettings) {
+            settings = newSettings;
         }
     }
 }

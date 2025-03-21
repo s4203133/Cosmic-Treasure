@@ -27,12 +27,12 @@ namespace LMO {
 
         public void SubscribeEvents() {
             playerJump.OnJump += PlayerJumpEvents;
-            SpringPad.OnPlayerJumpedOffSpring += PlayerSpringJumpEvents;
+            SpringPad.OnSmallSpringJump += PlayerSpringJumpEvents;
         }
 
         public void UnsubscribeEvents() {
             playerJump.OnJump -= PlayerJumpEvents;
-            SpringPad.OnPlayerJumpedOffSpring -= PlayerSpringJumpEvents;
+            SpringPad.OnSmallSpringJump -= PlayerSpringJumpEvents;
         }
 
         private void PlayerJumpEvents() {

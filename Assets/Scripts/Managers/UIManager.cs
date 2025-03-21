@@ -6,8 +6,6 @@ namespace LMO {
     public class UIManager : MonoBehaviour {
         public static UIManager instance;
 
-        [SerializeField] private Animator fadeScreen;
-
         void Awake() {
             if (instance != null) {
                 Debug.LogWarning("There are multiple UIManagers in the scene, please ensure they is only one", this);
@@ -25,25 +23,10 @@ namespace LMO {
             UnsubscribeFromEvents();
         }
 
-        private void FadeScreenIn() {
-            fadeScreen.SetTrigger("FadeIn");
-        }
-
-        private void FadeScreenOut() {
-            fadeScreen.SetTrigger("FadeOut");
-        }
-
-        // When the scene is ending, fade out the screen
         private void SubscribeToEvents() {
-            GlobalEventManager.SceneRestarted += FadeScreenIn;
-            SpawnPlayer.OnLevelReset += FadeScreenIn;
-            SpawnPlayer.OnPlayerRespawned += FadeScreenOut;
         }
 
         private void UnsubscribeFromEvents() {
-            GlobalEventManager.SceneRestarted -= FadeScreenIn;
-            SpawnPlayer.OnLevelReset -= FadeScreenIn;
-            SpawnPlayer.OnPlayerRespawned -= FadeScreenOut;
         }
     }
 }

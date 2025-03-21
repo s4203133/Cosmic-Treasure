@@ -8,12 +8,14 @@ namespace LMO {
         protected PlayerJump jump;
         private Grounded grounded;
         private PlayerInput input;
+        protected PlayerJumpSettings jumpSettings;
 
         public PlayerJumpState(PlayerController playerController) : base(playerController) {
             movement = context.playerMovment;
             jump = context.playerJump;
             grounded = jump.groundedSystem;
             input = context.playerInput;
+            jumpSettings = context.PlayerSettings.Jump;
         }
 
         public override void OnStateEnter() {
@@ -22,6 +24,7 @@ namespace LMO {
             InputHandler.groundPoundStarted += GroundPound;
             InputHandler.jumpStarted += Hover;
             InputHandler.grappleStarted += Grapple;
+            SpringPad.OnSmallSpringJump += SmallSpringJump;
 
             StartJump();
         }
@@ -48,6 +51,7 @@ namespace LMO {
             InputHandler.groundPoundStarted -= GroundPound;
             InputHandler.jumpStarted -= Hover;
             InputHandler.grappleStarted -= Grapple;
+            SpringPad.OnSmallSpringJump -= SmallSpringJump;
 
             jump.EndJump();
         }
@@ -59,25 +63,30 @@ namespace LMO {
         // Transition states based off input
 
         protected virtual void StartJump() {
+            jump.ChangeJumpSettings(jumpSettings);
             jump.InitialiseJump();
         }
 
-        private void Spin() {
+        protected void Spin() {
             stateMachine.ChangeState(stateMachine.spinState);
         }
 
-        private void GroundPound() {
+        protected void GroundPound() {
             stateMachine.ChangeState(stateMachine.groundPoundState);
         }
 
-        private void Hover() {
+        protected void Hover() {
             if (!grounded.IsOnGround) {
                 stateMachine.ChangeState(stateMachine.hoverState);
             }
         }
 
-        private void Grapple() {
+        protected void Grapple() {
             stateMachine.ChangeState(stateMachine.swingState);
+        }
+
+        private void SmallSpringJump() {
+            stateMachine.ChangeState(stateMachine.smallSpringJumpState);
         }
     }
 }

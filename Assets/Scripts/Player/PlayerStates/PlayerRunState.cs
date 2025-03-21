@@ -9,7 +9,7 @@ namespace LMO {
         private Grounded grounded;
         private PlayerInput input;
 
-        private PlayerMovementSettings moveSettings;
+        protected PlayerMovementSettings moveSettings;
 
         public PlayerRunState(PlayerController playerController) : base(playerController) {
             movement = context.playerMovment;
@@ -21,6 +21,7 @@ namespace LMO {
         public override void OnStateEnter() {
             InputHandler.jumpStarted += Jump;
             InputHandler.SpinStarted += Spin;
+            SpringPad.OnSmallSpringJump += SmallSpringJump;
 
             movement.OnMoveStarted?.Invoke();
             // Apply regular movement variables to move component
@@ -41,6 +42,7 @@ namespace LMO {
         public override void OnStateExit() {
             InputHandler.jumpStarted -= Jump;
             InputHandler.SpinStarted -= Spin;
+            SpringPad.OnSmallSpringJump -= SmallSpringJump;
 
             movement.OnMoveStopped?.Invoke();
         }
@@ -51,34 +53,42 @@ namespace LMO {
 
         // Transition states based off input or environmental changes
 
-        private void Jump() {
+        protected virtual void Idle() {
+            stateMachine.ChangeState(stateMachine.idleState);
+        }
+
+        protected virtual void Jump() {
             if (stateMachine.controller.playerJump.CanJump()) {
                 stateMachine.ChangeState(stateMachine.jumpState);
             }
         }
 
-        private void CheckForJumpInput() {
+        protected virtual void CheckForJumpInput() {
             if (InputBuffers.instance.jump.HasInputBeenRecieved()) {
                 stateMachine.ChangeState(stateMachine.jumpState);
             }
         }
 
-        private void CheckIfPlayerLeftPlatform() {
+        protected virtual void CheckIfPlayerLeftPlatform() {
             if (!grounded.IsOnGround) {
                 stateMachine.ChangeState(stateMachine.fallingState);
             }
         }
 
-        private void CheckIfFinishedMoving() {
+        protected virtual void CheckIfFinishedMoving() {
             if (input.moveInput == Vector2.zero) {
                 if (movement.HasStopped()) {
-                    stateMachine.ChangeState(stateMachine.idleState);
+                    Idle();
                 }
             }
         }
 
-        private void Spin() {
+        protected virtual void Spin() {
             stateMachine.ChangeState(stateMachine.spinState);
+        }
+
+        protected virtual void SmallSpringJump() {
+            stateMachine.ChangeState(stateMachine.smallSpringJumpState);
         }
     }
 }

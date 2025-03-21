@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace LMO {
 
-    [System.Serializable]
     public class PlayerIdleState : PlayerBaseState {
 
         private PlayerIdle idle;
@@ -16,6 +15,8 @@ namespace LMO {
             InputHandler.movePerformed += StartedMoving;
             InputHandler.jumpStarted += Jump;
             InputHandler.SpinStarted += Spin;
+            InputHandler.grappleStarted += Grapple;
+            SpringPad.OnSmallSpringJump += SmallSpringJump;
 
             CheckForJumpInput();
         }
@@ -33,6 +34,8 @@ namespace LMO {
             InputHandler.movePerformed -= StartedMoving;
             InputHandler.jumpStarted -= Jump;
             InputHandler.SpinStarted -= Spin;
+            InputHandler.grappleStarted -= Grapple;
+            SpringPad.OnSmallSpringJump -= SmallSpringJump;
         }
 
         public override void OnTriggerEnter(Collider other) {
@@ -40,26 +43,34 @@ namespace LMO {
 
         // Transition to state based off input 
 
-        private void StartedMoving(Vector2 value) {
+        protected virtual void StartedMoving(Vector2 value) {
             if (value != Vector2.zero) {
                 stateMachine.ChangeState(stateMachine.runState);
             }
         }
 
-        private void Jump() {
+        protected virtual void Jump() {
             if (stateMachine.controller.playerJump.CanJump()) {
                 stateMachine.ChangeState(stateMachine.jumpState);
             }
         }
 
-        private void CheckForJumpInput() {
+        protected virtual void CheckForJumpInput() {
             if (InputBuffers.instance.jump.HasInputBeenRecieved()) {
                 stateMachine.ChangeState(stateMachine.jumpState);
             }
         }
 
-        private void Spin() {
+        protected virtual void Spin() {
             stateMachine.ChangeState(stateMachine.spinState);
+        }
+
+        protected virtual void SmallSpringJump() {
+            stateMachine.ChangeState(stateMachine.smallSpringJumpState);
+        }
+
+        private void Grapple() {
+            stateMachine.GrappleToTarget();
         }
     }
 }

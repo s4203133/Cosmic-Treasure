@@ -55,8 +55,8 @@ namespace LMO {
             }
         }
 
-        public void SetRopeTarget(Vector3 position) {
-            ropeEndPoint = position;
+        public void SetRopeTarget(Transform target) {
+            ropeEndPoint = target.position;
             currentGrapplePosition = ropeStartPoint.position;
             lineRenderer.positionCount = segments + 1;
             isShooting = true;

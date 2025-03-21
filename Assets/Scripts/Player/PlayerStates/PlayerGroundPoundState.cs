@@ -17,6 +17,7 @@ namespace LMO {
         public override void OnStateEnter() {
             InputHandler.jumpStarted += CheckJumpInput;
             InputHandler.SpinStarted += RegisterDiveInput;
+            SpringPad.OnSmallSpringJump += LargeSpringJump;
             groundPound.OnGroundPoundFinished += MoveToIdleState;
 
             diveRegistered = false;
@@ -32,6 +33,7 @@ namespace LMO {
         public override void OnStateExit() {
             InputHandler.jumpStarted -= CheckJumpInput;
             InputHandler.SpinStarted -= RegisterDiveInput;
+            SpringPad.OnSmallSpringJump += LargeSpringJump;
             groundPound.OnGroundPoundFinished -= MoveToIdleState;
         }
 
@@ -83,6 +85,10 @@ namespace LMO {
 
         private void Dive() {
             stateMachine.ChangeState(stateMachine.diveState);
+        }
+
+        private void LargeSpringJump() {
+            stateMachine.ChangeState(stateMachine.largeSpringJumpState);
         }
     }
 }

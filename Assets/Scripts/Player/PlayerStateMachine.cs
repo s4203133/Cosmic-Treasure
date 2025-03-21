@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 namespace LMO {
 
@@ -11,12 +10,20 @@ namespace LMO {
         public PlayerIdleState idleState;
         public PlayerRunState runState;
         public PlayerJumpState jumpState;
+        public PlayerSmallSpringJump smallSpringJumpState;
+        public PlayerLargeSpringJump largeSpringJumpState;
         public PlayerFallingState fallingState;
         public PlayerSpinState spinState;
         public PlayerGroundPoundState groundPoundState;
         public PlayerHighJumpState highJumpState;
         public PlayerHoverState hoverState;
         public PlayerDiveState diveState;
+
+        // Grapple States
+        public PlayerGrappleConnectedIdle grappleIdle;
+        public PlayerGrappleConnectedMove grappleRun;
+        public PlayerGrappleConnectedJump grappleJump;
+        public PlayerGrappleConnectedSpin grappleSpin;
         public PlayerSwingState swingState;
 
         public PlayerController controller;
@@ -64,12 +71,19 @@ namespace LMO {
             idleState = new PlayerIdleState(controller);
             runState = new PlayerRunState(controller);
             jumpState = new PlayerJumpState(controller);
+            smallSpringJumpState = new PlayerSmallSpringJump(controller);
+            largeSpringJumpState = new PlayerLargeSpringJump(controller);
             fallingState = new PlayerFallingState(controller);
             spinState = new PlayerSpinState(controller);
             groundPoundState = new PlayerGroundPoundState(controller);
             highJumpState = new PlayerHighJumpState(controller);
             hoverState = new PlayerHoverState(controller);
             diveState = new PlayerDiveState(controller);
+
+            grappleIdle = new PlayerGrappleConnectedIdle(controller);
+            grappleRun = new PlayerGrappleConnectedMove(controller);
+            grappleJump = new PlayerGrappleConnectedJump(controller);
+            grappleSpin = new PlayerGrappleConnectedSpin(controller);
             swingState = new PlayerSwingState(controller);
         }
 
@@ -89,6 +103,11 @@ namespace LMO {
 
         public void Fall() {
             ChangeState(fallingState);
+        }
+
+        public void GrappleToTarget() {
+            controller.playerGrapple.OnGrappleStarted?.Invoke(controller.playerSwingManager.SwingTarget.transform);
+            ChangeState(grappleIdle);
         }
 
         public void Activate() {

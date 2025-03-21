@@ -55,7 +55,9 @@ namespace LMO {
         // Get the input direction, then move and rotate character in that direction
         public void MoveCharacter() {
             GetMoveDirection();
-            rotation.RotateTowardsDirection(moveDirection, settings.RotationSpeed);
+            if (settings.CanRotate) {
+                rotation.RotateTowardsDirection(moveDirection, settings.RotationSpeed);
+            }
             CalculateVelocity(settings.Acceleration);
             ApplyVelocity();
         }
@@ -76,7 +78,12 @@ namespace LMO {
             // Get the current velocity based off a provided momentum (acceleration or deceleration)
             velocityDifference = velocityCalculator.CalculateVelocityDifference(moveDirection, settings.ChangeDirectionThreshhold);
             speed = velocityCalculator.CalculateChangeInSpeed(motion, settings.MaxSpeed);
-            velocity = velocityCalculator.CalculateVelocity(settings.CanChangeDirectionQuickly, moveDirection, speed, velocityDifference);
+            if (!settings.CanRotate) {
+                velocity = velocityCalculator.CalculateVelocity(moveDirection, speed);
+            }
+            else {
+                velocity = velocityCalculator.CalculateVelocity(settings.CanChangeDirectionQuickly, moveDirection, speed, velocityDifference);
+            }
         }
 
         private void ApplyVelocity() {

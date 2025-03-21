@@ -41,8 +41,8 @@ namespace LMO {
             camDirection = new CameraDirection(camTransform);
         }
 
-        public void StartSwing(Vector3 swingPoint) {
-            jointPosition = swingPoint;
+        public void StartSwing(Transform swingPoint) {
+            jointPosition = swingPoint.position;
             rigidBody.useGravity = false;
             rigidBody.velocity = Vector3.zero;
             timer = duration;

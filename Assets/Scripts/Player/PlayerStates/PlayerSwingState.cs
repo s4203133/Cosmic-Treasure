@@ -4,15 +4,15 @@ namespace LMO {
 
     public class PlayerSwingState : PlayerBaseState {
 
-        PlayerSwing swing;
-        SwingManager swingManager;
-
-        PlayerMovement movement;
+        private PlayerSwing swing;
+        private SwingManager swingManager;
+        private PlayerMovement movement;
+        private Grapple grapple;
 
         public delegate void CustomEvent();
-        public delegate void CustomEventV3(Vector3 targetPosition);
+        public delegate void CustomEventT(Transform target);
 
-        public static CustomEventV3 OnSwingStart;
+        public static CustomEventT OnSwingStart;
         public static CustomEvent OnJumpFromSwing;
         public static CustomEvent OnSwingEnd;
 
@@ -20,6 +20,7 @@ namespace LMO {
             swing = playerController.playerSwing;
             swingManager = playerController.playerSwingManager;
             movement = playerController.playerMovment;
+            grapple = playerController.playerGrapple;
         }
 
         public override void OnTriggerEnter(Collider collider) {
@@ -35,8 +36,7 @@ namespace LMO {
             InputHandler.grappleStarted += DisconnectGrapple;
             InputHandler.jumpStarted += JumpFromGrapple;
 
-            movement.ChangeMovementSettings(swing.MovementSettings);
-            OnSwingStart?.Invoke(swingManager.SwingTarget.transform.position);
+            StartSwing();
         }
 
         public override void OnStatePhysicsUpdate() {
@@ -47,11 +47,28 @@ namespace LMO {
             InputHandler.grappleStarted -= DisconnectGrapple;
             InputHandler.jumpStarted -= JumpFromGrapple;
 
-            OnSwingEnd?.Invoke();
+            EndSwing();
         }
 
         public override void OnStateUpdate() {
             swing.CountdownConnectionTimer();
+        }
+
+        private void StartSwing() {
+            movement.ChangeMovementSettings(swing.MovementSettings);
+            if(grapple.objectCurrentlyGrappledOnto == null) {
+                OnSwingStart?.Invoke(swingManager.SwingTarget.transform);
+                grapple.OnGrappleStarted?.Invoke(swingManager.SwingTarget.transform);
+            }
+            else {
+                OnSwingStart?.Invoke(grapple.objectCurrentlyGrappledOnto.transform);
+                //grapple.OnGrappleStarted?.Invoke(swingManager.SwingTarget.transform);
+            }
+        }
+
+        private void EndSwing() {
+            OnSwingEnd?.Invoke();
+            grapple.OnGrappleEnded?.Invoke();
         }
 
         private void DisconnectGrapple() {

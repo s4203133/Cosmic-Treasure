@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501c6fcb49dedcd469035c067a134bf9, type: 3}
+  m_Name: Player Small Spring Jump
+  m_EditorClassIdentifier: 
+  jumpForce: 675
+  highJumpForce: 1275
+  maxJumpDuration: 0.17
+  minJumpDuration: 0.085
+  minJumpInput: 0.0925
+  jumpCutOffIntensity: 0.775
+  jumpApexThreshold: 4.2
+  jumpApexGravityReduction: 0.675
+  jumpApexMaxSpeed: 1.175
+  jumpApexSpeedIncrease: 0.055
+  fallSpeed: 1.75
+  maxFallSpeed: 45

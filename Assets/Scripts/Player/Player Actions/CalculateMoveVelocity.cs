@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LMO;
+using UnityEngine;
 
 namespace LMO {
     public class CalculateMoveVelocity {
@@ -17,6 +18,10 @@ namespace LMO {
 
         public float CalculateChangeInSpeed(MotionCurve speedChange, float maxSpeed) {
             return (speedChange.CalculateValue(maxSpeed));
+        }
+
+        public Vector3 CalculateVelocity(Vector3 direction, float speed) {
+            return direction * speed * TimeValues.FixedDelta;
         }
 
         public Vector3 CalculateVelocity(bool canChangeDirectionQuickly, Vector3 direction, float speed, float velocityDifference) {

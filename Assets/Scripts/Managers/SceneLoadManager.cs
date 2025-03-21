@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,8 +11,7 @@ namespace LMO {
         [SerializeField] private float loadDelay;
         private WaitForSeconds delay;
 
-        public delegate void SceneLoadEvent();
-        public SceneLoadEvent SceneStartedLoading;
+        public static Action OnSceneStartedLoading;
 
         void Awake() {
             if (instance != null) {
@@ -34,7 +34,7 @@ namespace LMO {
 
         public void RestartScene() {
             // Event to fade out screen and trigger any clean up logic before scene ends
-            SceneStartedLoading?.Invoke();
+            OnSceneStartedLoading?.Invoke();
 
             // Load the scene after a delay
             StartCoroutine(DelayLoad());
@@ -46,7 +46,7 @@ namespace LMO {
 
         public void LoadScene(int sceneIndex) {
             // Event to fade out screen and trigger any clean up logic before scene ends
-            SceneStartedLoading?.Invoke();
+            OnSceneStartedLoading?.Invoke();
 
             // Load the scene after a delay
             StartCoroutine(DelayLoad());

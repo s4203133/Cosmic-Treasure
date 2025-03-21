@@ -10,6 +10,7 @@ namespace LMO {
 
         [Header("COMPONENTS")]
         [SerializeField] private Rigidbody rigidBody;
+        [SerializeField] private PlayerSettings settings;
         [SerializeField] private PlayerIdle idle;
         [SerializeField] private PlayerMovement movement;
         [SerializeField] private PlayerJump jump;
@@ -18,6 +19,7 @@ namespace LMO {
         [SerializeField] private PlayerHover hover;
         [SerializeField] private PlayerDive dive;
         [SerializeField] private PlayerSwing swing;
+        [SerializeField] private Grapple grapple;
         [SerializeField] private SwingManager swingManager;
         [SerializeField] private PlayerVFX vfx;
         [SerializeField] private Animator animator;
@@ -29,6 +31,7 @@ namespace LMO {
 
         // Public Accessors
         public PlayerStateMachine playerStateMachine => stateMachine;
+        public PlayerSettings PlayerSettings => settings;
         public PlayerIdle playerIdle => idle;
         public PlayerMovement playerMovment => movement;
         public PlayerJump playerJump => jump;
@@ -37,6 +40,7 @@ namespace LMO {
         public PlayerHover playerHover => hover;
         public PlayerDive playerDive => dive;
         public PlayerSwing playerSwing => swing;
+        public Grapple playerGrapple => grapple;
         public SwingManager playerSwingManager => swingManager;
         public PlayerVFX playerVFX => vfx;
         public Animator playerAnimator => animator;

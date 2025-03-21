@@ -28,6 +28,7 @@ namespace LMO {
             InputHandler.SpinStarted += Spin;
             InputHandler.groundPoundStarted += GroundPound;
             InputHandler.grappleStarted += Grapple;
+            SpringPad.OnSmallSpringJump += SmallSpringJump;
 
             CheckForSpinInput();
             CheckForHoverInput();
@@ -55,6 +56,7 @@ namespace LMO {
             InputHandler.SpinStarted -= Spin;
             InputHandler.groundPoundStarted -= GroundPound;
             InputHandler.grappleStarted -= Grapple;
+            SpringPad.OnSmallSpringJump -= SmallSpringJump;
 
             jump.EndJump();
         }
@@ -113,6 +115,10 @@ namespace LMO {
 
         private void Grapple() {
             stateMachine.ChangeState(stateMachine.swingState);
+        }
+
+        private void SmallSpringJump() {
+            stateMachine.ChangeState(stateMachine.smallSpringJumpState);
         }
     }
 }

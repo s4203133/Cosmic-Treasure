@@ -55,12 +55,15 @@ namespace LMO {
                 SwingJoint thisJoint = allJoints[i];
 
                 Vector3 jointPosition = thisJoint.transform.position;
-                float distance = (jointPosition - playerTransform.position).sqrMagnitude;
-                if (distance > distanceSqrd) {
+                float distanceFromPlayer = (jointPosition - playerTransform.position).sqrMagnitude;
+                thisJoint.distanceFromPlayer = distanceFromPlayer;
+                if (distanceFromPlayer > distanceSqrd) {
+                    UnregisterSwingPoint(thisJoint);
                     continue;
                 }
 
-                if (Vector3.Dot(playerTransform.forward, (jointPosition - playerTransform.transform.position).normalized) < angle) {
+                if (Vector3.Dot(playerTransform.forward, new Vector3(jointPosition.x - playerTransform.transform.position.x, 0, jointPosition.z - playerTransform.transform.position.z).normalized) < angle) {
+                    UnregisterSwingPoint(thisJoint);
                     continue;
                 }
 
@@ -71,28 +74,53 @@ namespace LMO {
         private void RegisterNeabySwingPoint(SwingJoint joint) {
             if (nearbyJoints.Count == 0) {
                 nearbyJoints.Add(joint);
-                joint.distanceFromPlayer = distance;
             } else {
-                if (distance < nearbyJoints[0].distanceFromPlayer) {
-                    nearbyJoints.Insert(0, joint);
+                if (joint.distanceFromPlayer < nearbyJoints[0].distanceFromPlayer) {
+                    UnregisterSwingPoint(nearbyJoints[0]);
+                    nearbyJoints.Add(joint);
                 }
             }
         }
 
         private void AssignClosestSwingPoint() {
-            if (closestSwingPoint == null) {
+            if (closestSwingPoint == null || closestSwingPoint != nearbyJoints[0]) {
+                UnregisterSwingPoint(closestSwingPoint);
                 closestSwingPoint = nearbyJoints[0];
+                closestSwingPoint.Activate();
                 OnSwingPointFound?.Invoke(closestSwingPoint.gameObject);
-                closestSwingPoint.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
             }
         }
 
         private void ClearClosestSwingPoint() {
             if (closestSwingPoint != null) {
-                closestSwingPoint.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+                closestSwingPoint.Deactivate();
                 OnSwingPointOutOfRange?.Invoke(closestSwingPoint.gameObject);
             }
             closestSwingPoint = null;
         }
+
+        private void UnregisterSwingPoint(SwingJoint joint) {
+            if(joint == null) {
+                return;
+            }
+            joint.Deactivate();
+            if (nearbyJoints.Contains(joint)) {
+                nearbyJoints.Remove(joint);
+            }
+        }
+
+        /*        private void OnDrawGizmos() {
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawLine(playerTransform.position + Vector3.up, (playerTransform.position + playerTransform.forward * 5) + Vector3.up);
+
+
+                    if (Vector3.Dot(playerTransform.forward, new Vector3(closestSwingPoint.transform.position.x - playerTransform.transform.position.x, 0, closestSwingPoint.transform.position.z - playerTransform.transform.position.z).normalized) < angle) {
+                        Gizmos.color = Color.yellow;
+                    }
+                    else {
+                        Gizmos.color = Color.green;
+                    }
+                    Gizmos.DrawLine(playerTransform.position + Vector3.up, playerTransform.position + new Vector3(closestSwingPoint.transform.position.x - playerTransform.transform.position.x, 0, closestSwingPoint.transform.position.z - playerTransform.transform.position.z).normalized * 5 + Vector3.up);
+                }*/
     }
 }

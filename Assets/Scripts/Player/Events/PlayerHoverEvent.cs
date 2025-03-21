@@ -23,10 +23,10 @@ namespace LMO {
 
         public void UnsubscribeEvents() {
             PlayerHover.OnHoverStarted -= playerVFX.PlayHoverVFX;
-            PlayerHover.OnHoverContinued += playerVFX.PlayHoverVFX;
+            PlayerHover.OnHoverContinued -= playerVFX.PlayHoverVFX;
             PlayerHover.OnHoverEnded -= playerVFX.StopHoverVFX;
-            Grounded.OnLanded += hover.EndHover;
-            Grounded.OnLanded += playerVFX.StopHoverVFX;
+            Grounded.OnLanded -= hover.EndHover;
+            Grounded.OnLanded -= playerVFX.StopHoverVFX;
         }
     }
 }
