@@ -1,17 +1,14 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace LMO {
 
     public class PlayerGrappleConnectedIdle : PlayerIdleState {
 
-        private PlayerIdle idle;
         private SwingManager swingManager;
         private Transform thisTransform;
         private Grapple grapple;
 
         public PlayerGrappleConnectedIdle(PlayerController playerController) : base(playerController) {
-            idle = context.playerIdle;
             swingManager = context.playerSwingManager;
             thisTransform = playerController.transform;
             grapple = playerController.playerGrapple;
@@ -30,15 +27,14 @@ namespace LMO {
         }
 
         protected override void Jump() {
-            grapple.OnGrappleEnded?.Invoke();
             if (stateMachine.controller.playerJump.CanJump()) {
-                stateMachine.ChangeState(stateMachine.jumpState);
+                stateMachine.ChangeState(stateMachine.grappleJump);
             }
         }
 
         protected override void CheckForJumpInput() {
             if (InputBuffers.instance.jump.HasInputBeenRecieved()) {
-                stateMachine.ChangeState(stateMachine.jumpState);
+                stateMachine.ChangeState(stateMachine.grappleJump);
             }
         }
 
@@ -49,6 +45,10 @@ namespace LMO {
 
         protected override void SmallSpringJump() {
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
+        }
+
+        protected override void Grapple() {
+
         }
     }
 }

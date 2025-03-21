@@ -4,7 +4,9 @@ using UnityEngine;
 namespace LMO {
 
     public class Grapple : MonoBehaviour {
-        public SwingJoint objectCurrentlyGrappledOnto;
+        /*[HideInInspector]*/ public SwingJoint objectCurrentlyGrappledOnto;
+        [SerializeField] private Transform playerTransform;
+        [SerializeField] private SwingJointSettings jointSettings;
 
         public Action<Transform> OnGrappleStarted;
         public Action OnGrappleEnded;
@@ -21,9 +23,11 @@ namespace LMO {
 
         public void AssignGrapplePoint(Transform newGrapplePoint) {
             objectCurrentlyGrappledOnto = newGrapplePoint.GetComponent<SwingJoint>();
+            jointSettings.InitialiseJoint(playerTransform, newGrapplePoint.position);
         }
 
         public void RemoveGrapplePoint() {
+            Destroy(jointSettings.Joint);
             objectCurrentlyGrappledOnto = null;
         }
     }

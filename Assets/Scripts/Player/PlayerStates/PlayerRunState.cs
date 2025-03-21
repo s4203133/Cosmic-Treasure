@@ -5,7 +5,7 @@ namespace LMO {
     [System.Serializable]
     public class PlayerRunState : PlayerBaseState {
 
-        private PlayerMovement movement;
+        protected PlayerMovement movement;
         private Grounded grounded;
         private PlayerInput input;
 
@@ -21,6 +21,7 @@ namespace LMO {
         public override void OnStateEnter() {
             InputHandler.jumpStarted += Jump;
             InputHandler.SpinStarted += Spin;
+            InputHandler.grappleStarted += Grapple;
             SpringPad.OnSmallSpringJump += SmallSpringJump;
 
             movement.OnMoveStarted?.Invoke();
@@ -42,6 +43,7 @@ namespace LMO {
         public override void OnStateExit() {
             InputHandler.jumpStarted -= Jump;
             InputHandler.SpinStarted -= Spin;
+            InputHandler.grappleStarted -= Grapple;
             SpringPad.OnSmallSpringJump -= SmallSpringJump;
 
             movement.OnMoveStopped?.Invoke();
@@ -89,6 +91,10 @@ namespace LMO {
 
         protected virtual void SmallSpringJump() {
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
+        }
+
+        protected virtual void Grapple() {
+            stateMachine.GrappleToTarget();
         }
     }
 }

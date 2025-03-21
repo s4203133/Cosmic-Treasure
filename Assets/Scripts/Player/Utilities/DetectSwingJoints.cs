@@ -13,6 +13,7 @@ namespace LMO {
         [SerializeField] private Transform cameraTransform;
 
         [SerializeField] private float distance;
+        public float Range => distance;
         private float distanceSqrd;
         [SerializeField] private float angle;
 

@@ -69,7 +69,7 @@ namespace LMO {
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
         }
 
-        private void Grapple() {
+        protected virtual void Grapple() {
             stateMachine.GrappleToTarget();
         }
     }

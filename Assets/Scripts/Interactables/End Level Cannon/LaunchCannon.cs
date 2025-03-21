@@ -13,6 +13,7 @@ namespace LMO {
         private WaitForSeconds endScene;
 
         [SerializeField] private EndScreen endScreen;
+        [SerializeField] private FadeScreen fadeScreen;
         [SerializeField] private SceneIndexData sceneIndexData;
 
         private bool launched;
@@ -36,6 +37,7 @@ namespace LMO {
 
         private IEnumerator EndScene() {
             yield return endScene;
+            fadeScreen.gameObject.SetActive(false);
             endScreen.Open();
             SceneLoadManager.instance.LoadScene(sceneIndexData.EndLevelScene);
         }

@@ -8,6 +8,7 @@ namespace LMO {
         private Grounded grounded;
         private Transform thisTransform;
         private Grapple grapple;
+        private Rigidbody rigidBody;
 
         private float notOnGroundTimer;
 
@@ -17,6 +18,7 @@ namespace LMO {
             grounded = context.playerJump.groundedSystem;
             thisTransform = playerController.transform;
             grapple = playerController.playerGrapple;
+            rigidBody = playerController.RigidBody;
         }
 
         public override void OnStateEnter() {
@@ -24,8 +26,15 @@ namespace LMO {
             notOnGroundTimer = 0.3f;
         }
 
+        public override void OnStateExit() {
+            base.OnStateExit();
+        }
+
         public override void OnStateUpdate() {
             base.OnStateUpdate();
+            if (grounded.IsOnGround) {
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, Physics.gravity.y, rigidBody.velocity.z);
+            }
             Vector3 targetDirection = swingManager.SwingTarget.transform.position;
             targetDirection.y = thisTransform.position.y;
             thisTransform.LookAt(targetDirection);
@@ -35,9 +44,8 @@ namespace LMO {
         }
 
         protected override void Jump() {
-            grapple.OnGrappleEnded?.Invoke();
             if (stateMachine.controller.playerJump.CanJump()) {
-                stateMachine.ChangeState(stateMachine.jumpState);
+                stateMachine.ChangeState(stateMachine.grappleJump);
             }
         }
 
@@ -52,15 +60,24 @@ namespace LMO {
                 if(notOnGroundTimer <= 0) { 
                     stateMachine.ChangeState(stateMachine.swingState);
                 }
-                //grapple.OnGrappleEnded?.Invoke();
             }
             else {
                 notOnGroundTimer = 0.3f;
             }
         }
 
+        protected override void CheckForJumpInput() {
+            if (InputBuffers.instance.jump.HasInputBeenRecieved()) {
+                stateMachine.ChangeState(stateMachine.grappleJump);
+            }
+        }
+
         protected override void SmallSpringJump() {
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
+        }
+
+        protected override void Grapple() {
+            
         }
     }
 }

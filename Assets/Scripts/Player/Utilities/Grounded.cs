@@ -7,6 +7,7 @@ namespace LMO {
         private bool isGrounded;
         [SerializeField] private Transform groundPoint;
         [SerializeField] private LayerMask jumpLayers;
+        public LayerMask DetectableLayers => jumpLayers;
         [SerializeField] private float groundCheckRadius;
 
         private bool hasStartedJump;

@@ -5,9 +5,10 @@ namespace LMO {
     public class PlayerSwing : MonoBehaviour {
 
         [Header("CONNECTING SETTINGS")]
-        [SerializeField] private float duration;
+        [SerializeField] private float connectDuration;
         private float timer;
         private bool connected;
+        [SerializeField] private Grapple grapple;
 
         [Header("MOVEMENT SETTINGS")]
         [SerializeField] private PlayerMovementSettings movementSettings;
@@ -43,9 +44,13 @@ namespace LMO {
 
         public void StartSwing(Transform swingPoint) {
             jointPosition = swingPoint.position;
+            if (grapple.objectCurrentlyGrappledOnto != null) {
+                InitialiseSwinging();
+                return;
+            }
             rigidBody.useGravity = false;
             rigidBody.velocity = Vector3.zero;
-            timer = duration;
+            timer = connectDuration;
         }
 
         public void CountdownConnectionTimer() {
