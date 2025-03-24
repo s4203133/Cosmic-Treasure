@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace NR {
     public class Activateable : MonoBehaviour {
-        public Lever activator;
+        public Activator activator;
 
         private void Awake() {
             activator.OnActivate += Activate;
