@@ -32,8 +32,8 @@ namespace LMO {
         }
 
         public void UnsubscribeEvents() {
-            grapple.OnGrappleStarted += StartSwing;
-            grapple.OnGrappleEnded += EndSwing;
+            grapple.OnGrappleStarted -= ConnectGrappleRope;
+            grapple.OnGrappleEnded -= EndSwing;
             PlayerSwingState.OnSwingStart -= StartSwing;
             PlayerSwingState.OnSwingEnd -= EndSwing;
             PlayerSwingState.OnJumpFromSwing -= JumpFromSwing;
@@ -47,16 +47,18 @@ namespace LMO {
         }
 
         private void ConnectGrappleRope(Transform target) {
+            animator.SetBool("Swinging", true);
             rope.SetRopeTarget(target);
         }
 
         private void EndSwing() {
+            animator.SetBool("Swinging", false);
             swing.EndSwing();
             rope.DetatchRope();
         }
 
         private void JumpFromSwing() {
-            animator.SetTrigger("Swing");
+            animator.SetBool("Swinging", true);
             trail.StartTrail();
             fovChanger.StartChange();
         }

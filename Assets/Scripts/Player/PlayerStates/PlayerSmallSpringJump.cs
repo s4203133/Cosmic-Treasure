@@ -26,7 +26,7 @@ namespace LMO {
             jump.EndJump();
         }
 
-        private void SmallSpringJump() {
+        protected override void SmallSpringJump() {
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
         }
     }

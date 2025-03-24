@@ -93,7 +93,7 @@ namespace LMO {
             stateMachine.ChangeState(stateMachine.swingState);
         }
 
-        protected void SmallSpringJump() {
+        protected virtual void SmallSpringJump() {
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
         }
     }

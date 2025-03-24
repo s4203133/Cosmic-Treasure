@@ -35874,27 +35874,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 996130689742444002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1062221615552361104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4952046645803263679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2b7f2fa55e28fb46b1db0b18c39b784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 4203791753069812819}
-  groundPoint: {fileID: 5691183037915008868}
-  jumpLayers:
-    serializedVersion: 2
-    m_Bits: 1088
-  movingPlatformLayers:
-    serializedVersion: 2
-    m_Bits: 1024
-  groundCheckRadius: 0.15
 --- !u!4 &1088619777953921434
 Transform:
   m_ObjectHideFlags: 0
@@ -38219,6 +38198,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5691183037915008868}
+  - component: {fileID: 5691183037915008870}
+  - component: {fileID: 5691183037915008869}
   m_Layer: 8
   m_Name: Ground Detection Point
   m_TagString: Untagged
@@ -38705,8 +38686,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: af6f99a2d86d66341b9b7cdc563f90aa, type: 2}
-  JumpSettings: {fileID: 0}
-  grounded: {fileID: 1062221615552361104}
+  JumpSettings: {fileID: 11400000, guid: af6f99a2d86d66341b9b7cdc563f90aa, type: 2}
+  grounded: {fileID: 5691183037915008870}
   rigidBody: {fileID: 6145371207492205454}
   animator: {fileID: 2896275202394173799}
 --- !u!23 &3384277721737043892
@@ -40811,7 +40792,6 @@ GameObject:
   - component: {fileID: 5596833221347593280}
   - component: {fileID: 665720456429204255}
   - component: {fileID: 3381219315480049121}
-  - component: {fileID: 1062221615552361104}
   - component: {fileID: 6411727458369104217}
   - component: {fileID: 1272051602158288218}
   - component: {fileID: 3120580278540588182}
@@ -41676,6 +41656,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4203791753069812819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5691183037915008869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056304703936909370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be94e7f9e4f30234883387f4ee82a458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 4203791753069812819}
+  grounded: {fileID: 5691183037915008870}
+  groundPoint: {fileID: 5691183037915008868}
+  groundCheckRadius: 0.15
+  movingPlatformLayers:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &5691183037915008870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056304703936909370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b7f2fa55e28fb46b1db0b18c39b784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundPoint: {fileID: 5691183037915008868}
+  jumpLayers:
+    serializedVersion: 2
+    m_Bits: 1088
+  groundCheckRadius: 0.15
 --- !u!4 &5719690134364834189
 Transform:
   m_ObjectHideFlags: 0
@@ -42892,7 +42908,7 @@ MonoBehaviour:
     timeUntilDiveCanStart: 0.15
     canInitiateDive: 0
   rigidBody: {fileID: 6145371207492205454}
-  grounded: {fileID: 1062221615552361104}
+  grounded: {fileID: 5691183037915008870}
 --- !u!114 &6411727458369104218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43653,7 +43669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runParticles: {fileID: 8561888282875023324}
   runParticlesEmissionPoint: {fileID: 698214754511377520}
-  grounded: {fileID: 1062221615552361104}
+  grounded: {fileID: 5691183037915008870}
   jumpParticles: {fileID: 2085652132471877912, guid: 78224ddf922e70443ad54d25367bd57a,
     type: 3}
   jumpParticlesSpawnPoint: {fileID: 5915730038868499846}
