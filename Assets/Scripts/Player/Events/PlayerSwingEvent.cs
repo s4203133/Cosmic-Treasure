@@ -56,7 +56,7 @@ namespace LMO {
         }
 
         private void JumpFromSwing() {
-            animator.SetTrigger("BackFlip");
+            animator.SetTrigger("Swing");
             trail.StartTrail();
             fovChanger.StartChange();
         }
