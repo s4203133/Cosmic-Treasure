@@ -32,6 +32,7 @@ namespace LMO {
         private CameraDirection camDirection;
 
         public Action OnDive;
+        public Action OnHitObject;
 
         private void Awake() {
             camDirection = new CameraDirection(cameraTransform);

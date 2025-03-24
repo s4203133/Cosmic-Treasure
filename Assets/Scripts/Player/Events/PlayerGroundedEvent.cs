@@ -4,6 +4,7 @@ namespace LMO {
 
     public class PlayerGroundedEvent : MonoBehaviour, ICustomEvent {
         // Observers
+        private Grounded grounded;
         private PlayerVFX playerVFX;
         private PlayerSquashAndStretch squishy;
         private PlayerSpinAttack playerSpin;
@@ -13,6 +14,7 @@ namespace LMO {
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
+            grounded = player.Controller.playerJump.groundedSystem;
             playerVFX = player.VFX;
             squishy = player.SqashAndStretch;
             playerSpin = player.Controller.playerSpinAttack;
@@ -30,6 +32,7 @@ namespace LMO {
         }
 
         public void OnPLayerLanded() {
+            grounded.AttatchPlayerToMovingPlatform();
             playerVFX.PlayLandParticles();
             squishy.Land.Play();
             animator.SetBool("Jumping", false);
