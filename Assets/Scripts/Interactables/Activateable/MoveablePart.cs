@@ -6,7 +6,7 @@ namespace NR {
     public class MoveablePart : Activateable {
         public Vector3 start;
         public Vector3 end;
-
+         
         public float speed = 1;
         private bool direction;
         private float time;

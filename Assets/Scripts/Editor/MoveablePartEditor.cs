@@ -5,34 +5,50 @@ using UnityEditor;
 
 namespace NR {
     [CustomEditor(typeof(MoveablePart))]
+    [CanEditMultipleObjects]
     public class MoveablePartEditor : Editor {
 
+        SerializedProperty startPos;
+        SerializedProperty endPos;
+
+        private void OnEnable() {
+            SerializedObject serialisedTarget = this.serializedObject;
+            startPos = serialisedTarget.FindProperty("start");
+            endPos = serialisedTarget.FindProperty("end");
+        }
+
         public override void OnInspectorGUI() { 
-            MoveablePart script = (MoveablePart)target;
+            
+            SerializedObject serialisedTarget = this.serializedObject;
+            serialisedTarget.Update();
 
             DrawDefaultInspector();
+
+            MoveablePart script = (MoveablePart)target;
 
             GUILayoutOption[] buttonParams = { GUILayout.Width(170), GUILayout.Height(25) };
 
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Set start to current position", buttonParams)) {
-                script.start = script.transform.position;
+                startPos.vector3Value = script.transform.position;
             }
             GUILayout.FlexibleSpace();
             if (GUILayout.Button("Set end to current position", buttonParams)) {
-                script.end = script.transform.position;
+                endPos.vector3Value = script.transform.position;
             }
             GUILayout.EndHorizontal();
             GUILayout.Space(10);
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Set current position to start", buttonParams)) {
+            if (GUILayout.Button("Go to start", buttonParams)) {
                 script.transform.position = script.start;
             }
             GUILayout.FlexibleSpace();
-            if (GUILayout.Button("Set current position to end", buttonParams)) {
+            if (GUILayout.Button("Go to end", buttonParams)) {
                 script.transform.position = script.end;
             }
             GUILayout.EndHorizontal();
+
+            serialisedTarget.ApplyModifiedProperties();
         }
 
         public void OnSceneGUI() {
