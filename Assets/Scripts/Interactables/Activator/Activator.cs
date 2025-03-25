@@ -6,7 +6,7 @@ namespace NR {
         public Action OnActivate;
         protected Animator animator;
 
-        void Awake() {
+        protected virtual void Awake() {
             animator = GetComponent<Animator>();
         }
     }
