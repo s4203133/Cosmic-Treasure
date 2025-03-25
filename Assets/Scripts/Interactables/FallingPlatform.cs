@@ -1,18 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LMO;
 
-public class FallingPlatform : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+namespace NR {
+    public class FallingPlatform : MonoBehaviour {
+        public float cooldown = 3;
+        private Animator animator;
+        private bool ready = true;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake() {
+            animator = GetComponent<Animator>();
+        }
+
+        public void Fall() {
+            if (ready) {
+                animator.SetBool("Fall", true);
+            }
+        }
+
+        public void StartCooldown() {
+            StartCoroutine(WaitForCooldown());
+        }
+
+        private IEnumerator WaitForCooldown() {
+            yield return new WaitForSeconds(cooldown);
+            animator.SetBool("Fall", false);
+        }
+
+        public void ResetPlatform() {
+            ready = true;
+        }
     }
 }
+
+
