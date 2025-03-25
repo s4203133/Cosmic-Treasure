@@ -1846,7 +1846,7 @@ GameObject:
   - component: {fileID: 113282655}
   - component: {fileID: 113282657}
   - component: {fileID: 113282656}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2247,7 +2247,7 @@ GameObject:
   - component: {fileID: 121665305}
   - component: {fileID: 121665307}
   - component: {fileID: 121665306}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4123,6 +4123,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &237335844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 715389745}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &237335848
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237335844}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &241706297
 GameObject:
   m_ObjectHideFlags: 0
@@ -7817,7 +7844,7 @@ GameObject:
   - component: {fileID: 461074929}
   - component: {fileID: 461074931}
   - component: {fileID: 461074930}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9108,7 +9135,7 @@ GameObject:
   - component: {fileID: 558932524}
   - component: {fileID: 558932527}
   - component: {fileID: 558932526}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11572,10 +11599,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5281223156947806919, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
         type: 3}
       propertyPath: m_Name
       value: Rock Swing Joint
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: detectionRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: playerMustFacePointToConnect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
         type: 3}
@@ -11630,7 +11677,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 237335848}
   m_SourcePrefab: {fileID: 100100000, guid: fc276322901176a49bc78273b661bd0d, type: 3}
 --- !u!1001 &720412154
 PrefabInstance:
@@ -12142,7 +12193,8 @@ GameObject:
   - component: {fileID: 730175562}
   - component: {fileID: 730175564}
   - component: {fileID: 730175563}
-  m_Layer: 0
+  - component: {fileID: 730175565}
+  m_Layer: 11
   m_Name: Swing Joint (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12177,8 +12229,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 20
+  playerMustFacePointToConnect: 1
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &730175564
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12206,6 +12263,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!135 &730175565
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730175561}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &733412758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12719,7 +12797,7 @@ GameObject:
   - component: {fileID: 771019207}
   - component: {fileID: 771019209}
   - component: {fileID: 771019208}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16343,7 +16421,8 @@ GameObject:
   - component: {fileID: 989871344}
   - component: {fileID: 989871343}
   - component: {fileID: 989871342}
-  m_Layer: 0
+  - component: {fileID: 989871345}
+  m_Layer: 11
   m_Name: Swing Joint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16362,8 +16441,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 20
+  playerMustFacePointToConnect: 1
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &989871343
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16407,6 +16491,27 @@ Transform:
   - {fileID: 771019207}
   m_Father: {fileID: 989829924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &989871345
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989871341}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &993404180
 GameObject:
   m_ObjectHideFlags: 0
@@ -17055,7 +17160,8 @@ GameObject:
   - component: {fileID: 1028073422}
   - component: {fileID: 1028073424}
   - component: {fileID: 1028073423}
-  m_Layer: 0
+  - component: {fileID: 1028073425}
+  m_Layer: 11
   m_Name: Swing Joint (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17090,8 +17196,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 20
+  playerMustFacePointToConnect: 1
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &1028073424
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17119,6 +17230,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!135 &1028073425
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028073421}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1034626202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17422,6 +17554,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048949560}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1050078159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1973884296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1050078163
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050078159}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1051645871
 GameObject:
   m_ObjectHideFlags: 0
@@ -18013,10 +18172,30 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5281223156947806919, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
         type: 3}
       propertyPath: m_Name
       value: Rock Swing Joint (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: detectionRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: playerMustFacePointToConnect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
         type: 3}
@@ -18071,7 +18250,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1243588788}
   m_SourcePrefab: {fileID: 100100000, guid: fc276322901176a49bc78273b661bd0d, type: 3}
 --- !u!1001 &1113952704
 PrefabInstance:
@@ -18172,6 +18355,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1113952704}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1118744305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2134992557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1118744309
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118744305}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1127747748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18363,7 +18573,7 @@ RectTransform:
   m_GameObject: {fileID: 1133129265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215631773}
@@ -20326,6 +20536,33 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 745767950}
+--- !u!1 &1243588784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1106957797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1243588788
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243588784}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1244072849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23015,17 +23252,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d7b13f7bd8d2ae4489aa4d83c89b791f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 489.26
+      value: 86.26001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d7b13f7bd8d2ae4489aa4d83c89b791f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.39
+      value: 17.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d7b13f7bd8d2ae4489aa4d83c89b791f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 132.35
+      value: -51.899994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d7b13f7bd8d2ae4489aa4d83c89b791f,
         type: 3}
@@ -27545,7 +27782,7 @@ GameObject:
   - component: {fileID: 1698638450}
   - component: {fileID: 1698638452}
   - component: {fileID: 1698638451}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29729,7 +29966,8 @@ GameObject:
   - component: {fileID: 1776278117}
   - component: {fileID: 1776278116}
   - component: {fileID: 1776278115}
-  m_Layer: 0
+  - component: {fileID: 1776278118}
+  m_Layer: 11
   m_Name: Swing Joint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29748,8 +29986,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 20
+  playerMustFacePointToConnect: 1
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &1776278116
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29793,6 +30036,27 @@ Transform:
   - {fileID: 461074929}
   m_Father: {fileID: 989829924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1776278118
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776278114}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1781225277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31326,7 +31590,8 @@ GameObject:
   - component: {fileID: 1871144384}
   - component: {fileID: 1871144385}
   - component: {fileID: 1871144386}
-  m_Layer: 0
+  - component: {fileID: 1871144387}
+  m_Layer: 11
   m_Name: Swing Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31388,8 +31653,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 20
+  playerMustFacePointToConnect: 1
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!135 &1871144387
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871144383}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1871708380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32123,10 +32414,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5281223156947806919, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
         type: 3}
       propertyPath: m_Name
       value: Rock Swing Joint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: detectionRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: playerMustFacePointToConnect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
         type: 3}
@@ -32181,7 +32492,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1050078163}
   m_SourcePrefab: {fileID: 100100000, guid: fc276322901176a49bc78273b661bd0d, type: 3}
 --- !u!1001 &1980770593
 PrefabInstance:
@@ -34239,7 +34554,8 @@ GameObject:
   - component: {fileID: 2103871279}
   - component: {fileID: 2103871281}
   - component: {fileID: 2103871280}
-  m_Layer: 0
+  - component: {fileID: 2103871282}
+  m_Layer: 11
   m_Name: Swing Joint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34274,8 +34590,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 20
+  playerMustFacePointToConnect: 1
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &2103871281
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34303,6 +34624,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!135 &2103871282
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103871278}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2107056409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34758,10 +35100,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5281223156947806919, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
         type: 3}
       propertyPath: m_Name
       value: Rock Swing Joint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: detectionRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      propertyPath: playerMustFacePointToConnect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
         type: 3}
@@ -34816,7 +35178,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1118744309}
   m_SourcePrefab: {fileID: 100100000, guid: fc276322901176a49bc78273b661bd0d, type: 3}
 --- !u!4 &2142116291 stripped
 Transform:
@@ -39391,7 +39757,7 @@ MonoBehaviour:
   activator: {fileID: 6842089277986077628}
   start: {x: 325.49, y: 51.01, z: 121.57}
   end: {x: 341.98, y: 51.01, z: 121.57}
-  speed: 1
+  speed: 0.25
 --- !u!114 &3850670134020500162
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -42606,7 +42972,7 @@ GameObject:
   - component: {fileID: 7559591168825337555}
   - component: {fileID: 5696463453587460633}
   - component: {fileID: 6922439257715688335}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: block-moving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44436,6 +44802,12 @@ MonoBehaviour:
   cameraTransform: {fileID: 3799416417588876950}
   distance: 20
   angle: 0.1
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 1088
+  grapplePointLayers:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &7403763393526405175
 GameObject:
   m_ObjectHideFlags: 0
@@ -45635,7 +46007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7733054793025734237}
   - component: {fileID: 3848647262489276709}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MoveableBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
