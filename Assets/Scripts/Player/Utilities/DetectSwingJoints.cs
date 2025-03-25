@@ -58,6 +58,10 @@ namespace LMO {
 
         private void FindAllSwingJointsInRange() {
             for (int i = 0; i < allJointsCount; i++) {
+                if (!allJoints[i].gameObject.activeInHierarchy) {
+                    continue;
+                }
+
                 GrapplePoint thisJoint = allJoints[i];
 
                 Vector3 jointPosition = thisJoint.transform.position;
@@ -80,7 +84,6 @@ namespace LMO {
 
                 RaycastHit hit;
                 if(Physics.Raycast(playerPosition, (jointPosition - playerPosition), out hit, thisJoint.DetectionRange, allLayers)) {
-                    Debug.Log(hit.collider.gameObject.name);
                     if (grapplePointLayers != (grapplePointLayers | (1 << hit.collider.gameObject.layer))) {
                         UnregisterSwingPoint(thisJoint);
                         continue;

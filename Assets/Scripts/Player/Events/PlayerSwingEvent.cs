@@ -6,12 +6,12 @@ namespace LMO {
 
         [Header("Subject")]
         [SerializeField] private PlayerSwing swing;
-        [SerializeField] private SwingRope rope;
         private FOVChanger fovChanger;
         private CameraShaker camShake;
         private Animator animator;
         private HighJumpTrail trail;
         private Grapple grapple;
+        private SwingRope rope;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
@@ -20,6 +20,7 @@ namespace LMO {
             camShake = player.CameraShake;
             trail = player.Trail;
             grapple = player.Controller.playerGrapple;
+            rope = grapple.Rope;
         }
 
         public void SubscribeEvents() {

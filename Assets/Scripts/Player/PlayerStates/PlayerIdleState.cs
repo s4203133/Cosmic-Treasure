@@ -39,6 +39,7 @@ namespace LMO {
         }
 
         public override void OnTriggerEnter(Collider other) {
+
         }
 
         // Transition to state based off input 

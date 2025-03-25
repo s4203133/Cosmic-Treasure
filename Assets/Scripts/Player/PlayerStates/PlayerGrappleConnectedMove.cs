@@ -2,59 +2,69 @@ using UnityEngine;
 
 namespace LMO {
 
-    public class PlayerGrappleConnectedMove : PlayerRunState {
+    public class PlayerGrappleConnectedMove : PlayerGrappleState {
 
-        private SwingManager swingManager;
+        private PlayerMovement movement;
         private Grounded grounded;
-        private Transform thisTransform;
-        private Grapple grapple;
-        private Rigidbody rigidBody;
+        private PlayerInput input;
+
+        private PlayerMovementSettings movementSettings;
 
         private float notOnGroundTimer;
 
         public PlayerGrappleConnectedMove(PlayerController playerController) : base(playerController) {
-            moveSettings = playerController.PlayerSettings.GrappleMoveSettings;
-            swingManager = context.playerSwingManager;
+            movement = playerController.playerMovment;
             grounded = context.playerJump.groundedSystem;
-            thisTransform = playerController.transform;
-            grapple = playerController.playerGrapple;
-            rigidBody = playerController.RigidBody;
+            input = playerController.playerInput;
+
+            movementSettings = playerController.PlayerSettings.GrappleMoveSettings;
         }
 
         public override void OnStateEnter() {
             base.OnStateEnter();
+            InputHandler.jumpStarted += Jump;
+            InputHandler.SpinStarted += Spin;
+            SpringPad.OnSmallSpringJump += SmallSpringJump;
+
+            movement.OnMoveStarted?.Invoke();
+            // Apply regular movement variables to move component
+            movement.ChangeMovementSettings(movementSettings);
+            CheckForJumpInput(); 
+            
             notOnGroundTimer = 0.3f;
         }
 
         public override void OnStateExit() {
             base.OnStateExit();
+            InputHandler.jumpStarted -= Jump;
+            InputHandler.SpinStarted -= Spin;
+            SpringPad.OnSmallSpringJump -= SmallSpringJump;
+
+            movement.OnMoveStopped?.Invoke();
         }
 
         public override void OnStateUpdate() {
-            base.OnStateUpdate();
-            if (grounded.IsOnGround) {
-                rigidBody.velocity = new Vector3(rigidBody.velocity.x, Physics.gravity.y, rigidBody.velocity.z);
-            }
-            Vector3 targetDirection = swingManager.SwingTarget.transform.position;
-            targetDirection.y = thisTransform.position.y;
-            thisTransform.LookAt(targetDirection);
+            CheckIfPlayerLeftPlatform();
+            CheckIfFinishedMoving();
+
+            LookAtGrappleTarget();
         }
-        protected override void Idle() {
+
+        public override void OnStatePhysicsUpdate() {
+            movement.HandleMovement();
+        }
+
+        private void Idle() {
             stateMachine.ChangeState(stateMachine.grappleIdle);
         }
 
-        protected override void Jump() {
+        private void Jump() {
             if (stateMachine.controller.playerJump.CanJump()) {
                 stateMachine.ChangeState(stateMachine.grappleJump);
             }
         }
 
-        protected override void Spin() {
-            grapple.OnGrappleEnded?.Invoke();
-            stateMachine.ChangeState(stateMachine.spinState);
-        }
-
-        protected override void CheckIfPlayerLeftPlatform() {
+        private void CheckIfPlayerLeftPlatform() {
             if (!grounded.IsOnGround) {
                 notOnGroundTimer -= TimeValues.Delta;
                 if(notOnGroundTimer <= 0) { 
@@ -66,18 +76,22 @@ namespace LMO {
             }
         }
 
-        protected override void CheckForJumpInput() {
+        private void CheckIfFinishedMoving() {
+            if (input.moveInput == Vector2.zero) {
+                if (movement.HasStopped()) {
+                    Idle();
+                }
+            }
+        }
+
+        private void CheckForJumpInput() {
             if (InputBuffers.instance.jump.HasInputBeenRecieved()) {
                 stateMachine.ChangeState(stateMachine.grappleJump);
             }
         }
 
-        protected override void SmallSpringJump() {
+        private void SmallSpringJump() {
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
-        }
-
-        protected override void Grapple() {
-            
         }
     }
 }

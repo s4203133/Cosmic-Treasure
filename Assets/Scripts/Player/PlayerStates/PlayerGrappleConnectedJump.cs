@@ -2,20 +2,20 @@ using UnityEngine;
 
 namespace LMO {
 
-    public class PlayerGrappleConnectedJump : PlayerJumpState {
+    public class PlayerGrappleConnectedJump : PlayerGrappleState {
 
-        private SwingManager swingManager;
+        private PlayerMovement movement;
+        protected PlayerJump jump;
         private Grounded grounded;
-        private Transform thisTransform;
-        private Grapple grapple;
+        private PlayerInput input;
 
         private float timer;
 
         public PlayerGrappleConnectedJump(PlayerController playerController) : base(playerController) {
-            swingManager = context.playerSwingManager;
+            movement = playerController.playerMovment;
+            jump = playerController.playerJump;
             grounded = playerController.playerJump.groundedSystem;
-            thisTransform = playerController.transform;
-            grapple = playerController.playerGrapple;
+            input = context.playerInput;
         }
 
         public override void OnStateEnter() {
@@ -27,6 +27,26 @@ namespace LMO {
             StartJump();
         }
 
+        public override void OnStateUpdate() {
+            LookAtGrappleTarget();
+            CheckIfPlatformIsUnderneathPlayer();
+
+            // Once the player has landed on the ground, determine which state to transition to
+            if (grounded.IsOnGround) {
+                if (input.moveInput == Vector2.zero) {
+                    Idle();
+                }
+                else {
+                    Run();
+                }
+            }
+        }
+
+        public override void OnStatePhysicsUpdate() {
+            movement.HandleMovement();
+            jump.ApplyForce();
+        }
+
         public override void OnStateExit() {
             InputHandler.jumpCancelled -= jump.CutOffJump;
             InputHandler.SpinStarted -= Spin;
@@ -35,38 +55,30 @@ namespace LMO {
             jump.EndJump();
         }
 
-        public override void OnStateUpdate() {
-            LookAtGrappleTarget();
-            CheckIfPlatformIsUnderneathPlayer();
-            base.OnStateUpdate();
+        protected virtual void StartJump() {
+            jump.InitialiseJump();
         }
 
-        protected override void Idle() {
+        private void Idle() {
             stateMachine.ChangeState(stateMachine.grappleIdle);
         }
 
-        protected override void Run() {
+        private void Run() {
             stateMachine.ChangeState(stateMachine.grappleRun);
         }
 
-        protected override void Spin() {
-            grapple.OnGrappleEnded?.Invoke();
-            stateMachine.ChangeState(stateMachine.spinState);
-        }
-
-        private void LookAtGrappleTarget() {
-            Vector3 targetDirection = swingManager.SwingTarget.transform.position;
-            targetDirection.y = thisTransform.position.y;
-            thisTransform.LookAt(targetDirection);
+        protected virtual void SmallSpringJump() {
+            stateMachine.ChangeState(stateMachine.smallSpringJumpState);
         }
 
         private void CheckIfPlatformIsUnderneathPlayer() {
             RaycastHit hit;
-            if(Physics.Raycast(thisTransform.position, Vector3.down, out hit, 5f, grounded.DetectableLayers)) {
+            if(Physics.Raycast(playerTransform.position + Vector3.up, Vector3.down, out hit, 5f, grounded.DetectableLayers)) {
                 timer = 0.5f;
             } else {
                 timer -= TimeValues.Delta;
                 if (timer <= 0) {
+                    grapple.DisconnectJoint();
                     stateMachine.ChangeState(stateMachine.swingState);
                 }
             }

@@ -10,25 +10,27 @@ namespace LMO {
         public float DetectionRange => detectionRange;
         public float DetectionRangeSqrd => detectionRangeSqrd;
 
-
         [SerializeField] private bool playerMustFacePointToConnect;
         public bool PlayerMustFacePointToConnect => playerMustFacePointToConnect;
-
 
         [HideInInspector] public float distanceFromPlayer;
         [HideInInspector] public float angleToPlayer;
 
+        protected bool disconnectWhenPlayerFalls;
+
         [Space(15)]
         [SerializeField] private UnityEvent interactActions;
+
         private MeshRenderer meshRenderer;
 
         public void Interact() {
             interactActions?.Invoke();
         }
 
-        private void Start() {
+        protected virtual void Start() {
             detectionRangeSqrd = detectionRange * detectionRange;
             meshRenderer = GetComponentInChildren<MeshRenderer>();
+            disconnectWhenPlayerFalls = true;
         }
 
         public void Activate() {

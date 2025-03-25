@@ -109,7 +109,9 @@ namespace LMO {
             if (controller.playerSwingManager.SwingTarget == null) {
                 return;
             }
+
             controller.playerGrapple.OnGrappleStarted?.Invoke(controller.playerSwingManager.SwingTarget.transform);
+
             if (currentState == idleState) {
                 ChangeState(grappleIdle);
             } else if(currentState == runState) {

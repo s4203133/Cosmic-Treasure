@@ -144,6 +144,12 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   distance: 15
   angle: 0.1
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  grapplePointLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8174247727957389958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1967,7 +1973,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2741039930790367102}
-  - component: {fileID: 6235147042540863671}
   - component: {fileID: 5430732533400097693}
   m_Layer: 8
   m_Name: Grapple Rope
@@ -1991,50 +1996,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5397066190690244712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6235147042540863671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2641982279192436200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6025b55a522b4744cb1a424324398d4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ropeStartPoint: {fileID: 2741039930790367102}
-  segments: 25
-  speed: 0.45
-  waveCount: 5
-  waveHeight: 0.3
-  ropeShape:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  damping: 25
-  strength: 200
-  velocity: 75
 --- !u!120 &5430732533400097693
 LineRenderer:
   serializedVersion: 2
@@ -2700,6 +2661,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 1e133a9c72edfb44bbc1c84c4db8e060, type: 2}
   playerInput: {fileID: 3298407487859252853}
+  rigidBody: {fileID: 0}
+  settings: {fileID: 0}
   idle: {fileID: 8606754823468929195}
   movement: {fileID: 206686688638887194}
   jump: {fileID: 2382843153380030292}
@@ -2708,6 +2671,7 @@ MonoBehaviour:
   hover: {fileID: 2531349977570256341}
   dive: {fileID: 119473119383886109}
   swing: {fileID: 6318716073648655653}
+  grapple: {fileID: 0}
   swingManager: {fileID: 4080224080502451679}
   vfx: {fileID: 4602263979456288892}
   animator: {fileID: 6364324496339578538}
@@ -3403,6 +3367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: af6f99a2d86d66341b9b7cdc563f90aa, type: 2}
+  JumpSettings: {fileID: 0}
   grounded: {fileID: 5799883070491449932}
   rigidBody: {fileID: 7767721875659057005}
   animator: {fileID: 6364324496339578538}
@@ -3634,7 +3599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8069897a2c14bd4f95debd48b2237d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.15
+  connectDuration: 0
+  grapple: {fileID: 0}
   movementSettings: {fileID: 11400000, guid: 367f395bab464344d86adcc2994102e3, type: 2}
   playerTransform: {fileID: 5397066190690244712}
   swingSpeed: 850
@@ -8699,7 +8665,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trailRenderer: {fileID: 3122159775490753441}
   duration: 0.375
-  jump: {fileID: 2382843153380030292}
 --- !u!1 &8195946481777894323
 GameObject:
   m_ObjectHideFlags: 0

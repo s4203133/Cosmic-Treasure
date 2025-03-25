@@ -76,8 +76,8 @@ MonoBehaviour:
   breakOpenEffect: {fileID: 3464187217229106756}
   closedCollider: {fileID: 8895752426698249020}
   openColliders:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2547094834710123810}
+  - {fileID: 5245839856408469909}
   coinSpawner: {fileID: 7729420742651748914}
 --- !u!114 &7729420742651748914
 MonoBehaviour:
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 6951414487805483566}
   m_Layer: 6
   m_Name: OpenChestParticles
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 8262260680511271857}
   m_Layer: 6
   m_Name: Chest Bottom
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -400,9 +400,10 @@ GameObject:
   - component: {fileID: 6473259345318231618}
   - component: {fileID: 4805628139739822464}
   - component: {fileID: 2011369961146361539}
+  - component: {fileID: 2547094834710123810}
   m_Layer: 6
   m_Name: Chest lid
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -472,6 +473,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2547094834710123810
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847871441478826218}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.536711, y: 3.7288964, z: 0.54}
+  m_Center: {x: -0.024020314, y: -0.5235182, z: 0.23}
 --- !u!1 &2069265605416944653
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +545,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.4
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3026522141325113136
 GameObject:
@@ -536,7 +558,7 @@ GameObject:
   - component: {fileID: 1281158158382942642}
   m_Layer: 6
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -12241,7 +12241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 20
+  detectionRange: 15
   playerMustFacePointToConnect: 1
   distanceFromPlayer: 0
   angleToPlayer: 0
@@ -38758,50 +38758,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &3074722369690457975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7447883775504569742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6025b55a522b4744cb1a424324398d4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ropeStartPoint: {fileID: 3326949973786864510}
-  segments: 25
-  speed: 0.45
-  waveCount: 5
-  waveHeight: 0.3
-  ropeShape:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  damping: 25
-  strength: 200
-  velocity: 75
 --- !u!33 &3095744495909451704
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -39115,12 +39071,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7447883775504569742}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.62813455, y: -0.7451177, z: -0.1500701, w: -0.16650997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6321067564287326702}
+  m_Father: {fileID: 4203791753069812819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3350980989584158768
 GameObject:
@@ -40446,7 +40402,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swing: {fileID: 1875403207611749837}
-  rope: {fileID: 3074722369690457975}
 --- !u!114 &4202233774390629630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40487,6 +40442,7 @@ Transform:
   - {fileID: 698214754511377520}
   - {fileID: 2693003401811268961}
   - {fileID: 4732840888804715698}
+  - {fileID: 3326949973786864510}
   - {fileID: 8504934502021893032}
   - {fileID: 419084438780131371}
   m_Father: {fileID: 5565142934242141849}
@@ -43480,7 +43436,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8843061440707201674}
-  - {fileID: 3326949973786864510}
   m_Father: {fileID: 5980611700521787641}
   m_LocalEulerAnglesHint: {x: -75.90302, y: -46.168175, z: 46.10425}
 --- !u!33 &6336786130240772673
@@ -45207,7 +45162,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3326949973786864510}
-  - component: {fileID: 3074722369690457975}
   - component: {fileID: 8571010676277694730}
   - component: {fileID: 8571010676277694731}
   m_Layer: 8
@@ -46867,6 +46821,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectCurrentlyGrappledOnto: {fileID: 0}
   playerTransform: {fileID: 4203791753069812819}
+  swingRope:
+    lineRenderer: {fileID: 8571010676277694730}
+    ropeStartPoint: {fileID: 8843061440707201674}
+    segments: 25
+    speed: 0.45
+    waveCount: 5
+    waveHeight: 0.3
+    ropeShape:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    damping: 25
+    strength: 200
+    velocity: 75
   jointSettings:
     minDistance: 1
     maxDistance: 18

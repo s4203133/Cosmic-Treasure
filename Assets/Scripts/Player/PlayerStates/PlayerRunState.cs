@@ -9,7 +9,7 @@ namespace LMO {
         private Grounded grounded;
         private PlayerInput input;
 
-        protected PlayerMovementSettings moveSettings;
+        private PlayerMovementSettings moveSettings;
 
         public PlayerRunState(PlayerController playerController) : base(playerController) {
             movement = context.playerMovment;
@@ -37,7 +37,6 @@ namespace LMO {
 
         public override void OnStatePhysicsUpdate() {
             movement.HandleMovement();
-
         }
 
         public override void OnStateExit() {
