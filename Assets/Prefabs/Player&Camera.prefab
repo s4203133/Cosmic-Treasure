@@ -1001,6 +1001,12 @@ MonoBehaviour:
   cameraTransform: {fileID: 3799416419217859487}
   distance: 15
   angle: 0.1
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  grapplePointLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &2222272666207742011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2761,7 +2767,7 @@ MonoBehaviour:
   groundPoint: {fileID: 5691183037397564013}
   jumpLayers:
     serializedVersion: 2
-    m_Bits: 3136
+    m_Bits: 5184
   groundCheckRadius: 0.15
 --- !u!114 &1522726430376930986
 MonoBehaviour:
@@ -2800,7 +2806,7 @@ MonoBehaviour:
   groundCheckRadius: 0.15
   fallingPlatformLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 4096
 --- !u!1 &3059426473385024420
 GameObject:
   m_ObjectHideFlags: 0
