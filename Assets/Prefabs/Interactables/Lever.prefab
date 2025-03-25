@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6842089278944754771}
   - component: {fileID: 2353135983457852305}
   - component: {fileID: 7195776176305487938}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,10 +167,20 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 270668371211418519, guid: a645f782ec2fb3c4288dfbcd376ae5b2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a645f782ec2fb3c4288dfbcd376ae5b2,
         type: 3}
       propertyPath: m_Name
       value: Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a645f782ec2fb3c4288dfbcd376ae5b2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
