@@ -6,12 +6,12 @@ namespace LMO {
 
         [Header("Subject")]
         [SerializeField] private PlayerSwing swing;
-        [SerializeField] private SwingRope rope;
         private FOVChanger fovChanger;
         private CameraShaker camShake;
         private Animator animator;
         private HighJumpTrail trail;
         private Grapple grapple;
+        private SwingRope rope;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
@@ -20,6 +20,7 @@ namespace LMO {
             camShake = player.CameraShake;
             trail = player.Trail;
             grapple = player.Controller.playerGrapple;
+            rope = grapple.Rope;
         }
 
         public void SubscribeEvents() {
@@ -32,8 +33,8 @@ namespace LMO {
         }
 
         public void UnsubscribeEvents() {
-            grapple.OnGrappleStarted += StartSwing;
-            grapple.OnGrappleEnded += EndSwing;
+            grapple.OnGrappleStarted -= ConnectGrappleRope;
+            grapple.OnGrappleEnded -= EndSwing;
             PlayerSwingState.OnSwingStart -= StartSwing;
             PlayerSwingState.OnSwingEnd -= EndSwing;
             PlayerSwingState.OnJumpFromSwing -= JumpFromSwing;
@@ -47,16 +48,18 @@ namespace LMO {
         }
 
         private void ConnectGrappleRope(Transform target) {
+            animator.SetBool("Swinging", true);
             rope.SetRopeTarget(target);
         }
 
         private void EndSwing() {
+            animator.SetBool("Swinging", false);
             swing.EndSwing();
             rope.DetatchRope();
         }
 
         private void JumpFromSwing() {
-            animator.SetTrigger("BackFlip");
+            animator.SetBool("Swinging", true);
             trail.StartTrail();
             fovChanger.StartChange();
         }

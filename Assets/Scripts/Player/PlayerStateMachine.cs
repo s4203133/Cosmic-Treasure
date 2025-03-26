@@ -106,8 +106,17 @@ namespace LMO {
         }
 
         public void GrappleToTarget() {
+            if (controller.playerSwingManager.SwingTarget == null) {
+                return;
+            }
+
             controller.playerGrapple.OnGrappleStarted?.Invoke(controller.playerSwingManager.SwingTarget.transform);
-            ChangeState(grappleIdle);
+
+            if (currentState == idleState) {
+                ChangeState(grappleIdle);
+            } else if(currentState == runState) {
+                ChangeState(grappleRun);
+            }
         }
 
         public void Activate() {

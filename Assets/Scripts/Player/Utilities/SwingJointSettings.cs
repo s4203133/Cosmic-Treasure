@@ -21,8 +21,22 @@ namespace LMO {
             currentJoint.connectedAnchor = connectPoint;
             currentJoint.anchor = new Vector3(0, 1, 0);
 
-            currentJoint.maxDistance = maxDistance;
             currentJoint.minDistance = minDistance;
+            currentJoint.maxDistance = maxDistance;
+
+            currentJoint.spring = spring;
+            currentJoint.damper = damper;
+            currentJoint.massScale = massScale;
+        }
+
+        public void InitialiseJoint(Transform player, Vector3 connectPoint, GrapplePoint grapplePoint) {
+            currentJoint = player.gameObject.AddComponent<SpringJoint>();
+            currentJoint.autoConfigureConnectedAnchor = false;
+            currentJoint.connectedAnchor = connectPoint;
+            currentJoint.anchor = new Vector3(0, 1, 0);
+
+            currentJoint.minDistance = minDistance;
+            currentJoint.maxDistance = grapplePoint.DetectionRange - 2;
 
             currentJoint.spring = spring;
             currentJoint.damper = damper;

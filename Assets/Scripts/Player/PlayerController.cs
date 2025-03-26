@@ -31,6 +31,7 @@ namespace LMO {
 
         // Public Accessors
         public PlayerStateMachine playerStateMachine => stateMachine;
+        public Rigidbody RigidBody => rigidBody;
         public PlayerSettings PlayerSettings => settings;
         public PlayerIdle playerIdle => idle;
         public PlayerMovement playerMovment => movement;

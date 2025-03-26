@@ -33,6 +33,7 @@ namespace LMO {
             playerVFX.PlayLandParticles();
             squishy.Land.Play();
             animator.SetBool("Jumping", false);
+            animator.SetBool("Swinging", false);
             playerSpin.ResetAirSpins();
             playerHover.EnableHover();
             fovChanger.EndChange();

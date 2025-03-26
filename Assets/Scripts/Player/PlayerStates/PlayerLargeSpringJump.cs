@@ -24,6 +24,7 @@ namespace LMO {
 
         public override void OnStateUpdate() {
             if (jumped) {
+                base.OnStateUpdate();
                 return;
             }
 
@@ -41,10 +42,6 @@ namespace LMO {
             SpringPad.OnSmallSpringJump -= SmallSpringJump;
 
             jump.EndJump();
-        }
-
-        private void SmallSpringJump() {
-            stateMachine.ChangeState(stateMachine.smallSpringJumpState);
         }
     }
 }

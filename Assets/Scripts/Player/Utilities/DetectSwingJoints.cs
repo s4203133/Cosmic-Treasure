@@ -5,30 +5,36 @@ namespace LMO {
 
     public class DetectSwingJoints : MonoBehaviour {
 
-        SwingJoint[] allJoints;
+        GrapplePoint[] allJoints;
         int allJointsCount;
-        private List<SwingJoint> nearbyJoints;
+        private List<GrapplePoint> nearbyJoints;
 
         [SerializeField] private Transform playerTransform;
         [SerializeField] private Transform cameraTransform;
 
         [SerializeField] private float distance;
+        public float Range => distance;
         private float distanceSqrd;
         [SerializeField] private float angle;
+        [Tooltip("The layers to check that the grapple joint isn't behind an object and should not be connected to")]
+        [SerializeField] private LayerMask obstacleLayers;
+        [SerializeField] private LayerMask grapplePointLayers;
+        private LayerMask allLayers;
 
         private int intermittentThink;
 
-        private SwingJoint closestSwingPoint;
+        private GrapplePoint closestGrapplePoint;
 
         public delegate void CustomEvent(GameObject obj);
         public CustomEvent OnSwingPointFound;
         public CustomEvent OnSwingPointOutOfRange;
 
         public void Initialise() {
-            allJoints = FindObjectsOfType<SwingJoint>();
+            allJoints = FindObjectsOfType<GrapplePoint>();
             allJointsCount = allJoints.Length;
             distanceSqrd = distance * distance;
-            nearbyJoints = new List<SwingJoint>();
+            nearbyJoints = new List<GrapplePoint>();
+            allLayers = obstacleLayers + grapplePointLayers;
         }
 
         public void GetClosestJoint() {
@@ -52,26 +58,43 @@ namespace LMO {
 
         private void FindAllSwingJointsInRange() {
             for (int i = 0; i < allJointsCount; i++) {
-                SwingJoint thisJoint = allJoints[i];
+                if (!allJoints[i].gameObject.activeInHierarchy) {
+                    continue;
+                }
+
+                GrapplePoint thisJoint = allJoints[i];
 
                 Vector3 jointPosition = thisJoint.transform.position;
-                float distanceFromPlayer = (jointPosition - playerTransform.position).sqrMagnitude;
+                Vector3 playerPosition = playerTransform.position + Vector3.up;
+
+                float distanceFromPlayer = (jointPosition - playerPosition).sqrMagnitude;
                 thisJoint.distanceFromPlayer = distanceFromPlayer;
-                if (distanceFromPlayer > distanceSqrd) {
+
+                if (distanceFromPlayer > distanceSqrd || distanceFromPlayer > thisJoint.DetectionRangeSqrd) {
                     UnregisterSwingPoint(thisJoint);
                     continue;
                 }
 
-                if (Vector3.Dot(playerTransform.forward, new Vector3(jointPosition.x - playerTransform.transform.position.x, 0, jointPosition.z - playerTransform.transform.position.z).normalized) < angle) {
-                    UnregisterSwingPoint(thisJoint);
-                    continue;
+                if (thisJoint.PlayerMustFacePointToConnect) {
+                    if (Vector3.Dot(playerTransform.forward, new Vector3(jointPosition.x - playerPosition.x, 0, jointPosition.z - playerTransform.transform.position.z).normalized) < angle) {
+                        UnregisterSwingPoint(thisJoint);
+                        continue;
+                    }
+                }
+
+                RaycastHit hit;
+                if(Physics.Raycast(playerPosition, (jointPosition - playerPosition), out hit, thisJoint.DetectionRange, allLayers)) {
+                    if (grapplePointLayers != (grapplePointLayers | (1 << hit.collider.gameObject.layer))) {
+                        UnregisterSwingPoint(thisJoint);
+                        continue;
+                    }
                 }
 
                 RegisterNeabySwingPoint(thisJoint);
             }
         }
 
-        private void RegisterNeabySwingPoint(SwingJoint joint) {
+        private void RegisterNeabySwingPoint(GrapplePoint joint) {
             if (nearbyJoints.Count == 0) {
                 nearbyJoints.Add(joint);
             } else {
@@ -83,23 +106,23 @@ namespace LMO {
         }
 
         private void AssignClosestSwingPoint() {
-            if (closestSwingPoint == null || closestSwingPoint != nearbyJoints[0]) {
-                UnregisterSwingPoint(closestSwingPoint);
-                closestSwingPoint = nearbyJoints[0];
-                closestSwingPoint.Activate();
-                OnSwingPointFound?.Invoke(closestSwingPoint.gameObject);
+            if (closestGrapplePoint == null || closestGrapplePoint != nearbyJoints[0]) {
+                UnregisterSwingPoint(closestGrapplePoint);
+                closestGrapplePoint = nearbyJoints[0];
+                closestGrapplePoint.Activate();
+                OnSwingPointFound?.Invoke(closestGrapplePoint.gameObject);
             }
         }
 
         private void ClearClosestSwingPoint() {
-            if (closestSwingPoint != null) {
-                closestSwingPoint.Deactivate();
-                OnSwingPointOutOfRange?.Invoke(closestSwingPoint.gameObject);
+            if (closestGrapplePoint != null) {
+                closestGrapplePoint.Deactivate();
+                OnSwingPointOutOfRange?.Invoke(closestGrapplePoint.gameObject);
             }
-            closestSwingPoint = null;
+            closestGrapplePoint = null;
         }
 
-        private void UnregisterSwingPoint(SwingJoint joint) {
+        private void UnregisterSwingPoint(GrapplePoint joint) {
             if(joint == null) {
                 return;
             }
@@ -108,19 +131,5 @@ namespace LMO {
                 nearbyJoints.Remove(joint);
             }
         }
-
-        /*        private void OnDrawGizmos() {
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawLine(playerTransform.position + Vector3.up, (playerTransform.position + playerTransform.forward * 5) + Vector3.up);
-
-
-                    if (Vector3.Dot(playerTransform.forward, new Vector3(closestSwingPoint.transform.position.x - playerTransform.transform.position.x, 0, closestSwingPoint.transform.position.z - playerTransform.transform.position.z).normalized) < angle) {
-                        Gizmos.color = Color.yellow;
-                    }
-                    else {
-                        Gizmos.color = Color.green;
-                    }
-                    Gizmos.DrawLine(playerTransform.position + Vector3.up, playerTransform.position + new Vector3(closestSwingPoint.transform.position.x - playerTransform.transform.position.x, 0, closestSwingPoint.transform.position.z - playerTransform.transform.position.z).normalized * 5 + Vector3.up);
-                }*/
     }
 }

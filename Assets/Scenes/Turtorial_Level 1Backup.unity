@@ -11171,8 +11171,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &730175564
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15227,8 +15232,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &989871343
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15875,8 +15885,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &1028073424
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16136,7 +16151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ab7a4cd051cbd419d0602c6eeb354a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPosition: {x: 316.13, y: 54.38, z: 125.5}
 --- !u!1 &1048949560
 GameObject:
   m_ObjectHideFlags: 0
@@ -27418,8 +27432,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &1776278116
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28722,8 +28741,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1871708380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31442,8 +31466,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &2103871281
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32799,6 +32828,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 1e133a9c72edfb44bbc1c84c4db8e060, type: 2}
   playerInput: {fileID: 8761922844004052198}
+  rigidBody: {fileID: 0}
+  settings: {fileID: 0}
   idle: {fileID: 5596833221347593280}
   movement: {fileID: 665720456429204255}
   jump: {fileID: 3381219315480049121}
@@ -32807,6 +32838,7 @@ MonoBehaviour:
   hover: {fileID: 1272051602158288218}
   dive: {fileID: 3120580278540588182}
   swing: {fileID: 1875403207611749837}
+  grapple: {fileID: 0}
   swingManager: {fileID: 214837033550071300}
   vfx: {fileID: 7063849269599066203}
   animator: {fileID: 2896275202394173799}
@@ -33438,6 +33470,7 @@ MonoBehaviour:
   movementSettings: {fileID: 11400000, guid: f75628d83bcc79340b69f6b2f7309e72, type: 2}
   maxHoverDuration: {fileID: 11400000, guid: 07752477a6a2de7489a836dd7835f1e7, type: 2}
   timer: {fileID: 11400000, guid: 40403431cdeab944cabbf886706bf648, type: 2}
+  cutoffForceMultiplier: 0
   AirForce:
     serializedVersion: 2
     m_Curve:
@@ -34468,7 +34501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8069897a2c14bd4f95debd48b2237d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.15
+  connectDuration: 0
+  grapple: {fileID: 0}
   movementSettings: {fileID: 11400000, guid: 367f395bab464344d86adcc2994102e3, type: 2}
   playerTransform: {fileID: 4203791753069812819}
   swingSpeed: 850
@@ -35512,50 +35546,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &3074722369690457975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7447883775504569742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6025b55a522b4744cb1a424324398d4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ropeStartPoint: {fileID: 3326949973786864510}
-  segments: 25
-  speed: 0.45
-  waveCount: 5
-  waveHeight: 0.3
-  ropeShape:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  damping: 25
-  strength: 200
-  velocity: 75
 --- !u!33 &3095744495909451704
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -35973,6 +35963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: af6f99a2d86d66341b9b7cdc563f90aa, type: 2}
+  JumpSettings: {fileID: 0}
   grounded: {fileID: 1062221615552361104}
   rigidBody: {fileID: 6145371207492205454}
   animator: {fileID: 2896275202394173799}
@@ -37146,7 +37137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swing: {fileID: 1875403207611749837}
-  rope: {fileID: 3074722369690457975}
 --- !u!114 &4202233774390629630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41137,6 +41127,12 @@ MonoBehaviour:
   cameraTransform: {fileID: 3799416417588876950}
   distance: 15
   angle: 0.1
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  grapplePointLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7403763393526405175
 GameObject:
   m_ObjectHideFlags: 0
@@ -41268,7 +41264,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3326949973786864510}
-  - component: {fileID: 3074722369690457975}
   - component: {fileID: 8571010676277694730}
   m_Layer: 8
   m_Name: Grapple Rope
@@ -42295,7 +42290,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trailRenderer: {fileID: 1619264758558081213}
   duration: 0.375
-  jump: {fileID: 3381219315480049121}
 --- !u!1 &8276596958085000330
 GameObject:
   m_ObjectHideFlags: 0
@@ -43182,7 +43176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ab7a4cd051cbd419d0602c6eeb354a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPosition: {x: 316.13, y: 54.38, z: 125.5}
 --- !u!4 &8754251278657388234
 Transform:
   m_ObjectHideFlags: 0
@@ -43492,7 +43485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158d60edd7b19ad428aeb0f961741e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeScreen: {fileID: 2194033644037236247}
 --- !u!1 &8881582867660819830
 GameObject:
   m_ObjectHideFlags: 0

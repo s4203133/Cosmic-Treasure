@@ -39,6 +39,7 @@ namespace LMO {
         }
 
         public override void OnTriggerEnter(Collider other) {
+
         }
 
         // Transition to state based off input 
@@ -69,7 +70,7 @@ namespace LMO {
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
         }
 
-        private void Grapple() {
+        protected virtual void Grapple() {
             stateMachine.GrappleToTarget();
         }
     }

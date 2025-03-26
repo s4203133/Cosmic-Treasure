@@ -33,9 +33,9 @@ namespace LMO {
             // Once the player has landed on the ground, determine which state to transition to
             if (grounded.IsOnGround) {
                 if (input.moveInput == Vector2.zero) {
-                    stateMachine.ChangeState(stateMachine.idleState);
+                    Idle();
                 } else {
-                    stateMachine.ChangeState(stateMachine.runState);
+                    Run();
                 }
             }
         }
@@ -67,7 +67,15 @@ namespace LMO {
             jump.InitialiseJump();
         }
 
-        protected void Spin() {
+        protected virtual void Idle() {
+            stateMachine.ChangeState(stateMachine.idleState);
+        }
+
+        protected virtual void Run() {
+            stateMachine.ChangeState(stateMachine.runState);
+        }
+
+        protected virtual void Spin() {
             stateMachine.ChangeState(stateMachine.spinState);
         }
 
@@ -85,7 +93,7 @@ namespace LMO {
             stateMachine.ChangeState(stateMachine.swingState);
         }
 
-        private void SmallSpringJump() {
+        protected virtual void SmallSpringJump() {
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
         }
     }

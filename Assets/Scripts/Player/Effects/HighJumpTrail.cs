@@ -6,7 +6,7 @@ namespace LMO {
     public class HighJumpTrail : MonoBehaviour {
         [SerializeField] private TrailRenderer trailRenderer;
         [SerializeField] private float duration;
-        [SerializeField] private PlayerJump jump;
+        [SerializeField] private PlayerJumpState jump;
 
         public void StartTrail() {
             trailRenderer.emitting = true;

@@ -2,8 +2,10 @@ using UnityEngine;
 
 namespace LMO {
 
-    public class SwingRope : MonoBehaviour {
-        private LineRenderer lineRenderer;
+    [System.Serializable]
+    public class SwingRope {
+
+        [SerializeField] private LineRenderer lineRenderer;
 
         [SerializeField] private Transform ropeStartPoint;
         private Vector3 ropeEndPoint;
@@ -20,21 +22,17 @@ namespace LMO {
         [SerializeField] private float strength;
         [SerializeField] private float velocity;
 
-        private bool isShooting;
+        private bool isConnected;
+        public bool AlreadyConnected => isConnected;
 
-        void Awake() {
-            lineRenderer = GetComponent<LineRenderer>();
+        public void Initialise() {
             lineRenderer.positionCount = segments + 1;
             spring = new Spring();
             spring.SetTarget(0);
         }
 
-        private void LateUpdate() {
-            DrawRope();
-        }
-
-        private void DrawRope() {
-            if (!isShooting) {
+        public void DrawRope() {
+            if (!isConnected) {
                 return;
             }
 
@@ -59,19 +57,16 @@ namespace LMO {
             ropeEndPoint = target.position;
             currentGrapplePosition = ropeStartPoint.position;
             lineRenderer.positionCount = segments + 1;
-            isShooting = true;
+            isConnected = true;
             spring.SetVelocity(velocity);
         }
 
         public void DetatchRope() {
-            isShooting = false;
+            isConnected = false;
             lineRenderer.positionCount = 0;
             spring.Reset();
         }
     }
-}
-
-namespace LMO {
 
     public class Spring {
         private float strength;

@@ -1001,6 +1001,12 @@ MonoBehaviour:
   cameraTransform: {fileID: 3799416419217859487}
   distance: 15
   angle: 0.1
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  grapplePointLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &2222272666207742011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1777,6 +1783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 1e133a9c72edfb44bbc1c84c4db8e060, type: 2}
   playerInput: {fileID: 8761922842411768303}
+  rigidBody: {fileID: 0}
+  settings: {fileID: 0}
   idle: {fileID: 5596833220800756041}
   movement: {fileID: 665720455877101078}
   jump: {fileID: 3381219317101674728}
@@ -1785,6 +1793,7 @@ MonoBehaviour:
   hover: {fileID: 1272051601643931731}
   dive: {fileID: 3120580277993742751}
   swing: {fileID: 1875403206016360644}
+  grapple: {fileID: 0}
   swingManager: {fileID: 214837032993796877}
   vfx: {fileID: 7063849271190269266}
   animator: {fileID: 2896275204014752878}
@@ -2718,6 +2727,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5691183037397564013}
+  - component: {fileID: 8449118329888122692}
+  - component: {fileID: 1522726430376930986}
+  - component: {fileID: 8847109336952866545}
   m_Layer: 8
   m_Name: Ground Detection Point
   m_TagString: Untagged
@@ -2740,6 +2752,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4203791753584126298}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8449118329888122692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056304702316324147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b7f2fa55e28fb46b1db0b18c39b784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundPoint: {fileID: 5691183037397564013}
+  jumpLayers:
+    serializedVersion: 2
+    m_Bits: 5184
+  groundCheckRadius: 0.15
+--- !u!114 &1522726430376930986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056304702316324147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be94e7f9e4f30234883387f4ee82a458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 4203791753584126298}
+  grounded: {fileID: 8449118329888122692}
+  groundPoint: {fileID: 5691183037397564013}
+  groundCheckRadius: 0.15
+  movingPlatformLayers:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &8847109336952866545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056304702316324147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88895407f0f114648b510a14caca195e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 4203791753584126298}
+  grounded: {fileID: 8449118329888122692}
+  groundPoint: {fileID: 5691183037397564013}
+  groundCheckRadius: 0.15
+  fallingPlatformLayers:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!1 &3059426473385024420
 GameObject:
   m_ObjectHideFlags: 0
@@ -4288,6 +4355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: af6f99a2d86d66341b9b7cdc563f90aa, type: 2}
+  JumpSettings: {fileID: 0}
   grounded: {fileID: 1062221613926516633}
   rigidBody: {fileID: 6145371208005455495}
   animator: {fileID: 2896275204014752878}
@@ -4392,6 +4460,7 @@ MonoBehaviour:
   movementSettings: {fileID: 11400000, guid: f75628d83bcc79340b69f6b2f7309e72, type: 2}
   maxHoverDuration: {fileID: 11400000, guid: 07752477a6a2de7489a836dd7835f1e7, type: 2}
   timer: {fileID: 11400000, guid: 40403431cdeab944cabbf886706bf648, type: 2}
+  cutoffForceMultiplier: 0
   AirForce:
     serializedVersion: 2
     m_Curve:
@@ -4518,7 +4587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8069897a2c14bd4f95debd48b2237d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.15
+  connectDuration: 0
+  grapple: {fileID: 0}
   movementSettings: {fileID: 11400000, guid: 367f395bab464344d86adcc2994102e3, type: 2}
   playerTransform: {fileID: 4203791753584126298}
   swingSpeed: 850
@@ -5266,7 +5336,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trailRenderer: {fileID: 1619264756932261300}
   duration: 0.375
-  jump: {fileID: 3381219317101674728}
 --- !u!1 &5626071867866805770
 GameObject:
   m_ObjectHideFlags: 0
@@ -8674,7 +8743,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158d60edd7b19ad428aeb0f961741e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeScreen: {fileID: 2194033645670372126}
 --- !u!1 &8820207721742347492
 GameObject:
   m_ObjectHideFlags: 3

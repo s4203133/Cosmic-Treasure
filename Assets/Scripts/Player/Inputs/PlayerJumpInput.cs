@@ -4,7 +4,7 @@ namespace LMO {
     [System.Serializable]
     public class PlayerJumpInput {
 
-        public PlayerJump playerJump;
+        public PlayerJumpState playerJump;
 
         private void StartJump() {
         }
