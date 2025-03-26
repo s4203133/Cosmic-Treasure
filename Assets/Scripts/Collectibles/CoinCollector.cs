@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace LMO {
 
-    public class CoinCollector : MonoBehaviour {
+    public class CoinCollector : MonoBehaviour, IResettable {
         [SerializeField] private float speed;
         private Transform thisTransform;
         private Transform player;
@@ -43,6 +43,11 @@ namespace LMO {
 
         private void AllowCollect() {
             canCollect = true;
+        }
+
+        public void Reset() {
+            canCollect = true;
+            collected = false;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace LMO {
         [Space(15)]
         [SerializeField] private UnityEvent interactActions;
 
-        private MeshRenderer meshRenderer;
+        [SerializeField] private MeshRenderer meshRenderer;
 
         public void Interact() {
             interactActions?.Invoke();
@@ -29,16 +29,20 @@ namespace LMO {
 
         protected virtual void Start() {
             detectionRangeSqrd = detectionRange * detectionRange;
-            meshRenderer = GetComponentInChildren<MeshRenderer>();
+            //meshRenderer = GetComponentInChildren<MeshRenderer>();
             disconnectWhenPlayerFalls = true;
         }
 
         public void Activate() {
-            meshRenderer.material.color = Color.red;
+            if (meshRenderer != null) {
+                meshRenderer.material.color = Color.red;
+            }
         }
 
         public void Deactivate() {
-            meshRenderer.material.color = Color.white;
+            if (meshRenderer != null) {
+                meshRenderer.material.color = Color.white;
+            }
         }
 
     #if UNITY_EDITOR

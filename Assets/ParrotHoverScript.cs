@@ -13,18 +13,18 @@ public class ParrotHoverScript : MonoBehaviour
 
     void Start()
     {
-        companionAnchor = GameObject.Find("companionAnchor");
+        //companionAnchor = GameObject.Find("companionAnchor");
         rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
     {
-        float dist = Vector3.Distance(transform.position, companionAnchor.transform.position);
+        float dist = Vector3.SqrMagnitude(transform.position - companionAnchor.transform.position);
 
-        if (dist >= 2.0f)
+        if (dist >= 10.0f)
         {
-            rb.MovePosition(Vector3.SmoothDamp(transform.position, companionAnchor.transform.position, ref refVel, smoothVal));
-
+            transform.position = Vector3.Lerp(transform.position, companionAnchor.transform.position, smoothVal);
+            //rb.MovePosition(Vector3.SmoothDamp(transform.position, companionAnchor.transform.position, ref refVel, smoothVal));
         }
     }
 }
