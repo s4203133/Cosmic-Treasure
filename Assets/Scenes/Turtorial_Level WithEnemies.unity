@@ -10880,8 +10880,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6043360939930546435, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
         type: 3}
+      propertyPath: Rays.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043360939930546435, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
+        type: 3}
+      propertyPath: Rays.Array.data[0].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043360939930546435, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
+        type: 3}
+      propertyPath: Rays.Array.data[1].y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043360939930546435, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
+        type: 3}
+      propertyPath: Rays.Array.data[2].y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043360939930546435, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
+        type: 3}
+      propertyPath: Rays.Array.data[3].y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043360939930546435, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
+        type: 3}
+      propertyPath: Rays.Array.data[4].y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043360939930546435, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
+        type: 3}
       propertyPath: PatrolPoints.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6043360939930546435, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
         type: 3}
@@ -12310,8 +12340,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &730175564
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13117,7 +13152,7 @@ Transform:
   m_GameObject: {fileID: 780019026}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 461.9, y: 3.29, z: 114.57}
+  m_LocalPosition: {x: 461.9, y: 3.488683, z: 114.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14836,7 +14871,7 @@ Transform:
   m_GameObject: {fileID: 901797503}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 461.9, y: 3.29, z: 103.65}
+  m_LocalPosition: {x: 461.9, y: 3.488683, z: 103.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15399,7 +15434,7 @@ Transform:
   m_GameObject: {fileID: 922459811}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 461.9, y: 3.29, z: 103.65}
+  m_LocalPosition: {x: 461.9, y: 3.488683, z: 103.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16725,8 +16760,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &989871343
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17453,8 +17493,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &1028073424
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22689,7 +22734,7 @@ Transform:
   m_GameObject: {fileID: 1342697468}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 471.68, y: 3.29, z: 103.65}
+  m_LocalPosition: {x: 471.68, y: 3.488683, z: 103.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29893,8 +29938,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &1776278116
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30948,6 +30998,7 @@ MonoBehaviour:
   launchVFX: {fileID: 0}
   endSceneAfterTime: 1.25
   endScreen: {fileID: 916577817}
+  fadeScreen: {fileID: 0}
   sceneIndexData: {fileID: 11400000, guid: 469b964ed3ff1074ca8d92bf3c1ca5df, type: 2}
 --- !u!114 &1843138480
 MonoBehaviour:
@@ -31532,8 +31583,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1871708380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34296,8 +34352,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 0
+  playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &2103871281
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -37218,7 +37279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8069897a2c14bd4f95debd48b2237d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.15
+  connectDuration: 0
+  grapple: {fileID: 0}
   movementSettings: {fileID: 11400000, guid: 367f395bab464344d86adcc2994102e3, type: 2}
   playerTransform: {fileID: 4203791753069812819}
   swingSpeed: 850
@@ -38273,38 +38335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6025b55a522b4744cb1a424324398d4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ropeStartPoint: {fileID: 3326949973786864510}
-  segments: 25
-  speed: 0.45
-  waveCount: 5
-  waveHeight: 0.3
-  ropeShape:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  damping: 25
-  strength: 200
-  velocity: 75
 --- !u!33 &3095744495909451704
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -39880,7 +39910,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swing: {fileID: 1875403207611749837}
-  rope: {fileID: 3074722369690457975}
 --- !u!114 &4202233774390629630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44067,6 +44096,12 @@ MonoBehaviour:
   cameraTransform: {fileID: 3799416417588876950}
   distance: 30
   angle: 0.1
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  grapplePointLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7403763393526405175
 GameObject:
   m_ObjectHideFlags: 0
@@ -45214,7 +45249,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trailRenderer: {fileID: 1619264758558081213}
   duration: 0.375
-  jump: {fileID: 3381219315480049121}
 --- !u!1 &8276596958085000330
 GameObject:
   m_ObjectHideFlags: 0
@@ -45817,6 +45851,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectCurrentlyGrappledOnto: {fileID: 0}
+  playerTransform: {fileID: 0}
+  swingRope:
+    lineRenderer: {fileID: 0}
+    ropeStartPoint: {fileID: 0}
+    segments: 0
+    speed: 0
+    waveCount: 0
+    waveHeight: 0
+    ropeShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    damping: 0
+    strength: 0
+    velocity: 0
+  jointSettings:
+    minDistance: 0
+    maxDistance: 0
+    spring: 0
+    damper: 0
+    massScale: 0
 --- !u!23 &8602810074119982215
 MeshRenderer:
   m_ObjectHideFlags: 0
