@@ -109,14 +109,12 @@ namespace LMO {
             if (closestGrapplePoint == null || closestGrapplePoint != nearbyJoints[0]) {
                 UnregisterSwingPoint(closestGrapplePoint);
                 closestGrapplePoint = nearbyJoints[0];
-                closestGrapplePoint.Activate();
                 OnSwingPointFound?.Invoke(closestGrapplePoint.gameObject);
             }
         }
 
         private void ClearClosestSwingPoint() {
             if (closestGrapplePoint != null) {
-                closestGrapplePoint.Deactivate();
                 OnSwingPointOutOfRange?.Invoke(closestGrapplePoint.gameObject);
             }
             closestGrapplePoint = null;
@@ -126,7 +124,6 @@ namespace LMO {
             if(joint == null) {
                 return;
             }
-            joint.Deactivate();
             if (nearbyJoints.Contains(joint)) {
                 nearbyJoints.Remove(joint);
             }

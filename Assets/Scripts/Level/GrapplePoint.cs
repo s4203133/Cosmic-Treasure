@@ -21,28 +21,13 @@ namespace LMO {
         [Space(15)]
         [SerializeField] private UnityEvent interactActions;
 
-        [SerializeField] private MeshRenderer meshRenderer;
-
         public void Interact() {
             interactActions?.Invoke();
         }
 
         protected virtual void Start() {
             detectionRangeSqrd = detectionRange * detectionRange;
-            //meshRenderer = GetComponentInChildren<MeshRenderer>();
             disconnectWhenPlayerFalls = true;
-        }
-
-        public void Activate() {
-            if (meshRenderer != null) {
-                meshRenderer.material.color = Color.red;
-            }
-        }
-
-        public void Deactivate() {
-            if (meshRenderer != null) {
-                meshRenderer.material.color = Color.white;
-            }
         }
 
     #if UNITY_EDITOR
