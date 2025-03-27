@@ -48,8 +48,10 @@ namespace LMO {
             movement.OnMoveStopped?.Invoke();
         }
 
-        public override void OnTriggerEnter(Collider collider) {
-
+        public override void OnTriggerEnter(Collider other) {
+            if (other.tag == "FloatArea") {
+                stateMachine.ChangeState(stateMachine.floatState);
+            }
         }
 
         // Transition states based off input or environmental changes

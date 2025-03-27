@@ -57,7 +57,9 @@ namespace LMO {
         }
 
         public override void OnTriggerEnter(Collider other) {
-
+            if (other.tag == "FloatArea") {
+                stateMachine.ChangeState(stateMachine.floatState);
+            }
         }
 
         // Transition states based off input

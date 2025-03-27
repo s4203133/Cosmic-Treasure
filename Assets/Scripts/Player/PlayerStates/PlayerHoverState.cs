@@ -50,8 +50,10 @@ namespace LMO {
             InputHandler.grappleStarted -= Grapple;
         }
 
-        public override void OnTriggerEnter(Collider collider) {
-
+        public override void OnTriggerEnter(Collider other) {
+            if (other.tag == "FloatArea") {
+                stateMachine.ChangeState(stateMachine.floatState);
+            }
         }
 
         private void TransitionToFallState()

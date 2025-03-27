@@ -22,5 +22,9 @@ namespace LMO {
 
         public abstract void OnTriggerEnter(Collider collider);
 
+        public virtual void OnTriggerExit(Collider collider) {
+
+        }
+
     }
 }
