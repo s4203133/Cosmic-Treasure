@@ -67,7 +67,8 @@ namespace LMO {
         private void CheckIfPlayerLeftPlatform() {
             if (!grounded.IsOnGround) {
                 notOnGroundTimer -= TimeValues.Delta;
-                if(notOnGroundTimer <= 0) { 
+                if(notOnGroundTimer <= 0) {
+                    grapple.DisconnectJoint();
                     stateMachine.ChangeState(stateMachine.swingState);
                 }
             }

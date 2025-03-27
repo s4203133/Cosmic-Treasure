@@ -4,10 +4,12 @@ using UnityEngine;
 namespace LMO {
 
     public class Grapple : MonoBehaviour {
-        public GrapplePoint objectCurrentlyGrappledOnto;
+        [HideInInspector] public GrapplePoint objectCurrentlyGrappledOnto;
         public GrapplePoint ConnectedObject => objectCurrentlyGrappledOnto;
+        public GameObject NearestObject => grapplePointDetector.NearestGrapplePoint().gameObject;
 
         [SerializeField] private Transform playerTransform;
+        [SerializeField] private DetectSwingJoints grapplePointDetector;
 
         [Space(15)]
         [SerializeField] private SwingRope swingRope;
@@ -17,7 +19,7 @@ namespace LMO {
         [SerializeField] private SwingJointSettings jointSettings;
         private bool connectedToJoint;
 
-        public Action<Transform> OnGrappleStarted;
+        public Action OnGrappleStarted;
         public Action OnGrappleEnded;
 
         private void Awake() {
@@ -38,9 +40,8 @@ namespace LMO {
             OnGrappleEnded -= RemoveGrapplePoint;
         }
 
-        public void AssignGrapplePoint(Transform newGrapplePoint) {
-            objectCurrentlyGrappledOnto = newGrapplePoint.GetComponent<GrapplePoint>();
-            //jointSettings.InitialiseJoint(playerTransform, newGrapplePoint.position);
+        public void AssignGrapplePoint() {
+            objectCurrentlyGrappledOnto = grapplePointDetector.NearestGrapplePoint();
         }
 
         public void RemoveGrapplePoint() {

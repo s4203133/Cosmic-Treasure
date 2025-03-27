@@ -19,6 +19,7 @@ namespace LMO {
         }
 
         public override void OnStateEnter() {
+            base.OnStateEnter();
             InputHandler.jumpCancelled += jump.CutOffJump;
             InputHandler.SpinStarted += Spin;
             SpringPad.OnSmallSpringJump += SmallSpringJump;
@@ -48,6 +49,8 @@ namespace LMO {
         }
 
         public override void OnStateExit() {
+            base.OnStateExit();
+
             InputHandler.jumpCancelled -= jump.CutOffJump;
             InputHandler.SpinStarted -= Spin;
             SpringPad.OnSmallSpringJump -= SmallSpringJump;
@@ -74,7 +77,7 @@ namespace LMO {
         private void CheckIfPlatformIsUnderneathPlayer() {
             RaycastHit hit;
             if(Physics.Raycast(playerTransform.position + Vector3.up, Vector3.down, out hit, 5f, grounded.DetectableLayers)) {
-                timer = 0.5f;
+                timer = 0.15f;
             } else {
                 timer -= TimeValues.Delta;
                 if (timer <= 0) {

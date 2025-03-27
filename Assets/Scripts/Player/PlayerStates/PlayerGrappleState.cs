@@ -27,9 +27,12 @@ namespace LMO {
             Vector3 constraintPosition = grapple.ConnectedObject.transform.position;
             constraintPosition.y = playerTransform.position.y;
             grapple.ConnectJoint(constraintPosition);
+
+            PlayerDeath.OnPlayerDied += grapple.DisconnectJoint;
         }
 
         public override void OnStateExit() {
+            PlayerDeath.OnPlayerDied -= grapple.DisconnectJoint;
         }
 
         public override void OnStatePhysicsUpdate() {
@@ -45,6 +48,9 @@ namespace LMO {
         }
 
         protected void LookAtGrappleTarget() {
+            if(grapple.ConnectedObject.transform == null) {
+                return;
+            }
             Vector3 targetDirection = grapple.ConnectedObject.transform.position;
             targetDirection.y = playerTransform.position.y;
             playerTransform.LookAt(targetDirection);
