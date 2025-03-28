@@ -5,6 +5,9 @@ using System.Threading;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
+using LMO;
+using Unity.VisualScripting;
+
 
 namespace WWH {
     public class Enemy1 : MonoBehaviour {
@@ -19,35 +22,67 @@ namespace WWH {
         private float timer;
         public Animator animator;
         public GameObject SlimeModel;
+       // private bool CanSeePlayer;
+
+        public SpawnPlayer spawnplayer;
+        public GameObject player;
+        public float EnemyHealth;
+        public float PlayerHealth;
+        private float StartingPlayerHealth;
+        private float currentPlayerHealth;
+        private float timer2;
+        public Collider Spincollider;
 
         // Start is called before the first frame update
         void Start() {
             IsAtEnd = false;
+            //CanSeePlayer = false;
+            StartingPlayerHealth = PlayerHealth;
+            currentPlayerHealth = PlayerHealth;
         }
+        //private void OnTriggerEnter(Collider collision) {
+        //    if (collision.CompareTag("Player")) {
+        //        CanSeePlayer = true;
+        //        Debug.Log("triggered");
+        //    }
+        //}
+        //private void OnTriggerExit(Collider collision) {
+        //    if (collision.CompareTag("Player")) {
+        //        CanSeePlayer = false;
+        //        Debug.Log("triggered");
+        //    }
+        //}
+        
         void RayDirection() {
             foreach (Vector3 ray in Rays) {
                 RaycastHit hit = new RaycastHit();
-                Vector3 angle = new Vector3(0, 0, 0) + Quaternion.Euler(ray.x, ray.y, ray.z) * transform.forward;
+                Vector3 angle = Quaternion.Euler(ray.x, ray.y, ray.z) * Vector3.forward;
                 Debug.DrawRay(transform.position, transform.TransformDirection(angle) * distance, Color.red);
+
                 if (Physics.Raycast(transform.position, transform.TransformDirection(angle), out hit, distance)) {
 
                     if (hit.collider.CompareTag("Player")) {
                         if (hit.distance > 1) {
                             Enemy.SetDestination(hit.collider.transform.position);
                             transform.LookAt(hit.transform.position);
+
                             animator.SetBool("SlimeMoving", true);
                             //lerp to look at the player. if player out of sight get last location. if not there then reset
                         }
                         if (hit.distance <= 1) {
                             //play attack animation
+                            PlayerHealth -= 2;
+                            if (PlayerHealth < currentPlayerHealth) {
+                                currentPlayerHealth = PlayerHealth;
+                                timer2 += Time.deltaTime;
+                                if (timer2 >= 2) {
+                                    PlayerHealth -= 2;
+                                    timer2 = 0;
+                                }
+                            }
                         }
-
-
-
                     }
                 }
-                
-                Debug.Log(timer);
             }
         }
 
@@ -58,7 +93,6 @@ namespace WWH {
                         Enemy.SetDestination(point.transform.position);
                         animator.SetBool("SlimeMoving", true);
                     }
-
                     CurrentPoint = point;
                     if (Vector3.Distance(transform.position, CurrentPoint.position) <= 1) {
                         timer += Time.deltaTime;
@@ -69,18 +103,36 @@ namespace WWH {
                         }
                     }
                 }
-
-
             }
             if (PointIteration >= PatrolPoints.Count) {
                 PointIteration = 0;
                 IsAtEnd = false;
-            }        
-    }
+            }
+        }
+        private void Health() {
+            //if (Spincollider.isTrigger) {
+                //EnemyHealth -= 2;
+                Debug.Log(EnemyHealth);
+
+            if (EnemyHealth < 0) {
+                Destroy(gameObject);
+            }
+            //}
+        }
         // Update is called once per frame
         void Update() {
-            RayDirection();
-            
+            //if (CanSeePlayer == false) {
+                Patrolling();
+            //}
+            //if (CanSeePlayer == true) {
+                RayDirection();
+            //}
+            if (PlayerHealth <= 0) {
+                PlayerHealth = StartingPlayerHealth;
+                spawnplayer.ResetPlayer();
+            }
+
+            Health();
         }
     }
 }
