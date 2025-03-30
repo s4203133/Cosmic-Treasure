@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace LMO {
 
         [SerializeField] private Transform playerTransform;
         [SerializeField] private Transform cameraTransform;
+        [SerializeField] private Grapple grapple;
 
         [SerializeField] private float distance;
         public float Range => distance;
@@ -26,8 +28,8 @@ namespace LMO {
         private GrapplePoint closestGrapplePoint;
 
         public delegate void CustomEvent(GameObject obj);
-        public CustomEvent OnSwingPointFound;
-        public CustomEvent OnSwingPointOutOfRange;
+        public Action OnSwingPointFound;
+        public Action OnSwingPointOutOfRange;
 
         public void Initialise() {
             allJoints = FindObjectsOfType<GrapplePoint>();
@@ -109,15 +111,13 @@ namespace LMO {
             if (closestGrapplePoint == null || closestGrapplePoint != nearbyJoints[0]) {
                 UnregisterSwingPoint(closestGrapplePoint);
                 closestGrapplePoint = nearbyJoints[0];
-                closestGrapplePoint.Activate();
-                OnSwingPointFound?.Invoke(closestGrapplePoint.gameObject);
+                OnSwingPointFound?.Invoke();
             }
         }
 
         private void ClearClosestSwingPoint() {
             if (closestGrapplePoint != null) {
-                closestGrapplePoint.Deactivate();
-                OnSwingPointOutOfRange?.Invoke(closestGrapplePoint.gameObject);
+                OnSwingPointOutOfRange?.Invoke();
             }
             closestGrapplePoint = null;
         }
@@ -126,9 +126,22 @@ namespace LMO {
             if(joint == null) {
                 return;
             }
-            joint.Deactivate();
             if (nearbyJoints.Contains(joint)) {
+                OnSwingPointOutOfRange?.Invoke();
                 nearbyJoints.Remove(joint);
+            }
+        }
+
+        public bool IsNearSwingJoint() {
+            return (nearbyJoints.Count > 0);
+        }
+
+        public GrapplePoint NearestGrapplePoint() {
+            if (nearbyJoints.Count > 0) {
+                return nearbyJoints[0];
+            }
+            else {
+                return null;
             }
         }
     }

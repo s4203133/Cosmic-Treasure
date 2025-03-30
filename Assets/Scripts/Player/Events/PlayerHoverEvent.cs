@@ -17,15 +17,17 @@ namespace LMO {
 
         public void SubscribeEvents() {
             PlayerHover.OnHoverStarted += HoverStated;
-            PlayerHover.OnHoverContinued += playerVFX.PlayHoverVFX;
+            PlayerHover.OnHoverContinued += HoverStated;
             PlayerHover.OnHoverEnded += HoverEnded;
+            InputHandler.jumpCancelled += HoverEnded;
             Grounded.OnLanded += LandedOnGround;
         }
 
         public void UnsubscribeEvents() {
             PlayerHover.OnHoverStarted -= HoverStated;
-            PlayerHover.OnHoverContinued -= playerVFX.PlayHoverVFX;
+            PlayerHover.OnHoverContinued -= HoverStated;
             PlayerHover.OnHoverEnded -= HoverEnded;
+            InputHandler.jumpCancelled -= HoverEnded;
             Grounded.OnLanded -= LandedOnGround;
 
         }
@@ -41,6 +43,7 @@ namespace LMO {
         }
 
         private void LandedOnGround() {
+            animator.SetBool("Hovering", false);
             hover.EndHover();
             playerVFX.StopHoverVFX();
         }

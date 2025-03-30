@@ -18,6 +18,7 @@ namespace LMO {
         public PlayerHighJumpState highJumpState;
         public PlayerHoverState hoverState;
         public PlayerDiveState diveState;
+        public PlayerFloatState floatState;
 
         // Grapple States
         public PlayerGrappleConnectedIdle grappleIdle;
@@ -67,6 +68,10 @@ namespace LMO {
             currentState.OnTriggerEnter(other);
         }
 
+        private void OnTriggerExit(Collider other) {
+            currentState.OnTriggerExit(other);
+        }
+
         protected virtual void InitialiseStates() {
             idleState = new PlayerIdleState(controller);
             runState = new PlayerRunState(controller);
@@ -85,6 +90,7 @@ namespace LMO {
             grappleJump = new PlayerGrappleConnectedJump(controller);
             grappleSpin = new PlayerGrappleConnectedSpin(controller);
             swingState = new PlayerSwingState(controller);
+            floatState = new PlayerFloatState(controller);
         }
 
         protected virtual void StartStateMachine() {
@@ -110,7 +116,7 @@ namespace LMO {
                 return;
             }
 
-            controller.playerGrapple.OnGrappleStarted?.Invoke(controller.playerSwingManager.SwingTarget.transform);
+            controller.playerGrapple.OnGrappleStarted?.Invoke();
 
             if (currentState == idleState) {
                 ChangeState(grappleIdle);

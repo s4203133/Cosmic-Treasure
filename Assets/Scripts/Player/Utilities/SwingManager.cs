@@ -6,7 +6,7 @@ namespace LMO {
 
         [SerializeField] private DetectSwingJoints swingJointDetector;
         private bool canSwing;
-        public bool CanSwing => canSwing;
+        public bool CanSwing => swingJointDetector.IsNearSwingJoint();
 
         private GameObject swingTarget;
         public GameObject SwingTarget => swingTarget;
@@ -31,14 +31,14 @@ namespace LMO {
             swingJointDetector.GetClosestJoint();
         }
 
-        private void EnableSwing(GameObject target) {
-            swingTarget = target;
-            canSwing = true;
+        private void EnableSwing() {
+            swingTarget = swingJointDetector.NearestGrapplePoint().gameObject;
+            //anSwing = true;
         }
 
-        private void DisableSwing(GameObject target) {
+        private void DisableSwing() {
             swingTarget = null;
-            canSwing = false;
+            //canSwing = false;
         }
     }
 }

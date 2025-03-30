@@ -12,7 +12,7 @@ namespace LMO {
         public delegate void CustomEvent();
         public delegate void CustomEventT(Transform target);
 
-        public static CustomEventT OnSwingStart;
+        public static CustomEvent OnSwingStart;
         public static CustomEvent OnJumpFromSwing;
         public static CustomEvent OnSwingEnd;
 
@@ -57,12 +57,11 @@ namespace LMO {
         private void StartSwing() {
             movement.ChangeMovementSettings(swing.MovementSettings);
             if(grapple.objectCurrentlyGrappledOnto == null) {
-                OnSwingStart?.Invoke(swingManager.SwingTarget.transform);
-                grapple.OnGrappleStarted?.Invoke(swingManager.SwingTarget.transform);
+                OnSwingStart?.Invoke();
+                grapple.OnGrappleStarted?.Invoke();
             }
             else {
-                OnSwingStart?.Invoke(grapple.objectCurrentlyGrappledOnto.transform);
-                //grapple.OnGrappleStarted?.Invoke(swingManager.SwingTarget.transform);
+                OnSwingStart?.Invoke();
             }
         }
 

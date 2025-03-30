@@ -41,15 +41,15 @@ namespace LMO {
             Grounded.OnLanded -= Land;
         }
 
-        private void StartSwing(Transform target) {
-            swing.StartSwing(target);
-            ConnectGrappleRope(target);
+        private void StartSwing() {
+            swing.StartSwing(grapple.NearestObject.transform);
+            ConnectGrappleRope();
             fovChanger.EndChange();
         }
 
-        private void ConnectGrappleRope(Transform target) {
+        private void ConnectGrappleRope() {
             animator.SetBool("Swinging", true);
-            rope.SetRopeTarget(target);
+            rope.SetRopeTarget(grapple.NearestObject.transform);
         }
 
         private void EndSwing() {
