@@ -2,71 +2,88 @@ using UnityEngine;
 
 namespace LMO {
 
-    public class PlayerFallingState : PlayerBaseState {
+    public class PlayerSlideDownWallState : PlayerBaseState {
 
-        private PlayerMovement movement;
+        private Transform thisTransform;
         private PlayerJump jump;
         private Grounded grounded;
         private PlayerSpinAttack spin;
         private PlayerInput input;
         private PlayerWallJump wallJump;
+        private Rigidbody rigidBody;
 
-        private PlayerJumpSettings jumpSettings;
+        private PlayerJumpSettings fallSettings;
 
-        private float coyoteTime;
-        private bool hasPerformedAirMove;
+        private float startFallingDelay;
+        private float timer;
 
-        private float preventSlideDownWallTimer;
-
-        public PlayerFallingState(PlayerController playerController) : base(playerController) {
-            movement = context.playerMovment;
+        public PlayerSlideDownWallState(PlayerController playerController) : base(playerController) {
+            thisTransform = context.transform;
             jump = context.playerJump;
             grounded = jump.groundedSystem;
             spin = context.playerSpinAttack;
             input = context.playerInput;
             wallJump = context.playerWallJump;
+            rigidBody = context.RigidBody;
 
-            jumpSettings = context.PlayerSettings.Jump;
+            fallSettings = context.PlayerSettings.SlideDownWall;
 
-            coyoteTime = 0.1f;
+            startFallingDelay = 0.25f;
         }
 
         public override void OnStateEnter() {
-            InputHandler.jumpStarted += JumpOrHover;
+            InputHandler.jumpStarted += Jump;
             InputHandler.SpinStarted += Spin;
             InputHandler.groundPoundStarted += GroundPound;
             InputHandler.grappleStarted += Grapple;
             SpringPad.OnSmallSpringJump += SmallSpringJump;
 
-            jump.ChangeJumpSettings(jumpSettings);
+            jump.ChangeJumpSettings(fallSettings);
             CheckForSpinInput();
-            CheckForHoverInput();
+            timer = startFallingDelay;
+            startFallingDelay = 0.25f;
+        }
+
+        public override void OnStatePhysicsUpdate() {
+            if (timer > 0) {
+                if (PlayerStoppedMovingTowardsWall()) {
+                    return;
+                }
+                rigidBody.velocity = new Vector3(0, 1.5f, 0);
+                return;
+            }
+            jump.ApplyFallForce();
+            rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, 0);
         }
 
         public override void OnStateUpdate() {
-            preventSlideDownWallTimer -= TimeValues.Delta;
+            thisTransform.rotation = Quaternion.Euler(wallJump.PlayerFaceWallDirection());
+
+            timer -= TimeValues.Delta;
+            if(timer > 0) {
+                if (PlayerStoppedMovingTowardsWall()) {
+                    return;
+                }
+                rigidBody.velocity = new Vector3(0, 1.5f, 0);
+                return;
+            }
+
             // If the player has landed on the ground, determine which state to transition them to
             if (grounded.IsOnGround) {
-                hasPerformedAirMove = false;
-                preventSlideDownWallTimer = 0.0f;
                 if (input.moveInput == Vector2.zero) {
                     stateMachine.ChangeState(stateMachine.idleState);
-                } else {
+                }
+                else {
                     stateMachine.ChangeState(stateMachine.runState);
                 }
             }
             else {
-                CheckForWallSlide();
+                PlayerStoppedMovingTowardsWall();
             }
         }
 
-        public override void OnStatePhysicsUpdate() {
-            movement.HandleMovement();
-            jump.ApplyFallForce();
-        }
-
         public override void OnStateExit() {
-            InputHandler.jumpStarted -= JumpOrHover;
+            InputHandler.jumpStarted -= Jump;
             InputHandler.SpinStarted -= Spin;
             InputHandler.groundPoundStarted -= GroundPound;
             InputHandler.grappleStarted -= Grapple;
@@ -81,21 +98,20 @@ namespace LMO {
             }
         }
 
+        private bool PlayerStoppedMovingTowardsWall() {
+            wallJump.CheckForWalls();
+            if (!wallJump.WallInFrontOfPlayer || input.moveInput == Vector2.zero) {
+                stateMachine.Fall();
+                return true;
+            }
+            return false;
+        }
+
         // If the player presses the jump button while falling, determine whether to jump (using coyote time),
         // or trigger the hover state
-        private void JumpOrHover() {
-            if (!hasPerformedAirMove) {
-                if (grounded.timeSinceLeftGround <= coyoteTime) {
-                    stateMachine.ChangeState(stateMachine.jumpState);
-                }
-                else {
-                    stateMachine.ChangeState(stateMachine.hoverState);
-                }
-                hasPerformedAirMove = true;
-            }
-            else {
-                stateMachine.ChangeState(stateMachine.hoverState);
-            }
+        private void Jump() {
+            stateMachine.ChangeState(stateMachine.jumpState);
+            //Debug.Log("Jump");
         }
 
         private void Spin() {
@@ -114,47 +130,16 @@ namespace LMO {
             }
         }
 
-        // Check that the player hasn't already hovered, and begin hover movement
-        private void CheckForHoverInput() {
-            if (hasPerformedAirMove || grounded.timeSinceLeftGround <= coyoteTime) {
-                return;
-            }
-
-            if (InputBuffers.instance.jump.HasInputBeenRecieved() && InputHandler.jumpBeingPressed) {
-                hasPerformedAirMove = true;
-                stateMachine.ChangeState(stateMachine.hoverState);
-            }
-        }
-
-        private void CheckForWallSlide() {
-            if(preventSlideDownWallTimer >= 0) {
-                return;
-            }
-
-            wallJump.CheckForWalls();
-            if (wallJump.WallInFrontOfPlayer && input.moveInput != Vector2.zero) {
-                preventSlideDownWallTimer = 0.2f;
-                stateMachine.ChangeState(stateMachine.slideDownWallState);
-            }
-        }
-
         private void GroundPound() {
-            preventSlideDownWallTimer = 0.0f;
             stateMachine.ChangeState(stateMachine.groundPoundState);
         }
 
         private void Grapple() {
-            preventSlideDownWallTimer = 0.0f;
             stateMachine.ChangeState(stateMachine.swingState);
         }
 
         private void SmallSpringJump() {
-            preventSlideDownWallTimer = 0.0f;
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
-        }
-
-        public void AllowWallSlide() {
-            preventSlideDownWallTimer = 0.0f;
         }
     }
 }

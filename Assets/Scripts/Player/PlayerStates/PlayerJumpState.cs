@@ -29,6 +29,7 @@ namespace LMO {
             SpringPad.OnSmallSpringJump += SmallSpringJump;
 
             StartJump();
+            stateMachine.fallingState.AllowWallSlide();
         }
 
         public override void OnStateUpdate() {

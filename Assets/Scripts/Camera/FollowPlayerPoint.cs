@@ -45,8 +45,7 @@ namespace LMO {
                 }
                 Vector3 targetPosition = playerTransform.position;
                 if (Physics.Raycast(playerTransform.position, Vector3.down, out RaycastHit hit, 10f, playerGrounded.DetectableLayers)) {
-                    //targetPosition.y = hit.transform.position.y + 0.2f;
-                    targetPosition.y = hit.point.y + 0.25f;
+                    targetPosition.y = hit.point.y + 0.5f;
                 }
                 else {
                     targetPosition.y = thisTransform.position.y;

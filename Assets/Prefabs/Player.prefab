@@ -1210,7 +1210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildUp:
     buildUpDuration: 0.3
-    buildUpAirForce: 22
+    buildUpAirForce: 12
     buildUpAirBoost:
       serializedVersion: 2
       m_Curve:
@@ -1224,7 +1224,7 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0.14452472
       - serializedVersion: 3
-        time: 0.1
+        time: 0.15
         value: 1
         inSlope: 0.028326128
         outSlope: -0.08124682
@@ -1233,30 +1233,30 @@ MonoBehaviour:
         inWeight: 0.3496386
         outWeight: 0.48582557
       - serializedVersion: 3
-        time: 0.25
-        value: 0.25
-        inSlope: -2.7793972
+        time: 0.4
+        value: 0.5
+        inSlope: -3.2362247
         outSlope: -1.0645603
         tangentMode: 1
         weightedMode: 0
-        inWeight: 0.10505833
+        inWeight: 0.11669588
         outWeight: 0.04836023
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.4356863
+        outSlope: -0.4356863
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.05820225
+        inWeight: 0.0976285
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
   falling:
-    groundPoundSpeed: 36
+    groundPoundSpeed: 30
   landing:
-    landDuration: 0.15
+    landDuration: 0.135
   colliders:
     fallingCollider: {fileID: 4299616926291397443}
     landCollider: {fileID: 5475907434746553089}
@@ -1346,7 +1346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ccec775b022027439864fc202dfa6f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diveForce: 875
+  diveForce: 950
   diveMomentum:
     serializedVersion: 2
     m_Curve:
@@ -1411,7 +1411,7 @@ MonoBehaviour:
   grapple: {fileID: 4055091777843402964}
   movementSettings: {fileID: 11400000, guid: 367f395bab464344d86adcc2994102e3, type: 2}
   playerTransform: {fileID: 4089385977369953099}
-  swingSpeed: 875
+  swingSpeed: 800
   rotateSpeed: 480
   jointSettings:
     minDistance: 1
@@ -4309,6 +4309,7 @@ Transform:
   - {fileID: 3991578013941694371}
   - {fileID: 761257545628782502}
   - {fileID: 2535334648354127055}
+  - {fileID: 1084789117961008148}
   m_Father: {fileID: 4089385977369953099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4538099156420468130
@@ -6720,8 +6721,8 @@ Rigidbody:
   m_GameObject: {fileID: 7022330502206172356}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0.5
-  m_AngularDrag: 0.04
+  m_Drag: 0.65
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -6809,6 +6810,7 @@ MonoBehaviour:
   swing: {fileID: 8948927232174476297}
   grapple: {fileID: 4055091777843402964}
   swingManager: {fileID: 1013432546555972892}
+  wallJump: {fileID: 3008356162147007873}
   floaty: {fileID: 2205482037148094948}
   vfx: {fileID: 747811821269672628}
   animator: {fileID: 5563728180334323294}
@@ -6833,6 +6835,8 @@ MonoBehaviour:
   smallSpringJumpSettings: {fileID: 11400000, guid: f06f872a462013f48ac2124cd04072c8,
     type: 2}
   largeSpringJumpSettings: {fileID: 11400000, guid: 2d2e09ac779753c41a1d2404a1c55c4d,
+    type: 2}
+  slideDownWallSettings: {fileID: 11400000, guid: 0479e6434f42ad2438e95d6864386368,
     type: 2}
   grappleMovementSettings: {fileID: 11400000, guid: 7fa2d7c5ffae741428ec2dcb7ccd3d02,
     type: 2}
@@ -7760,6 +7764,128 @@ Transform:
   - {fileID: 176031128744405934}
   m_Father: {fileID: 5995257745296735549}
   m_LocalEulerAnglesHint: {x: -19.262413, y: 97.91655, z: 1.5648656}
+--- !u!1 &7854908429025677988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1084789117961008148}
+  - component: {fileID: 7806001975533935468}
+  - component: {fileID: 3733557479474554373}
+  - component: {fileID: 6909971646544326641}
+  - component: {fileID: 3008356162147007873}
+  m_Layer: 8
+  m_Name: Wall Jump Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1084789117961008148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854908429025677988}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00000014901161, y: 0.25, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8623340840092791374}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7806001975533935468
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854908429025677988}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &3733557479474554373
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854908429025677988}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &6909971646544326641
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854908429025677988}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3008356162147007873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854908429025677988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdc5a7563101584da79ac01fa0adf27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectableLayers:
+    serializedVersion: 2
+    m_Bits: 5184
+  angleIntoWallThreshold: 0.6
 --- !u!1 &7980644127638300011
 GameObject:
   m_ObjectHideFlags: 0
@@ -9336,7 +9462,7 @@ MonoBehaviour:
   length: 0.35
   rigidBody: {fileID: 6953135261860707121}
   firstJumpBoostForce: 18
-  secondJumpBoostForce: 30
+  secondJumpBoostForce: 26
   maxAirSpins: 2
 --- !u!114 &814379120810523740
 MonoBehaviour:

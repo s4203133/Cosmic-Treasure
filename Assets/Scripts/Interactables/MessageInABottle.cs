@@ -1,5 +1,6 @@
 using Cinemachine;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -13,6 +14,7 @@ namespace LMO {
         private VisualEffect breakEffect;
         private MeshRenderer meshRenderer;
         private SphereCollider bottleCollider;
+        private bool isBroken;
 
         private MessageInABottleEvents events;
         public static Action OnBroken;
@@ -23,7 +25,8 @@ namespace LMO {
 
             breakEffect = GetComponentInChildren<VisualEffect>();
             meshRenderer = GetComponentInChildren<MeshRenderer>();    
-            bottleCollider = GetComponent<SphereCollider>();    
+            bottleCollider = GetComponent<SphereCollider>();
+            isBroken = false;
         }
 
         void OnEnable() {
@@ -38,8 +41,16 @@ namespace LMO {
         }
 
         public void Break() {
-            SmashBottle();
+            if (!isBroken) {
+                SmashBottle();
+                StartCoroutine(OpenDelay());
+                isBroken = true;
+            }
+        }
+
+        private IEnumerator OpenDelay() {
             OnBroken?.Invoke();
+            yield return new WaitForSeconds(0.75f);
             OnMessageOpen?.Invoke(message.Message);
         }
 
@@ -59,6 +70,7 @@ namespace LMO {
 
         private CameraShaker cameraShaker;
         private CinemachineBrain camera;
+        private CinemachineFreeLook cam2;
 
         private PlayerStateMachine playerStateMachine;
 
@@ -76,7 +88,8 @@ namespace LMO {
 
             cameraShaker = GameObject.FindObjectOfType<CameraShaker>();
             camera = Camera.main.GetComponent<CinemachineBrain>();
-            
+            cam2 = Camera.main.GetComponent<CinemachineFreeLook>();
+
             playerStateMachine = GameObject.FindObjectOfType<PlayerStateMachine>();
 
             messageInABottleUI = GameObject.FindObjectOfType<MessageInABottleUI>();
@@ -106,14 +119,16 @@ namespace LMO {
         }
 
         private void OnBottleBroken() {
-            cameraShaker.shakeTypes.small.Shake();
+            cameraShaker.shakeTypes.medium.Shake();
             playerStateMachine.Idle();
             playerStateMachine.Deactivate();
-            camera.enabled = false;
-            postProcessing.BlurScreen();
+            //camera.enabled = false;
+            cam2.m_YAxis.m_MaxSpeed = 0f;
+            cam2.m_XAxis.m_MaxSpeed = 0f;
         }
 
         private void OnMessageOpen(string message) {
+            postProcessing.BlurScreen();
             messageInABottleUI.DisplayMessage(message);
         }
 
@@ -126,7 +141,9 @@ namespace LMO {
             closeMessageInput.SetTrigger("FadeOut");
             InputHandler.jumpStarted -= messageInABottleUI.CloseMessage;
             playerStateMachine.Activate();
-            camera.enabled = true;
+            //camera.enabled = true;
+            cam2.m_YAxis.m_MaxSpeed = 1.8f;
+            cam2.m_XAxis.m_MaxSpeed = 165f;
             postProcessing.ClearBlurScreen();
         }
     }

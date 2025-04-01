@@ -22,6 +22,9 @@ namespace LMO {
         [SerializeField] private PlayerJumpSettings largeSpringJumpSettings;
         public PlayerJumpSettings LargeSpringJump => largeSpringJumpSettings;
 
+        [SerializeField] private PlayerJumpSettings slideDownWallSettings;
+        public PlayerJumpSettings SlideDownWall => slideDownWallSettings;
+
         [Header("GRAPPLE SETTINGS")]
         [SerializeField] private PlayerMovementSettings grappleMovementSettings;
         public PlayerMovementSettings GrappleMoveSettings => grappleMovementSettings;
