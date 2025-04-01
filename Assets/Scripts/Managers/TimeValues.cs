@@ -3,19 +3,15 @@ using UnityEngine;
 namespace LMO {
 
     public class TimeValues : MonoBehaviour {
-        private static float deltaTime;
-        public static float Delta => deltaTime;
-
-
-        private static float fixedDeltaTime;
-        public static float FixedDelta => fixedDeltaTime;
+        public static float Delta { get; private set; }
+        public static float FixedDelta { get; private set; }
 
         void Start() {
-            fixedDeltaTime = Time.fixedDeltaTime;
+            FixedDelta = Time.fixedDeltaTime;
         }
 
         void Update() {
-            deltaTime = Time.deltaTime;
+            Delta = Time.deltaTime;
         }
     }
 }
