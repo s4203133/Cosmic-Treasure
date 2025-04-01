@@ -1332,7 +1332,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  airBoost: 6
+  airBoost: 7
   rigidBody: {fileID: 6953135261860707121}
 --- !u!114 &7685686155162553911
 MonoBehaviour:
@@ -1411,12 +1411,12 @@ MonoBehaviour:
   grapple: {fileID: 4055091777843402964}
   movementSettings: {fileID: 11400000, guid: 367f395bab464344d86adcc2994102e3, type: 2}
   playerTransform: {fileID: 4089385977369953099}
-  swingSpeed: 850
+  swingSpeed: 875
   rotateSpeed: 480
   jointSettings:
     minDistance: 1
-    maxDistance: 8
-    spring: 30
+    maxDistance: 6.5
+    spring: 32
     damper: 6
     massScale: 2
   playerInput: {fileID: 4275660490194194594}
@@ -6720,8 +6720,8 @@ Rigidbody:
   m_GameObject: {fileID: 7022330502206172356}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 1
-  m_AngularDrag: 0.05
+  m_Drag: 0.5
+  m_AngularDrag: 0.04
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -7512,8 +7512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f99b3abff23ca46bf34f92d2366e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newFOV: 77
-  changeSpeed: 0.175
+  newFOV: 75
+  changeSpeed: 0.2
   returnSpeed: 0.4
 --- !u!1 &7578703720541968607
 GameObject:
@@ -9335,8 +9335,8 @@ MonoBehaviour:
   spinRangeCollider: {fileID: 5241889855648882086}
   length: 0.35
   rigidBody: {fileID: 6953135261860707121}
-  firstJumpBoostForce: 10
-  secondJumpBoostForce: 18
+  firstJumpBoostForce: 18
+  secondJumpBoostForce: 30
   maxAirSpins: 2
 --- !u!114 &814379120810523740
 MonoBehaviour:

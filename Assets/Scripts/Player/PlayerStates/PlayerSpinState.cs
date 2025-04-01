@@ -39,7 +39,7 @@ namespace LMO {
 
             OnSpin?.Invoke();
 
-            // Being spin action, and apply a jump boost if the player is in the air
+            // Begin spin action, and apply a jump boost if the player is in the air
             spin.StartSpin();
             if (!grounded.IsOnGround) {
                 spin.ApplyJumpBoost();
