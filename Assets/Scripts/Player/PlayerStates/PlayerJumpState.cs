@@ -4,7 +4,7 @@ namespace LMO {
 
     public class PlayerJumpState : PlayerBaseState {
 
-        private PlayerMovement movement;
+        protected PlayerMovement movement;
         protected PlayerJump jump;
         private Grounded grounded;
         private PlayerInput input;

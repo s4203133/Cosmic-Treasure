@@ -57,7 +57,7 @@ namespace LMO {
         }
 
         public override void OnStateUpdate() {
-            thisTransform.rotation = Quaternion.Euler(wallJump.PlayerFaceWallDirection());
+            thisTransform.LookAt(wallJump.PlayerFaceWallDirection());
 
             timer -= TimeValues.Delta;
             if(timer > 0) {
@@ -107,11 +107,9 @@ namespace LMO {
             return false;
         }
 
-        // If the player presses the jump button while falling, determine whether to jump (using coyote time),
-        // or trigger the hover state
         private void Jump() {
-            stateMachine.ChangeState(stateMachine.jumpState);
-            //Debug.Log("Jump");
+            wallJump.CalculateJumpDirection();
+            stateMachine.ChangeState(stateMachine.wallJumpState);
         }
 
         private void Spin() {

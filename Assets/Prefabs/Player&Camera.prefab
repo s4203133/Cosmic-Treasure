@@ -72,7 +72,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427047429895148622}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.70710665, z: -0, w: 0.70710695}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 493.68704, y: 1.0484734, z: 99.07125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -647,7 +647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2958838817166762670}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.119801685, y: 0.0000014603138, z: -0.00000018253922, w: 0.99279785}
+  m_LocalRotation: {x: 0.119801715, y: 0.0000014603138, z: -0.00000017508864, w: 0.99279785}
   m_LocalPosition: {x: -0.00002670288, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1249,7 +1249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5832099822513635561}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07010572, y: 0.000000014647753, z: -0.000000015422671, w: 0.99753964}
+  m_LocalRotation: {x: 0.0701057, y: 0.000000015024057, z: -0.000000007945019, w: 0.99753964}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1328,7 +1328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6285235896446583549}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.045911565, y: -0.00000007759934, z: 0.000000020417033, w: 0.99894553}
+  m_LocalRotation: {x: 0.045911565, y: 0.00000009601774, z: -0.000000030544086, w: 0.99894553}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1692,6 +1692,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 858615893381278449}
     m_Modifications:
+    - target: {fileID: 603727231609413422, guid: 1202fe7f8d7d8fc48a4411bc140ca700,
+        type: 3}
+      propertyPath: wallJumpMoveSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 5865ce57b3479e540895fde1ca3e239d,
+        type: 2}
     - target: {fileID: 905101249424711647, guid: 1202fe7f8d7d8fc48a4411bc140ca700,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1702,6 +1708,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2129916916387747205, guid: 1202fe7f8d7d8fc48a4411bc140ca700,
+        type: 3}
+      propertyPath: swingRope.ropeStartPoint
+      value: 
+      objectReference: {fileID: 5880262094118403227}
     - target: {fileID: 2676292666461811795, guid: 1202fe7f8d7d8fc48a4411bc140ca700,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1767,6 +1778,11 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 6489795824796783387}
+    - target: {fileID: 4403154507928402891, guid: 1202fe7f8d7d8fc48a4411bc140ca700,
+        type: 3}
+      propertyPath: wallDetectionDistance
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 4424402352169419527, guid: 1202fe7f8d7d8fc48a4411bc140ca700,
         type: 3}
       propertyPath: cameraTransform
@@ -1864,6 +1880,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91ad7055de79d04098929591269a9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &5880262094118403227 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 327250562750098071, guid: 1202fe7f8d7d8fc48a4411bc140ca700,
+    type: 3}
+  m_PrefabInstance: {fileID: 6129473443354842636}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &6012527484211284222 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 459519423715532530, guid: 1202fe7f8d7d8fc48a4411bc140ca700,

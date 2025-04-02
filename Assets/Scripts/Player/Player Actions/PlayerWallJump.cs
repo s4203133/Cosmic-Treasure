@@ -5,6 +5,7 @@ namespace LMO {
     public class PlayerWallJump : MonoBehaviour {
 
         [SerializeField] private LayerMask detectableLayers;
+        [SerializeField] private float wallDetectionDistance;
         [SerializeField] private float angleIntoWallThreshold;
 
         private GameObject player;
@@ -13,6 +14,7 @@ namespace LMO {
         private PlayerInput playerInput;
 
         private Vector3 wallSurface;
+        public Vector3 jumpDirection { get; private set; }
         private bool isByWall;
         public bool WallInFrontOfPlayer => isByWall;
 
@@ -26,7 +28,7 @@ namespace LMO {
 
         public void CheckForWalls() {
             Vector3 moveDirection = PlayerMoveDirection();
-            if (Physics.Raycast(player.transform.position, moveDirection, out RaycastHit hit, 2, detectableLayers)) {
+            if (Physics.Raycast(player.transform.position, moveDirection, out RaycastHit hit, wallDetectionDistance, detectableLayers)) {
                 if (Vector3.Dot(moveDirection, hit.normal) <= angleIntoWallThreshold) {
                     isByWall = true;
                     wallSurface = hit.normal;
@@ -44,12 +46,15 @@ namespace LMO {
         }
 
         public Vector3 PlayerFaceWallDirection() {
-            return -wallSurface;
+            return player.transform.position - wallSurface;
         }
 
-        public Vector3 GetKickBackDirection() {
-            Vector3 targetDirection = PlayerMoveDirection();
-            return targetDirection;
+        public Vector3 GetKickBackLookPoint() {
+            return player.transform.position + wallSurface;
+        }
+
+        public void CalculateJumpDirection() {
+            jumpDirection = wallSurface;
         }
     }
 }

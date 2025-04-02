@@ -20,6 +20,7 @@ namespace LMO {
         public PlayerDiveState diveState;
         public PlayerFloatState floatState;
         public PlayerSlideDownWallState slideDownWallState;
+        public PlayerWallJumpState wallJumpState;
 
         // Grapple States
         public PlayerGrappleConnectedIdle grappleIdle;
@@ -86,6 +87,7 @@ namespace LMO {
             hoverState = new PlayerHoverState(controller);
             diveState = new PlayerDiveState(controller);
             slideDownWallState = new PlayerSlideDownWallState(controller);
+            wallJumpState = new PlayerWallJumpState(controller);
 
             grappleIdle = new PlayerGrappleConnectedIdle(controller);
             grappleRun = new PlayerGrappleConnectedMove(controller);
