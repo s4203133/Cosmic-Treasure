@@ -16,14 +16,14 @@ namespace LMO {
 
         public override void OnStateEnter() {
             Grounded.OnLanded += MoveToIdleState;
-            dive.OnHitObject += MoveToIdleState;
+            PlayerDive.OnHitObject += MoveToIdleState;
 
             dive.StartDive();
         }
 
         public override void OnStateExit() {
             Grounded.OnLanded -= MoveToIdleState;
-            dive.OnHitObject -= MoveToIdleState;
+            PlayerDive.OnHitObject -= MoveToIdleState;
         }
 
         public override void OnStateUpdate() {

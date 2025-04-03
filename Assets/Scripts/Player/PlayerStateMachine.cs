@@ -120,7 +120,7 @@ namespace LMO {
                 return;
             }
 
-            controller.playerGrapple.OnGrappleStarted?.Invoke();
+            Grapple.OnGrappleStarted?.Invoke();
 
             if (currentState == idleState) {
                 ChangeState(grappleIdle);

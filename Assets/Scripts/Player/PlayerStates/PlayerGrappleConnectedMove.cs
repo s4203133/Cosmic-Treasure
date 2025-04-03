@@ -26,7 +26,7 @@ namespace LMO {
             InputHandler.SpinStarted += Spin;
             SpringPad.OnSmallSpringJump += SmallSpringJump;
 
-            movement.OnMoveStarted?.Invoke();
+            PlayerMovement.OnMoveStarted?.Invoke();
             // Apply regular movement variables to move component
             movement.ChangeMovementSettings(movementSettings);
             CheckForJumpInput(); 
@@ -40,7 +40,7 @@ namespace LMO {
             InputHandler.SpinStarted -= Spin;
             SpringPad.OnSmallSpringJump -= SmallSpringJump;
 
-            movement.OnMoveStopped?.Invoke();
+            //PlayerMovement.OnMoveStopped?.Invoke();
         }
 
         public override void OnStateUpdate() {

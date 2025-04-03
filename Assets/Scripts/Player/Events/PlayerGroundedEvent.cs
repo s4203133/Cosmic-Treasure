@@ -9,7 +9,6 @@ namespace LMO {
         private PlayerSpinAttack playerSpin;
         private PlayerHover playerHover;
         private FOVChanger fovChanger;
-        private Animator animator;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
@@ -18,7 +17,6 @@ namespace LMO {
             playerSpin = player.Controller.playerSpinAttack;
             playerHover = player.Controller.playerHover;
             fovChanger = player.FOV_Changer;
-            animator = player.Controller.playerAnimator;
         }
 
         public void SubscribeEvents() {
@@ -32,8 +30,6 @@ namespace LMO {
         public void OnPLayerLanded() {
             playerVFX.PlayLandParticles();
             squishy.Land.Play();
-            animator.SetBool("Jumping", false);
-            animator.SetBool("Swinging", false);
             playerSpin.ResetAirSpins();
             playerHover.EnableHover();
             fovChanger.EndChange();

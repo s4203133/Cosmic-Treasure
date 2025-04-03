@@ -8,7 +8,7 @@ namespace LMO {
         public PlayerMovement playerMovement;
 
         private void StartMovement(Vector2 value) {
-            playerMovement.OnMoveStarted?.Invoke();
+            PlayerMovement.OnMoveStarted?.Invoke();
             playerMovement.isStopping = false;
         }
 

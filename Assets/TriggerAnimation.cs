@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TriggerAnimation : MonoBehaviour
 {
-    public Animator animator; // Assign the Animator component in the Inspector
+    private Animator animator;
 
     void Start()
     {
-        animator = this.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
 
     void OnTriggerEnter(Collider obj)
     {
-        if (animator)
+        if (obj.CompareTag("Player"))
         {
             animator.SetBool("WaterUp", true);
         }
@@ -22,7 +20,7 @@ public class TriggerAnimation : MonoBehaviour
 
     void OnTriggerExit(Collider obj)
     {
-        if (animator)
+        if (obj.CompareTag("Player"))
         {
             animator.SetBool("WaterUp", false);
         }

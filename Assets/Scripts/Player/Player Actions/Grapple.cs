@@ -19,8 +19,8 @@ namespace LMO {
         [SerializeField] private SwingJointSettings jointSettings;
         private bool connectedToJoint;
 
-        public Action OnGrappleStarted;
-        public Action OnGrappleEnded;
+        public static Action OnGrappleStarted;
+        public static Action OnGrappleEnded;
 
         private void Awake() {
             swingRope.Initialise();

@@ -27,13 +27,13 @@ namespace LMO {
         private void OnEnable() {
             grapplePointDetector.OnSwingPointFound += AssignGrapplePoint;
             grapplePointDetector.OnSwingPointOutOfRange += Hide;
-            grapple.OnGrappleStarted += Hide;
+            Grapple.OnGrappleStarted += Hide;
         }
 
         private void OnDisable() {
             grapplePointDetector.OnSwingPointFound -= AssignGrapplePoint;
             grapplePointDetector.OnSwingPointOutOfRange -= Hide;
-            grapple.OnGrappleStarted -= Hide;
+            Grapple.OnGrappleStarted -= Hide;
         }
 
         void Update() {

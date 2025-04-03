@@ -18,7 +18,7 @@ namespace LMO {
             InputHandler.jumpStarted += CheckJumpInput;
             InputHandler.SpinStarted += RegisterDiveInput;
             SpringPad.OnSmallSpringJump += LargeSpringJump;
-            groundPound.OnGroundPoundFinished += MoveToIdleState;
+            PlayerGroundPound.OnGroundPoundFinished += MoveToIdleState;
 
             diveRegistered = false;
 
@@ -33,8 +33,8 @@ namespace LMO {
         public override void OnStateExit() {
             InputHandler.jumpStarted -= CheckJumpInput;
             InputHandler.SpinStarted -= RegisterDiveInput;
-            SpringPad.OnSmallSpringJump += LargeSpringJump;
-            groundPound.OnGroundPoundFinished -= MoveToIdleState;
+            SpringPad.OnSmallSpringJump -= LargeSpringJump;
+            PlayerGroundPound.OnGroundPoundFinished -= MoveToIdleState;
         }
 
         public override void OnStatePhysicsUpdate() {

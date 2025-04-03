@@ -15,13 +15,13 @@ namespace LMO {
         // and cancel it once they land on the ground
         public override void Initialise(PlayerGroundPound targetGroundPound, Rigidbody playerRigidbody, Grounded grounded) {
             groundPound = targetGroundPound;
-            groundPound.OnGroundPoundInitialised += InitialiseTimer;
-            groundPound.OnGroundPoundLanded += DoNotAllowDive;
+            PlayerGroundPound.OnGroundPoundInitialised += InitialiseTimer;
+            PlayerGroundPound.OnGroundPoundLanded += DoNotAllowDive;
         }
 
         public override void Disable() {
-            groundPound.OnGroundPoundInitialised -= InitialiseTimer;
-            groundPound.OnGroundPoundLanded -= DoNotAllowDive;
+            PlayerGroundPound.OnGroundPoundInitialised -= InitialiseTimer;
+            PlayerGroundPound.OnGroundPoundLanded -= DoNotAllowDive;
 
         }
 

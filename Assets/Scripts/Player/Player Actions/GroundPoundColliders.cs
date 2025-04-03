@@ -7,20 +7,17 @@ namespace LMO {
         [SerializeField] private Collider fallingCollider;
         [SerializeField] private Collider landCollider;
 
-        private PlayerGroundPound groundPound;
-
         // Enable colliders accordingly based on state of ground pound
         public override void Initialise(PlayerGroundPound targetGroundPound, Rigidbody playerRigidbody, Grounded grounded) {
-            groundPound = targetGroundPound;
-            groundPound.OnGroundPoundStarted += EnableFallingCollider;
-            groundPound.OnGroundPoundLanded += EnableLandingCollider;
-            groundPound.OnGroundPoundFinished += DisableColliders;
+            PlayerGroundPound.OnGroundPoundStarted += EnableFallingCollider;
+            PlayerGroundPound.OnGroundPoundLanded += EnableLandingCollider;
+            PlayerGroundPound.OnGroundPoundFinished += DisableColliders;
         }
 
         public override void Disable() {
-            groundPound.OnGroundPoundStarted -= EnableFallingCollider;
-            groundPound.OnGroundPoundLanded -= EnableLandingCollider;
-            groundPound.OnGroundPoundFinished -= DisableColliders;
+            PlayerGroundPound.OnGroundPoundStarted -= EnableFallingCollider;
+            PlayerGroundPound.OnGroundPoundLanded -= EnableLandingCollider;
+            PlayerGroundPound.OnGroundPoundFinished -= DisableColliders;
         }
 
         // When the player begins falling, enable the collider that desroys any items beneath them
