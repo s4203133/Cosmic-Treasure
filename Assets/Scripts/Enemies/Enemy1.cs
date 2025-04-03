@@ -31,6 +31,7 @@ namespace WWH {
         private float StartingPlayerHealth;
         private float currentPlayerHealth;
         private float timer2;
+        public LayerMask layer;
         
         // Start is called before the first frame update
         void Start() {
@@ -58,7 +59,7 @@ namespace WWH {
                 Vector3 angle = Quaternion.Euler(ray.x, ray.y, ray.z) * Vector3.forward;
                 Debug.DrawRay(transform.position, transform.TransformDirection(angle) * distance, Color.red);
 
-                if (Physics.Raycast(transform.position, transform.TransformDirection(angle), out hit, distance)) {
+                if (Physics.Raycast(transform.position, transform.TransformDirection(angle), out hit, distance, layer)) {
                     
                     if (hit.collider.CompareTag("Player")) {
                         Debug.Log("hit");
