@@ -6,7 +6,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using LMO;
-using Unity.VisualScripting;
+using NR;
 
 
 namespace WWH {
@@ -26,13 +26,12 @@ namespace WWH {
 
         public SpawnPlayer spawnplayer;
         public GameObject player;
-        public float EnemyHealth;
+       // private float EnemyHealth;
         public float PlayerHealth;
         private float StartingPlayerHealth;
         private float currentPlayerHealth;
         private float timer2;
-        public Collider Spincollider;
-
+        
         // Start is called before the first frame update
         void Start() {
             IsAtEnd = false;
@@ -60,13 +59,14 @@ namespace WWH {
                 Debug.DrawRay(transform.position, transform.TransformDirection(angle) * distance, Color.red);
 
                 if (Physics.Raycast(transform.position, transform.TransformDirection(angle), out hit, distance)) {
-
+                    
                     if (hit.collider.CompareTag("Player")) {
+                        Debug.Log("hit");
                         if (hit.distance > 1) {
                             Enemy.SetDestination(hit.collider.transform.position);
                             transform.LookAt(hit.transform.position);
 
-                            animator.SetBool("SlimeMoving", true);
+                            animator.SetBool("SlimeMoving", false);
                             //lerp to look at the player. if player out of sight get last location. if not there then reset
                         }
                         if (hit.distance <= 1) {
@@ -91,7 +91,7 @@ namespace WWH {
                 if (point == PatrolPoints[PointIteration]) {
                     if (transform.position != point.transform.position) {
                         Enemy.SetDestination(point.transform.position);
-                        animator.SetBool("SlimeMoving", true);
+                        animator.SetBool("SlimeMoving", false);
                     }
                     CurrentPoint = point;
                     if (Vector3.Distance(transform.position, CurrentPoint.position) <= 1) {
@@ -109,16 +109,16 @@ namespace WWH {
                 IsAtEnd = false;
             }
         }
-        private void Health() {
-            //if (Spincollider.isTrigger) {
-                //EnemyHealth -= 2;
-                Debug.Log(EnemyHealth);
+        //private void Health() {
+        //    //if (Spincollider.isTrigger) {
+        //        //EnemyHealth -= 2;
+        //        Debug.Log(EnemyHealth);
 
-            if (EnemyHealth < 0) {
-                Destroy(gameObject);
-            }
-            //}
-        }
+        //    if (EnemyHealth < 0) {
+        //        Destroy(gameObject);
+        //    }
+        //    //}
+        //}
         // Update is called once per frame
         void Update() {
             //if (CanSeePlayer == false) {
@@ -131,8 +131,9 @@ namespace WWH {
                 PlayerHealth = StartingPlayerHealth;
                 spawnplayer.ResetPlayer();
             }
-
-            Health();
+            
+            
+            
         }
     }
 }

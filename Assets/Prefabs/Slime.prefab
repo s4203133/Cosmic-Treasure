@@ -69,7 +69,9 @@ MonoBehaviour:
   IsAtEnd: 0
   animator: {fileID: 6350681892208262726}
   SlimeModel: {fileID: 5988821927627236135}
-  raysDirectionHolder: {fileID: 0}
+  spawnplayer: {fileID: 0}
+  player: {fileID: 0}
+  PlayerHealth: 0
 --- !u!195 &5423244760689116434
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -244,6 +246,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 924191781468840517}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 33e2d520638318b48abd605b6583188b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4396890450944476637}
   m_SourcePrefab: {fileID: 100100000, guid: 33e2d520638318b48abd605b6583188b, type: 3}
 --- !u!1 &5988821927627236135 stripped
 GameObject:
@@ -293,6 +299,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.31488293
   m_Center: {x: 0.012514204, y: -0.0125142075, z: 0.29917657}
+--- !u!114 &4396890450944476637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988821927627236135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7dad221035a5d746bc375f6b4647ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 0}
+  SlimeHealth: 0
 --- !u!4 &6365628602263468445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 33e2d520638318b48abd605b6583188b,

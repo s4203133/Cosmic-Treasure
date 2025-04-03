@@ -35279,7 +35279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8612624235708913892}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.070113204, y: -0.00008174776, z: 0.000026211139, w: 0.99753904}
+  m_LocalRotation: {x: 0.07010552, y: -0.00000017881393, z: 0.000000052154064, w: 0.99753964}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35690,6 +35690,7 @@ MonoBehaviour:
   swing: {fileID: 1875403207611749837}
   grapple: {fileID: 8571010676277694731}
   swingManager: {fileID: 214837033550071300}
+  floaty: {fileID: 0}
   vfx: {fileID: 7063849269599066203}
   animator: {fileID: 2896275202394173799}
   squashAndStretch: {fileID: 8525623548649192100}
@@ -35978,7 +35979,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2246700791219510889}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000007450581, y: -0.000000029802322, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39345,8 +39346,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6359213419921856410}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09248488, y: -0.631005, z: 0.076138824, w: 0.7664738}
-  m_LocalPosition: {x: 325.81415, y: 60.75, z: 123.08097}
+  m_LocalRotation: {x: 0.08471261, y: -0.70201385, z: 0.08471255, w: 0.7020143}
+  m_LocalPosition: {x: 462.9, y: 60.75, z: 124.99999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41014,7 +41015,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8820207723341961709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.045919266, y: -0.00008249282, z: 0.000024259087, w: 0.9989451}
+  m_LocalRotation: {x: 0.045911588, y: 0.00000020861626, z: -0.000000055879354, w: 0.99894553}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -41637,7 +41638,7 @@ Transform:
   m_GameObject: {fileID: 6262739407796248461}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 316, y: 54.75, z: 125}
+  m_LocalPosition: {x: 452.9, y: 54.75, z: 125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44154,6 +44155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 4203791753069812819}
   cameraTransform: {fileID: 3799416417588876950}
+  grapple: {fileID: 0}
   distance: 30
   angle: 0.1
   obstacleLayers:
@@ -45912,6 +45914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectCurrentlyGrappledOnto: {fileID: 0}
   playerTransform: {fileID: 0}
+  grapplePointDetector: {fileID: 0}
   swingRope:
     lineRenderer: {fileID: 0}
     ropeStartPoint: {fileID: 0}
