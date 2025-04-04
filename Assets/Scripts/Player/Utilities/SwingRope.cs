@@ -8,7 +8,7 @@ namespace LMO {
         [SerializeField] private LineRenderer lineRenderer;
 
         [SerializeField] private Transform ropeStartPoint;
-        private Vector3 ropeEndPoint;
+        private Transform ropeEndPoint;
         private Vector3 currentGrapplePosition;
 
         [SerializeField] private int segments;
@@ -41,7 +41,7 @@ namespace LMO {
             spring.Update(TimeValues.Delta);
 
             Vector3 startPos = ropeStartPoint.position;
-            Vector3 endPos = ropeEndPoint;
+            Vector3 endPos = ropeEndPoint.position;
             Vector3 up = Quaternion.LookRotation(startPos - endPos).normalized * Vector3.up;
 
             currentGrapplePosition = Vector3.Lerp(currentGrapplePosition, endPos, speed);
@@ -54,7 +54,7 @@ namespace LMO {
         }
 
         public void SetRopeTarget(Transform target) {
-            ropeEndPoint = target.position;
+            ropeEndPoint = target;
             currentGrapplePosition = ropeStartPoint.position;
             lineRenderer.positionCount = segments + 1;
             isConnected = true;
