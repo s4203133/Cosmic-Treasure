@@ -16,12 +16,12 @@ namespace LMO {
         // When the player begins the ground pound movement, prepare any required variables
         public override void Initialise(PlayerGroundPound targetGroundPound, Rigidbody playerRigidbody, Grounded grounded) {
             groundPound = targetGroundPound;
-            groundPound.OnGroundPoundInitialised += StartGroundPound;
+            PlayerGroundPound.OnGroundPoundInitialised += StartGroundPound;
             rigidBody = playerRigidbody;
         }
 
         public override void Disable() {
-            groundPound.OnGroundPoundInitialised -= StartGroundPound;
+            PlayerGroundPound.OnGroundPoundInitialised -= StartGroundPound;
         }
 
         public void StartGroundPound() {

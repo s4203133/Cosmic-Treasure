@@ -12,15 +12,15 @@ namespace LMO {
 
         public bool CoinInRange => canCollect;
 
-        private void OnEnable() => Coin.OnCoinActivated += AllowCollect;
+        private void OnEnable() => Coin.OnCollected += AllowCollect;
 
-        private void OnDisable() => Coin.OnCoinActivated -= AllowCollect;
+        private void OnDisable() => Coin.OnCollected -= AllowCollect;
 
         private void Update() => Collect();
 
         private void Awake() {
             thisTransform = transform.parent;
-            Coin.OnCoinActivated += AllowCollect;
+            Coin.OnActivated += AllowCollect;
         }
 
         private void OnTriggerEnter(Collider other) {

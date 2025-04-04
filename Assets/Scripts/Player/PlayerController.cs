@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace LMO {
@@ -22,6 +21,7 @@ namespace LMO {
         [SerializeField] private PlayerSwing swing;
         [SerializeField] private Grapple grapple;
         [SerializeField] private SwingManager swingManager;
+        [SerializeField] private PlayerWallJump wallJump;
         [SerializeField] private PlayerFloat floaty;
         [SerializeField] private PlayerVFX vfx;
         [SerializeField] private Animator animator;
@@ -45,6 +45,7 @@ namespace LMO {
         public PlayerSwing playerSwing => swing;
         public Grapple playerGrapple => grapple;
         public SwingManager playerSwingManager => swingManager;
+        public PlayerWallJump playerWallJump => wallJump;
         public PlayerFloat playerFloat => floaty;
         public PlayerVFX playerVFX => vfx;
         public Animator playerAnimator => animator;

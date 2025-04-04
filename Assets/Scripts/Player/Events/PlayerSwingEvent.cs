@@ -8,14 +8,12 @@ namespace LMO {
         [SerializeField] private PlayerSwing swing;
         private FOVChanger fovChanger;
         private CameraShaker camShake;
-        private Animator animator;
         private HighJumpTrail trail;
         private Grapple grapple;
         private SwingRope rope;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
-            animator = player.Anim;
             fovChanger = player.FOV_Changer;
             camShake = player.CameraShake;
             trail = player.Trail;
@@ -24,8 +22,8 @@ namespace LMO {
         }
 
         public void SubscribeEvents() {
-            grapple.OnGrappleStarted += ConnectGrappleRope;
-            grapple.OnGrappleEnded += EndSwing;
+            Grapple.OnGrappleStarted += ConnectGrappleRope;
+            Grapple.OnGrappleEnded += EndSwing;
             PlayerSwingState.OnSwingStart += StartSwing;
             PlayerSwingState.OnSwingEnd += EndSwing;
             PlayerSwingState.OnJumpFromSwing += JumpFromSwing;
@@ -33,8 +31,8 @@ namespace LMO {
         }
 
         public void UnsubscribeEvents() {
-            grapple.OnGrappleStarted -= ConnectGrappleRope;
-            grapple.OnGrappleEnded -= EndSwing;
+            Grapple.OnGrappleStarted -= ConnectGrappleRope;
+            Grapple.OnGrappleEnded -= EndSwing;
             PlayerSwingState.OnSwingStart -= StartSwing;
             PlayerSwingState.OnSwingEnd -= EndSwing;
             PlayerSwingState.OnJumpFromSwing -= JumpFromSwing;
@@ -48,18 +46,15 @@ namespace LMO {
         }
 
         private void ConnectGrappleRope() {
-            animator.SetBool("Swinging", true);
             rope.SetRopeTarget(grapple.NearestObject.transform);
         }
 
         private void EndSwing() {
-            animator.SetBool("Swinging", false);
             swing.EndSwing();
             rope.DetatchRope();
         }
 
         private void JumpFromSwing() {
-            animator.SetBool("Swinging", true);
             trail.StartTrail();
             fovChanger.StartChange();
         }

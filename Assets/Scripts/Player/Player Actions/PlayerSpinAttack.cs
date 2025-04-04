@@ -21,8 +21,8 @@ namespace LMO {
         private float airSpins;
         public bool CanAirSpin => airSpins < maxAirSpins;
 
-        public Action OnSpin;
-        public Action OnSpinEnd;
+        public static Action OnSpin;
+        public static Action OnSpinEnd;
 
         public void StartSpin() {
             counter = length;

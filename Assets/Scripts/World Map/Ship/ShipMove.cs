@@ -15,11 +15,11 @@ namespace LMO {
         }
 
         public override void OnStateEnter() {
-            movement.OnMoveStarted?.Invoke();
+            PlayerMovement.OnMoveStarted?.Invoke();
         }
 
         public override void OnStateExit() {
-            movement.OnMoveStopped?.Invoke();
+            PlayerMovement.OnMoveStopped?.Invoke();
         }
 
         public override void OnStatePhysicsUpdate() {

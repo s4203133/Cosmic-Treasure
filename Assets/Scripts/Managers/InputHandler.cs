@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -39,6 +40,9 @@ namespace LMO {
         public static InputEvent grappleEnded;
 
         public static InputEvent quitStarted;
+
+        public static Action Enable;
+        public static Action Disable;
 
         public static bool jumpBeingPressed => jump.IsPressed();
 
@@ -189,6 +193,8 @@ namespace LMO {
             SubscribeSelectEvents();
             SubscribeGrappleEvents();
             SubscribeQuitEvents();
+            Enable += EnableInput;
+            Disable += DisableInput;
         }
 
         private void UnsubscribeInputEvents() {
@@ -199,6 +205,8 @@ namespace LMO {
             UnsubscribeSelectEvents();
             UnsubscribeGrappleEvents();
             UnsubscribeQuitEvents();
+            Enable -= EnableInput;
+            Disable -= DisableInput;
         }
 
         private void EnableInputActions() {
@@ -217,10 +225,18 @@ namespace LMO {
             jump?.Disable();
             spin?.Disable();
             groundPound?.Disable();
-            inputActions?.Disable();
             select?.Disable();
             grapple?.Disable();
             quit?.Disable();
+            inputActions?.Disable();
+        }
+
+        private void EnableInput() {
+            inputActions?.Enable();
+        }
+
+        private void DisableInput() {
+            inputActions?.Disable();
         }
     }
 }

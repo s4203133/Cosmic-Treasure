@@ -4,11 +4,12 @@ namespace LMO {
 
     public class PlayerJumpState : PlayerBaseState {
 
-        private PlayerMovement movement;
+        protected PlayerMovement movement;
         protected PlayerJump jump;
         private Grounded grounded;
         private PlayerInput input;
         protected PlayerJumpSettings jumpSettings;
+        private Rigidbody rigidBody;
 
         public PlayerJumpState(PlayerController playerController) : base(playerController) {
             movement = context.playerMovment;
@@ -16,6 +17,7 @@ namespace LMO {
             grounded = jump.groundedSystem;
             input = context.playerInput;
             jumpSettings = context.PlayerSettings.Jump;
+            rigidBody = context.RigidBody;
         }
 
         public override void OnStateEnter() {
@@ -27,6 +29,7 @@ namespace LMO {
             SpringPad.OnSmallSpringJump += SmallSpringJump;
 
             StartJump();
+            stateMachine.fallingState.AllowWallSlide();
         }
 
         public override void OnStateUpdate() {
@@ -36,6 +39,11 @@ namespace LMO {
                     Idle();
                 } else {
                     Run();
+                }
+            }
+            else {
+                if(jump.reachedPeakOfJump) {
+                    stateMachine.Fall();
                 }
             }
         }

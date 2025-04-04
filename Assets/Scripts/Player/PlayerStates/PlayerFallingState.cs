@@ -9,9 +9,14 @@ namespace LMO {
         private Grounded grounded;
         private PlayerSpinAttack spin;
         private PlayerInput input;
+        private PlayerWallJump wallJump;
+
+        private PlayerJumpSettings jumpSettings;
 
         private float coyoteTime;
         private bool hasPerformedAirMove;
+
+        private float preventSlideDownWallTimer;
 
         public PlayerFallingState(PlayerController playerController) : base(playerController) {
             movement = context.playerMovment;
@@ -19,6 +24,9 @@ namespace LMO {
             grounded = jump.groundedSystem;
             spin = context.playerSpinAttack;
             input = context.playerInput;
+            wallJump = context.playerWallJump;
+
+            jumpSettings = context.PlayerSettings.Jump;
 
             coyoteTime = 0.1f;
         }
@@ -30,19 +38,25 @@ namespace LMO {
             InputHandler.grappleStarted += Grapple;
             SpringPad.OnSmallSpringJump += SmallSpringJump;
 
+            jump.ChangeJumpSettings(jumpSettings);
             CheckForSpinInput();
             CheckForHoverInput();
         }
 
         public override void OnStateUpdate() {
+            preventSlideDownWallTimer -= TimeValues.Delta;
             // If the player has landed on the ground, determine which state to transition them to
             if (grounded.IsOnGround) {
                 hasPerformedAirMove = false;
+                preventSlideDownWallTimer = 0.0f;
                 if (input.moveInput == Vector2.zero) {
                     stateMachine.ChangeState(stateMachine.idleState);
                 } else {
                     stateMachine.ChangeState(stateMachine.runState);
                 }
+            }
+            else {
+                CheckForWallSlide();
             }
         }
 
@@ -112,16 +126,35 @@ namespace LMO {
             }
         }
 
+        private void CheckForWallSlide() {
+            if(preventSlideDownWallTimer >= 0) {
+                return;
+            }
+
+            wallJump.CheckForWalls();
+            if (wallJump.WallInFrontOfPlayer && input.moveInput != Vector2.zero) {
+                preventSlideDownWallTimer = 0.2f;
+                stateMachine.ChangeState(stateMachine.slideDownWallState);
+            }
+        }
+
         private void GroundPound() {
+            preventSlideDownWallTimer = 0.0f;
             stateMachine.ChangeState(stateMachine.groundPoundState);
         }
 
         private void Grapple() {
+            preventSlideDownWallTimer = 0.0f;
             stateMachine.ChangeState(stateMachine.swingState);
         }
 
         private void SmallSpringJump() {
+            preventSlideDownWallTimer = 0.0f;
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
+        }
+
+        public void AllowWallSlide() {
+            preventSlideDownWallTimer = 0.0f;
         }
     }
 }

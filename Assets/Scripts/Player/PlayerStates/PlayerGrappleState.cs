@@ -59,7 +59,7 @@ namespace LMO {
         protected void Spin() {
             grapple.ConnectedObject.Interact();
             grapple.DisconnectJoint();
-            grapple.OnGrappleEnded?.Invoke();
+            Grapple.OnGrappleEnded?.Invoke();
             stateMachine.ChangeState(stateMachine.spinState);
         }
     }

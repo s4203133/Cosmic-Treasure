@@ -29,8 +29,8 @@ namespace LMO {
         [Header("CAMERA")]
         [SerializeField] private Transform cameraTransform;
 
-        public Action OnMoveStarted;
-        public Action OnMoveStopped;
+        public static Action OnMoveStarted;
+        public static Action OnMoveStopped;
 
         private void Awake() {
             velocityCalculator = new CalculateMoveVelocity(playerTransform);
@@ -96,6 +96,7 @@ namespace LMO {
         }
 
         public void ResetVelocityVariables() {
+            OnMoveStopped?.Invoke();
             settings.Acceleration.Reset();
             settings.Deceleration.Reset();
             isStopping = true;

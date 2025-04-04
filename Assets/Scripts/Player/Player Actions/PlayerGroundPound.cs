@@ -22,10 +22,10 @@ namespace LMO {
         [SerializeField] private Rigidbody rigidBody;
         [SerializeField] private Grounded grounded;
 
-        public Action OnGroundPoundInitialised;
-        public Action OnGroundPoundStarted;
-        public Action OnGroundPoundLanded;
-        public Action OnGroundPoundFinished;
+        public static Action OnGroundPoundInitialised;
+        public static Action OnGroundPoundStarted;
+        public static Action OnGroundPoundLanded;
+        public static Action OnGroundPoundFinished;
 
         // Delegate to hold the current action of the ground pound being performed
         private delegate void GroundPoundAction();

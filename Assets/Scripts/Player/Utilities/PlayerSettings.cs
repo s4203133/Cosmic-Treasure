@@ -11,6 +11,9 @@ namespace LMO {
         [SerializeField] private PlayerMovementSettings hoverMoveSettings;
         public PlayerMovementSettings HoverMovement => hoverMoveSettings;
 
+        [SerializeField] private PlayerMovementSettings wallJumpMoveSettings;
+        public PlayerMovementSettings WallJumpMovement => wallJumpMoveSettings;
+
 
         [Header("JUMP SETTINGS")]
         [SerializeField] private PlayerJumpSettings jumpSettings;
@@ -21,6 +24,9 @@ namespace LMO {
 
         [SerializeField] private PlayerJumpSettings largeSpringJumpSettings;
         public PlayerJumpSettings LargeSpringJump => largeSpringJumpSettings;
+
+        [SerializeField] private PlayerJumpSettings slideDownWallSettings;
+        public PlayerJumpSettings SlideDownWall => slideDownWallSettings;
 
         [Header("GRAPPLE SETTINGS")]
         [SerializeField] private PlayerMovementSettings grappleMovementSettings;

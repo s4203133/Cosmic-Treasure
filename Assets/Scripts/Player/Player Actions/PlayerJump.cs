@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace LMO {
@@ -11,6 +12,7 @@ namespace LMO {
         private bool jumpCutoff;
         private float jumpTimer;
         private float jumpApexSpeed;
+        public bool reachedPeakOfJump => (jumpTimer <= 0 && rigidBody.velocity.y < 0);
         private float fallForce;
 
         [Header("Ground Checking")]
@@ -21,10 +23,8 @@ namespace LMO {
         [SerializeField] private Rigidbody rigidBody;
         [SerializeField] private Animator animator;
 
-        // Custom Events
-        public delegate void JumpEvent();
-        public JumpEvent OnJump;
-        public JumpEvent OnHighJump;
+        public static Action OnJump;
+        public static Action OnHighJump;
 
         private void Update() {
             jumpTimer -= TimeValues.Delta;

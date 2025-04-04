@@ -24,7 +24,7 @@ namespace LMO {
             InputHandler.grappleStarted += Grapple;
             SpringPad.OnSmallSpringJump += SmallSpringJump;
 
-            movement.OnMoveStarted?.Invoke();
+            PlayerMovement.OnMoveStarted?.Invoke();
             // Apply regular movement variables to move component
             movement.ChangeMovementSettings(moveSettings);
             CheckForJumpInput();
@@ -44,8 +44,6 @@ namespace LMO {
             InputHandler.SpinStarted -= Spin;
             InputHandler.grappleStarted -= Grapple;
             SpringPad.OnSmallSpringJump -= SmallSpringJump;
-
-            movement.OnMoveStopped?.Invoke();
         }
 
         public override void OnTriggerEnter(Collider other) {

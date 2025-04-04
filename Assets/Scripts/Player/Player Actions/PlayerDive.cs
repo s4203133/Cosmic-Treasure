@@ -31,8 +31,8 @@ namespace LMO {
         [SerializeField] private Transform cameraTransform;
         private CameraDirection camDirection;
 
-        public Action OnDive;
-        public Action OnHitObject;
+        public static Action OnDive;
+        public static Action OnHitObject;
 
         private void Awake() {
             camDirection = new CameraDirection(cameraTransform);

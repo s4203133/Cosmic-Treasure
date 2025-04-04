@@ -22,12 +22,12 @@ namespace LMO {
         }
 
         private void SubscribeEvents() {
-            Coin.OnCoinCollected += stats.IncrementCoins;
+            Coin.OnCollected += stats.IncrementCoins;
             PlayerDeath.OnPlayerDied += stats.RegisterDeath;
         }
 
         private void UnsubscribeEvents() {
-            Coin.OnCoinCollected -= stats.IncrementCoins;
+            Coin.OnCollected -= stats.IncrementCoins;
             PlayerDeath.OnPlayerDied -= stats.RegisterDeath;
         }
     }

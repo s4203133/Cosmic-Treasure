@@ -58,7 +58,7 @@ namespace LMO {
             movement.ChangeMovementSettings(swing.MovementSettings);
             if(grapple.objectCurrentlyGrappledOnto == null) {
                 OnSwingStart?.Invoke();
-                grapple.OnGrappleStarted?.Invoke();
+                Grapple.OnGrappleStarted?.Invoke();
             }
             else {
                 OnSwingStart?.Invoke();
@@ -67,7 +67,7 @@ namespace LMO {
 
         private void EndSwing() {
             OnSwingEnd?.Invoke();
-            grapple.OnGrappleEnded?.Invoke();
+            Grapple.OnGrappleEnded?.Invoke();
         }
 
         private void DisconnectGrapple() {

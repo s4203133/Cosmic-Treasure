@@ -6,13 +6,11 @@ namespace LMO {
         // Observers
         private PlayerVFX playerVFX;
         private PlayerHover hover;
-        private Animator animator;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
             playerVFX = player.VFX;
             hover = player.Controller.playerHover;
-            animator = player.Controller.playerAnimator;
         }
 
         public void SubscribeEvents() {
@@ -34,16 +32,13 @@ namespace LMO {
 
         private void HoverStated() {
             playerVFX.PlayHoverVFX();
-            animator.SetBool("Hovering", true);
         }
 
         private void HoverEnded() {
             playerVFX.StopHoverVFX();
-            animator.SetBool("Hovering", false);
         }
 
         private void LandedOnGround() {
-            animator.SetBool("Hovering", false);
             hover.EndHover();
             playerVFX.StopHoverVFX();
         }

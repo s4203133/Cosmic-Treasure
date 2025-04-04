@@ -23,7 +23,6 @@ namespace LMO {
         }
 
         private void JumpInCannon() {
-            controller.playerAnimator.SetTrigger("Jump");
             controller.DisablePhysics();
             controller.playerStateMachine.Deactivate();
         }
