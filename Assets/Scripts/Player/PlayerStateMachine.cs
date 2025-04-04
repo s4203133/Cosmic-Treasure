@@ -7,6 +7,7 @@ namespace LMO {
         [SerializeField] protected PlayerBaseState currentState;
         public string stateName;
 
+        public EmptyState emptyState;
         public PlayerIdleState idleState;
         public PlayerRunState runState;
         public PlayerJumpState jumpState;
@@ -34,9 +35,10 @@ namespace LMO {
         private bool Active;
 
         void Start() {
-            Active = true;
+            Active = false;
             InitialiseStates();
-            StartStateMachine();
+            ActivateStateMachine();
+            //currentState = emptyState;
         }
 
         void Update() {
@@ -75,6 +77,8 @@ namespace LMO {
         }
 
         protected virtual void InitialiseStates() {
+            emptyState = new EmptyState(controller);
+
             idleState = new PlayerIdleState(controller);
             runState = new PlayerRunState(controller);
             jumpState = new PlayerJumpState(controller);
@@ -97,11 +101,8 @@ namespace LMO {
             floatState = new PlayerFloatState(controller);
         }
 
-        protected virtual void StartStateMachine() {
-            if (!Active)
-            {
-                return;
-            }
+        public virtual void ActivateStateMachine() {
+            Active = true;
             currentState = idleState;
             stateName = currentState.ToString();
             currentState.OnStateEnter();

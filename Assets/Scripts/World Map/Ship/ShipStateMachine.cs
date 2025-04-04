@@ -11,7 +11,7 @@ namespace LMO {
             shipMoveState = new ShipMove(controller);
         }
 
-        protected override void StartStateMachine() {
+        public override void ActivateStateMachine() {
             currentState = shipIdleState;
             stateName = currentState.ToString();
             currentState.OnStateEnter();

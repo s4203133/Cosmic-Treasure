@@ -50,7 +50,7 @@ namespace LMO {
 
         private IEnumerator OpenDelay() {
             OnBroken?.Invoke();
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(0.5f);
             OnMessageOpen?.Invoke(message.Message);
         }
 
@@ -69,8 +69,7 @@ namespace LMO {
     public class MessageInABottleEvents {
 
         private CameraShaker cameraShaker;
-        private CinemachineBrain camera;
-        private CinemachineFreeLook cam2;
+        private CinemachineFreeLook camera;
 
         private PlayerStateMachine playerStateMachine;
 
@@ -87,8 +86,7 @@ namespace LMO {
             }
 
             cameraShaker = GameObject.FindObjectOfType<CameraShaker>();
-            camera = Camera.main.GetComponent<CinemachineBrain>();
-            cam2 = Camera.main.GetComponent<CinemachineFreeLook>();
+            camera = Camera.main.GetComponent<CinemachineFreeLook>();
 
             playerStateMachine = GameObject.FindObjectOfType<PlayerStateMachine>();
 
@@ -123,8 +121,8 @@ namespace LMO {
             playerStateMachine.Idle();
             playerStateMachine.Deactivate();
             //camera.enabled = false;
-            cam2.m_YAxis.m_MaxSpeed = 0f;
-            cam2.m_XAxis.m_MaxSpeed = 0f;
+            camera.m_YAxis.m_MaxSpeed = 0f;
+            camera.m_XAxis.m_MaxSpeed = 0f;
         }
 
         private void OnMessageOpen(string message) {
@@ -142,8 +140,8 @@ namespace LMO {
             InputHandler.jumpStarted -= messageInABottleUI.CloseMessage;
             playerStateMachine.Activate();
             //camera.enabled = true;
-            cam2.m_YAxis.m_MaxSpeed = 1.8f;
-            cam2.m_XAxis.m_MaxSpeed = 165f;
+            camera.m_YAxis.m_MaxSpeed = 1.8f;
+            camera.m_XAxis.m_MaxSpeed = 165f;
             postProcessing.ClearBlurScreen();
         }
     }
