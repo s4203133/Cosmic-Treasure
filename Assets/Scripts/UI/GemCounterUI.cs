@@ -1,17 +1,18 @@
 
 namespace LMO {
-    public class CoinCounterUI : CounterUI {
+
+    public class GemCounter : CounterUI {
 
         protected override void UpdateText() {
-            counterext.text = counter.value.ToString("000");
+            counterext.text = counter.value.ToString("") + "/3";
         }
 
         protected override void SubscribeToEvent() {
-            Coin.OnCollected += UpdateText;
+            Gem.OnCollected += UpdateText;
         }
 
         protected override void UnsubscribeFromEvent() {
-            Coin.OnCollected -= UpdateText;
+            Gem.OnCollected -= UpdateText;
         }
     }
 }

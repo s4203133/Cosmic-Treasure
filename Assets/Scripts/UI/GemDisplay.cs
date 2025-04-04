@@ -1,13 +1,12 @@
-
 namespace LMO {
 
-    public class CoinDisplay : UIDisplay {
+    public class GemDisplay : UIDisplay {
         protected override void SubscribeEvents() {
-            Coin.OnCollected += OpenDisplay;
+            Gem.OnCollected += OpenDisplay;
         }
 
         protected override void UnsubscribeEvents() {
-            Coin.OnCollected -= OpenDisplay;
+            Gem.OnCollected -= OpenDisplay;
         }
     }
 }
