@@ -2911,6 +2911,7 @@ MonoBehaviour:
   detectableLayers:
     serializedVersion: 2
     m_Bits: 5184
+  wallDetectionDistance: 0
   angleIntoWallThreshold: 0.6
 --- !u!1 &2891921091101716912
 GameObject:
@@ -4789,6 +4790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSettings: {fileID: 11400000, guid: b016c5cf1133716409fa9453e37d9f1e, type: 2}
   hoverMoveSettings: {fileID: 11400000, guid: f75628d83bcc79340b69f6b2f7309e72, type: 2}
+  wallJumpMoveSettings: {fileID: 0}
   jumpSettings: {fileID: 11400000, guid: af6f99a2d86d66341b9b7cdc563f90aa, type: 2}
   smallSpringJumpSettings: {fileID: 11400000, guid: f06f872a462013f48ac2124cd04072c8,
     type: 2}
@@ -6267,6 +6269,7 @@ GameObject:
   - component: {fileID: 7368825514662664675}
   - component: {fileID: 8003182356687514487}
   - component: {fileID: 2281620351421706505}
+  - component: {fileID: 33576111114696245}
   m_Layer: 8
   m_Name: Ground Detection Point
   m_TagString: Untagged
@@ -6325,6 +6328,25 @@ MonoBehaviour:
   movingPlatformLayers:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &33576111114696245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095293393243590790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88895407f0f114648b510a14caca195e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 2676292666461811795}
+  grounded: {fileID: 8003182356687514487}
+  groundPoint: {fileID: 7368825514662664675}
+  groundCheckRadius: 0.15
+  fallingPlatformLayers:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!1 &6103019031691834455
 GameObject:
   m_ObjectHideFlags: 0
@@ -8308,7 +8330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1ce2df00a400a4f906c4dafce51269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDive: {fileID: 4058466883182248220}
   hittableLayers:
     serializedVersion: 2
     m_Bits: 1216
