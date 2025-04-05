@@ -32,11 +32,13 @@ namespace WWH {
         private float currentPlayerHealth;
         private float timer2;
         public LayerMask layer;
+        private bool canAttack;
+        public float DamageAmount;
         
         // Start is called before the first frame update
         void Start() {
             IsAtEnd = false;
-            //CanSeePlayer = false;
+            canAttack = true;
             StartingPlayerHealth = PlayerHealth;
             currentPlayerHealth = PlayerHealth;
         }
@@ -63,6 +65,7 @@ namespace WWH {
                     
                     if (hit.collider.CompareTag("Player")) {
                         Debug.Log("hit");
+
                         if (hit.distance > 1) {
                             Enemy.SetDestination(hit.collider.transform.position);
                             transform.LookAt(hit.transform.position);
@@ -70,16 +73,12 @@ namespace WWH {
                             animator.SetBool("SlimeMoving", false);
                             //lerp to look at the player. if player out of sight get last location. if not there then reset
                         }
-                        if (hit.distance <= 1) {
+                        if (hit.distance <= 1 && canAttack == true) {
                             //play attack animation
-                            PlayerHealth -= 2;
+                            PlayerHealth -= DamageAmount;
                             if (PlayerHealth < currentPlayerHealth) {
                                 currentPlayerHealth = PlayerHealth;
-                                timer2 += Time.deltaTime;
-                                if (timer2 >= 2) {
-                                    PlayerHealth -= 2;
-                                    timer2 = 0;
-                                }
+                                canAttack = false;                                
                             }
                         }
                     }
@@ -131,9 +130,18 @@ namespace WWH {
             if (PlayerHealth <= 0) {
                 PlayerHealth = StartingPlayerHealth;
                 spawnplayer.ResetPlayer();
+                
+
             }
             
-            
+            Debug.Log(PlayerHealth);
+            if (canAttack == false) {
+                timer2 += Time.deltaTime;
+                if (timer2 >= 2) {
+                    canAttack = true;
+                    timer2 = 0;
+                }
+            }
             
         }
     }
