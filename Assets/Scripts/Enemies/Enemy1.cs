@@ -63,7 +63,7 @@ namespace WWH {
 
                 if (Physics.Raycast(transform.position, transform.TransformDirection(angle), out hit, distance, layer)) {
                     
-                    if (hit.collider.CompareTag("Player")) {
+                    //if (hit.collider.CompareTag("Player")) {
                         Debug.Log("hit");
 
                         if (hit.distance > 1) {
@@ -81,7 +81,7 @@ namespace WWH {
                                 canAttack = false;                                
                             }
                         }
-                    }
+                   // }
                 }
             }
         }

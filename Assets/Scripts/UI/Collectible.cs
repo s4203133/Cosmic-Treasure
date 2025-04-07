@@ -40,7 +40,6 @@ namespace LMO {
         }
 
         protected void OnTriggerEnter(Collider other) {
-            Debug.Log("Hitting Something", gameObject);
             if (other.tag == "Player") {
                 if (collected) {
                     return;
@@ -54,7 +53,6 @@ namespace LMO {
                 gameObject.SetActive(false);
             }
             else if (groundDetectionLayers == (groundDetectionLayers | (1 << other.gameObject.layer))) {
-                Debug.Log("Hitting Ground Layers", gameObject);
                 HitGround();
             }
         }

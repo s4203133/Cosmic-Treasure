@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.06, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6365628602263468445}
   m_Father: {fileID: 0}
@@ -61,7 +61,11 @@ MonoBehaviour:
   - {x: 0, y: -25, z: 0}
   distance: 25
   Enemy: {fileID: 5423244760689116434}
-  PatrolPoints: []
+  PatrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   IsAtEnd: 0
   animator: {fileID: 6350681892208262726}
   SlimeModel: {fileID: 5988821927627236135}
@@ -315,8 +319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7dad221035a5d746bc375f6b4647ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 0}
-  SlimeHealth: 20
+  Enemy: {fileID: 6513583433740248623}
+  SlimeHealth: 1
 --- !u!114 &479514730245630659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc9413c09189d71459b68bdd83bd4901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
+  enemy: {fileID: 6513583433740248623}
 --- !u!4 &6365628602263468445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 33e2d520638318b48abd605b6583188b,

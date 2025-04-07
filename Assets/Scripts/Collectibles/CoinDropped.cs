@@ -42,7 +42,6 @@ namespace LMO {
         }
 
         protected override void HitGround() {
-            Debug.Log("Hitting something");
             if (!hasDropped || hasBounced) {
                 return;
             }
