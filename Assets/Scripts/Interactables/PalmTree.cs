@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class PalmTree : MonoBehaviour, IBreakable
 {
-    private Animator animator;
+    private InteractAnimation interaction;
     [SerializeField] private CoinSpawner coinSpawner;
     private bool coinsDropped;
 
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        interaction = GetComponentInChildren<InteractAnimation>();
     }
 
     public void Break()
     {
-        animator.SetTrigger("Interact");
+        interaction.Play();
 
         if(!coinsDropped && coinSpawner != null) {
             coinsDropped = true;

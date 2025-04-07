@@ -8,16 +8,18 @@ namespace LMO {
         protected PlayerJump jump;
         private Grounded grounded;
         private PlayerInput input;
+
         protected PlayerJumpSettings jumpSettings;
-        private Rigidbody rigidBody;
+        protected PlayerMovementSettings jumpMoveSettings;
 
         public PlayerJumpState(PlayerController playerController) : base(playerController) {
             movement = context.playerMovment;
             jump = context.playerJump;
             grounded = jump.groundedSystem;
             input = context.playerInput;
+
             jumpSettings = context.PlayerSettings.Jump;
-            rigidBody = context.RigidBody;
+            jumpMoveSettings = context.PlayerSettings.JumpMovement;
         }
 
         public override void OnStateEnter() {
@@ -73,6 +75,7 @@ namespace LMO {
         // Transition states based off input
 
         protected virtual void StartJump() {
+            movement.ChangeMovementSettings(jumpMoveSettings);
             jump.ChangeJumpSettings(jumpSettings);
             jump.InitialiseJump();
         }
