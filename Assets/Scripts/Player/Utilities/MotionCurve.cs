@@ -14,12 +14,7 @@ namespace LMO {
         }
 
         public float CalculateValue(float maxValue) {
-            if (timer >= timerLength) {
-                timer = timerLength;
-            }
-            else {
-                timer += TimeValues.FixedDelta;
-            }
+            timer += TimeValues.FixedDelta;
             return maxValue * velocityCurve.Evaluate(timer);
         }
 
