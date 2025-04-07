@@ -19,6 +19,14 @@ namespace LMO {
         }
 
         public void Reset() {
+            if (timer >= timerLength)
+            {
+                timer = timerLength;
+            }
+            else
+            {
+                timer += TimeValues.FixedDelta;
+            }
             timer = 0;
         }
 
