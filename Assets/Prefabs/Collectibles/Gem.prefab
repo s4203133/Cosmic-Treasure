@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 1279469297898528798}
   - component: {fileID: 4061465792483061308}
   - component: {fileID: 3933008135729075383}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Gem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,6 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   counter: {fileID: 11400000, guid: a94baa04b147eee4898d5049ebb18a3e, type: 2}
   collectedVFX: {fileID: 6832196405714514038}
+  groundDetectionLayers:
+    serializedVersion: 2
+    m_Bits: 5312
 --- !u!135 &3933008135729075383
 SphereCollider:
   m_ObjectHideFlags: 0

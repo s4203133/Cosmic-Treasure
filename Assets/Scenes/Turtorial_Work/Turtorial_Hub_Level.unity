@@ -39463,6 +39463,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7589104613536915128, guid: 58ca20c901a7696418a32e5c2b234921,
+        type: 3}
+      propertyPath: groundDetectionLayers.m_Bits
+      value: 5312
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -50470,16 +50475,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1419130171415406350, guid: 0fe5604c12449f24fa9a64efbaa08111,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[2].m_Height
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1419130171415406350, guid: 0fe5604c12449f24fa9a64efbaa08111,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[2].m_Radius
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 1427047429895148622, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_Name
@@ -50510,12 +50505,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.00000018626451
       objectReference: {fileID: 0}
-    - target: {fileID: 6733054242305870114, guid: 0fe5604c12449f24fa9a64efbaa08111,
-        type: 3}
-      propertyPath: jumpMovement
-      value: 
-      objectReference: {fileID: 11400000, guid: 37dce8593f3f95440bf4069b4b7e596a,
-        type: 2}
     - target: {fileID: 7673963407750061388, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: spawnPlayer

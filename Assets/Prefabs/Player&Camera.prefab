@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followSmoothnessHorizontal: 1
   followSmoothnessVertical: 0.01
-  followSmoothnessVerticalGrounded: 0.08
+  followSmoothnessVerticalGrounded: 0.2
   maxYDistance: 6
 --- !u!1 &1427047429895148622
 GameObject:
@@ -913,7 +913,7 @@ MonoBehaviour:
     m_Radius: 8
   - m_Height: 6
     m_Radius: 10
-  - m_Height: 1
+  - m_Height: 1.5
     m_Radius: 6
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
@@ -1245,7 +1245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5832099822513635561}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07010575, y: -0.000000070656256, z: 0.000000019936834, w: 0.99753964}
+  m_LocalRotation: {x: 0.07010573, y: -0.00000007244148, z: 0.000000005142965, w: 0.99753964}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1697,6 +1697,12 @@ PrefabInstance:
       propertyPath: secondJumpBoostForce
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 603727231609413422, guid: 1202fe7f8d7d8fc48a4411bc140ca700,
+        type: 3}
+      propertyPath: jumpMovement
+      value: 
+      objectReference: {fileID: 11400000, guid: 37dce8593f3f95440bf4069b4b7e596a,
+        type: 2}
     - target: {fileID: 603727231609413422, guid: 1202fe7f8d7d8fc48a4411bc140ca700,
         type: 3}
       propertyPath: spinMovement
