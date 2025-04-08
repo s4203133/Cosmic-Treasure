@@ -129,7 +129,7 @@ namespace LMO {
         }
 
         private void HandleSkid() {
-            if (isStarting || speed != settings.MaxSpeed) {
+            if (!settings.CanKickBack || isStarting || speed != settings.MaxSpeed) {
                 return;
             }
             skid.UpdateDirection(playerTransform, moveDirection);

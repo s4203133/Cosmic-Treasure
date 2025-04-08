@@ -23,6 +23,8 @@ namespace LMO {
         [SerializeField] private bool canRotate;
         public bool CanRotate => canRotate;
 
+        [SerializeField] private bool canKickback;
+        public bool CanKickBack => canKickback;
 
         [Range(0.1f, 1f)]
         [SerializeField] protected float changeDirectionThreshhold;
@@ -36,9 +38,5 @@ namespace LMO {
 
         [SerializeField] private MotionCurve deceleration;
         public MotionCurve Deceleration => deceleration;
-
-
-        protected Vector3 velocity;
-        protected Vector3 moveDirection;
     }
 }
