@@ -1,5 +1,4 @@
-﻿using LMO;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace LMO {
     public class CalculateMoveVelocity {

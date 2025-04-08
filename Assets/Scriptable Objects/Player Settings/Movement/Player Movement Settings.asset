@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd039c342a0d5384db1c2690381cc886, type: 3}
-  m_Name: Hover Movement
+  m_Name: Player Movement Settings
   m_EditorClassIdentifier: 
-  maxSpeed: 615
-  rotateSpeed: 420
-  canChangeDirectionQuickly: 1
+  maxSpeed: 625
+  rotateSpeed: 540
+  initialRotateSpeed: 1440
+  canChangeDirectionQuickly: 0
   canRotate: 1
   changeDirectionThreshhold: 0.5
   acceleration: {fileID: 11400000, guid: a6be96186fb5a144c8d6f8caa9353381, type: 2}
-  deceleration: {fileID: 11400000, guid: 7aa40391d11261347bebe3176620fba8, type: 2}
+  deceleration: {fileID: 11400000, guid: 4bff5728c81b55b48b7d64f0b610c10c, type: 2}

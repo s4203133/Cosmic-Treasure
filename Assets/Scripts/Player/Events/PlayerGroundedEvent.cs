@@ -9,6 +9,7 @@ namespace LMO {
         private PlayerSpinAttack playerSpin;
         private PlayerHover playerHover;
         private FOVChanger fovChanger;
+        private PlayerMovement movement;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
@@ -17,6 +18,7 @@ namespace LMO {
             playerSpin = player.Controller.playerSpinAttack;
             playerHover = player.Controller.playerHover;
             fovChanger = player.FOV_Changer;
+            movement = player.Controller.playerMovment;
         }
 
         public void SubscribeEvents() {
@@ -33,6 +35,7 @@ namespace LMO {
             playerSpin.ResetAirSpins();
             playerHover.EnableHover();
             fovChanger.EndChange();
+            movement.FinishedMoving();
         }
     }
 }

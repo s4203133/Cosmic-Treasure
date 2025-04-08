@@ -1,4 +1,3 @@
-using UnityEngine;
 
 namespace LMO {
 
@@ -45,8 +44,7 @@ namespace LMO {
 
         public override void OnStateUpdate() {
             CheckIfPlayerLeftPlatform();
-            CheckIfFinishedMoving();
-
+            CheckMovementStopped();
             LookAtGrappleTarget();
         }
 
@@ -77,14 +75,6 @@ namespace LMO {
             }
         }
 
-        private void CheckIfFinishedMoving() {
-            if (input.moveInput == Vector2.zero) {
-                if (movement.HasStopped()) {
-                    Idle();
-                }
-            }
-        }
-
         private void CheckForJumpInput() {
             if (InputBuffers.instance.jump.HasInputBeenRecieved()) {
                 stateMachine.ChangeState(stateMachine.grappleJump);
@@ -94,5 +84,11 @@ namespace LMO {
         private void SmallSpringJump() {
             stateMachine.ChangeState(stateMachine.smallSpringJumpState);
         }
+
+        private void CheckMovementStopped() {
+                if (movement.HasStopped()) {
+                    Idle();
+                }
+            }
+        }
     }
-}

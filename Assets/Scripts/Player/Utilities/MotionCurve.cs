@@ -11,6 +11,11 @@ namespace LMO {
 
         public void Initialise() {
             timerLength = velocityCurve.keys[velocityCurve.length - 1].time;
+            PlayerMovement.OnMoveStopped += ResetTimer;
+        }
+
+        public void OnDisable() {
+            PlayerMovement.OnMoveStopped -= ResetTimer;
         }
 
         public float CalculateValue(float maxValue) {
@@ -18,16 +23,8 @@ namespace LMO {
             return maxValue * velocityCurve.Evaluate(timer);
         }
 
-        public void Reset() {
-            if (timer >= timerLength)
-            {
-                timer = timerLength;
-            }
-            else
-            {
-                timer += TimeValues.FixedDelta;
-            }
-            timer = 0;
+        public void ResetTimer() {
+            timer = 0f;
         }
 
         public bool Finished() {

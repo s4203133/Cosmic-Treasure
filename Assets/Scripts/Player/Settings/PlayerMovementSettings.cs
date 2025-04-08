@@ -13,6 +13,9 @@ namespace LMO {
         [SerializeField] protected float rotateSpeed;
         public float RotationSpeed => rotateSpeed;
 
+        [SerializeField] protected float initialRotateSpeed;
+        public float InitialRotationSpeed => initialRotateSpeed;
+
         [Space(15)]
         [SerializeField] private bool canChangeDirectionQuickly;
         public bool CanChangeDirectionQuickly => canChangeDirectionQuickly;

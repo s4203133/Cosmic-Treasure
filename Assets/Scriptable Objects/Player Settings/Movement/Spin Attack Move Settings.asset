@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd039c342a0d5384db1c2690381cc886, type: 3}
-  m_Name: Jump Movement
+  m_Name: Spin Attack Move Settings
   m_EditorClassIdentifier: 
-  maxSpeed: 625
-  rotateSpeed: 400
-  canChangeDirectionQuickly: 1
+  maxSpeed: 350
+  rotateSpeed: 180
+  initialRotateSpeed: 2400
+  canChangeDirectionQuickly: 0
   canRotate: 1
   changeDirectionThreshhold: 0.5
-  acceleration: {fileID: 11400000, guid: d9141b3162743bf41904ff25364cf15b, type: 2}
-  deceleration: {fileID: 11400000, guid: b7797bc0afc69c344a296932f81add12, type: 2}
+  acceleration: {fileID: 11400000, guid: a6be96186fb5a144c8d6f8caa9353381, type: 2}
+  deceleration: {fileID: 11400000, guid: 4bff5728c81b55b48b7d64f0b610c10c, type: 2}
