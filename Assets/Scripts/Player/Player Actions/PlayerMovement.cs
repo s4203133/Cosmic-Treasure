@@ -13,6 +13,7 @@ namespace LMO {
         private RotateCharacter rotation;
         private CameraDirection camDirection;
         private MotionCurves motionCurves;
+        [SerializeField] private PlayerSkid skid;
 
         [Header("COMPONENTS")]
         [SerializeField] private Transform playerTransform;
@@ -35,6 +36,7 @@ namespace LMO {
 
         public static Action OnMoveStarted;
         public static Action OnMoveStopped;
+        public static Action OnSkid;
 
         private void Awake() {
             velocityCalculator = new CalculateMoveVelocity(playerTransform);
@@ -48,21 +50,29 @@ namespace LMO {
             motionCurves.Enable();
             motionCurves.SetCurves(settings.Acceleration, settings.Deceleration);
             motionCurves.InitialiseMotionCurves();
+            OnSkid += Skid;
         }
 
         private void OnDisable() {
             motionCurves.Disable();
             OnMoveStarted -= StartMoving;
+            OnSkid -= Skid;
         }
 
         public void StartMoving() {
             isStarting = true;
             isStopping = false;
             startingTimer = 0f;
+            skid.ResetSkid(playerTransform.forward);
         }
 
         public void HandleMovement() {
+            skid.UpdateDirection(playerTransform, playerInput.moveInput);
             camDirection.CalculateDirection();
+            if (skid.isSkidding) {
+                skid.CountdownSkidTimer();
+                return;
+            }
             if (!isStopping) {
                 MoveCharacter();
             } else {
@@ -74,6 +84,7 @@ namespace LMO {
         public void MoveCharacter() {
             GetMoveDirection();
             TurnCharacter();
+            HandleSkid();
             CalculateVelocity(settings.Acceleration);
             ApplyVelocity();
         }
@@ -118,6 +129,19 @@ namespace LMO {
             }
         }
 
+        private void HandleSkid() {
+            if (isStarting || speed != settings.MaxSpeed) {
+                return;
+            }
+            skid.UpdateDirection(playerTransform, playerInput.moveInput);
+        }
+
+        private void Skid() {
+            rigidBody.velocity = Vector3.zero;
+            StartMoving();
+            motionCurves.ResetMotionCurves();
+        }
+
         private void ApplyVelocity() {
             velocity.y = rigidBody.velocity.y;
             rigidBody.velocity = velocity;
@@ -141,16 +165,19 @@ namespace LMO {
             isStopping = true;
         }
 
-/*        private void ResetDeceleration() {
-            motionCurves.Deccel.ResetTimer();
-        }*/
-
         // Swap out the variables used to control the movement
         public void ChangeMovementSettings(PlayerMovementSettings newSettings) {
             motionCurves.DeactivateCurrentMotionCurves();
             settings = newSettings;
             motionCurves.SetCurves(newSettings.Acceleration, newSettings.Deceleration);
             motionCurves.InitialiseMotionCurves();
+        }
+
+        private void OnDrawGizmos() {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(playerTransform.position, playerTransform.position + (skid.playerDir * 5));
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(playerTransform.position, playerTransform.position + (skid.targetDir * 8));
         }
     }
 }
@@ -195,6 +222,63 @@ namespace LMO {
 
         public void Disable() {
             Grounded.OnLanded -= ResetDecceleration;
+        }
+    }
+}
+
+namespace LMO {
+
+    [System.Serializable]
+    public class PlayerSkid {
+        private Vector3 playerDirection;
+        public bool isSkidding { get; private set; }
+
+        private float updateTimer;
+        private float skiddingTimer;
+
+        [SerializeField] private float straightLineThreshold;
+        [SerializeField] private float skidTime;
+
+        public Vector3 playerDir;
+        public Vector3 targetDir;
+
+        public void ResetSkid(Vector3 direction) {
+            playerDirection = direction;
+            updateTimer = 0;
+            skiddingTimer = skidTime;
+            isSkidding = false;
+        }
+
+        public void UpdateDirection(Transform player, Vector2 moveInput) {
+            Vector3 direction = player.position + player.forward;
+            direction = (direction - player.position).normalized;
+            Vector3 targetDirection = ((player.position + new Vector3(moveInput.x, 0, moveInput.y)) - player.position).normalized;
+
+            playerDir = direction;
+            targetDir = targetDirection;
+            //Debug.Log("Player: " + direction);
+            //Debug.Log("Target: " + targetDirection);
+
+
+            //updateTimer += TimeValues.FixedDelta;
+            //if (updateTimer > 0.1f) {
+                //if (Vector3.Dot(direction, targetDirection) < straightLineThreshold) {
+                    //Skid();
+                //}
+                //playerDirection = direction;
+                //updateTimer = 0;
+            //}
+        }
+
+        private void Skid() {
+            isSkidding = true;
+            skiddingTimer = skidTime;
+            PlayerMovement.OnSkid?.Invoke();
+        }
+
+        public void CountdownSkidTimer() {
+            skiddingTimer -= TimeValues.Delta;
+            isSkidding = skiddingTimer > 0;
         }
     }
 }
