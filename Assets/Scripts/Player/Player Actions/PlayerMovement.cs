@@ -63,11 +63,10 @@ namespace LMO {
             isStarting = true;
             isStopping = false;
             startingTimer = 0f;
-            skid.ResetSkid(playerTransform.forward);
+            skid.ResetRunTimer();
         }
 
         public void HandleMovement() {
-            skid.UpdateDirection(playerTransform, playerInput.moveInput);
             camDirection.CalculateDirection();
             if (skid.isSkidding) {
                 skid.CountdownSkidTimer();
@@ -133,7 +132,7 @@ namespace LMO {
             if (isStarting || speed != settings.MaxSpeed) {
                 return;
             }
-            skid.UpdateDirection(playerTransform, playerInput.moveInput);
+            skid.UpdateDirection(playerTransform, moveDirection);
         }
 
         private void Skid() {
@@ -145,18 +144,6 @@ namespace LMO {
         private void ApplyVelocity() {
             velocity.y = rigidBody.velocity.y;
             rigidBody.velocity = velocity;
-        }
-
-        public bool HasStopped() {
-            return (isStopping && speed < 0.1f);
-        }
-
-        public void FinishedMoving() {
-            isStopping = false;
-        }
-
-        public void CountdownStartTimer() {
-            isStarting = (startingTimer += TimeValues.Delta) < 0.5f;
         }
 
         public void ResetVelocityVariables() {
@@ -173,12 +160,11 @@ namespace LMO {
             motionCurves.InitialiseMotionCurves();
         }
 
-        private void OnDrawGizmos() {
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(playerTransform.position, playerTransform.position + (skid.playerDir * 5));
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(playerTransform.position, playerTransform.position + (skid.targetDir * 8));
-        }
+        public bool HasStopped() => (isStopping && speed < 0.1f);
+
+        public void FinishedMoving() => isStopping = false;
+
+        public void CountdownStartTimer() => isStarting = (startingTimer += TimeValues.Delta) < 0.5f;
     }
 }
 
@@ -230,44 +216,33 @@ namespace LMO {
 
     [System.Serializable]
     public class PlayerSkid {
-        private Vector3 playerDirection;
         public bool isSkidding { get; private set; }
-
-        private float updateTimer;
         private float skiddingTimer;
 
+        private float runningInStraightLineTimer;
         [SerializeField] private float straightLineThreshold;
         [SerializeField] private float skidTime;
 
-        public Vector3 playerDir;
-        public Vector3 targetDir;
-
-        public void ResetSkid(Vector3 direction) {
-            playerDirection = direction;
-            updateTimer = 0;
+        public void ResetSkid() {
+            runningInStraightLineTimer = 0;
             skiddingTimer = skidTime;
             isSkidding = false;
         }
 
-        public void UpdateDirection(Transform player, Vector2 moveInput) {
+        public void UpdateDirection(Transform player, Vector3 moveDirection) {
             Vector3 direction = player.position + player.forward;
             direction = (direction - player.position).normalized;
-            Vector3 targetDirection = ((player.position + new Vector3(moveInput.x, 0, moveInput.y)) - player.position).normalized;
+            Vector3 targetDirection = ((player.position + moveDirection) - player.position).normalized;
 
-            playerDir = direction;
-            targetDir = targetDirection;
-            //Debug.Log("Player: " + direction);
-            //Debug.Log("Target: " + targetDirection);
-
-
-            //updateTimer += TimeValues.FixedDelta;
-            //if (updateTimer > 0.1f) {
-                //if (Vector3.Dot(direction, targetDirection) < straightLineThreshold) {
-                    //Skid();
-                //}
-                //playerDirection = direction;
-                //updateTimer = 0;
-            //}
+            if (Vector3.Dot(direction, targetDirection) < straightLineThreshold) {
+                if (runningInStraightLineTimer > 0.5f) {
+                    runningInStraightLineTimer = 0;
+                    Skid();
+                }
+            }
+            else {
+                runningInStraightLineTimer += TimeValues.FixedDelta;
+            }
         }
 
         private void Skid() {
@@ -277,8 +252,13 @@ namespace LMO {
         }
 
         public void CountdownSkidTimer() {
-            skiddingTimer -= TimeValues.Delta;
+            skiddingTimer -= TimeValues.FixedDelta;
             isSkidding = skiddingTimer > 0;
+            if (!isSkidding) {
+                ResetSkid();
+            }
         }
+
+        public void ResetRunTimer() => runningInStraightLineTimer = 0;
     }
 }
