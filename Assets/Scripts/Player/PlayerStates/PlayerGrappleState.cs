@@ -1,4 +1,5 @@
 using UnityEngine;
+using NR;
 
 namespace LMO {
 
@@ -25,6 +26,12 @@ namespace LMO {
 
         public override void OnStateEnter() {
             Vector3 constraintPosition = grapple.ConnectedObject.transform.position;
+            //<NR>
+            SlingshotJoint grappleSlingshot = grapple.ConnectedObject as SlingshotJoint;
+            if (grappleSlingshot != null) {
+                constraintPosition = grappleSlingshot.SlingshotTransform.position;
+            }
+            //</NR>
             constraintPosition.y = playerTransform.position.y;
             grapple.ConnectJoint(constraintPosition);
 
@@ -33,7 +40,7 @@ namespace LMO {
 
         public override void OnStateExit() {
             PlayerDeath.OnPlayerDied -= grapple.DisconnectJoint;
-        }
+        }   
 
         public override void OnStatePhysicsUpdate() {
 
