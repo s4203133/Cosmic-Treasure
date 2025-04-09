@@ -13,7 +13,7 @@ namespace LMO {
         private RotateCharacter rotation;
         private CameraDirection camDirection;
         private MotionCurves motionCurves;
-        [SerializeField] private PlayerSkid skid;
+        [SerializeField] private PlayerKickBack kickBack;
 
         [Header("COMPONENTS")]
         [SerializeField] private Transform playerTransform;
@@ -63,13 +63,13 @@ namespace LMO {
             isStarting = true;
             isStopping = false;
             startingTimer = 0f;
-            skid.ResetRunTimer();
+            kickBack.ResetRunTimer();
         }
 
         public void HandleMovement() {
             camDirection.CalculateDirection();
-            if (skid.isSkidding) {
-                skid.CountdownSkidTimer();
+            if (kickBack.isKickingBack) {
+                kickBack.CountdownSkidTimer();
                 return;
             }
             if (!isStopping) {
@@ -82,14 +82,14 @@ namespace LMO {
         // Get the input direction, then move and rotate character in that direction
         public void MoveCharacter() {
             GetMoveDirection();
-            TurnCharacter();
             HandleSkid();
+            TurnCharacter();
             CalculateVelocity(settings.Acceleration);
             ApplyVelocity();
         }
 
         private void TurnCharacter() {
-            if (settings.CanRotate) {
+            if (settings.CanRotate && !kickBack.isKickingBack) {
                 float rotateSpeed = CalculateRotateSpeed();
                 rotation.RotateTowardsDirection(moveDirection, rotateSpeed);
             }
@@ -124,7 +124,7 @@ namespace LMO {
                 velocity = velocityCalculator.CalculateVelocity(moveDirection, speed);
             }
             else {
-                velocity = velocityCalculator.CalculateVelocity(settings.CanChangeDirectionQuickly, moveDirection, speed, velocityDifference);
+                velocity = velocityCalculator.CalculateVelocity(settings.CanChangeDirectionQuickly, settings.ChangeDirectionSpeed, moveDirection, speed, velocityDifference);
             }
         }
 
@@ -132,7 +132,7 @@ namespace LMO {
             if (!settings.CanKickBack || isStarting || speed != settings.MaxSpeed) {
                 return;
             }
-            skid.UpdateDirection(playerTransform, moveDirection);
+            kickBack.UpdateDirection(playerTransform, moveDirection);
         }
 
         private void Skid() {
@@ -215,18 +215,21 @@ namespace LMO {
 namespace LMO {
 
     [System.Serializable]
-    public class PlayerSkid {
-        public bool isSkidding { get; private set; }
-        private float skiddingTimer;
+    public class PlayerKickBack {
+        public bool isKickingBack { get; private set; }
+        private float kickBackTimer;
 
         private float runningInStraightLineTimer;
+        [Tooltip("The DOT product to determine when the player has made a significant change in movement direction")]
         [SerializeField] private float straightLineThreshold;
+        [Tooltip("The minimum time in seconds the player must run in a straight line to allow a kick-back to be performed")]
+        [SerializeField] private float minimumStrightMotionTime;
         [SerializeField] private float skidTime;
 
         public void ResetSkid() {
             runningInStraightLineTimer = 0;
-            skiddingTimer = skidTime;
-            isSkidding = false;
+            kickBackTimer = skidTime;
+            isKickingBack = false;
         }
 
         public void UpdateDirection(Transform player, Vector3 moveDirection) {
@@ -235,7 +238,7 @@ namespace LMO {
             Vector3 targetDirection = ((player.position + moveDirection) - player.position).normalized;
 
             if (Vector3.Dot(direction, targetDirection) < straightLineThreshold) {
-                if (runningInStraightLineTimer > 0.5f) {
+                if (runningInStraightLineTimer > straightLineThreshold) {
                     runningInStraightLineTimer = 0;
                     Skid();
                 }
@@ -246,15 +249,15 @@ namespace LMO {
         }
 
         private void Skid() {
-            isSkidding = true;
-            skiddingTimer = skidTime;
+            isKickingBack = true;
+            kickBackTimer = skidTime;
             PlayerMovement.OnSkid?.Invoke();
         }
 
         public void CountdownSkidTimer() {
-            skiddingTimer -= TimeValues.FixedDelta;
-            isSkidding = skiddingTimer > 0;
-            if (!isSkidding) {
+            kickBackTimer -= TimeValues.FixedDelta;
+            isKickingBack = kickBackTimer > 0;
+            if (!isKickingBack) {
                 ResetSkid();
             }
         }

@@ -20,6 +20,10 @@ namespace LMO {
         [SerializeField] private bool canChangeDirectionQuickly;
         public bool CanChangeDirectionQuickly => canChangeDirectionQuickly;
 
+        [Range(0.1f, 1f)]
+        [SerializeField] private float changeDirectionSpeed;
+        public float ChangeDirectionSpeed => changeDirectionSpeed;
+
         [SerializeField] private bool canRotate;
         public bool CanRotate => canRotate;
 

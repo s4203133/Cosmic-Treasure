@@ -23,17 +23,17 @@ namespace LMO {
             return direction * speed * TimeValues.FixedDelta;
         }
 
-        public Vector3 CalculateVelocity(bool canChangeDirectionQuickly, Vector3 direction, float speed, float velocityDifference) {
+        public Vector3 CalculateVelocity(bool canChangeDirectionQuickly, float changeDirectionSpeed, Vector3 direction, float speed, float velocityDifference) {
             // If the player can't make quick changes in direction, only allow them to move in the direction they're facing
             Vector3 returnValue;
             if (!canChangeDirectionQuickly) {
                 returnValue = _transform.forward * speed * TimeValues.FixedDelta;
             } else {
                 // If the player is making a large change in direction, make them move directly towards their target direction,
-                // otherwise move in the direction they are facing
                 if (velocityDifference > 1) {
-                    returnValue = direction * speed * TimeValues.FixedDelta;
+                    returnValue = direction * speed * changeDirectionSpeed * TimeValues.FixedDelta;
                 } else {
+                    // otherwise move in the direction they are facing
                     returnValue = _transform.forward * speed * TimeValues.FixedDelta;
                 }
             }

@@ -85,7 +85,7 @@ namespace LMO {
                 }
 
                 RaycastHit hit;
-                if(Physics.Raycast(playerPosition, (jointPosition - playerPosition), out hit, thisJoint.DetectionRange, allLayers)) {
+                if (Physics.Raycast(playerPosition + Vector3.up, (jointPosition - playerPosition), out hit, thisJoint.DetectionRange, allLayers)) {
                     if (grapplePointLayers != (grapplePointLayers | (1 << hit.collider.gameObject.layer))) {
                         UnregisterSwingPoint(thisJoint);
                         continue;
@@ -123,7 +123,7 @@ namespace LMO {
         }
 
         private void UnregisterSwingPoint(GrapplePoint joint) {
-            if(joint == null) {
+            if (joint == null) {
                 return;
             }
             if (nearbyJoints.Contains(joint)) {
