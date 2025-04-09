@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using NR;
 
 namespace LMO {
 
@@ -30,13 +31,22 @@ namespace LMO {
         }
 
         public void InitialiseJoint(Transform player, Vector3 connectPoint, GrapplePoint grapplePoint) {
+            //<NR>
+            float grappleMaxDistance = maxDistance;
+            if (grapplePoint as SwingJoint != null) {
+                grappleMaxDistance = grapplePoint.DetectionRange - 2;
+            } else if (grapplePoint as SlingshotJoint != null) {
+                grappleMaxDistance = grapplePoint.DetectionRange + 5;
+            }
+            //</NR>
+
             currentJoint = player.gameObject.AddComponent<SpringJoint>();
             currentJoint.autoConfigureConnectedAnchor = false;
             currentJoint.connectedAnchor = connectPoint;
             currentJoint.anchor = new Vector3(0, 1, 0);
 
             currentJoint.minDistance = minDistance;
-            currentJoint.maxDistance = grapplePoint.DetectionRange - 2;
+            currentJoint.maxDistance = grappleMaxDistance;
 
             currentJoint.spring = spring;
             currentJoint.damper = damper;

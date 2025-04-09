@@ -19,16 +19,23 @@ namespace LMO {
         protected bool disconnectWhenPlayerFalls;
 
         [Space(15)]
-        [SerializeField] private UnityEvent interactActions;
+        [SerializeField] protected UnityEvent interactActions;
 
         public void Interact() {
             interactActions?.Invoke();
         }
 
+
+        //<NR>
+        public virtual void OnGrappled() { }
+        public virtual void OnReleased() { }
+        //</NR>
+
         protected virtual void Start() {
             detectionRangeSqrd = detectionRange * detectionRange;
             disconnectWhenPlayerFalls = true;
         }
+
 
     #if UNITY_EDITOR
 

@@ -42,9 +42,11 @@ namespace LMO {
 
         public void AssignGrapplePoint() {
             objectCurrentlyGrappledOnto = grapplePointDetector.NearestGrapplePoint();
+            objectCurrentlyGrappledOnto.OnGrappled();
         }
 
         public void RemoveGrapplePoint() {
+            objectCurrentlyGrappledOnto.OnReleased();
             objectCurrentlyGrappledOnto = null;
         }
 
@@ -54,7 +56,7 @@ namespace LMO {
                 connectedToJoint = true;
             }
         }
-
+            
         public void DisconnectJoint() {
             Destroy(jointSettings.Joint);
             connectedToJoint = false;
