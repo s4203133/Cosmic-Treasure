@@ -5,11 +5,15 @@ namespace NR {
         public Activator activator;
 
         private void OnEnable() {
-            activator.OnActivate += Activate;
+            if (activator != null) {
+                activator.OnActivate += Activate;
+            }
         }
 
         private void OnDisable() {
-            activator.OnActivate -= Activate;
+            if (activator != null) {
+                activator.OnActivate -= Activate;
+            }
         }
 
         public virtual void Activate() { }
