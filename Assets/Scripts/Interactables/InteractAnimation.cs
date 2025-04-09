@@ -6,7 +6,7 @@ namespace LMO {
         private Animator animator;
 
         void Start() {
-            animator = GetComponentInChildren<Animator>();
+            animator = GetComponent<Animator>();
         }
 
         private void OnTriggerEnter(Collider other) {

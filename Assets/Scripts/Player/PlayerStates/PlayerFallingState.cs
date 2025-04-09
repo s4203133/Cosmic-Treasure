@@ -11,7 +11,8 @@ namespace LMO {
         private PlayerInput input;
         private PlayerWallJump wallJump;
 
-        private PlayerJumpSettings jumpSettings;
+        private PlayerMovementSettings moveFallSettings;
+        private PlayerJumpSettings fallSettings;
 
         private float coyoteTime;
         private bool hasPerformedAirMove;
@@ -26,7 +27,8 @@ namespace LMO {
             input = context.playerInput;
             wallJump = context.playerWallJump;
 
-            jumpSettings = context.PlayerSettings.Jump;
+            moveFallSettings = context.PlayerSettings.JumpMovement;
+            fallSettings = context.PlayerSettings.Jump;
 
             coyoteTime = 0.1f;
         }
@@ -38,7 +40,8 @@ namespace LMO {
             InputHandler.grappleStarted += Grapple;
             SpringPad.OnSmallSpringJump += SmallSpringJump;
 
-            jump.ChangeJumpSettings(jumpSettings);
+            movement.ChangeMovementSettings(moveFallSettings);
+            jump.ChangeJumpSettings(fallSettings);
             CheckForSpinInput();
             CheckForHoverInput();
         }

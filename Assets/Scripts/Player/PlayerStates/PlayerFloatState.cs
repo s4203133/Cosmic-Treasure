@@ -17,12 +17,14 @@ namespace LMO {
         }
 
         public override void OnStateEnter() {
+            InputHandler.jumpStarted += Hover;
             InputHandler.SpinStarted += Spin;
 
             playerFloat.StartFloating();
         }
 
         public override void OnStateExit() {
+            InputHandler.jumpStarted -= Hover;
             InputHandler.SpinStarted -= Spin;
         }
 
@@ -53,6 +55,10 @@ namespace LMO {
             if (floatingArea.Length == 0) {
                 stateMachine.Fall();
             }
+        }
+
+        private void Hover() {
+            stateMachine.ChangeState(stateMachine.hoverState);
         }
     }
 }

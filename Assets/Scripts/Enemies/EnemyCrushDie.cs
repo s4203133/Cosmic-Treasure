@@ -1,11 +1,14 @@
 using UnityEngine;
 using LMO;
+using WWH;
 
 namespace NR {
     public class EnemyCrushDie : MonoBehaviour, ICrushable {
-        [SerializeField] Enemy1 enemy;
+        [SerializeField]private GameObject enemy;        
+       
         public void OnHit() {
-            //enemy.Die();
+            Destroy(enemy);
+           
         }
 
     }

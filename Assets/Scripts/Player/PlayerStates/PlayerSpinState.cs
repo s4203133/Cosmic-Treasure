@@ -9,6 +9,9 @@ namespace LMO {
         private PlayerSpinAttack spin;
         private PlayerInput input;
 
+        private PlayerMovementSettings originalMoveSettings;
+        private PlayerMovementSettings spinMoveSettings;
+
         public delegate void CustomEvent();
         public static CustomEvent OnSpin;
 
@@ -17,6 +20,9 @@ namespace LMO {
             grounded = context.playerJump.groundedSystem;
             spin = context.playerSpinAttack;
             input = context.playerInput;
+
+            originalMoveSettings = context.PlayerSettings.Movement;
+            spinMoveSettings = context.PlayerSettings.SpinAttack;
         }
 
         public override void OnTriggerEnter(Collider collider) {
@@ -37,6 +43,7 @@ namespace LMO {
             InputHandler.jumpStarted += Jump;
             InputHandler.groundPoundStarted += GroundPound;
 
+            movement.ChangeMovementSettings(spinMoveSettings);
             OnSpin?.Invoke();
 
             // Begin spin action, and apply a jump boost if the player is in the air
@@ -61,6 +68,7 @@ namespace LMO {
             InputHandler.jumpStarted -= Jump;
             InputHandler.groundPoundStarted -= GroundPound;
 
+            movement.ChangeMovementSettings(originalMoveSettings);
             spin.StopSpin();
         }
 

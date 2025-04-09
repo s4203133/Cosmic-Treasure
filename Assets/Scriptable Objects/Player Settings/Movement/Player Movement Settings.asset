@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd039c342a0d5384db1c2690381cc886, type: 3}
+  m_Name: Player Movement Settings
+  m_EditorClassIdentifier: 
+  maxSpeed: 625
+  rotateSpeed: 540
+  initialRotateSpeed: 1440
+  canChangeDirectionQuickly: 0
+  changeDirectionSpeed: 0.1
+  canRotate: 1
+  canKickback: 1
+  changeDirectionThreshhold: 0.5
+  acceleration: {fileID: 11400000, guid: a6be96186fb5a144c8d6f8caa9353381, type: 2}
+  deceleration: {fileID: 11400000, guid: 4bff5728c81b55b48b7d64f0b610c10c, type: 2}

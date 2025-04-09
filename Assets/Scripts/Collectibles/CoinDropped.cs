@@ -1,4 +1,3 @@
-using LMO;
 using System.Collections;
 using UnityEngine;
 
@@ -27,7 +26,7 @@ namespace LMO {
 
             hasDropped = false;
             hasBounced = false;
-            registerDropDelay = new WaitForSeconds(0.5f);
+            registerDropDelay = new WaitForSeconds(0.25f);
         }
 
         public void Drop() {

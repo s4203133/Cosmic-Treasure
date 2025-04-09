@@ -11,19 +11,20 @@ namespace LMO {
 
         public void Initialise() {
             timerLength = velocityCurve.keys[velocityCurve.length - 1].time;
+            PlayerMovement.OnMoveStopped += ResetTimer;
+        }
+
+        public void OnDisable() {
+            PlayerMovement.OnMoveStopped -= ResetTimer;
         }
 
         public float CalculateValue(float maxValue) {
-            if (timer < timerLength) {
-                timer += TimeValues.Delta;
-            } else {
-                timer = timerLength;
-            }
+            timer += TimeValues.FixedDelta;
             return maxValue * velocityCurve.Evaluate(timer);
         }
 
-        public void Reset() {
-            timer = 0;
+        public void ResetTimer() {
+            timer = 0f;
         }
 
         public bool Finished() {

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6827717790891805756}
   - component: {fileID: 7456399014244113114}
   - component: {fileID: 981045616651714607}
-  - component: {fileID: 5159704718288880260}
   m_Layer: 6
   m_Name: MovableBarrle
   m_TagString: CameraIgnore
@@ -120,8 +119,8 @@ Rigidbody:
   m_GameObject: {fileID: 1176323319889452454}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0.25
-  m_AngularDrag: 2.5
+  m_Drag: 0.15
+  m_AngularDrag: 2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -150,34 +149,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6882c2df324ef5741a1c040c5547eb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitForce: 12
+  hitForce: 14
   upwardsForce: 18
   torqueForce: 15
---- !u!114 &5159704718288880260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176323319889452454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 789e234b05d324d4eb982e939871866a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  breakParticles: {fileID: 1942838522079693538}
-  brokenPiecesParent: {fileID: 3430686345157119160}
-  brokenPieces:
-  - {fileID: 1255482594758630121}
-  - {fileID: 3008741834744458908}
-  - {fileID: 2071198785267555924}
-  - {fileID: 4276706028251568865}
-  - {fileID: 8155235315189834649}
-  - {fileID: 1050214098465763960}
-  - {fileID: 7762718718297141737}
-  - {fileID: 4161365338584794348}
-  breakForceRange: {x: 0, y: 0}
-  breakTorqueRange: 0
 --- !u!1001 &434563038352571386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -249,12 +223,6 @@ PrefabInstance:
 --- !u!4 &722158845739143822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 865394142429374836, guid: e9bc0d3d1b60ace43ba78aa775d34629,
-    type: 3}
-  m_PrefabInstance: {fileID: 434563038352571386}
-  m_PrefabAsset: {fileID: 0}
---- !u!2083052967 &1942838522079693538 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 2085652132471877912, guid: e9bc0d3d1b60ace43ba78aa775d34629,
     type: 3}
   m_PrefabInstance: {fileID: 434563038352571386}
   m_PrefabAsset: {fileID: 0}
@@ -942,12 +910,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.004158785, y: 0.0026340017, z: 0.0038968616}
   m_Center: {x: 0.00015421309, y: -0.000068119596, z: -0.0006842314}
---- !u!1 &3430686345157119160 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f9df35b494318bb418e5f1808da20fde,
-    type: 3}
-  m_PrefabInstance: {fileID: 2548288467303051753}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4980342441436696681 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7368150452140007808, guid: f9df35b494318bb418e5f1808da20fde,

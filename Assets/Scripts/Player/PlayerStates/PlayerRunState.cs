@@ -24,7 +24,7 @@ namespace LMO {
             InputHandler.grappleStarted += Grapple;
             SpringPad.OnSmallSpringJump += SmallSpringJump;
 
-            PlayerMovement.OnMoveStarted?.Invoke();
+            //PlayerMovement.OnMoveStarted?.Invoke();
             // Apply regular movement variables to move component
             movement.ChangeMovementSettings(moveSettings);
             CheckForJumpInput();
@@ -32,7 +32,8 @@ namespace LMO {
 
         public override void OnStateUpdate() {
             CheckIfPlayerLeftPlatform();
-            CheckIfFinishedMoving();
+            movement.CountdownStartTimer();
+            CheckFinishedMoving();
         }
 
         public override void OnStatePhysicsUpdate() {
@@ -70,17 +71,17 @@ namespace LMO {
             }
         }
 
-        protected virtual void CheckIfPlayerLeftPlatform() {
-            if (!grounded.IsOnGround) {
-                stateMachine.ChangeState(stateMachine.fallingState);
-            }
-        }
-
-        protected virtual void CheckIfFinishedMoving() {
-            if (input.moveInput == Vector2.zero) {
+        private void CheckFinishedMoving() {
+            if(input.moveInput == Vector2.zero) {
                 if (movement.HasStopped()) {
                     Idle();
                 }
+            }
+        }
+
+        protected virtual void CheckIfPlayerLeftPlatform() {
+            if (!grounded.IsOnGround) {
+                stateMachine.ChangeState(stateMachine.fallingState);
             }
         }
 

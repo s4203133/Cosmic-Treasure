@@ -36,6 +36,7 @@ namespace LMO {
             PlayerHover.OnHoverStarted += animations.PlayHover;
             PlayerHover.OnHoverContinued += animations.PlayHover;
             PlayerHover.OnHoverEnded += animations.StopHover;
+            InputHandler.jumpCancelled += animations.StopHover;
             PlayerDive.OnDive += animations.PlayDive;
             PlayerDive.OnHitObject += animations.StopDive;
             Grapple.OnGrappleStarted += animations.PlaySwing;
@@ -55,6 +56,7 @@ namespace LMO {
             PlayerHover.OnHoverStarted -= animations.PlayHover;
             PlayerHover.OnHoverContinued -= animations.PlayHover;
             PlayerHover.OnHoverEnded -= animations.StopHover;
+            InputHandler.jumpCancelled -= animations.StopHover;
             PlayerDive.OnDive -= animations.PlayDive;
             PlayerDive.OnHitObject -= animations.StopDive;
             Grapple.OnGrappleStarted -= animations.PlaySwing;

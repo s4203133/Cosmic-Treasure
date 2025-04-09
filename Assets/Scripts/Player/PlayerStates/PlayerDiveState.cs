@@ -7,16 +7,19 @@ namespace LMO {
         PlayerDive dive;
         PlayerInput input;
         Grounded grounded;
+        PlayerSpinAttack spin;
 
         public PlayerDiveState(PlayerController playerController) : base(playerController) {
             dive = context.playerDive;
             input = context.playerInput;
-            grounded = playerController.playerJump.groundedSystem;
+            grounded = context.playerJump.groundedSystem;
+            spin = context.playerSpinAttack;
         }
 
         public override void OnStateEnter() {
             Grounded.OnLanded += MoveToIdleState;
             PlayerDive.OnHitObject += MoveToIdleState;
+            InputHandler.SpinStarted += Spin;
 
             dive.StartDive();
         }
@@ -24,6 +27,7 @@ namespace LMO {
         public override void OnStateExit() {
             Grounded.OnLanded -= MoveToIdleState;
             PlayerDive.OnHitObject -= MoveToIdleState;
+            InputHandler.SpinStarted -= Spin;
         }
 
         public override void OnStateUpdate() {
@@ -47,6 +51,12 @@ namespace LMO {
             }
             else {
                 stateMachine.ChangeState(stateMachine.runState);
+            }
+        }
+
+        private void Spin() {
+            if (!spin.CanAirSpin) {
+                stateMachine.ChangeState(stateMachine.spinState);
             }
         }
     }

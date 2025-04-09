@@ -8,6 +8,12 @@ namespace LMO {
         [SerializeField] private PlayerMovementSettings movementSettings;
         public PlayerMovementSettings Movement => movementSettings;
 
+        [SerializeField] private PlayerMovementSettings jumpMovement;
+        public PlayerMovementSettings JumpMovement => jumpMovement;
+
+        [SerializeField] private PlayerMovementSettings spinMovement;
+        public PlayerMovementSettings SpinAttack => spinMovement;
+
         [SerializeField] private PlayerMovementSettings hoverMoveSettings;
         public PlayerMovementSettings HoverMovement => hoverMoveSettings;
 
