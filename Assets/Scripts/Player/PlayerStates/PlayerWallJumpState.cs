@@ -23,6 +23,7 @@ namespace LMO {
         public override void OnStateEnter() {
             base.OnStateEnter();
 
+            PlayerWallJump.OnWallJump?.Invoke();
             movement.ChangeMovementSettings(wallJumpSettings);
         }
 

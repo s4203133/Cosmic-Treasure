@@ -31,6 +31,8 @@ namespace LMO {
             PlayerJump.OnJump += animations.PlayJump;
             Grounded.OnLanded += animations.StopJump;
             Grounded.OnLanded += animations.StopDive;
+            Grounded.OnLanded += animations.StopWallJump;
+            Grounded.OnLanded += animations.StopWallSlide;
             PlayerSpinAttack.OnSpin += animations.PlaySpinAttack;
             PlayerSpinAttack.OnSpinEnd += animations.StopSpinAttack;
             PlayerHover.OnHoverStarted += animations.PlayHover;
@@ -43,6 +45,11 @@ namespace LMO {
             Grapple.OnGrappleEnded+= animations.StopSwing;
             PlayerGroundPound.OnGroundPoundInitialised += animations.PlayGroundPound;
             Cannon.OnJumpingInCannon += animations.PlayCannonJump;
+            PlayerWallJump.OnWallSlideStart += animations.PlayWallSlide;
+            PlayerWallJump.OnWallSlideStart += animations.StopWallJump;
+            PlayerWallJump.OnWallSlideEnd += animations.StopWallSlide;
+            PlayerWallJump.OnWallJump += animations.PlayWallJump;
+            PlayerWallJump.OnWallJump += animations.StopWallSlide;
         }
 
         private void UnsubscribeAnimationEvents() {
@@ -51,6 +58,8 @@ namespace LMO {
             PlayerJump.OnJump -= animations.PlayJump;
             Grounded.OnLanded -= animations.StopJump;
             Grounded.OnLanded -= animations.StopDive;
+            Grounded.OnLanded -= animations.StopWallJump;
+            Grounded.OnLanded -= animations.StopWallSlide;
             PlayerSpinAttack.OnSpin -= animations.PlaySpinAttack;
             PlayerSpinAttack.OnSpinEnd -= animations.StopSpinAttack;
             PlayerHover.OnHoverStarted -= animations.PlayHover;
@@ -63,6 +72,11 @@ namespace LMO {
             Grapple.OnGrappleEnded -= animations.StopSwing;
             PlayerGroundPound.OnGroundPoundInitialised -= animations.PlayGroundPound;
             Cannon.OnJumpingInCannon -= animations.PlayCannonJump;
+            PlayerWallJump.OnWallSlideStart -= animations.PlayWallSlide;
+            PlayerWallJump.OnWallSlideStart -= animations.StopWallJump;
+            PlayerWallJump.OnWallSlideEnd -= animations.StopWallSlide;
+            PlayerWallJump.OnWallJump -= animations.PlayWallJump;
+            PlayerWallJump.OnWallJump -= animations.StopWallSlide;
         }
 
         private void Initialise() {
@@ -136,6 +150,18 @@ namespace LMO {
         public void StopHover() => SetBool(parameters.HOVER, false);
         public void PlayDive() => SetBool(parameters.DIVE, true);
         public void StopDive() => SetBool(parameters.DIVE, false);
+        public void PlayWallSlide() => SetBool(parameters.WALL_SLIDE, true);
+        public void StopWallSlide() => SetBool(parameters.WALL_SLIDE, false);
+        public void PlayWallJump() => SetBool(parameters.WALL_JUMP, true);
+        public void StopWallJump () => SetBool(parameters.WALL_JUMP, false);
+        public void PlayKnockOver() => SetBool(parameters.KNOCKED_OVER, true);
+        public void PlayStandUp() {
+            SetBool(parameters.KNOCKED_OVER, false);
+            SetBool(parameters.STAND_UP, true);
+        }
+
+        public void StopStandUp() => SetBool(parameters.STAND_UP, false);
+
         public void PlayGroundPound() => SetTrigger(parameters.GROUND_POUND);
         public void PlayCannonJump() => SetTrigger(parameters.CANNON_JUMP);
 
@@ -169,6 +195,10 @@ namespace LMO {
         public string SWING;
         public string GROUND_POUND;
         public string CANNON_JUMP;
+        public string WALL_SLIDE;
+        public string WALL_JUMP;
+        public string KNOCKED_OVER;
+        public string STAND_UP;
 
         public PlayerAnimationParameters(int id) {
             SPEED = "Speed";
@@ -179,6 +209,10 @@ namespace LMO {
             SWING = "Swinging";
             GROUND_POUND = "StartGroundPound";
             CANNON_JUMP = "CannonJump";
+            WALL_SLIDE = "WallSlide";
+            WALL_JUMP = "WallJump";
+            KNOCKED_OVER = "KnockedOver";
+            STAND_UP = "StandUp";
         }
     }
 }

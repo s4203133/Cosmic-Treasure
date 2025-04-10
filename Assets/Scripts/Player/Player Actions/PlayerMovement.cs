@@ -69,7 +69,7 @@ namespace LMO {
         public void HandleMovement() {
             camDirection.CalculateDirection();
             if (kickBack.isKickingBack) {
-                kickBack.CountdownSkidTimer();
+                kickBack.CountdownKickBackTimer();
                 return;
             }
             if (!isStopping) {
@@ -226,7 +226,7 @@ namespace LMO {
         [SerializeField] private float minimumStrightMotionTime;
         [SerializeField] private float skidTime;
 
-        public void ResetSkid() {
+        public void ResetKickBack() {
             runningInStraightLineTimer = 0;
             kickBackTimer = skidTime;
             isKickingBack = false;
@@ -240,7 +240,7 @@ namespace LMO {
             if (Vector3.Dot(direction, targetDirection) < straightLineThreshold) {
                 if (runningInStraightLineTimer > straightLineThreshold) {
                     runningInStraightLineTimer = 0;
-                    Skid();
+                    KickBack();
                 }
             }
             else {
@@ -248,17 +248,17 @@ namespace LMO {
             }
         }
 
-        private void Skid() {
+        private void KickBack() {
             isKickingBack = true;
             kickBackTimer = skidTime;
             PlayerMovement.OnSkid?.Invoke();
         }
 
-        public void CountdownSkidTimer() {
+        public void CountdownKickBackTimer() {
             kickBackTimer -= TimeValues.FixedDelta;
             isKickingBack = kickBackTimer > 0;
             if (!isKickingBack) {
-                ResetSkid();
+                ResetKickBack();
             }
         }
 

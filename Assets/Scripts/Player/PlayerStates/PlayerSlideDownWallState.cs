@@ -38,6 +38,7 @@ namespace LMO {
             InputHandler.grappleStarted += Grapple;
             SpringPad.OnSmallSpringJump += SmallSpringJump;
 
+            PlayerWallJump.OnWallSlideStart?.Invoke();
             jump.ChangeJumpSettings(fallSettings);
             CheckForSpinInput();
             timer = startFallingDelay;
@@ -89,6 +90,7 @@ namespace LMO {
             InputHandler.grappleStarted -= Grapple;
             SpringPad.OnSmallSpringJump -= SmallSpringJump;
 
+            PlayerWallJump.OnWallSlideEnd?.Invoke();
             jump.EndJump();
         }
 

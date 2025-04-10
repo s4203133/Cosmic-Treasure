@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace LMO {
@@ -17,6 +18,10 @@ namespace LMO {
         public Vector3 jumpDirection { get; private set; }
         private bool isByWall;
         public bool WallInFrontOfPlayer => isByWall;
+
+        public static Action OnWallSlideStart;
+        public static Action OnWallSlideEnd;
+        public static Action OnWallJump;
 
         private void Start() {
             player = GameObject.FindGameObjectWithTag("Player");
