@@ -26,7 +26,9 @@ namespace NR {
             rotateTarget.y = 0;
             transform.right = rotateTarget;
 
-            float currentMultiplier = (transform.position.magnitude - joint.transform.position.magnitude) * forceMultiplier;
+            
+
+            float currentMultiplier = (transform.position - joint.transform.position).magnitude * forceMultiplier;
             lineRenderer.SetPositions(TrajectoryCalculator.CalculateTrajectory(slingshotLaunch.position, slingshotLaunch.forward, currentMultiplier, trajectoryPoints, 0.75f));
         }
 
@@ -37,7 +39,7 @@ namespace NR {
         //assigned in-editor to the Interact Actions event
         public void LaunchSlingshot() {
             ResetLine();
-            float distance = transform.position.magnitude - joint.transform.position.magnitude;
+            float distance = (transform.position - joint.transform.position).magnitude;
             GameObject projectileInstance = Instantiate(projectile, slingshotLaunch.position, slingshotLaunch.rotation);
             Rigidbody projectileRB = projectileInstance.GetComponent<Rigidbody>();
             projectileRB.velocity = slingshotLaunch.forward * (distance * forceMultiplier);
