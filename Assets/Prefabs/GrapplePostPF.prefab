@@ -11,13 +11,12 @@ GameObject:
   - component: {fileID: 8730937739842823091}
   - component: {fileID: 8675409865900797312}
   - component: {fileID: 2649461616977971165}
-  - component: {fileID: 5715010843724803025}
   m_Layer: 6
   m_Name: GrapplePost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8730937739842823091
 Transform:
@@ -28,9 +27,9 @@ Transform:
   m_GameObject: {fileID: 214543089581841973}
   serializedVersion: 2
   m_LocalRotation: {x: -0.50000036, y: -0.4999998, z: -0.49999967, w: 0.5000003}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: -9.33, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 3.88}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6111900832591246136}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
@@ -84,28 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5715010843724803025
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214543089581841973}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4667002031187380239, guid: 9b2ea7d07bd456443b6756d0843c5126, type: 3}
 --- !u!1 &716358882548226125
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 79968873698640562}
   - component: {fileID: 6102730755037827682}
+  - component: {fileID: 8479810181115520764}
   m_Layer: 11
   m_Name: Point Light
   m_TagString: Untagged
@@ -200,6 +178,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &8479810181115520764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716358882548226125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &3140217581088093913
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,12 +212,14 @@ GameObject:
   - component: {fileID: 8746885007784438093}
   - component: {fileID: 6767193641543373913}
   - component: {fileID: 3032663321163943735}
+  - component: {fileID: 7020749498549185594}
+  - component: {fileID: 2496698503196821641}
   m_Layer: 11
   m_Name: GrappleHookRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8746885007784438093
 Transform:
@@ -284,6 +287,48 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &7020749498549185594
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3140217581088093913}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.18571998
+  m_Center: {x: -0.00000023841858, y: 0.0000037923455, z: 0.03809999}
+--- !u!135 &2496698503196821641
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3140217581088093913}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.18571998
+  m_Center: {x: -1.6243006e-15, y: -0.000003837049, z: 0.03809999}
 --- !u!1 &3508591522752202074
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +345,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2324428905688870987
 Transform:
@@ -382,7 +427,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6111900832591246136
 Transform:
@@ -392,15 +437,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3746864305975673485}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 689.9, y: -1.01, z: 93.67}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: -0, y: 0.013881076, z: -0, w: 0.9999037}
+  m_LocalPosition: {x: 423.83, y: 2.94, z: 92.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8730937739842823091}
   - {fileID: 2230184318685782718}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 1.591, z: 0}
 --- !u!1 &4126631261285214814
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +462,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2230184318685782718
 Transform:
@@ -474,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 0
+  detectionRange: 20
   playerMustFacePointToConnect: 0
   distanceFromPlayer: 0
   angleToPlayer: 0
