@@ -26,8 +26,8 @@ namespace NR {
             rotateTarget.y = 0;
             transform.right = rotateTarget;  
 
-            float currentMultiplier = (transform.position - joint.transform.position).sqrMagnitude * forceMultiplier;
-            lineRenderer.SetPositions(TrajectoryCalculator.CalculateTrajectory(slingshotLaunch.position, slingshotLaunch.forward, currentMultiplier, trajectoryPoints, 0.75f));
+            float startVelocity = (transform.position - joint.transform.position).sqrMagnitude * forceMultiplier;
+            lineRenderer.SetPositions(TrajectoryCalculator.CalculateTrajectory(slingshotLaunch.position, slingshotLaunch.forward, startVelocity, trajectoryPoints, 0.9f));
         }
 
         private void ResetLine() {

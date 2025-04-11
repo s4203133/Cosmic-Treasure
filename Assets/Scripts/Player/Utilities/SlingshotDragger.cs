@@ -1,21 +1,29 @@
 using UnityEngine;
-using NR;
+using LMO;
+using System.Collections;
 
-public class SlingshotDragger : MonoBehaviour {
-    private Rigidbody slingRB;
-    private SpringJoint springJoint;
+namespace NR {
+    public class SlingshotDragger : MonoBehaviour {
+        [SerializeField] private Transform playerTransform;
+        [SerializeField] private PlayerStateMachine playerStateMachine;
+        private Rigidbody slingRB;
+        private SpringJoint springJoint;
 
-    private void Awake() {
-        springJoint = GetComponent<SpringJoint>();
-    }
+        private void Awake() {
+            springJoint = GetComponent<SpringJoint>();
+        }
 
-    public void ConnectToSlingshot(Rigidbody newSlingshot) {
-        slingRB = newSlingshot;
-        springJoint.connectedBody = slingRB;
-    }
+        public void ConnectToSlingshot(Rigidbody newSlingshot) {
+            playerTransform.position = newSlingshot.transform.position + (newSlingshot.transform.right * 1.5f);
+            //playerStateMachine.ChangeState(playerStateMachine.grappleIdle);
+            slingRB = newSlingshot;
+            springJoint.connectedBody = slingRB;
+        }
 
-    public void DisconnectSlingshot() {
-        springJoint.connectedBody = null;
-        slingRB = null;
+        public void DisconnectSlingshot() {
+            springJoint.connectedBody = null;
+            slingRB = null;
+        }
     }
 }
+

@@ -12,10 +12,10 @@ namespace NR {
         /// <param name="pathResolution">Number of points to return.</param>
         /// <param name="distance">Amount of the curve to show as a percent (0-1).</param>
         /// <returns></returns>
-        public static Vector3[] CalculateTrajectory(Vector3 origin, Vector3 direction, float force, int pathResolution, float distance) {
+        public static Vector3[] CalculateTrajectory(Vector3 origin, Vector3 direction, float force, int pathResolution, float distance = 1) {
             Vector3 initialVelocity = direction * force;
 
-            float finalYVelocity = 0f;
+            float finalYVelocity = initialVelocity.y * (1 - distance);
             float airTime = 2 * (finalYVelocity - initialVelocity.y) / Physics.gravity.y;
 
             float xDisplacement = airTime * initialVelocity.x;
@@ -23,7 +23,7 @@ namespace NR {
             Vector3[] pathPoints = new Vector3[pathResolution];
 
             for (int i = 0; i < pathResolution; i++) {
-                float time = ((i / (float)pathResolution) * airTime) * distance;
+                float time = (i / (float)pathResolution) * airTime;
                 Vector3 displacement = initialVelocity * time + Physics.gravity * time * time * 0.5f;
                 pathPoints[i] = origin + displacement;
             }
