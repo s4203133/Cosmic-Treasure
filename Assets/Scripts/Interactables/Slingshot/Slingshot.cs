@@ -7,7 +7,7 @@ namespace NR {
         [SerializeField] private Transform slingshotLaunch;
         [SerializeField] private GameObject projectile;
 
-        [SerializeField] private float forceMultiplier = 10;
+        [SerializeField] private float forceMultiplier = 1;
         [SerializeField] private LineRenderer lineRenderer;
 
         [SerializeField] private int trajectoryPoints = 10;
@@ -24,11 +24,9 @@ namespace NR {
         private void PullUpdate() {
             Vector3 rotateTarget = joint.PlayerDragPosition - transform.position;
             rotateTarget.y = 0;
-            transform.right = rotateTarget;
+            transform.right = rotateTarget;  
 
-            
-
-            float currentMultiplier = (transform.position - joint.transform.position).magnitude * forceMultiplier;
+            float currentMultiplier = (transform.position - joint.transform.position).sqrMagnitude * forceMultiplier;
             lineRenderer.SetPositions(TrajectoryCalculator.CalculateTrajectory(slingshotLaunch.position, slingshotLaunch.forward, currentMultiplier, trajectoryPoints, 0.75f));
         }
 
@@ -39,7 +37,7 @@ namespace NR {
         //assigned in-editor to the Interact Actions event
         public void LaunchSlingshot() {
             ResetLine();
-            float distance = (transform.position - joint.transform.position).magnitude;
+            float distance = (transform.position - joint.transform.position).sqrMagnitude;
             GameObject projectileInstance = Instantiate(projectile, slingshotLaunch.position, slingshotLaunch.rotation);
             Rigidbody projectileRB = projectileInstance.GetComponent<Rigidbody>();
             projectileRB.velocity = slingshotLaunch.forward * (distance * forceMultiplier);
