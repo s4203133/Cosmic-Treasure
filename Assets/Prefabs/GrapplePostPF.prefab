@@ -213,7 +213,6 @@ GameObject:
   - component: {fileID: 6767193641543373913}
   - component: {fileID: 3032663321163943735}
   - component: {fileID: 7020749498549185594}
-  - component: {fileID: 2496698503196821641}
   m_Layer: 11
   m_Name: GrappleHookRing
   m_TagString: Untagged
@@ -307,28 +306,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.18571998
-  m_Center: {x: -0.00000023841858, y: 0.0000037923455, z: 0.03809999}
---- !u!135 &2496698503196821641
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3140217581088093913}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.18571998
-  m_Center: {x: -1.6243006e-15, y: -0.000003837049, z: 0.03809999}
+  m_Center: {x: 0.09, y: 0.0000037923455, z: 0.03809999}
 --- !u!1 &3508591522752202074
 GameObject:
   m_ObjectHideFlags: 0
