@@ -28,6 +28,7 @@ namespace LMO {
             PlayerSwingState.OnSwingEnd += EndSwing;
             PlayerSwingState.OnJumpFromSwing += JumpFromSwing;
             Grounded.OnLanded += Land;
+            PlayerDeath.OnPlayerDied += EndSwing;
         }
 
         public void UnsubscribeEvents() {
@@ -37,6 +38,7 @@ namespace LMO {
             PlayerSwingState.OnSwingEnd -= EndSwing;
             PlayerSwingState.OnJumpFromSwing -= JumpFromSwing;
             Grounded.OnLanded -= Land;
+            PlayerDeath.OnPlayerDied -= EndSwing;
         }
 
         private void StartSwing() {

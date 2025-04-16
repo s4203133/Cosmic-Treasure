@@ -5,7 +5,7 @@ namespace LMO {
     public class SwingManager : MonoBehaviour {
 
         [SerializeField] private DetectSwingJoints swingJointDetector;
-        private bool canSwing;
+        //private bool canSwing;
         public bool CanSwing => swingJointDetector.IsNearSwingJoint();
 
         private GameObject swingTarget;

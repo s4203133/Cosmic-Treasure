@@ -56,12 +56,11 @@ namespace LMO {
 
         private void StartSwing() {
             movement.ChangeMovementSettings(swing.MovementSettings);
-            if(grapple.objectCurrentlyGrappledOnto == null) {
-                OnSwingStart?.Invoke();
+            OnSwingStart?.Invoke();
+
+            // If 'objectCurrentlyGrappledOnto' is null, then the 'OnGrappleStarted' event will assign it
+            if (grapple.objectCurrentlyGrappledOnto == null) {
                 Grapple.OnGrappleStarted?.Invoke();
-            }
-            else {
-                OnSwingStart?.Invoke();
             }
         }
 

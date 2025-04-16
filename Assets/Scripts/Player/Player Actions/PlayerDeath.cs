@@ -36,14 +36,16 @@ namespace LMO {
 
         private void SubscribeEvents() {
             LevelDeathCatcher.OnPlayerFellOutLevel += Death;
-
+            OnPlayerDied += InputHandler.Disable;
             SpawnPlayer.OnPlayerRespawned += ReInitialisePlayer;
+            SpawnPlayer.OnPlayerRespawned += InputHandler.Enable;
         }
 
         private void UnsubscribeEvents() {
             LevelDeathCatcher.OnPlayerFellOutLevel -= Death;
-
+            OnPlayerDied -= InputHandler.Enable;
             SpawnPlayer.OnPlayerRespawned -= ReInitialisePlayer;
+            SpawnPlayer.OnPlayerRespawned -= InputHandler.Enable;
         }
     }
 }

@@ -50,6 +50,7 @@ namespace LMO {
             PlayerWallJump.OnWallSlideEnd += animations.StopWallSlide;
             PlayerWallJump.OnWallJump += animations.PlayWallJump;
             PlayerWallJump.OnWallJump += animations.StopWallSlide;
+            PlayerDeath.OnPlayerDied += animations.StopSwing;
         }
 
         private void UnsubscribeAnimationEvents() {
@@ -77,6 +78,7 @@ namespace LMO {
             PlayerWallJump.OnWallSlideEnd -= animations.StopWallSlide;
             PlayerWallJump.OnWallJump -= animations.PlayWallJump;
             PlayerWallJump.OnWallJump -= animations.StopWallSlide;
+            PlayerDeath.OnPlayerDied -= animations.StopSwing;
         }
 
         private void Initialise() {

@@ -31,11 +31,15 @@ namespace LMO {
         }
 
         private void OnEnable() {
+         //   PlayerDeath.OnPlayerDied += DisconnectJoint;
+         //   PlayerDeath.OnPlayerDied += RemoveGrapplePoint;
             OnGrappleStarted += AssignGrapplePoint;
             OnGrappleEnded += RemoveGrapplePoint;
         }
 
         private void OnDisable() {
+         //   PlayerDeath.OnPlayerDied -= DisconnectJoint;
+         //   PlayerDeath.OnPlayerDied -= RemoveGrapplePoint;
             OnGrappleStarted -= AssignGrapplePoint;
             OnGrappleEnded -= RemoveGrapplePoint;
         }
@@ -46,8 +50,10 @@ namespace LMO {
         }
 
         public void RemoveGrapplePoint() {
-            objectCurrentlyGrappledOnto.OnReleased();
-            objectCurrentlyGrappledOnto = null;
+            if (objectCurrentlyGrappledOnto != null) {
+                objectCurrentlyGrappledOnto.OnReleased();
+                objectCurrentlyGrappledOnto = null;
+            }
         }
 
         public void ConnectJoint(Vector3 jointPosition) {
