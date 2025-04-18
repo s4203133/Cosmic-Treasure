@@ -19,6 +19,10 @@ namespace NR {
                 joint.SlingshotUpdate += PullUpdate;
                 joint.SlingshotReleased += ResetLine;
             }
+            
+            if (ProjectileParent.Instance == null) {
+                Debug.LogError("Please add a ProjectileParent object to the scene in order to use slingshots.");
+            }
         }
 
         private void PullUpdate() {
@@ -38,9 +42,8 @@ namespace NR {
         public void LaunchSlingshot() {
             ResetLine();
             float distance = (transform.position - joint.transform.position).sqrMagnitude;
-            GameObject projectileInstance = Instantiate(projectile, slingshotLaunch.position, slingshotLaunch.rotation);
-            Rigidbody projectileRB = projectileInstance.GetComponent<Rigidbody>();
-            projectileRB.velocity = slingshotLaunch.forward * (distance * forceMultiplier);
+
+            ProjectileParent.Instance.SpawnProjectile(slingshotLaunch, distance * forceMultiplier);
         }
     }
 }
