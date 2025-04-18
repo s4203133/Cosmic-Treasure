@@ -7,11 +7,14 @@ public class EnemyDeath : MonoBehaviour, ISpinnable {
     private float CurrentSlimeHealth;
     private float timer = 0;
     private bool canhit;
+    public Animator SlimeAnims;
+    private float DeathTimer;
 
     private void Start() {
         CurrentSlimeHealth = SlimeHealth;
         timer = 0;
         canhit = true;
+        DeathTimer = 0;
     }
     public void OnHit() {
         if (canhit == true) {
@@ -23,7 +26,12 @@ public class EnemyDeath : MonoBehaviour, ISpinnable {
     }
     public void Update() {
         if (SlimeHealth <= 0) {
-            Destroy(Enemy);
+            SlimeAnims.SetBool("SlimeDead", true);
+            DeathTimer += Time.deltaTime;
+            if (DeathTimer >= 1.2f) {
+                Destroy(Enemy);
+            }
+            
         }
         if (canhit == false) {
             timer += Time.deltaTime;

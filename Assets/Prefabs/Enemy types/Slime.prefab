@@ -76,6 +76,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   DamageAmount: 20
+  rb: {fileID: 8810617393234602345}
 --- !u!195 &5423244760689116434
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -321,6 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 6513583433740248623}
   SlimeHealth: 1
+  SlimeAnims: {fileID: 6350681892208262726}
 --- !u!114 &479514730245630659
 MonoBehaviour:
   m_ObjectHideFlags: 0
