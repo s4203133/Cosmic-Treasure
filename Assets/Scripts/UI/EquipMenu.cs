@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using LMO;
 
 namespace NR {
     public class EquipMenu : MonoBehaviour {
@@ -26,6 +27,13 @@ namespace NR {
                 hatDropdown.AddOptions(hatNames);
                 hatDropdown.value = hatNames.IndexOf(outfit.hat.itemName);
             }
+            InputHandler.pauseStarted += ShowMenu;
+            gameObject.SetActive(false);
+        }
+
+        private void ShowMenu() {
+            gameObject.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
 
         public void HatUpdate(int index) {
@@ -34,6 +42,7 @@ namespace NR {
 
         public void ApplyChanges() {
             PlayerOutfitLoader.Instance.LoadOutfit();
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

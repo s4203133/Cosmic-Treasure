@@ -16,6 +16,7 @@ namespace LMO {
         private InputAction select;
         private InputAction grapple;
         private InputAction quit;
+        private InputAction pause;
 
         // Input Delegates
         public delegate void InputEvent();
@@ -40,6 +41,8 @@ namespace LMO {
         public static InputEvent grappleEnded;
 
         public static InputEvent quitStarted;
+
+        public static InputEvent pauseStarted;
 
         public static Action Enable;
         public static Action Disable;
@@ -111,6 +114,14 @@ namespace LMO {
             }
         }
 
+        //<NR>
+        private void OnPause(InputAction.CallbackContext context) {
+            if (context.started) {
+                pauseStarted?.Invoke();
+            }
+        }
+        //</NR>
+
         private void InitialiseInputActions() {
             move = inputActions.FindAction("Move");
             jump = inputActions.FindAction("Jump");
@@ -119,6 +130,7 @@ namespace LMO {
             select = inputActions.FindAction("Select");
             grapple = inputActions.FindAction("Grapple");
             quit = inputActions.FindAction("Quit");
+            pause = inputActions.FindAction("Pause");
         }
 
         private void SubscribeMoveEvents() {
@@ -185,6 +197,16 @@ namespace LMO {
             quit.started -= OnQuit;
         }
 
+        //<NR>
+        private void SubscribePauseEvents() {
+            pause.started += OnPause;
+        }
+
+        private void UnsubscribePauseEvents() {
+            pause.started -= OnPause;
+        }
+        //</NR>
+
         private void SubscribeInputEvents() {
             SubscribeMoveEvents();
             SubscribeJumpEvents();
@@ -193,6 +215,7 @@ namespace LMO {
             SubscribeSelectEvents();
             SubscribeGrappleEvents();
             SubscribeQuitEvents();
+            SubscribePauseEvents();
             Enable += EnableInput;
             Disable += DisableInput;
         }
@@ -205,6 +228,7 @@ namespace LMO {
             UnsubscribeSelectEvents();
             UnsubscribeGrappleEvents();
             UnsubscribeQuitEvents();
+            UnsubscribePauseEvents();
             Enable -= EnableInput;
             Disable -= DisableInput;
         }
@@ -218,6 +242,7 @@ namespace LMO {
             select?.Enable();
             grapple?.Enable();
             quit?.Enable();
+            pause?.Enable();
         }
 
         private void DisableInputActions() {
@@ -228,6 +253,7 @@ namespace LMO {
             select?.Disable();
             grapple?.Disable();
             quit?.Disable();
+            pause?.Disable();
             inputActions?.Disable();
         }
 
