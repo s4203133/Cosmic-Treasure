@@ -4,9 +4,9 @@ using UnityEngine;
 namespace NR {
     [CreateAssetMenu(menuName = "Player Save/Player Inventory Save")]
     public class PlayerInventorySave : ScriptableObject {
-        public int coins;
+        public FloatVariable coins;
 
-        public int gems;
+        public FloatVariable gems;
 
         public PlayerOutfitSave savedOutfit;
 

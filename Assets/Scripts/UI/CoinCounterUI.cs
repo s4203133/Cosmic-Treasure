@@ -3,7 +3,7 @@ namespace LMO {
     public class CoinCounterUI : CounterUI {
 
         protected override void UpdateText() {
-            counterext.text = counter.value.ToString("000");
+            counterText.text = counter.value.ToString("000");
         }
 
         protected override void SubscribeToEvent() {

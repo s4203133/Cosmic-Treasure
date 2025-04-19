@@ -27,7 +27,7 @@ namespace NR {
 
         private void Start() {
             inventorySave = PlayerOutfitLoader.Instance.inventory;
-            moneyDisplay.text = $"{inventorySave.coins}\n{inventorySave.gems}";
+            moneyDisplay.text = $"{inventorySave.coins.value.ToString("000")}\n{inventorySave.gems.value.ToString("000")}";
             foreach (var item in inventorySave.ownedClothes) {
                 if (buyableClothes.Contains(item)) {
                     buyableClothes.Remove(item);
@@ -60,11 +60,11 @@ namespace NR {
                 ShowBuyPopup("No item selected!");
                 return;
             }
-            if (inventorySave.coins < selectedOutfitItem.coinCost) {
+            if (inventorySave.coins.value < selectedOutfitItem.coinCost) {
                 ShowBuyPopup("Not enough coins!");
             } else {
-                inventorySave.coins -= selectedOutfitItem.coinCost;
-                moneyDisplay.text = $"{inventorySave.coins}\n{inventorySave.gems}";
+                inventorySave.coins.value -= selectedOutfitItem.coinCost;
+                moneyDisplay.text = $"{inventorySave.coins.value.ToString("000")}\n{inventorySave.gems.value.ToString("000")}";
                 ShowBuyPopup($"{selectedOutfitItem.itemName} bought!");
                 inventorySave.ownedClothes.Add(selectedOutfitItem);
                 buyableClothes.Remove(selectedOutfitItem);
