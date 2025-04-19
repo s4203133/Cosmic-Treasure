@@ -96,7 +96,7 @@ namespace LMO {
             stateMachine.ChangeState(stateMachine.groundPoundState);
         }
 
-        protected void Hover() {
+        protected virtual void Hover() {
             if (!grounded.IsOnGround) {
                 stateMachine.ChangeState(stateMachine.hoverState);
             }
