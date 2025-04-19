@@ -41,6 +41,7 @@ namespace NR {
             var clothesNames = buyableClothes.Select(item => item.itemName).ToList();
             clothesNames.Insert(0, "");
             clothesDropdown.AddOptions(clothesNames);
+            clothesDropdown.value = 0;
         }
 
         public void OutfitItemSelected(int index) {
@@ -67,6 +68,7 @@ namespace NR {
                 ShowBuyPopup($"{selectedOutfitItem.itemName} bought!");
                 inventorySave.ownedClothes.Add(selectedOutfitItem);
                 buyableClothes.Remove(selectedOutfitItem);
+                itemDescription.text = "";
                 ListItemNames();
             }
         }

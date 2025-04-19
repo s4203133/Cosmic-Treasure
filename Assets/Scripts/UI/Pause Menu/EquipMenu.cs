@@ -14,7 +14,14 @@ namespace NR {
         private PlayerOutfitSave outfit;
 
         private void Start() {
+            UpdateOptions();
+            InputHandler.pauseStarted += ShowMenu;
+            gameObject.SetActive(false);
+        }
+
+        public void UpdateOptions() {
             if (PlayerOutfitLoader.Instance != null) {
+                hatDropdown.ClearOptions();
                 outfit = PlayerOutfitLoader.Instance.inventory.savedOutfit;
                 var ownedClothes = PlayerOutfitLoader.Instance.inventory.ownedClothes;
                 hats = (from item in ownedClothes
@@ -24,11 +31,10 @@ namespace NR {
                 hatDropdown.AddOptions(hatNames);
                 hatDropdown.value = hatNames.IndexOf(outfit.hat.itemName);
             }
-            InputHandler.pauseStarted += ShowMenu;
-            gameObject.SetActive(false);
         }
 
         private void ShowMenu() {
+            InputHandler.Disable.Invoke();
             gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
         }
@@ -38,6 +44,7 @@ namespace NR {
         }
 
         public void ApplyChanges() {
+            InputHandler.Enable.Invoke();
             PlayerOutfitLoader.Instance.LoadOutfit();
             Cursor.lockState = CursorLockMode.Locked;
         }
