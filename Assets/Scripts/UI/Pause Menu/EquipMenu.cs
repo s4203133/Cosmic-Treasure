@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using LMO;
+using System.Linq;
 
 namespace NR {
     public class EquipMenu : MonoBehaviour {
@@ -15,15 +16,11 @@ namespace NR {
         private void Start() {
             if (PlayerOutfitLoader.Instance != null) {
                 outfit = PlayerOutfitLoader.Instance.inventory.savedOutfit;
-                List<string> hatNames = new List<string>();
-                foreach (var item in PlayerOutfitLoader.Instance.inventory.ownedClothes) {
-                    switch (item.type) {
-                        case OutfitType.Hat:
-                            hats.Add(item);
-                            hatNames.Add(item.itemName);
-                            break;
-                    }
-                }
+                var ownedClothes = PlayerOutfitLoader.Instance.inventory.ownedClothes;
+                hats = (from item in ownedClothes
+                        where (item.type == OutfitType.Hat)
+                        select item).ToList();
+                List<string> hatNames = hats.Select(item => item.itemName).ToList();
                 hatDropdown.AddOptions(hatNames);
                 hatDropdown.value = hatNames.IndexOf(outfit.hat.itemName);
             }
