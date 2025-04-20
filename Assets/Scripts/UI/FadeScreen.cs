@@ -6,8 +6,7 @@ public class FadeScreen : MonoBehaviour
     [SerializeField] private bool hiddenOnStart;
     private Animator animator;
 
-    void Start()
-    {
+    void Start() {
         animator = GetComponent<Animator>();
         if (hiddenOnStart) {
             animator.SetTrigger("Hidden");
@@ -36,11 +35,11 @@ public class FadeScreen : MonoBehaviour
         SpawnPlayer.OnPlayerRespawned -= FadeOut;
     }
 
-    private void FadeIn() {
+    public void FadeIn() {
         animator.SetTrigger("FadeIn");
     }
 
-    private void FadeOut() {
+    public void FadeOut() {
         animator.SetTrigger("FadeOut");
     }
 }

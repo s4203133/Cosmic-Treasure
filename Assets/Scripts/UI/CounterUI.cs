@@ -4,11 +4,11 @@ using UnityEngine;
 namespace LMO {
 
     public class CounterUI : MonoBehaviour {
-        protected TextMeshProUGUI counterext;
+        protected TextMeshProUGUI counterText;
         [SerializeField] protected FloatVariable counter;
 
         private void Awake() {
-            counterext = GetComponent<TextMeshProUGUI>();
+            counterText = GetComponent<TextMeshProUGUI>();
         }
 
         private void OnEnable() => SubscribeToEvent();
@@ -16,11 +16,11 @@ namespace LMO {
         private void OnDisable() => UnsubscribeFromEvent();
 
         protected virtual void UpdateText() {
-            counterext.text = counter.value.ToString("000");
+            counterText.text = counter.value.ToString("000");
         }
 
         private void OnApplicationQuit() {
-            counter.value = 0;
+            //counter.value = 0;
         }
 
         protected virtual void SubscribeToEvent() {

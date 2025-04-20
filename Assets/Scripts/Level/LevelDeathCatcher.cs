@@ -12,6 +12,11 @@ namespace LMO {
             if (other.tag == "Player") {
                 OnPlayerFellOutLevel?.Invoke();
             }
+            //<NR>
+            else if (other.tag == "Projectile") {
+                other.gameObject.SetActive(false);
+            }
+            //</NR>
         }
     }
 }

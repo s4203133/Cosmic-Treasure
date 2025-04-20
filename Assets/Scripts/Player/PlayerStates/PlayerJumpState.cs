@@ -8,6 +8,7 @@ namespace LMO {
         protected PlayerJump jump;
         private Grounded grounded;
         private PlayerInput input;
+        private LedgeHopUp ledgeDetector;
 
         protected PlayerJumpSettings jumpSettings;
         protected PlayerMovementSettings jumpMoveSettings;
@@ -17,6 +18,7 @@ namespace LMO {
             jump = context.playerJump;
             grounded = jump.groundedSystem;
             input = context.playerInput;
+            ledgeDetector = context.LedgeHopUp;
 
             jumpSettings = context.PlayerSettings.Jump;
             jumpMoveSettings = context.PlayerSettings.JumpMovement;
@@ -44,7 +46,8 @@ namespace LMO {
                 }
             }
             else {
-                if(jump.reachedPeakOfJump) {
+                ledgeDetector.DetectLedge();
+                if (jump.reachedPeakOfJump) {
                     stateMachine.Fall();
                 }
             }
@@ -96,7 +99,7 @@ namespace LMO {
             stateMachine.ChangeState(stateMachine.groundPoundState);
         }
 
-        protected void Hover() {
+        protected virtual void Hover() {
             if (!grounded.IsOnGround) {
                 stateMachine.ChangeState(stateMachine.hoverState);
             }

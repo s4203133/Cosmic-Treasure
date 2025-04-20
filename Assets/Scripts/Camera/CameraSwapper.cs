@@ -29,12 +29,16 @@ namespace LMO {
 
         public void ActivateCamera() {
             targetCamera.Priority = newPriority;
-            cameraShaker.RegisterAlternateCamera(targetCamera);
+            if (cameraShaker != null) {
+                cameraShaker.RegisterAlternateCamera(targetCamera);
+            }
         }
 
         public void DeativateCamera() {
             targetCamera.Priority = previousPriority;
-            cameraShaker.UnRegisterAlternateCamera();
+            if (cameraShaker != null) {
+                cameraShaker.UnRegisterAlternateCamera();
+            }
         }
     }
 }

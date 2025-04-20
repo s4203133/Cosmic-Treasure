@@ -36,7 +36,8 @@ namespace LMO {
 
         public static Action OnMoveStarted;
         public static Action OnMoveStopped;
-        public static Action OnSkid;
+        public static Action OnKickBack;
+        public static Action OnKickBackEnded;
 
         private void Awake() {
             velocityCalculator = new CalculateMoveVelocity(playerTransform);
@@ -50,13 +51,13 @@ namespace LMO {
             motionCurves.Enable();
             motionCurves.SetCurves(settings.Acceleration, settings.Deceleration);
             motionCurves.InitialiseMotionCurves();
-            OnSkid += Skid;
+            OnKickBack += KickBack;
         }
 
         private void OnDisable() {
             motionCurves.Disable();
             OnMoveStarted -= StartMoving;
-            OnSkid -= Skid;
+            OnKickBack -= KickBack;
         }
 
         public void StartMoving() {
@@ -82,7 +83,7 @@ namespace LMO {
         // Get the input direction, then move and rotate character in that direction
         public void MoveCharacter() {
             GetMoveDirection();
-            HandleSkid();
+            HandleKickBack();
             TurnCharacter();
             CalculateVelocity(settings.Acceleration);
             ApplyVelocity();
@@ -128,14 +129,14 @@ namespace LMO {
             }
         }
 
-        private void HandleSkid() {
+        private void HandleKickBack() {
             if (!settings.CanKickBack || isStarting || speed != settings.MaxSpeed) {
                 return;
             }
             kickBack.UpdateDirection(playerTransform, moveDirection);
         }
 
-        private void Skid() {
+        private void KickBack() {
             rigidBody.velocity = Vector3.zero;
             StartMoving();
             motionCurves.ResetMotionCurves();
@@ -226,7 +227,11 @@ namespace LMO {
         [SerializeField] private float minimumStrightMotionTime;
         [SerializeField] private float skidTime;
 
+        public static Action OnKickBack;
+        public static Action OnKickBackEnded;
+
         public void ResetKickBack() {
+            PlayerMovement.OnKickBackEnded?.Invoke();
             runningInStraightLineTimer = 0;
             kickBackTimer = skidTime;
             isKickingBack = false;
@@ -251,7 +256,7 @@ namespace LMO {
         private void KickBack() {
             isKickingBack = true;
             kickBackTimer = skidTime;
-            PlayerMovement.OnSkid?.Invoke();
+            PlayerMovement.OnKickBack?.Invoke();
         }
 
         public void CountdownKickBackTimer() {

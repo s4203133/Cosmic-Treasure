@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 5000
   rotateSpeed: 360
+  initialRotateSpeed: 0
   canChangeDirectionQuickly: 0
+  changeDirectionSpeed: 0.1
+  canRotate: 0
+  canKickback: 0
   changeDirectionThreshhold: 0.1
   acceleration: {fileID: 11400000, guid: 34099565bebb9714a80974659a55e7c5, type: 2}
   deceleration: {fileID: 11400000, guid: 7aa40391d11261347bebe3176620fba8, type: 2}

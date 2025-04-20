@@ -10,6 +10,7 @@ namespace LMO {
         private PlayerSpinAttack spin;
         private PlayerInput input;
         private PlayerWallJump wallJump;
+        private LedgeHopUp ledgeDetector;
 
         private PlayerMovementSettings moveFallSettings;
         private PlayerJumpSettings fallSettings;
@@ -26,6 +27,7 @@ namespace LMO {
             spin = context.playerSpinAttack;
             input = context.playerInput;
             wallJump = context.playerWallJump;
+            ledgeDetector = context.LedgeHopUp;
 
             moveFallSettings = context.PlayerSettings.JumpMovement;
             fallSettings = context.PlayerSettings.Jump;
@@ -59,6 +61,7 @@ namespace LMO {
                 }
             }
             else {
+                ledgeDetector.DetectLedge();
                 CheckForWallSlide();
             }
         }

@@ -28,6 +28,8 @@ namespace LMO {
         private void SubscribeAnimationEvents() {
             PlayerMovement.OnMoveStarted += animations.PlayRun;
             PlayerMovement.OnMoveStopped += animations.StopRun;
+            PlayerMovement.OnKickBack += animations.PlayKickBack;
+            PlayerMovement.OnKickBackEnded += animations.StopKickBack;
             PlayerJump.OnJump += animations.PlayJump;
             Grounded.OnLanded += animations.StopJump;
             Grounded.OnLanded += animations.StopDive;
@@ -56,6 +58,8 @@ namespace LMO {
         private void UnsubscribeAnimationEvents() {
             PlayerMovement.OnMoveStarted -= animations.PlayRun;
             PlayerMovement.OnMoveStopped -= animations.StopRun;
+            PlayerMovement.OnKickBack -= animations.PlayKickBack;
+            PlayerMovement.OnKickBackEnded -= animations.StopKickBack;
             PlayerJump.OnJump -= animations.PlayJump;
             Grounded.OnLanded -= animations.StopJump;
             Grounded.OnLanded -= animations.StopDive;
@@ -166,6 +170,8 @@ namespace LMO {
 
         public void PlayGroundPound() => SetTrigger(parameters.GROUND_POUND);
         public void PlayCannonJump() => SetTrigger(parameters.CANNON_JUMP);
+        public void PlayKickBack() => SetBool(parameters.KICK_BACK, true);
+        public void StopKickBack() => SetBool(parameters.KICK_BACK, false);
 
         public void PlaySwing() {
             layers.ActivateLayer(layers.upperBody);
@@ -201,6 +207,7 @@ namespace LMO {
         public string WALL_JUMP;
         public string KNOCKED_OVER;
         public string STAND_UP;
+        public string KICK_BACK;
 
         public PlayerAnimationParameters(int id) {
             SPEED = "Speed";
@@ -215,6 +222,7 @@ namespace LMO {
             WALL_JUMP = "WallJump";
             KNOCKED_OVER = "KnockedOver";
             STAND_UP = "StandUp";
+            KICK_BACK = "KickingBack";
         }
     }
 }

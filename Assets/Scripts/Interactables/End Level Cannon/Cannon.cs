@@ -30,7 +30,7 @@ namespace LMO {
 
         private void OnEnable() {
             OnEnteredCannon += LaunchCannon;
-            InputHandler.jumpPerformed += JumpIntoCannon;
+            //InputHandler.jumpPerformed += JumpIntoCannon;
         }
 
         private void OnDisable() {
@@ -40,6 +40,8 @@ namespace LMO {
 
         private void OnTriggerEnter(Collider other) {
             if (other.tag == "Player") {
+                InputHandler.jumpPerformed += JumpIntoCannon;
+
                 playerInRange = true;
                 promptUIAnimator.SetTrigger("FadeIn");
             }
@@ -47,6 +49,8 @@ namespace LMO {
 
         private void OnTriggerExit(Collider other) {
             if (other.tag == "Player") {
+                InputHandler.jumpPerformed -= JumpIntoCannon;
+
                 playerInRange = false;
                 promptUIAnimator.SetTrigger("FadeOut");
             }

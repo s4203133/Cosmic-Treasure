@@ -1,22 +1,23 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class ProjectileTrigger : MonoBehaviour
-{
-    private Animator animator;
+namespace NR {
+    public class ProjectileTrigger : MonoBehaviour {
+        public UnityEvent OnProjectileHit;
+        public UnityEvent OnProjectileLeave;
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
+        void OnTriggerEnter(Collider obj) {
+            if (obj.gameObject.CompareTag("Projectile")) {
+                OnProjectileHit.Invoke();
+            }
+            //animator.SetBool("Door", true);
+        }
+
+        void OnTriggerExit(Collider obj) {
+            if (obj.gameObject.CompareTag("Projectile")) {
+                OnProjectileLeave.Invoke(); 
+            }
+            //animator.SetBool("WaterUp", false);
+        }
     }
-
-
-    void OnTriggerEnter(Collider obj)
-    {
-        animator.SetBool("Door", true);
-    }
-
-    //void OnTriggerExit(Collider obj)
-    //{
-    //animator.SetBool("WaterUp", false);
-    //}
 }
