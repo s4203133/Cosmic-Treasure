@@ -38,6 +38,7 @@ namespace WWH {
             StartingPlayerHealth = PlayerHealth;
             currentPlayerHealth = PlayerHealth;
             HasSeenPlayer = false;
+            SegualModel.transform.position = new Vector3(-0.010176f, 3.97f, -0.010176f);
         }
 
         void RayDetectionDown() {
@@ -47,28 +48,10 @@ namespace WWH {
                 Debug.DrawRay(transform.position, transform.TransformDirection(angle) * distance, Color.red);
                 if (Physics.Raycast(transform.position, transform.TransformDirection(angle), out hit, distance, layer)) {
                     Debug.Log("hit");
-                    if (hit.distance > 1) {
-                                               
-                        HasSeenPlayer = true;
-                        
+                    if (hit.distance > 1) {                                               
+                        HasSeenPlayer = true;                        
                         //lerp to look at the player. if player out of sight get last location. if not there then reset
-                    }
-                    //if (hit.distance <= 1 && canAttack == true) {
-                    //    //play attack animation
-                    //    animator.SetBool("SlimeAttack", true);
-
-                    //    animator.SetBool("SlimeIdle", false);
-                    //    PlayerHealth -= DamageAmount;
-
-                    //    rb.AddForce(transform.up * 1000);
-                    //    if (PlayerHealth < currentPlayerHealth) {
-                    //        currentPlayerHealth = PlayerHealth;
-                    //        canAttack = false;
-                    //        animator.SetBool("SlimeAttack", false);
-
-                    //        //animator.SetBool("SlimeAttack", false);
-                    //    }
-                    //}
+                    }                    
                 }
             }
         }
@@ -85,16 +68,19 @@ namespace WWH {
                         animator.SetBool("SlimeAttack", false);
                     }
                 }
-                if (canAttack == false) {
-                    
+                if (canAttack == false) {                    
                     if (Enemy.transform.position.y < 20) {
                         Enemy.transform.position += new Vector3(0, 1, 0) * Time.deltaTime;
                     }
                     if (Enemy.transform.position.y >= 20) {
                         FindPlayerCountDown += Time.deltaTime;
+                        if (FindPlayerCountDown < 10) {
+                            Enemy.Move(new Vector3(player.transform.position.x, Enemy.transform.position.y, player.transform.position.z));                            
+                        }
                         if (FindPlayerCountDown >= 10) {
-                            Enemy.Move(new Vector3(player.transform.position.x, Enemy.transform.position.y, player.transform.position.z));
                             FindPlayerCountDown = 0;
+                            HasSeenPlayer = false;
+                            canAttack = true;
                         }
                     }
                 }
@@ -105,12 +91,10 @@ namespace WWH {
                 if (point == PatrolPoints[PointIteration]) {
                     if (transform.position != point.transform.position) {
                         Enemy.SetDestination(point.transform.position);
-
                     }
                     CurrentPoint = point;
                     if (Vector3.Distance(transform.position, CurrentPoint.position) <= 1) {
                         timer += Time.deltaTime;
-
                         animator.SetBool("SlimeIdle", true);
                         float rand = Random.Range(2, 7);
                         if (timer >= rand) {
@@ -128,6 +112,7 @@ namespace WWH {
         }
         // Update is called once per frame
         void Update() {
+            FlyAway();
             Patrolling();
             RayDetectionDown();
             if (PlayerHealth <= 0) {
