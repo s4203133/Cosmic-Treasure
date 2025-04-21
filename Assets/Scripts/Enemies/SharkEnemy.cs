@@ -1,21 +1,19 @@
 using LMO;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class SharkEnemy : MonoBehaviour
 {
     public List<Vector3> Rays;
     public float distance;
-    public NavMeshAgent Enemy;
+    public GameObject Enemy;
     public List<Transform> PatrolPoints;
     private int PointIteration;
     private Transform CurrentPoint;
-    public bool IsAtEnd;
+    
     private float timer;
     public Animator animator;
-    public GameObject SegualModel;
+    public GameObject SharkModel;
 
     public SpawnPlayer spawnplayer;
     public GameObject player;
@@ -24,80 +22,59 @@ public class SharkEnemy : MonoBehaviour
     private float currentPlayerHealth;
     private float timer2;
     public LayerMask layer;
-    private bool canAttack;
+    public bool canAttack;
     public float DamageAmount;
-    public Rigidbody rb;
+   
 
     private bool HasSeenPlayer;
-    private float FindPlayerCountDown;
-    private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Player") && canAttack == true) {
-            PlayerHealth -= DamageAmount;
-            if (PlayerHealth < currentPlayerHealth) {
-                currentPlayerHealth = PlayerHealth;
-                canAttack = false;
-                
-            }
-        }
+    private float AttackCooldown;
+
+    private void Start() {
+        canAttack = true;
     }
+
     public void DoAttack() {
-        if (Vector3.Distance(player.transform.position, Enemy.transform.position) <= 1 && canAttack == true) {
-            //animator.SetBool("SharkAttack", false);
-        }
-        if (canAttack == false) {
-            FindPlayerCountDown += Time.deltaTime;
-            if (FindPlayerCountDown < 10) {
-                Enemy.Move(new Vector3(player.transform.position.x, Enemy.transform.position.y, player.transform.position.z));
-            }
-            if (FindPlayerCountDown >= 10) {
-                FindPlayerCountDown = 0;
-                HasSeenPlayer = false;
-                canAttack = true;
-            }
-        }
+        if (Vector3.Distance(player.transform.position, Enemy.transform.position) <= 5 && canAttack == true) {
+            //animator.SetBool("SharkAttack", true);
+        }        
     }
     void RayDetectionUp() {
         foreach (Vector3 ray in Rays) {
             RaycastHit hit = new RaycastHit();
-            Vector3 angle = Quaternion.Euler(ray.x, ray.y, ray.z) * Vector3.forward;
-            Debug.DrawRay(transform.position, transform.TransformDirection(angle) * distance, Color.red);
-            if (Physics.Raycast(transform.position, transform.TransformDirection(angle), out hit, distance, layer)) {
+            Vector3 angle = Quaternion.Euler(ray.x, ray.y, ray.z) * Vector3.up;
+            Debug.DrawRay(SharkModel.transform.position, transform.TransformDirection(angle) * distance, Color.red);
+            if (Physics.Raycast(SharkModel.transform.position, transform.TransformDirection(angle), out hit, distance, layer)) {
                 Debug.Log("hit");
-                if (hit.distance > 1) {
-                    HasSeenPlayer = true;
-                }
+                    HasSeenPlayer = true;                
             }
         }
     }
     void Patrolling() {
         foreach (Transform point in PatrolPoints) {
             if (point == PatrolPoints[PointIteration]) {
-                if (transform.position != point.transform.position) {
-                    Enemy.SetDestination(point.transform.position);
+                if (transform.position != point.transform.position) {                    
+                    Enemy.transform.position = Vector3.MoveTowards(Enemy.transform.position, point.transform.position, 10 * Time.deltaTime);
+                    Enemy.transform.LookAt(point.transform.position);
                 }
                 CurrentPoint = point;
                 if (Vector3.Distance(transform.position, CurrentPoint.position) <= 1) {
-                    timer += Time.deltaTime;
-                    animator.SetBool("SlimeIdle", true);
-                    float rand = Random.Range(2, 7);
+                    timer += Time.deltaTime;                    
+                    float rand = 0.5f;
                     if (timer >= rand) {
                         PointIteration += 1;
-                        timer = 0;
-                        animator.SetBool("SlimeIdle", false);
+                        timer = 0;                       
                     }
                 }
             }
         }
         if (PointIteration >= PatrolPoints.Count) {
-            PointIteration = 0;
-            IsAtEnd = false;
+            PointIteration = 0;            
         }
     }
     // Update is called once per frame
     void Update() {
-        if (HasSeenPlayer == false) {
-            Patrolling();
-        }
+        
+        Patrolling();        
         if (HasSeenPlayer == true) {
             DoAttack();
         }
@@ -105,13 +82,12 @@ public class SharkEnemy : MonoBehaviour
         if (PlayerHealth <= 0) {
             PlayerHealth = StartingPlayerHealth;
             spawnplayer.ResetPlayer();
-        }
-        Debug.Log(PlayerHealth);
+        }        
         if (canAttack == false) {
-            timer2 += Time.deltaTime;
-            if (timer2 >= 2) {
+            AttackCooldown += Time.deltaTime;
+            if (AttackCooldown >= 5) {
+                AttackCooldown = 0;                
                 canAttack = true;
-                timer2 = 0;
             }
         }
     }

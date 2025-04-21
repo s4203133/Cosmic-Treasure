@@ -16278,6 +16278,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 505920796}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &432138471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 432138472}
+  m_Layer: 0
+  m_Name: shark point (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &432138472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432138471}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 398.43, y: -1.08, z: 110.51}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &434014655
 GameObject:
   m_ObjectHideFlags: 0
@@ -34296,6 +34327,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8, type: 3}
+--- !u!1 &886156123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6513583433740248623, guid: da98caaef228d1546a79c116d19b8579,
+    type: 3}
+  m_PrefabInstance: {fileID: 1953092881}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &889065041 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6377390340817558727, guid: b51d62d5d06e34047bd0ab10ce172bdc,
@@ -37702,6 +37739,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4320536817159692782, guid: 97d195153a48a3f4ab30dc4864bf3d0b,
     type: 3}
   m_PrefabInstance: {fileID: 1407868204}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &980495530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1427047429895148622, guid: 0fe5604c12449f24fa9a64efbaa08111,
+    type: 3}
+  m_PrefabInstance: {fileID: 3283365092462724482}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &982400422 stripped
 Transform:
@@ -64232,6 +64275,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7850374676305493682, guid: d1a7db209411f9a45ba3217d5226496e, type: 3}
+--- !u!1 &1642374255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642374256}
+  m_Layer: 0
+  m_Name: shark point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1642374256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642374255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 398.43, y: -1.08, z: 89.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1642380309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6377390340817558727, guid: b51d62d5d06e34047bd0ab10ce172bdc,
@@ -76998,6 +77072,129 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 977592813}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1953092881
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 924191781468840517, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 924191781468840517, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274648907784225082, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 397.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274648907784225082, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274648907784225082, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 113.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274648907784225082, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274648907784225082, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274648907784225082, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274648907784225082, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274648907784225082, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274648907784225082, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274648907784225082, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264907686001485284, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 886156123}
+    - target: {fileID: 5264907686001485284, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 980495530}
+    - target: {fileID: 5264907686001485284, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: spawnplayer
+      value: 
+      objectReference: {fileID: 1580298385}
+    - target: {fileID: 5264907686001485284, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: PatrolPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264907686001485284, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: PatrolPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1642374256}
+    - target: {fileID: 5264907686001485284, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: PatrolPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 432138472}
+    - target: {fileID: 6513583433740248623, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_Name
+      value: Shark
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810617393234602345, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_Mass
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810617393234602345, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810617393234602345, guid: da98caaef228d1546a79c116d19b8579,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da98caaef228d1546a79c116d19b8579, type: 3}
 --- !u!1 &1954260703
 GameObject:
   m_ObjectHideFlags: 0
@@ -99890,3 +100087,6 @@ SceneRoots:
   - {fileID: 3063345900096635438}
   - {fileID: 1249178826}
   - {fileID: 1271804445}
+  - {fileID: 1953092881}
+  - {fileID: 1642374256}
+  - {fileID: 432138472}

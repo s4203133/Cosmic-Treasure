@@ -1,5 +1,7 @@
 using LMO;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SeagullGrappleKill : GrapplePoint
 {
@@ -7,11 +9,7 @@ public class SeagullGrappleKill : GrapplePoint
     public GameObject Seagull;
     public override void OnReleased() {
         base.OnReleased();
-        
-        Seagull.SetActive(false);
-        //Destroy(Seagull);
-         //GameObject.FindObjectOfType<DetectSwingJoints>().allJoints.remove
+
+        Seagull.SetActive(false);       
     }
-
-
 }
