@@ -19,12 +19,12 @@ namespace LMO {
                 return;
             }
             rigidBody.velocity = Vector3.zero;
-            PlayerHealth.OnDamageKnockBackOver += stateMachine.Idle;
+            PlayerHealth.OnCoolDownStarting += stateMachine.Idle;
         }
 
         public override void OnStateExit() {
             rigidBody.velocity = Vector3.zero;
-            PlayerHealth.OnDamageKnockBackOver -= stateMachine.Idle;
+            PlayerHealth.OnCoolDownStarting -= stateMachine.Idle;
         }
 
         public override void OnStatePhysicsUpdate() {
@@ -32,7 +32,7 @@ namespace LMO {
         }
 
         public override void OnStateUpdate() {
-            health.CountdownTimer();
+
         }
 
         public override void OnTriggerEnter(Collider collider) {

@@ -53,7 +53,7 @@ namespace LMO {
             PlayerWallJump.OnWallJump += animations.PlayWallJump;
             PlayerWallJump.OnWallJump += animations.StopWallSlide;
             PlayerHealth.OnDamageTaken += animations.PlayKnockOver;
-            PlayerHealth.OnDamageKnockBackOver += animations.PlayStandUp;
+            PlayerHealth.OnStandingUp += animations.PlayStandUp;
             PlayerDeath.OnPlayerDied += animations.StopSwing;
         }
 
