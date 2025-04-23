@@ -24,6 +24,7 @@ namespace NR {
 
         public void OnHit() {
             if (buttonReady) {
+                isActive = true;
                 OnActivate?.Invoke();
                 animator.SetBool("Hit", true);
                 buttonReady = false;
