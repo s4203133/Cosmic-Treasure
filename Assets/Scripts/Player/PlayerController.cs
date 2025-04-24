@@ -22,6 +22,7 @@ namespace LMO {
         [SerializeField] private Grapple grapple;
         [SerializeField] private SwingManager swingManager;
         [SerializeField] private PlayerWallJump wallJump;
+        [SerializeField] private PlayerHealth health;
         [SerializeField] private LedgeHopUp ledgeHopUp;
         [SerializeField] private PlayerFloat floaty;
         [SerializeField] private PlayerVFX vfx;
@@ -47,6 +48,7 @@ namespace LMO {
         public Grapple playerGrapple => grapple;
         public SwingManager playerSwingManager => swingManager;
         public PlayerWallJump playerWallJump => wallJump;
+        public PlayerHealth playerHealth => health;
         public LedgeHopUp LedgeHopUp => ledgeHopUp;
         public PlayerFloat playerFloat => floaty;
         public PlayerVFX playerVFX => vfx;

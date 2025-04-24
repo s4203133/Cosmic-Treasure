@@ -10,8 +10,8 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -239057114647246022}
-    m_Position: {x: 150, y: 270, z: 0}
+    m_State: {fileID: -5552459321011282553}
+    m_Position: {x: 300, y: 120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -21,16 +21,16 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -239057114647246022}
---- !u!1102 &-239057114647246022
+  m_DefaultState: {fileID: -5552459321011282553}
+--- !u!1102 &-5552459321011282553
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MainMenuBoat
-  m_Speed: 0.035
+  m_Name: ShipMoving
+  m_Speed: 0.025
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -42,7 +42,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 3871d9072c0c55842b0cb4c23668d384, type: 2}
+  m_Motion: {fileID: 7400000, guid: f9145fc38b4148448823e752c311bf40, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -76,7 +76,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   DamageAmount: 20
-  rb: {fileID: 8810617393234602345}
+  rb: {fileID: 0}
 --- !u!195 &5423244760689116434
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -204,6 +204,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b240db65e4f3139409affcc2cd0e815e, type: 2}
+    - target: {fileID: -4856215798416965605, guid: 33e2d520638318b48abd605b6583188b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: -619793230615116287, guid: 33e2d520638318b48abd605b6583188b,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -219,6 +224,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeEnemyBasicIdle
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 33e2d520638318b48abd605b6583188b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 1343227830495838311, guid: 33e2d520638318b48abd605b6583188b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -229,6 +239,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e6e6cebaa47f14647b976d38b665ec05, type: 2}
+    - target: {fileID: 7659068798806501067, guid: 33e2d520638318b48abd605b6583188b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8008855618364937464, guid: 33e2d520638318b48abd605b6583188b,
         type: 3}
       propertyPath: m_LocalPosition.y

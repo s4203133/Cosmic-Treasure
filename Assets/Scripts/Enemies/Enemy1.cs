@@ -100,9 +100,9 @@ namespace WWH {
                 RayDirection();           
             if (PlayerHealth <= 0) {
                 PlayerHealth = StartingPlayerHealth;
-                spawnplayer.ResetPlayer();
+                //spawnplayer.ResetPlayer();
             }            
-            Debug.Log(PlayerHealth);
+            //Debug.Log(PlayerHealth);
             if (canAttack == false) {
                 timer2 += Time.deltaTime;
                 if (timer2 >= 2) {
