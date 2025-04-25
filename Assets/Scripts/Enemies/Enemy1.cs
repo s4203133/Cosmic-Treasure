@@ -54,15 +54,15 @@ namespace WWH {
                         animator.SetBool("SlimeAttack", true);
                         
                         animator.SetBool("SlimeIdle", false);
-                        PlayerHealth -= DamageAmount;
                         
-                        rb.AddForce(transform.up * 1000);
-                        if (PlayerHealth < currentPlayerHealth) {
-                            currentPlayerHealth = PlayerHealth;
+                        
+                        //rb.AddForce(transform.up * 1000);
+                        if (animator.GetBool("SlimeAttack")) {
+                            Debug.Log("sss");
                             canAttack = false;
                             animator.SetBool("SlimeAttack", false);
                             
-                            //animator.SetBool("SlimeAttack", false);
+                            
                         }
                     }                   
                 }

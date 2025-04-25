@@ -39,6 +39,8 @@ namespace WWH {
             currentPlayerHealth = PlayerHealth;
             HasSeenPlayer = false;
         }
+
+
         private void SeagullGroundCheck() {
             RaycastHit hit = new RaycastHit();
             Debug.DrawRay(SegualModelHolder.transform.position, transform.TransformDirection(Vector3.down) * 20, Color.red);
@@ -68,16 +70,16 @@ namespace WWH {
             if (HasSeenPlayer == true && canAttack == true) {
                 SeagullGroundCheck();
                 Enemy.transform.position = Vector3.MoveTowards(Enemy.transform.position, player.transform.position, 10 * Time.deltaTime);
-                //SegualModel.transform.LookAt(player.transform);
+                
 
-                //Mathf.Lerp(player.transform.position.x, transform.position.x, Time.deltaTime);
+                
                 if (Vector3.Distance(player.transform.position, SegualModel.transform.position) <= 2.5 && canAttack == true) {
-                    PlayerHealth -= DamageAmount;
-                    if (PlayerHealth < currentPlayerHealth) {
-                        currentPlayerHealth = PlayerHealth;
-                        canAttack = false;
-                        // animator.SetBool("SlimeAttack", false);
-                    }
+                    
+                    //if (animator.GetBool(SeagullAttack)) {
+                        
+                       canAttack = false;
+                    //    // animator.SetBool("SeagullAttack", false);
+                    //}
                 }                
             }
         }
@@ -86,8 +88,6 @@ namespace WWH {
                 if (point == PatrolPoints[PointIteration]) {
                     if (transform.position != point.transform.position) {
                         Enemy.SetDestination(point.transform.position);
-
-
                     }
                     CurrentPoint = point;
                     if (Vector3.Distance(transform.position, CurrentPoint.position) <= 1) {
