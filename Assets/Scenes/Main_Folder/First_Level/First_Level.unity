@@ -571,7 +571,7 @@ GameObject:
   - component: {fileID: 11059698}
   m_Layer: 0
   m_Name: BottomRocky018 (5)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -804,7 +804,7 @@ GameObject:
   - component: {fileID: 15500990}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (19)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1535,7 +1535,7 @@ GameObject:
   - component: {fileID: 37271872}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (11)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1639,7 +1639,7 @@ GameObject:
   - component: {fileID: 39540954}
   m_Layer: 0
   m_Name: BeneathBottomCorner006 (7)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1723,7 +1723,7 @@ GameObject:
   - component: {fileID: 40246730}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (20)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3934,7 +3934,7 @@ GameObject:
   - component: {fileID: 115019106}
   m_Layer: 0
   m_Name: UnderRocky016 (6)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4262,7 +4262,7 @@ GameObject:
   - component: {fileID: 130390094}
   m_Layer: 0
   m_Name: BottomRocky016 (1)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4502,7 +4502,7 @@ GameObject:
   - component: {fileID: 134083039}
   m_Layer: 0
   m_Name: BottomRocky018 (2)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6243,7 +6243,7 @@ GameObject:
   - component: {fileID: 200767290}
   m_Layer: 0
   m_Name: UnderRocky016 (5)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6495,6 +6495,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockPathEdge (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 7254274479383428874, guid: 5bdc85b2395f9fe4686091588d1cd024,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -6578,7 +6583,7 @@ GameObject:
   - component: {fileID: 209760563}
   m_Layer: 0
   m_Name: BottomRocky016 (18)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8006,6 +8011,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockPathEdge (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254274479383428874, guid: 5bdc85b2395f9fe4686091588d1cd024,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
@@ -9708,7 +9718,7 @@ GameObject:
   - component: {fileID: 329381527}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (18)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9807,10 +9817,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587478919560231841, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466969838830606, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498623850376763261, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510241911821907601, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
       propertyPath: m_Name
       value: BigPath (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 2039031660964236594, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
@@ -9861,6 +9896,86 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214301881472955441, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2297008320056578050, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804418945844557051, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394489287751596168, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466083119517007446, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058023219949298621, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104475245220860618, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503270464966064436, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641896030681115260, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713225928116251810, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984195239515669432, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681506226294776052, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021850414441608071, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440593239751516859, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534668411824245800, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094715110670730280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10708,7 +10823,7 @@ GameObject:
   - component: {fileID: 379475497}
   m_Layer: 0
   m_Name: BottomRocky016 (3)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10979,7 +11094,7 @@ GameObject:
   - component: {fileID: 390222507}
   m_Layer: 0
   m_Name: BottomRocky016 (13)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12199,7 +12314,7 @@ GameObject:
   - component: {fileID: 458946383}
   m_Layer: 0
   m_Name: BeneathBottomCorner006 (3)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12770,7 +12885,7 @@ GameObject:
   - component: {fileID: 482566706}
   m_Layer: 0
   m_Name: UnderRocky016 (1)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13784,6 +13899,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockPathEdge (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 7254274479383428874, guid: 5bdc85b2395f9fe4686091588d1cd024,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -14332,7 +14452,7 @@ GameObject:
   - component: {fileID: 521980254}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (10)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14633,7 +14753,7 @@ GameObject:
   - component: {fileID: 523665168}
   m_Layer: 0
   m_Name: UnderRocky016 (4)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15323,7 +15443,7 @@ GameObject:
   - component: {fileID: 547665583}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (17)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17276,7 +17396,7 @@ GameObject:
   - component: {fileID: 608783379}
   m_Layer: 0
   m_Name: BottomRocky016 (2)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18371,7 +18491,7 @@ GameObject:
   - component: {fileID: 636184125}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (21)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19650,10 +19770,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587478919560231841, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466969838830606, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
       propertyPath: m_Name
       value: BigPath
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 2039031660964236594, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
@@ -19704,6 +19839,76 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214301881472955441, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2297008320056578050, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804418945844557051, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466083119517007446, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058023219949298621, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104475245220860618, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503270464966064436, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641896030681115260, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713225928116251810, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681506226294776052, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021850414441608071, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440593239751516859, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534668411824245800, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094715110670730280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -19967,7 +20172,7 @@ GameObject:
   - component: {fileID: 695707433}
   m_Layer: 0
   m_Name: BeneathBottomCorner006 (4)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20186,50 +20391,100 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 135324826707178932, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 430888357775838345, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 430888357775838345, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 603233224418020820, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 603233224418020820, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 1003936216138436417, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003936216138436417, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 2578004095556219068, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2578004095556219068, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 3263867944442417609, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3263867944442417609, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 4051308966938223123, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4051308966938223123, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 4132484043741311036, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132484043741311036, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 4580470693874973919, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4580470693874973919, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 4947488211518862149, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947488211518862149, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 6332848122707277154, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
@@ -20286,6 +20541,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6658859156683513486, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 6676898142090637272, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Name
@@ -20301,25 +20561,50 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7058372875406298076, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 7805669568002631190, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805669568002631190, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 7986887182337506801, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7986887182337506801, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 8075996831742122991, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8075996831742122991, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747946115836743643, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8747946115836743643, guid: 5e206767b7ca9934fa1aa60bfb2b7470,
         type: 3}
-      propertyPath: m_Layer
-      value: 6
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22160,7 +22445,7 @@ GameObject:
   - component: {fileID: 750618665}
   m_Layer: 0
   m_Name: BottomRocky018 (6)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22248,6 +22533,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockPathEdge (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254274479383428874, guid: 5bdc85b2395f9fe4686091588d1cd024,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
@@ -23716,7 +24006,7 @@ GameObject:
   - component: {fileID: 807515447}
   m_Layer: 0
   m_Name: UnderRocky016 (2)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23924,7 +24214,7 @@ GameObject:
   - component: {fileID: 821697145}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (16)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24863,6 +25153,18 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 47341151bb9029d4fa0c07d7cde99875, type: 2}
+    - target: {fileID: 2871775528213808345, guid: 6fdd0aed59f0c244599fe02d0d76d93b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c4d71a5484ce31b4dbb256dc84955721,
+        type: 3}
+    - target: {fileID: 3542173255099589182, guid: 6fdd0aed59f0c244599fe02d0d76d93b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e289535582a296b488d0ccd89245818f,
+        type: 3}
     - target: {fileID: 4122799153963320416, guid: 6fdd0aed59f0c244599fe02d0d76d93b,
         type: 3}
       propertyPath: m_Name
@@ -26149,7 +26451,7 @@ GameObject:
   - component: {fileID: 921335531}
   m_Layer: 0
   m_Name: UnderRocky018 (1)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26782,7 +27084,7 @@ GameObject:
   - component: {fileID: 966669571}
   m_Layer: 0
   m_Name: BeneathBottomCorner006 (2)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26865,7 +27167,7 @@ GameObject:
   - component: {fileID: 968410065}
   m_Layer: 0
   m_Name: BottomRocky018 (1)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27299,7 +27601,7 @@ GameObject:
   - component: {fileID: 986215342}
   m_Layer: 0
   m_Name: BottomRocky018 (4)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27711,10 +28013,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587478919560231841, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466969838830606, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498623850376763261, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510241911821907601, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
       propertyPath: m_Name
       value: BigPath (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 2039031660964236594, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
@@ -27765,6 +28092,86 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214301881472955441, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2297008320056578050, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804418945844557051, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394489287751596168, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466083119517007446, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058023219949298621, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104475245220860618, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503270464966064436, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641896030681115260, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713225928116251810, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984195239515669432, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681506226294776052, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021850414441608071, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440593239751516859, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534668411824245800, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094715110670730280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28146,7 +28553,7 @@ GameObject:
   - component: {fileID: 1025850912}
   m_Layer: 0
   m_Name: UnderRocky018 (2)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29485,7 +29892,7 @@ GameObject:
   - component: {fileID: 1075092852}
   m_Layer: 0
   m_Name: BottomRocky018 (3)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29568,7 +29975,7 @@ GameObject:
   - component: {fileID: 1075756245}
   m_Layer: 0
   m_Name: BottomRocky016 (12)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29851,7 +30258,7 @@ GameObject:
   - component: {fileID: 1082264019}
   m_Layer: 0
   m_Name: BottomRocky016 (14)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30528,7 +30935,7 @@ GameObject:
   - component: {fileID: 1126166888}
   m_Layer: 0
   m_Name: BeneathBottomCorner006 (5)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31237,7 +31644,7 @@ GameObject:
   - component: {fileID: 1155434147}
   m_Layer: 0
   m_Name: BottomRocky016 (15)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31524,7 +31931,7 @@ GameObject:
   - component: {fileID: 1171028325}
   m_Layer: 0
   m_Name: BottomRocky016 (4)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32594,7 +33001,7 @@ GameObject:
   - component: {fileID: 1198986875}
   m_Layer: 0
   m_Name: BottomRocky016 (5)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32746,7 +33153,7 @@ GameObject:
   - component: {fileID: 1203624864}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (12)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35582,7 +35989,7 @@ GameObject:
   - component: {fileID: 1302186068}
   m_Layer: 0
   m_Name: BottomRocky016 (10)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35837,7 +36244,7 @@ GameObject:
   - component: {fileID: 1317012730}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (13)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36604,7 +37011,7 @@ GameObject:
   - component: {fileID: 1361292862}
   m_Layer: 0
   m_Name: BottomRocky016 (19)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37454,7 +37861,7 @@ GameObject:
   - component: {fileID: 1394931223}
   m_Layer: 0
   m_Name: BeneathBottomCorner006 (6)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38422,6 +38829,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockPathEdge (06)
       objectReference: {fileID: 0}
+    - target: {fileID: 7254274479383428874, guid: 5bdc85b2395f9fe4686091588d1cd024,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -38737,6 +39149,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockPathEdge (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7254274479383428874, guid: 5bdc85b2395f9fe4686091588d1cd024,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -38909,7 +39326,7 @@ GameObject:
   - component: {fileID: 1463085334}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (5)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39143,7 +39560,7 @@ GameObject:
   - component: {fileID: 1472542911}
   m_Layer: 0
   m_Name: BeneathBottomCorner006 (1)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39310,7 +39727,7 @@ GameObject:
   - component: {fileID: 1479178800}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (15)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40548,7 +40965,7 @@ GameObject:
   - component: {fileID: 1538562853}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (7)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41186,7 +41603,7 @@ GameObject:
   - component: {fileID: 1556353752}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (22)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41291,7 +41708,7 @@ GameObject:
   - component: {fileID: 1564393212}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (6)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43308,7 +43725,7 @@ GameObject:
   - component: {fileID: 1633052823}
   m_Layer: 0
   m_Name: BottomRocky016 (16)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44643,6 +45060,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockPathEdge (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7254274479383428874, guid: 5bdc85b2395f9fe4686091588d1cd024,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -45693,10 +46115,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587478919560231841, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466969838830606, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498623850376763261, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510241911821907601, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
       propertyPath: m_Name
       value: BigPath (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 2039031660964236594, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
@@ -45747,6 +46194,86 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214301881472955441, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2297008320056578050, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804418945844557051, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394489287751596168, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466083119517007446, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058023219949298621, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104475245220860618, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503270464966064436, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641896030681115260, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713225928116251810, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984195239515669432, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681506226294776052, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021850414441608071, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440593239751516859, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534668411824245800, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094715110670730280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45989,7 +46516,7 @@ GameObject:
   - component: {fileID: 1730283826}
   m_Layer: 0
   m_Name: BottomRocky016 (9)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46824,7 +47351,7 @@ GameObject:
   - component: {fileID: 1764049318}
   m_Layer: 0
   m_Name: BottomRocky016 (7)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46996,7 +47523,7 @@ GameObject:
   - component: {fileID: 1770157411}
   m_Layer: 0
   m_Name: BeneathBottomCorner006 (8)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47924,6 +48451,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae47955d7c543904aa8b394b33a7000c, type: 3}
+--- !u!1 &1808737865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1051759896739715500, guid: 0fe5604c12449f24fa9a64efbaa08111,
+    type: 3}
+  m_PrefabInstance: {fileID: 3283365092462724482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1809067665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48471,7 +49004,7 @@ GameObject:
   - component: {fileID: 1834614927}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (2)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49092,7 +49625,7 @@ GameObject:
   - component: {fileID: 1850672531}
   m_Layer: 0
   m_Name: UnderRocky016 (3)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50013,7 +50546,7 @@ GameObject:
   - component: {fileID: 1885388271}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (9)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50167,6 +50700,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrossFenceEnd
       objectReference: {fileID: 0}
+    - target: {fileID: 5150345404059544128, guid: e8ffa001711f7054d8590ebf3d881c50,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -50281,7 +50819,7 @@ GameObject:
   - component: {fileID: 1893299440}
   m_Layer: 0
   m_Name: BottomRocky016 (8)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50369,6 +50907,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockPathEdge (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254274479383428874, guid: 5bdc85b2395f9fe4686091588d1cd024,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
@@ -50790,7 +51333,7 @@ GameObject:
   - component: {fileID: 1916454091}
   m_Layer: 0
   m_Name: BottomRocky016 (11)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51828,7 +52371,7 @@ GameObject:
   - component: {fileID: 1943642688}
   m_Layer: 0
   m_Name: BottomRocky016 (6)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53354,7 +53897,7 @@ GameObject:
   - component: {fileID: 2006734782}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (8)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54499,10 +55042,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587478919560231841, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466969838830606, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498623850376763261, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510241911821907601, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
       propertyPath: m_Name
       value: BigPath (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 2039031660964236594, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
@@ -54553,6 +55121,86 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214301881472955441, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2297008320056578050, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804418945844557051, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394489287751596168, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466083119517007446, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058023219949298621, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104475245220860618, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503270464966064436, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641896030681115260, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713225928116251810, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984195239515669432, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681506226294776052, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021850414441608071, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440593239751516859, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534668411824245800, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094715110670730280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -54942,7 +55590,7 @@ GameObject:
   - component: {fileID: 2075847608}
   m_Layer: 0
   m_Name: BottomRocky016 (17)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55365,7 +56013,7 @@ GameObject:
   - component: {fileID: 2092617468}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (3)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55470,7 +56118,7 @@ GameObject:
   - component: {fileID: 2093115095}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (4)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56376,10 +57024,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587478919560231841, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466969838830606, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498623850376763261, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510241911821907601, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
     - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
       propertyPath: m_Name
       value: BigPath (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659515794515302280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     - target: {fileID: 2039031660964236594, guid: ae47955d7c543904aa8b394b33a7000c,
         type: 3}
@@ -56430,6 +57103,71 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214301881472955441, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2297008320056578050, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804418945844557051, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394489287751596168, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466083119517007446, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641896030681115260, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713225928116251810, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984195239515669432, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681506226294776052, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021850414441608071, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440593239751516859, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534668411824245800, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094715110670730280, guid: ae47955d7c543904aa8b394b33a7000c,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraIgnore
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -56732,7 +57470,7 @@ GameObject:
   - component: {fileID: 2136297836}
   m_Layer: 0
   m_Name: 2 Plank Cross Fence (14)
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57967,7 +58705,7 @@ GameObject:
   - component: {fileID: 1252951190}
   m_Layer: 0
   m_Name: Box365
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60590,7 +61328,7 @@ GameObject:
   - component: {fileID: 475493963}
   m_Layer: 0
   m_Name: Box372
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61335,7 +62073,7 @@ GameObject:
   - component: {fileID: 1529306655}
   m_Layer: 0
   m_Name: Box368
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68451,7 +69189,7 @@ GameObject:
   - component: {fileID: 1269598529}
   m_Layer: 0
   m_Name: Box363
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71978,6 +72716,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player&Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 1887601609314182532, guid: 0fe5604c12449f24fa9a64efbaa08111,
+        type: 3}
+      propertyPath: parrot
+      value: 
+      objectReference: {fileID: 1808737865}
+    - target: {fileID: 1887601609314182532, guid: 0fe5604c12449f24fa9a64efbaa08111,
+        type: 3}
+      propertyPath: parrotSize
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887601609314182532, guid: 0fe5604c12449f24fa9a64efbaa08111,
+        type: 3}
+      propertyPath: smoothness
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 3337628508049128317, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_Height
@@ -72386,7 +73139,7 @@ GameObject:
   - component: {fileID: 435163460}
   m_Layer: 0
   m_Name: Box362
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73521,7 +74274,7 @@ GameObject:
   - component: {fileID: 1740023579}
   m_Layer: 0
   m_Name: Box366
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79990,7 +80743,7 @@ GameObject:
   - component: {fileID: 1089737732}
   m_Layer: 0
   m_Name: Box367
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85982,7 +86735,7 @@ GameObject:
   - component: {fileID: 646425066}
   m_Layer: 0
   m_Name: Box373
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88916,7 +89669,7 @@ GameObject:
   - component: {fileID: 731434078}
   m_Layer: 0
   m_Name: Box364
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92152,7 +92905,7 @@ GameObject:
   - component: {fileID: 992137965}
   m_Layer: 0
   m_Name: Box370
-  m_TagString: Untagged
+  m_TagString: CameraIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
