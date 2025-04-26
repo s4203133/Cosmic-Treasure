@@ -1,5 +1,6 @@
 using LMO;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SharkEnemy : MonoBehaviour
@@ -24,19 +25,22 @@ public class SharkEnemy : MonoBehaviour
     public LayerMask layer;
     public bool canAttack;
     public float DamageAmount;
-   
 
     private bool HasSeenPlayer;
     private float AttackCooldown;
 
+    public Rigidbody rb;
+    private Vector3 EnemyStartingPosition;
     private void Start() {
         canAttack = true;
+        EnemyStartingPosition = Enemy.transform.position;
     }
 
     public void DoAttack() {
         if (Vector3.Distance(player.transform.position, Enemy.transform.position) <= 5 && canAttack == true) {
             //animator.SetBool("SharkAttack", true);
-        }        
+            rb.AddForce(transform.up * 1000);
+        }
     }
     void RayDetectionUp() {
         foreach (Vector3 ray in Rays) {
@@ -44,7 +48,7 @@ public class SharkEnemy : MonoBehaviour
             Vector3 angle = Quaternion.Euler(ray.x, ray.y, ray.z) * Vector3.up;
             Debug.DrawRay(SharkModel.transform.position, transform.TransformDirection(angle) * distance, Color.red);
             if (Physics.Raycast(SharkModel.transform.position, transform.TransformDirection(angle), out hit, distance, layer)) {
-                Debug.Log("hit");
+               
                     HasSeenPlayer = true;                
             }
         }
@@ -69,6 +73,12 @@ public class SharkEnemy : MonoBehaviour
         }
         if (PointIteration >= PatrolPoints.Count) {
             PointIteration = 0;            
+        }
+    }
+    public void Reset() {
+        if (!Enemy.activeInHierarchy) {
+            Enemy.SetActive(true);
+            Debug.Log("respawn2");
         }
     }
     // Update is called once per frame

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace WWH {
-    public class SegualEnemy : MonoBehaviour {
+    public class SegualEnemy : MonoBehaviour, IResettable {
         public List<Vector3> Rays;
         public float distance;
         public NavMeshAgent Enemy;
@@ -32,15 +32,17 @@ namespace WWH {
         private bool HasSeenPlayer;
         private float FindPlayerCountDown;
 
+        public GameObject Seagull;
+        private Vector3 EnemyStartingPosition;
+
         // Start is called before the first frame update
         void Start() {
             canAttack = true;
             StartingPlayerHealth = PlayerHealth;
             currentPlayerHealth = PlayerHealth;
             HasSeenPlayer = false;
+            EnemyStartingPosition = Seagull.transform.position;
         }
-
-
         private void SeagullGroundCheck() {
             RaycastHit hit = new RaycastHit();
             Debug.DrawRay(SegualModelHolder.transform.position, transform.TransformDirection(Vector3.down) * 20, Color.red);
@@ -107,10 +109,15 @@ namespace WWH {
 
             }
         }
+        public void Reset() {
+            if (!Seagull.activeInHierarchy) {
+                Seagull.SetActive(true);
+               
+            }
+        }
         // Update is called once per frame
         void Update() {
-
-            Debug.Log(FindPlayerCountDown);
+           
             FlyAway();
             if (HasSeenPlayer == false) {
                 Patrolling();

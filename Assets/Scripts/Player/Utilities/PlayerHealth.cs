@@ -35,6 +35,8 @@ namespace LMO {
         public static Action OnCoolDownStarting;
         public static Action OnCooldownFinsihed;
 
+        public SpawnPlayer playerSpawn;
+        public static Action PlayerKilledByEnemy;
         private void Start() {
             stateMachine = player.playerStateMachine;
             rigidBody = player.RigidBody;
@@ -49,12 +51,28 @@ namespace LMO {
 
         private void OnTriggerEnter(Collider other) {
             if(enemyLayers == (enemyLayers | (1 << other.gameObject.layer))) {
+                //WWH{
+                if (other.CompareTag("seagull"))
+                {
+                    coolDownDuration = 10;
+                }
+                if (other.CompareTag("slime")) {
+                    coolDownDuration = 3;
+                }
+                if (other.CompareTag("shark")) {
+                    coolDownDuration = 3;
+                }
                 if (!recentlyTakenDamage) {
                     KnockBackPlayer(other.gameObject);
+                    Debug.Log("dont reset");
                 }
                 else {
-                    // Kill Player Here...
+                    //reset player
+
+                    PlayerKilledByEnemy.Invoke();
+                    
                 }
+                //}
             }
         }
 

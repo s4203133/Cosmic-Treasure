@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using LMO;
+using Unity.VisualScripting;
 
 
 namespace WWH {
-    public class Enemy1 : MonoBehaviour {
+    public class Enemy1 : MonoBehaviour, IResettable {
+        
         public List<Vector3> Rays;
         public float distance;
         public NavMeshAgent Enemy;
@@ -26,7 +28,9 @@ namespace WWH {
         public LayerMask layer;
         private bool canAttack;
         public float DamageAmount;
-        public Rigidbody rb;
+
+        public GameObject Slime;
+        private Vector3 EnemyStartingPosition;
 
         // Start is called before the first frame update
         void Start() {
@@ -34,6 +38,7 @@ namespace WWH {
             canAttack = true;
             StartingPlayerHealth = PlayerHealth;
             currentPlayerHealth = PlayerHealth;
+            EnemyStartingPosition = Slime.transform.position;
         }
         
         void RayDirection() {
@@ -42,7 +47,7 @@ namespace WWH {
                 Vector3 angle = Quaternion.Euler(ray.x, ray.y, ray.z) * Vector3.forward;
                 Debug.DrawRay(transform.position, transform.TransformDirection(angle) * distance, Color.red);
                 if (Physics.Raycast(transform.position, transform.TransformDirection(angle), out hit, distance, layer)) {
-                        Debug.Log("hit");
+                        
                         if (hit.distance > 1) {
                             Enemy.SetDestination(hit.collider.transform.position);
                             transform.LookAt(hit.transform.position);
@@ -58,7 +63,7 @@ namespace WWH {
                         
                         //rb.AddForce(transform.up * 1000);
                         if (animator.GetBool("SlimeAttack")) {
-                            Debug.Log("sss");
+                            
                             canAttack = false;
                             animator.SetBool("SlimeAttack", false);
                             
@@ -93,15 +98,22 @@ namespace WWH {
                 PointIteration = 0;
                 IsAtEnd = false;
             }
+            
+        }
+        public void Reset() {
+            
+            if (!Slime.activeInHierarchy) {
+                Slime.SetActive(true);               
+            }
         }
         // Update is called once per frame
         void Update() {            
                 Patrolling();
                 RayDirection();           
-            if (PlayerHealth <= 0) {
-                PlayerHealth = StartingPlayerHealth;
-                //spawnplayer.ResetPlayer();
-            }            
+            //if (PlayerHealth <= 0) {
+            //    PlayerHealth = StartingPlayerHealth;
+            //    //spawnplayer.ResetPlayer();
+            //}            
             //Debug.Log(PlayerHealth);
             if (canAttack == false) {
                 timer2 += Time.deltaTime;
