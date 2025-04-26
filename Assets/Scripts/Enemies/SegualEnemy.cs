@@ -13,18 +13,12 @@ namespace WWH {
         private int PointIteration;
         private Transform CurrentPoint;
 
-
         private float timer;
         public Animator animator;
         public GameObject SegualModel;
         public GameObject SegualModelHolder;
-
-        public SpawnPlayer spawnplayer;
         public GameObject player;
-        public float PlayerHealth;
-        private float StartingPlayerHealth;
-        private float currentPlayerHealth;
-        private float timer2;
+
         public LayerMask layer;
         public LayerMask Groundlayer;
         private bool canAttack;
@@ -38,8 +32,6 @@ namespace WWH {
         // Start is called before the first frame update
         void Start() {
             canAttack = true;
-            StartingPlayerHealth = PlayerHealth;
-            currentPlayerHealth = PlayerHealth;
             HasSeenPlayer = false;
             EnemyStartingPosition = Seagull.transform.position;
         }
@@ -51,7 +43,7 @@ namespace WWH {
                 if (hit.distance > 1 && canAttack == true) {
                     SegualModelHolder.transform.position -= new Vector3(0, 1, 0) * Time.deltaTime;
                 }
-                if (/*hit.distance < 20 && */canAttack == false) {
+                if (canAttack == false) {
                     SegualModelHolder.transform.position += new Vector3(0, 1, 0) * Time.deltaTime;
                 }
             }
@@ -72,17 +64,9 @@ namespace WWH {
             if (HasSeenPlayer == true && canAttack == true) {
                 SeagullGroundCheck();
                 Enemy.transform.position = Vector3.MoveTowards(Enemy.transform.position, player.transform.position, 10 * Time.deltaTime);
-                
-
-                
                 if (Vector3.Distance(player.transform.position, SegualModel.transform.position) <= 2.5 && canAttack == true) {
-                    
-                    //if (animator.GetBool(SeagullAttack)) {
-                        
-                       canAttack = false;
-                    //    // animator.SetBool("SeagullAttack", false);
-                    //}
-                }                
+                    canAttack = false;                    
+                }
             }
         }
         void Patrolling() {
@@ -93,58 +77,45 @@ namespace WWH {
                     }
                     CurrentPoint = point;
                     if (Vector3.Distance(transform.position, CurrentPoint.position) <= 1) {
-                        timer += Time.deltaTime;
-                        //animator.SetBool("SlimeIdle", true);
+                        timer += Time.deltaTime;                        
                         float rand = Random.Range(2, 7);
                         if (timer >= rand) {
                             PointIteration += 1;
-                            timer = 0;
-                            // animator.SetBool("SlimeIdle", false);
+                            timer = 0;                            
                         }
                     }
                 }
             }
             if (PointIteration >= PatrolPoints.Count) {
                 PointIteration = 0;
-
             }
         }
         public void Reset() {
             if (!Seagull.activeInHierarchy) {
                 Seagull.SetActive(true);
-               
+                Seagull.transform.position = EnemyStartingPosition;
             }
         }
         // Update is called once per frame
         void Update() {
-           
             FlyAway();
             if (HasSeenPlayer == false) {
                 Patrolling();
             }
             RayDetectionDown();
-            if (PlayerHealth <= 0) {
-                PlayerHealth = StartingPlayerHealth;
-                spawnplayer.ResetPlayer();
-            }
 
             if (HasSeenPlayer == true && canAttack == false) {
                 SeagullGroundCheck();
-                
-
                 FindPlayerCountDown += Time.deltaTime;
                 if (FindPlayerCountDown < 5) {
                     Enemy.transform.position = Vector3.MoveTowards(Enemy.transform.position, player.transform.position, 10 * Time.deltaTime);
                 }
                 if (FindPlayerCountDown > 5) {
                     FindPlayerCountDown = 0;
-
                     canAttack = true;
                     HasSeenPlayer = false;
                 }
-                
             }
-
         }
     }
 }

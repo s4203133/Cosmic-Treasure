@@ -15,13 +15,9 @@ public class SharkEnemy : MonoBehaviour
     private float timer;
     public Animator animator;
     public GameObject SharkModel;
-
-    public SpawnPlayer spawnplayer;
     public GameObject player;
     public float PlayerHealth;
-    private float StartingPlayerHealth;
-    private float currentPlayerHealth;
-    private float timer2;
+    
     public LayerMask layer;
     public bool canAttack;
     public float DamageAmount;
@@ -29,7 +25,7 @@ public class SharkEnemy : MonoBehaviour
     private bool HasSeenPlayer;
     private float AttackCooldown;
 
-    public Rigidbody rb;
+    
     private Vector3 EnemyStartingPosition;
     private void Start() {
         canAttack = true;
@@ -37,9 +33,9 @@ public class SharkEnemy : MonoBehaviour
     }
 
     public void DoAttack() {
-        if (Vector3.Distance(player.transform.position, Enemy.transform.position) <= 5 && canAttack == true) {
-            //animator.SetBool("SharkAttack", true);
-            rb.AddForce(transform.up * 1000);
+        if (Vector3.Distance(player.transform.position, Enemy.transform.position) <= 5 && canAttack == true) {            
+            animator.SetBool("SharkAttack", true);            
+            canAttack = false;            
         }
     }
     void RayDetectionUp() {
@@ -47,8 +43,7 @@ public class SharkEnemy : MonoBehaviour
             RaycastHit hit = new RaycastHit();
             Vector3 angle = Quaternion.Euler(ray.x, ray.y, ray.z) * Vector3.up;
             Debug.DrawRay(SharkModel.transform.position, transform.TransformDirection(angle) * distance, Color.red);
-            if (Physics.Raycast(SharkModel.transform.position, transform.TransformDirection(angle), out hit, distance, layer)) {
-               
+            if (Physics.Raycast(SharkModel.transform.position, transform.TransformDirection(angle), out hit, distance, layer)) {               
                     HasSeenPlayer = true;                
             }
         }
@@ -62,6 +57,7 @@ public class SharkEnemy : MonoBehaviour
                 }
                 CurrentPoint = point;
                 if (Vector3.Distance(transform.position, CurrentPoint.position) <= 1) {
+                    animator.SetBool("SharkMoving", true);
                     timer += Time.deltaTime;                    
                     float rand = 0.5f;
                     if (timer >= rand) {
@@ -78,7 +74,7 @@ public class SharkEnemy : MonoBehaviour
     public void Reset() {
         if (!Enemy.activeInHierarchy) {
             Enemy.SetActive(true);
-            Debug.Log("respawn2");
+            Enemy.transform.position = EnemyStartingPosition;            
         }
     }
     // Update is called once per frame
@@ -89,12 +85,13 @@ public class SharkEnemy : MonoBehaviour
             DoAttack();
         }
         RayDetectionUp();
-        if (PlayerHealth <= 0) {
-            PlayerHealth = StartingPlayerHealth;
-            spawnplayer.ResetPlayer();
-        }        
-        if (canAttack == false) {
+              
+        if (canAttack == false) {           
+            HasSeenPlayer = false;
             AttackCooldown += Time.deltaTime;
+            if (AttackCooldown >= 2) {
+                animator.SetBool("SharkAttack", false);
+            }
             if (AttackCooldown >= 5) {
                 AttackCooldown = 0;                
                 canAttack = true;

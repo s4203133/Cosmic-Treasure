@@ -120,7 +120,6 @@ MonoBehaviour:
   PatrolPoints: []
   animator: {fileID: 1351191473207921633}
   SharkModel: {fileID: 7240961079094013417}
-  spawnplayer: {fileID: 0}
   player: {fileID: 0}
   PlayerHealth: 100
   layer:
@@ -227,10 +226,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c5e19b5c76e36714096d3559539dfadc,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4573795538120499870}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c5e19b5c76e36714096d3559539dfadc,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3977658471380561273}
   m_SourcePrefab: {fileID: 100100000, guid: c5e19b5c76e36714096d3559539dfadc, type: 3}
 --- !u!1 &7240961079094013417 stripped
@@ -260,18 +255,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4573795538120499870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7240961079094013417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaf19f52f01282c46b1dc8500a620c96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &3977658471380561273
 CapsuleCollider:
   m_ObjectHideFlags: 0

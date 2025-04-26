@@ -64,7 +64,7 @@ namespace LMO {
                 }
                 if (!recentlyTakenDamage) {
                     KnockBackPlayer(other.gameObject);
-                    Debug.Log("dont reset");
+                    
                 }
                 else {
                     //reset player
