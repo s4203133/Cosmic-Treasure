@@ -15,16 +15,13 @@ public class SharkEnemy : MonoBehaviour
     private float timer;
     public Animator animator;
     public GameObject SharkModel;
-    public GameObject player;
-    public float PlayerHealth;
+    public GameObject player;    
     
     public LayerMask layer;
-    public bool canAttack;
-    public float DamageAmount;
+    private bool canAttack;   
 
     private bool HasSeenPlayer;
     private float AttackCooldown;
-
     
     private Vector3 EnemyStartingPosition;
     private void Start() {
@@ -57,7 +54,7 @@ public class SharkEnemy : MonoBehaviour
                 }
                 CurrentPoint = point;
                 if (Vector3.Distance(transform.position, CurrentPoint.position) <= 1) {
-                    animator.SetBool("SharkMoving", true);
+                    
                     timer += Time.deltaTime;                    
                     float rand = 0.5f;
                     if (timer >= rand) {
