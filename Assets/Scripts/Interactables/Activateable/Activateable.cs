@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace NR {
     public class Activateable : MonoBehaviour {
@@ -8,6 +9,7 @@ namespace NR {
             if (activator != null) {
                 activator.OnActivate += Activate;
             }
+
         }
 
         private void OnDisable() {
@@ -16,7 +18,11 @@ namespace NR {
             }
         }
 
-        public virtual void Activate() { }
+        public virtual void Activate() {
+            interactActions?.Invoke();
+        }
+        
+        [SerializeField] protected UnityEvent interactActions;
     }
 }
 
