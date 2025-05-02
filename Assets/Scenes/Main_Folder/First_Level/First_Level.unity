@@ -3865,6 +3865,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8ffa001711f7054d8590ebf3d881c50, type: 3}
+--- !u!114 &82391478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6842089278944754771, guid: 88c5c37b619d2cf45a9ce77683668048,
+    type: 3}
+  m_PrefabInstance: {fileID: 2058636114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6c7a6bee7300d4880315be2cbc7504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &86073521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6798,227 +6810,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &172185930
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 4352509792886404727}
-    m_Modifications:
-    - target: {fileID: 6316033532174439866, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: m_Name
-      value: Rock Swing Joint
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: detectionRange
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: playerMustFacePointToConnect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 460034439}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1926472149}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetTrigger
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_enabled
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.Animator, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.Behaviour, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Rotate
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: Rotate
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: interactActions.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15.291985
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.6660466
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 77.11144
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.49213192
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.49213105
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.50774705
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.5077462
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fc276322901176a49bc78273b661bd0d, type: 3}
---- !u!1001 &175303484
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1311063624367550731, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_Name
-      value: RockPath (19)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 498.31076
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 166.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 40c6392e0dca01a478be494c9baaa382, type: 3}
 --- !u!1 &179192322
 GameObject:
   m_ObjectHideFlags: 0
@@ -11181,7 +10972,7 @@ PrefabInstance:
     - target: {fileID: 6111900832591246136, guid: 29ecf4131d66035448877eaba8ad52ee,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 95.35
+      value: 92.81
       objectReference: {fileID: 0}
     - target: {fileID: 6111900832591246136, guid: 29ecf4131d66035448877eaba8ad52ee,
         type: 3}
@@ -14344,10 +14135,140 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 15073839732559596, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 348065410766626223, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361514969015174512, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180815393607796682, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448510768167554241, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606616407890101660, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731180089595195899, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2850033165529330519, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785939755891853620, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840623481762156811, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961059203998185394, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336659804586888622, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497653389932140606, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758026052909728746, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6021527960436608953, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135812655197380144, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243361079409038704, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707717473867494797, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6716056564382234246, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893291162470544534, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027198392275115559, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056375744963473127, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7102478287704851250, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7223176931934942741, guid: 08b1c37269c84b34d8b0385895cfb765,
         type: 3}
       propertyPath: m_Name
       value: 3x3Platform (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223176931934942741, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386300535739247148, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023354332084191550, guid: 08b1c37269c84b34d8b0385895cfb765,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8031661457784925359, guid: 08b1c37269c84b34d8b0385895cfb765,
         type: 3}
@@ -19239,12 +19160,12 @@ PrefabInstance:
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.06
       objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
@@ -19504,74 +19425,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &572149331
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1311063624367550731, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_Name
-      value: RockPath (20)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 497.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.38
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 177.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7045055
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7045055
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.06059765
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.06059765
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084703832039419027, guid: 40c6392e0dca01a478be494c9baaa382,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -9.832
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 40c6392e0dca01a478be494c9baaa382, type: 3}
 --- !u!1001 &572818487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22775,6 +22628,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 74076959}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &685875549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2664179555561327012, guid: 77d4c459275b44443be5f17c755454ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 1370022928}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b7239664c3a8f04d833ecc6e7b98afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &686709328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32377,15 +32242,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 964879047}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.69337636, y: -0.13866965, z: -0.13866965, w: 0.69337636}
-  m_LocalPosition: {x: 2.85, y: 0, z: 155.95}
+  m_LocalRotation: {x: -0.69805944, y: -0.1127516, z: -0.11275163, w: 0.6980595}
+  m_LocalPosition: {x: 2.64, y: 0, z: 155.88}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1184164552}
   - {fileID: 563493286}
   m_Father: {fileID: 2611912233346994510}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -22.619}
+  m_LocalEulerAnglesHint: {x: -89.972, y: 0, z: -18.351}
 --- !u!1001 &965488983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33693,7 +33558,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 99a0827687330fb4cbad6bf093622319,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.2499995
+      value: -8.11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 99a0827687330fb4cbad6bf093622319,
         type: 3}
@@ -33703,7 +33568,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 99a0827687330fb4cbad6bf093622319,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 48.500004
+      value: 47.94
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 99a0827687330fb4cbad6bf093622319,
         type: 3}
@@ -35655,6 +35520,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Turn
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 685875549}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Turn
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!64 &1061627983
 MeshCollider:
@@ -39350,12 +39227,12 @@ PrefabInstance:
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.15170017
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.8899827
+      value: -6.95
       objectReference: {fileID: 0}
     - target: {fileID: 8063568245990679984, guid: 5bdc85b2395f9fe4686091588d1cd024,
         type: 3}
@@ -42437,7 +42314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1290908061}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44300,74 +44177,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47e82b8815b26ba478ef4e54d44939e6, type: 3}
---- !u!1001 &1352480228
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5265579780194941877, guid: 0857d52b0b20aba4fb9a070d7f943380,
-        type: 3}
-      propertyPath: m_Name
-      value: NewWaterHover (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8185991118740401862, guid: 0857d52b0b20aba4fb9a070d7f943380,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 490.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 8185991118740401862, guid: 0857d52b0b20aba4fb9a070d7f943380,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 8185991118740401862, guid: 0857d52b0b20aba4fb9a070d7f943380,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 74.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 8185991118740401862, guid: 0857d52b0b20aba4fb9a070d7f943380,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8185991118740401862, guid: 0857d52b0b20aba4fb9a070d7f943380,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8185991118740401862, guid: 0857d52b0b20aba4fb9a070d7f943380,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8185991118740401862, guid: 0857d52b0b20aba4fb9a070d7f943380,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8185991118740401862, guid: 0857d52b0b20aba4fb9a070d7f943380,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8185991118740401862, guid: 0857d52b0b20aba4fb9a070d7f943380,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8185991118740401862, guid: 0857d52b0b20aba4fb9a070d7f943380,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0857d52b0b20aba4fb9a070d7f943380, type: 3}
 --- !u!1001 &1353921312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45060,6 +44869,11 @@ PrefabInstance:
     - target: {fileID: 1577739296062464307, guid: 77d4c459275b44443be5f17c755454ed,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664179555561327012, guid: 77d4c459275b44443be5f17c755454ed,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5777289971387548333, guid: 77d4c459275b44443be5f17c755454ed,
@@ -46585,74 +46399,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 165.059, z: 0}
---- !u!1001 &1434167392
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1279469297898528798, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 440.12506
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279469297898528798, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.432838
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279469297898528798, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 97.95744
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279469297898528798, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279469297898528798, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279469297898528798, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279469297898528798, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279469297898528798, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279469297898528798, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279469297898528798, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5209183537327140475, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8,
-        type: 3}
-      propertyPath: m_Name
-      value: Coin (16)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3b1d2cd7e5c9f084495b6d0d2aaf42d8, type: 3}
 --- !u!1 &1435195862
 GameObject:
   m_ObjectHideFlags: 0
@@ -48727,7 +48473,7 @@ PrefabInstance:
     - target: {fileID: 6111900832591246136, guid: 29ecf4131d66035448877eaba8ad52ee,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 140.72998
+      value: 141.81
       objectReference: {fileID: 0}
     - target: {fileID: 6111900832591246136, guid: 29ecf4131d66035448877eaba8ad52ee,
         type: 3}
@@ -58633,7 +58379,7 @@ PrefabInstance:
     - target: {fileID: 3756821422780230263, guid: 21ca8b056064c754483afca904b7c084,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 690.5325
+      value: 692.8605
       objectReference: {fileID: 0}
     - target: {fileID: 3756821422780230263, guid: 21ca8b056064c754483afca904b7c084,
         type: 3}
@@ -58643,7 +58389,7 @@ PrefabInstance:
     - target: {fileID: 3756821422780230263, guid: 21ca8b056064c754483afca904b7c084,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 137.77905
+      value: 138.61902
       objectReference: {fileID: 0}
     - target: {fileID: 3756821422780230263, guid: 21ca8b056064c754483afca904b7c084,
         type: 3}
@@ -66825,24 +66571,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 104.999, z: 0}
---- !u!4 &1926472148 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8617343855059546849, guid: fc276322901176a49bc78273b661bd0d,
-    type: 3}
-  m_PrefabInstance: {fileID: 172185930}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1926472149 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7347503907238906554, guid: fc276322901176a49bc78273b661bd0d,
-    type: 3}
-  m_PrefabInstance: {fileID: 172185930}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fabc104fbaad092479d82d510475dd6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1926568758
 GameObject:
   m_ObjectHideFlags: 0
@@ -71078,6 +70806,74 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2058184948}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2058636114
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4018686508742265437, guid: 88c5c37b619d2cf45a9ce77683668048,
+        type: 3}
+      propertyPath: m_Name
+      value: Lever (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896904806879484001, guid: 88c5c37b619d2cf45a9ce77683668048,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 482.2452
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896904806879484001, guid: 88c5c37b619d2cf45a9ce77683668048,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896904806879484001, guid: 88c5c37b619d2cf45a9ce77683668048,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 118.76731
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896904806879484001, guid: 88c5c37b619d2cf45a9ce77683668048,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7932885
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896904806879484001, guid: 88c5c37b619d2cf45a9ce77683668048,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.010201963
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896904806879484001, guid: 88c5c37b619d2cf45a9ce77683668048,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6087102
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896904806879484001, guid: 88c5c37b619d2cf45a9ce77683668048,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.007828224
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896904806879484001, guid: 88c5c37b619d2cf45a9ce77683668048,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.381
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896904806879484001, guid: 88c5c37b619d2cf45a9ce77683668048,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -75.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896904806879484001, guid: 88c5c37b619d2cf45a9ce77683668048,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -1.423
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 88c5c37b619d2cf45a9ce77683668048, type: 3}
 --- !u!1001 &2062088503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74989,7 +74785,7 @@ GameObject:
   - component: {fileID: 6012675400267894583}
   - component: {fileID: 2596842993574379183}
   - component: {fileID: 6932731724895579425}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75558,7 +75354,7 @@ GameObject:
   - component: {fileID: 6731008390815492912}
   - component: {fileID: 1150992996587210347}
   - component: {fileID: 1593311718962144349}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FencePost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76081,7 +75877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7666583088072742399}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76415,7 +76211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7589189255727787927}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76431,7 +76227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7599638364500080723}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77080,7 +76876,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7456783950376991013}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78023,7 +77819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7305848316487954256}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78581,7 +78377,7 @@ GameObject:
   - component: {fileID: 6725296169228038128}
   - component: {fileID: 3039238851309936232}
   - component: {fileID: 7931506989856198118}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78699,7 +78495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7166494540096186400}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78983,7 +78779,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7064755366714213676}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79449,7 +79245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 314426032576949758}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FenceCrossEndPost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79841,7 +79637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6967702428403177121}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80183,7 +79979,7 @@ GameObject:
   - component: {fileID: 4740449306382307702}
   - component: {fileID: 3941198455232192750}
   - component: {fileID: 8254578226100433760}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80314,7 +80110,7 @@ GameObject:
   - component: {fileID: 4722824029786197841}
   - component: {fileID: 3959317133373030089}
   - component: {fileID: 8272415154388086087}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80506,7 +80302,7 @@ GameObject:
   - component: {fileID: 4614843875097687918}
   - component: {fileID: 3995746853962467062}
   - component: {fileID: 8308132663099413880}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80972,7 +80768,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9051270084577686099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82170,7 +81966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8765136165882356553}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82414,7 +82210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8670250555882368082}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85129,7 +84925,7 @@ GameObject:
   - component: {fileID: 5481769518468248877}
   - component: {fileID: 4281708076825429173}
   - component: {fileID: 9175093559703164731}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85937,7 +85733,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8108653258677358925}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86514,7 +86310,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5747733124130355051}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87240,7 +87036,7 @@ GameObject:
   - component: {fileID: 8117719779692562709}
   - component: {fileID: 567288331587041421}
   - component: {fileID: 4891117617226787587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87369,7 +87165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5589489483077560341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87786,7 +87582,7 @@ GameObject:
   - component: {fileID: 8254936804355846038}
   - component: {fileID: 430071582336572942}
   - component: {fileID: 4740108870069013888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90443,7 +90239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5036784479049509565}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90752,7 +90548,7 @@ GameObject:
   - component: {fileID: 6006962611604184325}
   - component: {fileID: 3967656891558161031}
   - component: {fileID: 5078985708687517755}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90948,7 +90744,7 @@ GameObject:
   - component: {fileID: 9011978758368352086}
   - component: {fileID: 749986178973673166}
   - component: {fileID: 5645165653584295232}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91323,27 +91119,27 @@ PrefabInstance:
     - target: {fileID: 607594743053312255, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9975395
+      value: 0.99753976
       objectReference: {fileID: 0}
     - target: {fileID: 607594743053312255, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.07010603
+      value: 0.07010261
       objectReference: {fileID: 0}
     - target: {fileID: 607594743053312255, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000037803903
+      value: -0.00008043024
       objectReference: {fileID: 0}
     - target: {fileID: 607594743053312255, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000011228358
+      value: 0.000025800759
       objectReference: {fileID: 0}
     - target: {fileID: 858615893381278449, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 238.49
+      value: 240.31
       objectReference: {fileID: 0}
     - target: {fileID: 858615893381278449, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
@@ -91453,7 +91249,7 @@ PrefabInstance:
     - target: {fileID: 6489795824796783387, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000038146973
+      value: -0.00006484985
       objectReference: {fileID: 0}
     - target: {fileID: 6489795824796783387, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
@@ -91468,22 +91264,22 @@ PrefabInstance:
     - target: {fileID: 6489795824796783387, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99279785
+      value: 0.9927975
       objectReference: {fileID: 0}
     - target: {fileID: 6489795824796783387, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.119801715
+      value: 0.11980459
       objectReference: {fileID: 0}
     - target: {fileID: 6489795824796783387, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000011920929
+      value: 0.00008711219
       objectReference: {fileID: 0}
     - target: {fileID: 6489795824796783387, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000014901161
+      value: -0.0000105164945
       objectReference: {fileID: 0}
     - target: {fileID: 6745463529572676363, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
@@ -91503,22 +91299,22 @@ PrefabInstance:
     - target: {fileID: 8638113697732162020, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9989455
+      value: 0.9989457
       objectReference: {fileID: 0}
     - target: {fileID: 8638113697732162020, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.045912314
+      value: 0.04590866
       objectReference: {fileID: 0}
     - target: {fileID: 8638113697732162020, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000005508895
+      value: -0.000081133214
       objectReference: {fileID: 0}
     - target: {fileID: 8638113697732162020, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000015452426
+      value: 0.000023867658
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -91926,7 +91722,7 @@ GameObject:
   - component: {fileID: 9218432645211829439}
   - component: {fileID: 618951638676391207}
   - component: {fileID: 5523982736399718057}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92108,7 +91904,7 @@ GameObject:
   - component: {fileID: 9198698721277396596}
   - component: {fileID: 635237732512217068}
   - component: {fileID: 5543655637434344546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92325,7 +92121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4642911386419192990}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92820,7 +92616,7 @@ GameObject:
   - component: {fileID: 9116528400167833117}
   - component: {fileID: 719710476065800069}
   - component: {fileID: 5603384934808579083}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93040,7 +92836,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6867088579661953768}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93357,7 +93153,7 @@ GameObject:
   - component: {fileID: 7036153677139616498}
   - component: {fileID: 1647744512047698794}
   - component: {fileID: 5972374346306339044}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93542,7 +93338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6825546867258473881}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93645,7 +93441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6713033135369475588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93679,7 +93475,7 @@ GameObject:
   - component: {fileID: 7166721080394809663}
   - component: {fileID: 1445031233313075367}
   - component: {fileID: 5778712557602038569}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95120,7 +94916,7 @@ GameObject:
   - component: {fileID: 7429620136303394713}
   - component: {fileID: 1181023631849229825}
   - component: {fileID: 6078736381251296655}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96048,7 +95844,7 @@ GameObject:
   - component: {fileID: 7628131547760724413}
   - component: {fileID: 2207915693481818149}
   - component: {fileID: 6529027127037356971}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96285,7 +96081,7 @@ GameObject:
   - component: {fileID: 7514555479684195762}
   - component: {fileID: 2247743711872963626}
   - component: {fileID: 6561255148184881060}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96526,7 +96322,7 @@ GameObject:
   - component: {fileID: 7508567882696259037}
   - component: {fileID: 2254979803776058437}
   - component: {fileID: 6590059397618964427}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97232,7 +97028,7 @@ GameObject:
   - component: {fileID: 7665457419077346092}
   - component: {fileID: 2096894511999881908}
   - component: {fileID: 6423960759871799610}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97761,7 +97557,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1926472148}
   - {fileID: 2777569674698395122}
   - {fileID: 3186776697356429326}
   - {fileID: 837008672037372209}
@@ -97963,7 +97758,7 @@ GameObject:
   - component: {fileID: 7910206057831087222}
   - component: {fileID: 1927035852185062894}
   - component: {fileID: 6809971302747856480}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98025,7 +97820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6038996754313220336}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99934,7 +99729,7 @@ GameObject:
   - component: {fileID: 1429664386325741208}
   - component: {fileID: 7255218414988037888}
   - component: {fileID: 2346483712204545166}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99998,7 +99793,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3305450665224000030}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100856,7 +100651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3060423867200146756}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101414,7 +101209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3009937924038977493}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101603,7 +101398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2894170889810549685}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101640,7 +101435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2905089795843804122}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101798,7 +101593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2811006498595443185}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103492,7 +103287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2543494362885544756}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103540,7 +103335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2552605820178657111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103559,7 +103354,7 @@ GameObject:
   - component: {fileID: 2103356620711180396}
   - component: {fileID: 7658398834433739252}
   - component: {fileID: 3348370375007099514}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104100,7 +103895,7 @@ GameObject:
   - component: {fileID: 2257762517143983232}
   - component: {fileID: 7506842616584725784}
   - component: {fileID: 3175738823502395030}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104379,7 +104174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2430980486682397850}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104767,7 +104562,7 @@ GameObject:
   - component: {fileID: 2206998101281199089}
   - component: {fileID: 7626937839797084777}
   - component: {fileID: 3307761685218603495}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104950,7 +104745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4589647828803856412}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105046,7 +104841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4609311091864656599}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105065,7 +104860,7 @@ GameObject:
   - component: {fileID: 33509732485073654}
   - component: {fileID: 8579228057704758126}
   - component: {fileID: 3688551736043333856}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105132,6 +104927,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4474368921113847873}
+  - component: {fileID: 5860781158708003689}
   m_Layer: 0
   m_Name: WallJump (2)
   m_TagString: Untagged
@@ -105139,6 +104935,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5860781158708003689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860781158708003688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f5e9d4dd8ea4f4e992b729769f0552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activator: {fileID: 82391478}
+  interactActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 460034439}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Rotate
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &5864531287815849744
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105222,7 +105046,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4511914019923746933}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105429,7 +105253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4398074329431161150}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106662,7 +106486,7 @@ GameObject:
   - component: {fileID: 432243782656263381}
   - component: {fileID: 8252606572323009869}
   - component: {fileID: 3943167282549679811}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108763,7 +108587,7 @@ GameObject:
   - component: {fileID: 2635766756170583317}
   - component: {fileID: 4667674966279912087}
   - component: {fileID: 3581828292123457579}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109058,7 +108882,7 @@ GameObject:
   - component: {fileID: 975091648309872253}
   - component: {fileID: 8858789555561641957}
   - component: {fileID: 4525952829075760235}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109091,7 +108915,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3735788125766649991}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109487,7 +109311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3645258090125115902}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109910,7 +109734,7 @@ GameObject:
   - component: {fileID: 2384850397240989627}
   - component: {fileID: 4992880710876635193}
   - component: {fileID: 3763209327479693957}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109971,7 +109795,7 @@ GameObject:
   - component: {fileID: 1143333148057295107}
   - component: {fileID: 8693471113380276379}
   - component: {fileID: 4367011552187628309}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110439,7 +110263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3512258517733451645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111656,7 +111480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867730141193067333}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113869,7 +113693,7 @@ GameObject:
   - component: {fileID: 4160735914923101473}
   - component: {fileID: 5676050515959971001}
   - component: {fileID: 791144707273682743}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113930,7 +113754,7 @@ GameObject:
   - component: {fileID: 4056346143669027386}
   - component: {fileID: 5707063249156961186}
   - component: {fileID: 796112379755814956}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115574,7 +115398,7 @@ GameObject:
   - component: {fileID: 4433074261828312123}
   - component: {fileID: 5403746808502480291}
   - component: {fileID: 1063451099286863405}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115915,7 +115739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 113492469252792633}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115970,7 +115794,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 130769475468361502}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116001,7 +115825,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5308097996183814}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116747,7 +116571,7 @@ GameObject:
   - component: {fileID: 2552805907505268296}
   - component: {fileID: 6059001661489821648}
   - component: {fileID: 1164798278325707870}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116874,7 +116698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2111324669621207448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117501,7 +117325,7 @@ GameObject:
   - component: {fileID: 2455286642573994820}
   - component: {fileID: 6154846926411307740}
   - component: {fileID: 1249111863148120402}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117612,7 +117436,7 @@ GameObject:
   - component: {fileID: 3071528841002859296}
   - component: {fileID: 8660489450589492859}
   - component: {fileID: 7049698967023006797}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FencePost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117741,7 +117565,7 @@ GameObject:
   - component: {fileID: 2700600634126434616}
   - component: {fileID: 5909553313938534560}
   - component: {fileID: 1602480308480172846}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118750,7 +118574,7 @@ GameObject:
   - component: {fileID: 2837886639217743693}
   - component: {fileID: 5772124089407923925}
   - component: {fileID: 1451672500268135771}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118807,7 +118631,7 @@ GameObject:
   - component: {fileID: 3399351433709805966}
   - component: {fileID: 9060277553634004181}
   - component: {fileID: 7230846923349126883}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FencePost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119307,7 +119131,7 @@ GameObject:
   - component: {fileID: 2975705939278479871}
   - component: {fileID: 6787859579904602215}
   - component: {fileID: 1877022923349238761}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119326,7 +119150,7 @@ GameObject:
   - component: {fileID: 2985523103739565627}
   - component: {fileID: 6779663376900073379}
   - component: {fileID: 1885292866894804013}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119617,7 +119441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8328294266372554222}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FenceCrossEndPost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120300,7 +120124,7 @@ GameObject:
   - component: {fileID: 1505551187531084202}
   - component: {fileID: 1105048325364580325}
   - component: {fileID: 1391939170548460055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120525,7 +120349,7 @@ GameObject:
   - component: {fileID: 3061549519028927383}
   - component: {fileID: 6702563007726635535}
   - component: {fileID: 1818220319718332801}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2 Plank Cross Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120809,7 +120633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1398565362665644383}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crossfence (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121018,7 +120842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8509732545056057152}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FenceCrossEndPost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122227,10 +122051,7 @@ SceneRoots:
   - {fileID: 2108647299}
   - {fileID: 2047498800}
   - {fileID: 1268815367}
-  - {fileID: 1434167392}
   - {fileID: 1754522794}
-  - {fileID: 175303484}
-  - {fileID: 572149331}
   - {fileID: 1705439251}
   - {fileID: 1353921312}
   - {fileID: 2097034408}
@@ -122267,7 +122088,6 @@ SceneRoots:
   - {fileID: 1485507050}
   - {fileID: 2131422511}
   - {fileID: 187705419}
-  - {fileID: 1352480228}
   - {fileID: 691674898}
   - {fileID: 463052576}
   - {fileID: 865144465}
@@ -122326,3 +122146,4 @@ SceneRoots:
   - {fileID: 1810134621}
   - {fileID: 2135046176}
   - {fileID: 102125064}
+  - {fileID: 2058636114}
