@@ -10,6 +10,9 @@ namespace NR {
 
         private bool buttonReady = true;
 
+        [SerializeField]
+        private bool active = true;
+
         protected override void Awake() {
             base.Awake();
             switch (buttonType) {
@@ -23,12 +26,16 @@ namespace NR {
         }
 
         public void OnHit() {
-            if (buttonReady) {
+            if (active && buttonReady) {
                 isActive = true;
                 OnActivate?.Invoke();
                 animator.SetBool("Hit", true);
                 buttonReady = false;
             }
+        }
+
+        public void ActivateButton() {
+            active = true;
         }
 
         //Called from the animation on reuseable buttons (never called on single-use).

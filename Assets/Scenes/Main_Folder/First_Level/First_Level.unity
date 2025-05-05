@@ -2976,6 +2976,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6043360939930546435, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
+        type: 3}
+      propertyPath: PatrolPoints.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6513583433740248623, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
         type: 3}
       propertyPath: m_Name
@@ -3137,6 +3142,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Button Crushable (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979431343458142742, guid: 21ca8b056064c754483afca904b7c084,
+        type: 3}
+      propertyPath: active
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8979431343458142742, guid: 21ca8b056064c754483afca904b7c084,
         type: 3}
@@ -13781,41 +13791,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 408817871}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &408885764 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5970494913636269632, guid: 21ca8b056064c754483afca904b7c084,
-    type: 3}
-  m_PrefabInstance: {fileID: 1569575639}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &408885765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3756821422780230263, guid: 21ca8b056064c754483afca904b7c084,
     type: 3}
   m_PrefabInstance: {fileID: 1569575639}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &408885766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 408885764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 599068f503662fa41bd029eac46182ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetActivators: []
-  Actions:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &408885770 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8979431343458142742, guid: 21ca8b056064c754483afca904b7c084,
     type: 3}
   m_PrefabInstance: {fileID: 1569575639}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 408885764}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bc7665f2cd5dd94cae8967d30bd8569, type: 3}
@@ -24973,10 +24961,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 817839035}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d361dc6763caad4f985e2409b3bdb6e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 817839036}
   m_SourcePrefab: {fileID: 100100000, guid: 4d361dc6763caad4f985e2409b3bdb6e, type: 3}
 --- !u!1001 &706936052
 PrefabInstance:
@@ -28452,7 +28436,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.080003, y: 5.0028267, z: 0.3810002}
+  m_Size: {x: 5.080003, y: 5.0028267, z: 0.6}
   m_Center: {x: 6.508473e-14, y: 4.3314687e-14, z: 0.1905001}
 --- !u!114 &817839034
 MonoBehaviour:
@@ -28506,24 +28490,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &817839036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817839032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 599068f503662fa41bd029eac46182ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetActivators:
-  - {fileID: 0}
-  - {fileID: 0}
-  Actions:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &818362724
 GameObject:
   m_ObjectHideFlags: 0
@@ -31550,6 +31516,18 @@ MonoBehaviour:
           m_StringArgument: DomeVanish
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 921163715}
+        m_TargetAssemblyTypeName: NR.ButtonCrushable, Assembly-CSharp
+        m_MethodName: ActivateButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: DomeVanish
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!95 &920664179
 Animator:
   serializedVersion: 5
@@ -34516,6 +34494,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: DomeVanish
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 408885770}
+        m_TargetAssemblyTypeName: NR.ButtonCrushable, Assembly-CSharp
+        m_MethodName: ActivateButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -52034,17 +52024,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8979431343458142742, guid: 21ca8b056064c754483afca904b7c084,
         type: 3}
+      propertyPath: active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979431343458142742, guid: 21ca8b056064c754483afca904b7c084,
+        type: 3}
       propertyPath: buttonType
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5970494913636269632, guid: 21ca8b056064c754483afca904b7c084,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 408885766}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21ca8b056064c754483afca904b7c084, type: 3}
 --- !u!1001 &1571561301
 PrefabInstance:
@@ -60178,6 +60169,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6043360939930546435, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
+        type: 3}
+      propertyPath: PatrolPoints.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6513583433740248623, guid: e5abb02ae6bb2d147b19c8276fdeb46c,
         type: 3}
       propertyPath: m_Name
@@ -68061,6 +68057,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button Crushable Ship
       objectReference: {fileID: 0}
+    - target: {fileID: 6203502515818666478, guid: 21ca8b056064c754483afca904b7c084,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366608662734246310, guid: 21ca8b056064c754483afca904b7c084,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979431343458142742, guid: 21ca8b056064c754483afca904b7c084,
+        type: 3}
+      propertyPath: active
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8979431343458142742, guid: 21ca8b056064c754483afca904b7c084,
         type: 3}
       propertyPath: buttonType
@@ -75117,7 +75128,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.080003, y: 5.0028267, z: 0.3810002}
+  m_Size: {x: 5.080003, y: 5.0028267, z: 0.6}
   m_Center: {x: 6.508473e-14, y: 4.3314687e-14, z: 0.1905001}
 --- !u!114 &2123693511
 MonoBehaviour:
@@ -95081,6 +95092,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: DomeVanish
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 774207491}
+        m_TargetAssemblyTypeName: NR.ButtonCrushable, Assembly-CSharp
+        m_MethodName: ActivateButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: DomeVanish
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &3474092150799670567
 GameObject:
