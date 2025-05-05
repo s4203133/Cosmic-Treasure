@@ -13,6 +13,8 @@ namespace NR {
         public List<PlayerOutfitItem> ownedClothes;
 
         public List<PlayerUpgrade> ownedUpgrades;
+
+        public List<LevelSave> levelSaves;
     }
 }
 

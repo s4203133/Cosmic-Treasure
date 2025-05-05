@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace NR {
-    public class PlayerOutfitLoader : MonoBehaviour {
-        public static PlayerOutfitLoader Instance;
+    public class PlayerSaveLoader : MonoBehaviour {
+        public static PlayerSaveLoader Instance;
 
-        public PlayerInventorySave inventory;
+        public PlayerInventorySave playerSave;
 
         [SerializeField]
         private Transform playerHatSlot;
@@ -24,7 +25,15 @@ namespace NR {
             if (playerHatInstance != null) {
                 Destroy(playerHatInstance);
             }
-            playerHatInstance = Instantiate(inventory.savedOutfit.hat.clothesPrefab, playerHatSlot);
+            playerHatInstance = Instantiate(playerSave.savedOutfit.hat.clothesPrefab, playerHatSlot);
+        }
+
+        public List<LevelSave> GetSaves() { 
+            return playerSave.levelSaves;
+        }
+
+        public void AddLevel(LevelSave levelSave) { 
+            playerSave.levelSaves.Add(levelSave);
         }
     }
 }

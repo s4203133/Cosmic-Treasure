@@ -21,6 +21,8 @@ namespace LMO {
         public static Action OnActivated;
         public static Action OnCollected;
 
+        public Action<Collectible> OnInstanceCollected; //NR
+
         private bool collected;
 
         private void Awake() {
@@ -46,6 +48,7 @@ namespace LMO {
                 }
                 // If the player picks the coin up, play a VFX and destroy it after a delay, and destroy the coin
                 counter.value++;
+                OnInstanceCollected?.Invoke(this);
                 OnCollected?.Invoke();
                 collectedVFX.transform.parent = null;
                 collectedVFX.Play();

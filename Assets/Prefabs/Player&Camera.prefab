@@ -1373,8 +1373,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c9d87fa8f870b94d8196b53b7fb60ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  companionAnchor: {fileID: 1444023720415131255}
-  smoothVal: 0.2
+  parrot: {fileID: 0}
+  smoothness: 0
+  parrotSize: 0
 --- !u!54 &5741816577070583027
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2293,7 +2294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4bcd02594e1e7a4cb198a60cd0747cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 11400000, guid: 5f093b6660cb8c343a4d76cca98d01e9, type: 2}
+  playerSave: {fileID: 11400000, guid: 5f093b6660cb8c343a4d76cca98d01e9, type: 2}
   playerHatSlot: {fileID: 5344100655102588837}
 --- !u!1 &1462113920640869171
 GameObject:
@@ -8737,6 +8738,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  standUpDuration: 0
+  coolDownDuration: 0
 --- !u!1 &6733154612554555184
 GameObject:
   m_ObjectHideFlags: 0

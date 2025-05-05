@@ -26,7 +26,7 @@ namespace NR {
         private PlayerInventorySave inventorySave;
 
         private void Start() {
-            inventorySave = PlayerOutfitLoader.Instance.inventory;
+            inventorySave = PlayerSaveLoader.Instance.playerSave;
             moneyDisplay.text = $"{inventorySave.coins.value.ToString("000")}\n{inventorySave.gems.value.ToString("000")}";
             foreach (var item in inventorySave.ownedClothes) {
                 if (buyableClothes.Contains(item)) {

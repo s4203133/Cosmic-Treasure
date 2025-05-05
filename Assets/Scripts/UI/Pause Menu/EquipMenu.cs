@@ -20,10 +20,10 @@ namespace NR {
         }
 
         public void UpdateOptions() {
-            if (PlayerOutfitLoader.Instance != null) {
+            if (PlayerSaveLoader.Instance != null) {
                 hatDropdown.ClearOptions();
-                outfit = PlayerOutfitLoader.Instance.inventory.savedOutfit;
-                var ownedClothes = PlayerOutfitLoader.Instance.inventory.ownedClothes;
+                outfit = PlayerSaveLoader.Instance.playerSave.savedOutfit;
+                var ownedClothes = PlayerSaveLoader.Instance.playerSave.ownedClothes;
                 hats = (from item in ownedClothes
                         where (item.type == OutfitType.Hat)
                         select item).ToList();
@@ -45,7 +45,7 @@ namespace NR {
 
         public void ApplyChanges() {
             InputHandler.Enable.Invoke();
-            PlayerOutfitLoader.Instance.LoadOutfit();
+            PlayerSaveLoader.Instance.LoadOutfit();
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
