@@ -5,9 +5,14 @@ namespace NR {
     public class ProjectileTrigger : Activator {
         public UnityEvent OnProjectileHit;
         public UnityEvent OnProjectileLeave;
+        [SerializeField]
+        private bool destroyProjectile;
 
         void OnTriggerEnter(Collider obj) {
             if (obj.gameObject.CompareTag("Projectile")) {
+                if (destroyProjectile) {
+                    Destroy(obj.gameObject);
+                }
                 OnProjectileHit.Invoke();
                 isActive = true;
                 OnActivate?.Invoke();
