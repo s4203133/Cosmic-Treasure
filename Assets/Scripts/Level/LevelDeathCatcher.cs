@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using NR;
 
 namespace LMO {
 
@@ -14,7 +15,7 @@ namespace LMO {
             }
             //<NR>
             else if (other.tag == "Projectile") {
-                other.gameObject.SetActive(false);
+                other.gameObject.GetComponent<Projectile>().HideSelf(false);
             }
             //</NR>
         }

@@ -31,7 +31,7 @@ namespace NR {
             transform.right = rotateTarget;  
 
             float startVelocity = (transform.position - joint.transform.position).sqrMagnitude * forceMultiplier;
-            lineRenderer.SetPositions(TrajectoryCalculator.CalculateTrajectory(slingshotLaunch.position, slingshotLaunch.forward, startVelocity, trajectoryPoints, 0.9f));
+            lineRenderer.SetPositions(TrajectoryCalculator.CalculateTrajectoryPath(slingshotLaunch.position, slingshotLaunch.forward, startVelocity, trajectoryPoints, 0.9f));
         }
 
         private void ResetLine() {

@@ -11,7 +11,7 @@ namespace NR {
         void OnTriggerEnter(Collider obj) {
             if (obj.gameObject.CompareTag("Projectile")) {
                 if (destroyProjectile) {
-                    Destroy(obj.gameObject);
+                    obj.GetComponent<Projectile>().HideSelf();
                 }
                 OnProjectileHit.Invoke();
                 isActive = true;

@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.ProBuilder;
 
 namespace NR {
 
@@ -8,9 +6,9 @@ namespace NR {
         public static ProjectileParent Instance;
 
         [SerializeField]
-        private GameObject projectile;
+        private GameObject projectilePrefab;
 
-        private Rigidbody[] projectiles;
+        private Projectile[] projectiles;
         private int projectileIndex;
 
         private void Awake() {
@@ -22,19 +20,16 @@ namespace NR {
         }
 
         void Start() {
-            projectiles = new Rigidbody[5];
+            projectiles = new Projectile[10];
             for (int i = 0; i < projectiles.Length; i++) {
-                projectiles[i] = Instantiate(projectile, transform).GetComponent<Rigidbody>();
+                projectiles[i] = Instantiate(projectilePrefab, transform).GetComponent<Projectile>();
                 projectiles[i].gameObject.SetActive(false);
             }
         }
 
         public void SpawnProjectile(Transform launchTransform, float force) {
-            Rigidbody projectileRB = projectiles[projectileIndex];
-            projectileRB.gameObject.SetActive(true);
-            projectileRB.transform.position = launchTransform.position;
-            projectileRB.transform.rotation = launchTransform.rotation;
-            projectileRB.velocity = launchTransform.forward * force;
+            Projectile projectileRB = projectiles[projectileIndex];
+            projectileRB.Initialise(launchTransform.position, launchTransform.rotation, launchTransform.forward * force);
 
             projectileIndex++;
             if (projectileIndex >= projectiles.Length) {
