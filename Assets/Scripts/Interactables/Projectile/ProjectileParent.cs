@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 namespace NR {
 
@@ -14,12 +15,17 @@ namespace NR {
         [SerializeField]
         private GameObject explosion;
 
+        [SerializeField]
+        private GameObject indicator;
+
         private Projectile[] playerProjectiles;
         private int playerIndex;
         private Projectile[] enemyProjectiles;
         private int enemyIndex;
         private ProjectileExplosion[] explosions;
         private int explosionIndex;
+        private Animator[] indicators;
+        private int indicatorIndex;
 
         private void Awake() {
             if (Instance == null) {
@@ -44,6 +50,11 @@ namespace NR {
             for (int i = 0; i < explosions.Length; i++) {
                 explosions[i] = Instantiate(explosion, transform).GetComponent<ProjectileExplosion>();
                 explosions[i].gameObject.SetActive(false);
+            }
+            indicators = new Animator[5];
+            for (int i = 0; i < explosions.Length; i++) {
+                indicators[i] = Instantiate(indicator, transform).GetComponent<Animator>();
+                indicators[i].gameObject.SetActive(false);
             }
         }
 
@@ -72,6 +83,27 @@ namespace NR {
             if (explosionIndex >= explosions.Length) { 
                 explosionIndex = 0;
             }
+        }
+
+        public void SpawnIndicator(Vector3 position, float speed) { 
+            var useIndicator = indicators[indicatorIndex];
+            useIndicator.gameObject.SetActive(true);
+            useIndicator.transform.position = position;
+            
+            useIndicator.SetFloat("Speed", speed);
+            useIndicator.SetTrigger("Indicate");
+
+            StartCoroutine(DisableIndicator(useIndicator.gameObject, 1 / speed));
+
+            indicatorIndex++;
+            if (indicatorIndex >= indicators.Length) { 
+                indicatorIndex = 0; 
+            }
+        }
+
+        private IEnumerator DisableIndicator(GameObject indicator, float seconds) {
+            yield return new WaitForSeconds(seconds);
+            indicator.SetActive(false);
         }
     }
 }

@@ -63,6 +63,9 @@ namespace NR {
                 if (launch != Vector3.zero) {
                     shootTime = 0;
                     ProjectileParent.Instance.SpawnProjectile(shootPos, shootSpeed, true);
+                    Vector3 indicatePos = shootTarget.position;
+                    indicatePos.y += 0.5f;
+                    ProjectileParent.Instance.SpawnIndicator(indicatePos, 0.425f);
                 }
             }
         }
