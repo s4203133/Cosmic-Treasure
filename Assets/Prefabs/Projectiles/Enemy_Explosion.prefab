@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7014552752246057194}
   - component: {fileID: 3979023798409848777}
   - component: {fileID: 1524874833478283310}
-  - component: {fileID: 8278773976783468297}
   m_Layer: 0
   m_Name: Enemy_Explosion
   m_TagString: Projectile
@@ -125,16 +124,5 @@ MonoBehaviour:
   - {r: 1, g: 0.69616723, b: 0, a: 0.101960786}
   - {r: 1, g: 0.9570209, b: 0, a: 0}
   duration: 2
+  hurtEndTime: 1.15
   endScale: {x: 5, y: 5, z: 5}
---- !u!114 &8278773976783468297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7215980585927308168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11ab7a4cd051cbd419d0602c6eeb354a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

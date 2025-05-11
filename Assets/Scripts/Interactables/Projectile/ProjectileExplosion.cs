@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using LMO;
 
 namespace NR {
     public class ProjectileExplosion : MonoBehaviour {
@@ -10,9 +11,14 @@ namespace NR {
         private float duration;
 
         [SerializeField]
+        private float hurtEndTime;
+
+        [SerializeField]
         private Vector3 endScale;
 
         private Vector3 startScale;
+
+        private bool hurtEnabled;
         private float currentTime;
         private Renderer _renderer;
 
@@ -25,6 +31,7 @@ namespace NR {
             gameObject.SetActive(true);
             transform.position = pos;
             currentTime = 0;
+            hurtEnabled = true;
             StartCoroutine(AnimateExplosion());
         }
 
@@ -49,12 +56,22 @@ namespace NR {
                 transform.localScale = Vector3.Lerp(startScale, endScale, perc);
                 yield return null;
                 currentTime += Time.deltaTime;
+                if (currentTime > hurtEndTime) {
+                    hurtEnabled = false;
+                }
             }
             gameObject.SetActive(false);
         }
 
         private void OnTriggerEnter(Collider other) {
-            //Damage player (currently explosion is just a death trigger)
+            if (!hurtEnabled) {
+                return;
+            }
+
+            if (other.tag == "Player") {
+                LevelDeathCatcher.OnPlayerFellOutLevel?.Invoke();
+                //May replace with damage if instant-kill is too unfair.
+            }
         }
     }
 }

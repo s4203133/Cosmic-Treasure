@@ -8,6 +8,7 @@ namespace NR {
         [SerializeField] private GameObject projectile;
 
         [SerializeField] private float forceMultiplier = 1;
+        [SerializeField] private float lineLength = 0.9f;
         [SerializeField] private LineRenderer lineRenderer;
 
         [SerializeField] private int trajectoryPoints = 10;
@@ -31,7 +32,7 @@ namespace NR {
             transform.right = rotateTarget;  
 
             float startVelocity = (transform.position - joint.transform.position).sqrMagnitude * forceMultiplier;
-            lineRenderer.SetPositions(TrajectoryCalculator.CalculateTrajectoryPath(slingshotLaunch.position, slingshotLaunch.forward, startVelocity, trajectoryPoints, 0.9f));
+            lineRenderer.SetPositions(TrajectoryCalculator.CalculateTrajectoryPath(slingshotLaunch.position, slingshotLaunch.forward, startVelocity, trajectoryPoints, lineLength));
         }
 
         private void ResetLine() {

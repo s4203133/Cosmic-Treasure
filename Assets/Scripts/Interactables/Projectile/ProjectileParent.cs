@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 namespace NR {
 
@@ -58,7 +57,7 @@ namespace NR {
             }
         }
 
-        public void SpawnProjectile(Transform launchTransform, float force, bool enemy = false) {
+        public Projectile SpawnProjectile(Transform launchTransform, float force, bool enemy = false) {
             Projectile useProjectile;
             if (enemy) {
                 useProjectile = enemyProjectiles[enemyIndex];
@@ -74,6 +73,7 @@ namespace NR {
                 }
             }
             useProjectile.Initialise(launchTransform.position, launchTransform.rotation, launchTransform.forward * force);
+            return useProjectile;
         }
 
         public void SpawnExplosion(Vector3 position) {
@@ -85,7 +85,7 @@ namespace NR {
             }
         }
 
-        public void SpawnIndicator(Vector3 position, float speed) { 
+        public void SpawnIndicator(Vector3 position, float speed, EnemyProjectile projectile) { 
             var useIndicator = indicators[indicatorIndex];
             useIndicator.gameObject.SetActive(true);
             useIndicator.transform.position = position;
@@ -93,17 +93,12 @@ namespace NR {
             useIndicator.SetFloat("Speed", speed);
             useIndicator.SetTrigger("Indicate");
 
-            StartCoroutine(DisableIndicator(useIndicator.gameObject, 1 / speed));
+            projectile.LoadIndicator(useIndicator.gameObject);
 
             indicatorIndex++;
             if (indicatorIndex >= indicators.Length) { 
                 indicatorIndex = 0; 
             }
-        }
-
-        private IEnumerator DisableIndicator(GameObject indicator, float seconds) {
-            yield return new WaitForSeconds(seconds);
-            indicator.SetActive(false);
         }
     }
 }
