@@ -19,7 +19,6 @@ namespace NR {
         private Vector3 startScale;
 
         private bool hurtEnabled;
-        private float currentTime;
         private Renderer _renderer;
 
         private void Awake() {
@@ -30,24 +29,24 @@ namespace NR {
         public void ShowExplosion(Vector3 pos) {
             gameObject.SetActive(true);
             transform.position = pos;
-            currentTime = 0;
             hurtEnabled = true;
             StartCoroutine(AnimateExplosion());
         }
 
         private IEnumerator AnimateExplosion() {
-            float colourDivision = duration / colours.Length;
+            float currentTime = 0;
+            float colourDivision = duration / (colours.Length - 1);
             float scaleDivision = 1 / duration;
+            Color startColour = colours[0];
+            Color endColour = colours[1];
+            int colourIndex = 0;
             while (currentTime < duration) {
-                int colourIndex = Mathf.FloorToInt(currentTime / colourDivision);
-                float colourTime = (currentTime % colourDivision) * duration;
                 
-                Color newColour = colours[colours.Length - 1];
-                if (colourIndex < colours.Length - 1) {
-                    Color startColour = colours[colourIndex];
-                    Color endColour = colours[colourIndex + 1];
-                    newColour = Color.Lerp(startColour, endColour, colourTime);
-                }
+                float colourTime = (currentTime % colourDivision) / colourDivision;
+
+                Debug.Log($"{colourTime}, {currentTime}, {colourIndex}, {colourDivision}");
+                
+                Color newColour = Color.Lerp(startColour, endColour, colourTime);
 
                 _renderer.material.color = newColour;
 
@@ -58,6 +57,12 @@ namespace NR {
                 currentTime += Time.deltaTime;
                 if (currentTime > hurtEndTime) {
                     hurtEnabled = false;
+                }
+                int newIndex = Mathf.FloorToInt(currentTime / colourDivision);
+                if (newIndex > colourIndex && newIndex < colours.Length - 1) {
+                    colourIndex = newIndex;
+                    startColour = colours[colourIndex];
+                    endColour = colours[colourIndex + 1];
                 }
             }
             gameObject.SetActive(false);
