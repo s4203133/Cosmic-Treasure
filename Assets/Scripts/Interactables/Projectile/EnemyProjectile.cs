@@ -8,7 +8,8 @@ namespace NR {
             indicator = newIndicator;
         }
 
-        private void OnCollisionEnter(Collision collision) {
+        protected override void OnCollisionEnter(Collision collision) {
+            base.OnCollisionEnter(collision);
             ProjectileParent.Instance.SpawnExplosion(transform.position);
             if (indicator != null) { 
                 indicator.SetActive(false);

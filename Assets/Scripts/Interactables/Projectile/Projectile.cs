@@ -48,6 +48,13 @@ namespace NR {
             waitingForEnd = false;
             gameObject.SetActive(false);
         }
+
+        protected virtual void OnCollisionEnter(Collision collision) {
+            IShootable shootable = collision.gameObject.GetComponent<IShootable>();
+            if (shootable != null) {
+                shootable.OnShot(this);
+            }
+        }
     }
 
 }

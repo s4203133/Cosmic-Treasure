@@ -40,12 +40,9 @@ namespace NR {
             Color startColour = colours[0];
             Color endColour = colours[1];
             int colourIndex = 0;
-            while (currentTime < duration) {
-                
-                float colourTime = (currentTime % colourDivision) / colourDivision;
 
-                Debug.Log($"{colourTime}, {currentTime}, {colourIndex}, {colourDivision}");
-                
+            while (currentTime < duration) {
+                float colourTime = (currentTime % colourDivision) / colourDivision;
                 Color newColour = Color.Lerp(startColour, endColour, colourTime);
 
                 _renderer.material.color = newColour;

@@ -1,8 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
-using Unity.VisualScripting;
 
 namespace NR {
 
@@ -31,48 +31,53 @@ namespace NR {
         public UnityEvent OnSink;
         public UnityEvent OnDeath;
 
-        private MeshFilter meshFilter;
-        private MeshRenderer meshRenderer;
+        private MeshFilter _meshFilter;
+        private MeshRenderer _meshRenderer;
 
         private bool leftHit;
         private bool midHit;
         private bool rightHit;
 
-        //Here for debugging
-        public bool isShooting;
-        public float shootSpeed;
-        public bool shootHigh;
+        private bool isShooting = true;
+
+        [SerializeField]
+        private float shootSpeed = 100;
+
+        [SerializeField]
+        private float shootDelay = 2;
+
+        [SerializeField]
+        private bool shootHigh = true;
+
         private float shootTime;
 
         private bool firstHit = true;
 
         private void Awake() {
-            meshFilter = GetComponent<MeshFilter>();
-            meshRenderer = GetComponent<MeshRenderer>();
+            _meshFilter = GetComponent<MeshFilter>();
+            _meshRenderer = GetComponent<MeshRenderer>();
+            StartCoroutine(ShootingLoop());
         }
 
-        //Debugging the shooting
-        private void Update() {
-            if (!isShooting) {
-                return;
-            }
-            Vector3 launch = TrajectoryCalculator.CalculateLaunchVelocity(shootPos.position, shootTarget.position, shootSpeed, shootHigh);
-            shootPos.forward = launch;
-            shootTime += Time.deltaTime;
-            if (shootTime > 2) {
-                if (launch != Vector3.zero) {
+        private IEnumerator ShootingLoop() {
+            while (isShooting) {
+                Vector3 launch = TrajectoryCalculator.CalculateLaunchVelocity(shootPos.position, shootTarget.position, shootSpeed, shootHigh);
+                shootTime += Time.deltaTime;
+                if (shootTime > shootDelay && launch != Vector3.zero) {
+                    shootPos.forward = launch;
                     shootTime = 0;
                     Projectile cannonShot = ProjectileParent.Instance.SpawnProjectile(shootPos, shootSpeed, true);
                     Vector3 indicatePos = shootTarget.position;
                     indicatePos.y += 0.5f;
                     ProjectileParent.Instance.SpawnIndicator(indicatePos, 0.425f, cannonShot as EnemyProjectile);
                 }
+                yield return null;
             }
         }
 
         private void ShowDamage() {
             if (firstHit) {
-                meshRenderer.SetMaterials(damageMaterials);
+                _meshRenderer.SetMaterials(damageMaterials);
                 firstHit = false;
             }
             string damageString = "";
@@ -85,13 +90,14 @@ namespace NR {
             Mesh newMesh = (from state in damageStates
                           where state.damage == damageString
                           select state.mesh).ToList()[0];
-            meshFilter.mesh = newMesh;
+            _meshFilter.mesh = newMesh;
             if (damageString == "lmr") {
                 StartSinking();
             }
         }
 
         public void StartSinking() {
+            isShooting = false;
             OnSink.Invoke();
         }
 
