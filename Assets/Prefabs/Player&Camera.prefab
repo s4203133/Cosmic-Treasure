@@ -4516,8 +4516,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2958838817166762670}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.111662835, y: 0.35895574, z: -0.04330201, w: 0.9256388}
-  m_LocalPosition: {x: -6.740817, y: 6, z: -7.386564}
+  m_LocalRotation: {x: 0.119800314, y: 0.004891932, z: -0.0005903132, w: 0.9927858}
+  m_LocalPosition: {x: -0.098545074, y: 6, z: -9.999512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7642,7 +7642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5832099822513635561}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07014246, y: -0.000074267395, z: 0.000023815783, w: 0.997537}
+  m_LocalRotation: {x: 0.07010631, y: 0.00007636519, z: -0.000024487847, w: 0.9975396}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8154,7 +8154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6285235896446583549}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04594824, y: -0.00007379054, z: 0.00002170354, w: 0.9989438}
+  m_LocalRotation: {x: 0.045912392, y: 0.00007739989, z: -0.000022768683, w: 0.9989455}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8753,7 +8753,7 @@ GameObject:
   - component: {fileID: 1029388191592108889}
   - component: {fileID: 1222308571062532229}
   m_Layer: 8
-  m_Name: SlingshotDrag
+  m_Name: Slingshot Dragger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8839,6 +8839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 8085185771279704671}
   playerStateMachine: {fileID: 576902515476784275}
+  grappleOrigin: {fileID: 5626444756154932742}
 --- !u!1 &6785343698176028816
 GameObject:
   m_ObjectHideFlags: 0
@@ -9009,7 +9010,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6875847852165228197}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.00000085681677, y: 0.00007787859, z: -0.000019078376, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

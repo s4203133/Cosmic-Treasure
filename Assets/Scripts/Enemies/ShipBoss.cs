@@ -56,6 +56,9 @@ namespace NR {
         private void Awake() {
             _meshFilter = GetComponent<MeshFilter>();
             _meshRenderer = GetComponent<MeshRenderer>();
+        }
+
+        public void Activate() {
             StartCoroutine(ShootingLoop());
         }
 
@@ -69,7 +72,7 @@ namespace NR {
                     Projectile cannonShot = ProjectileParent.Instance.SpawnProjectile(shootPos, shootSpeed, true);
                     Vector3 indicatePos = shootTarget.position;
                     indicatePos.y += 0.5f;
-                    ProjectileParent.Instance.SpawnIndicator(indicatePos, 0.425f, cannonShot as EnemyProjectile);
+                    ProjectileParent.Instance.SpawnIndicator(indicatePos, 0.5f, cannonShot as EnemyProjectile);
                 }
                 yield return null;
             }

@@ -1,11 +1,14 @@
 using UnityEngine;
 using LMO;
-using System.Collections;
 
 namespace NR {
     public class SlingshotDragger : MonoBehaviour {
-        [SerializeField] private Transform playerTransform;
-        [SerializeField] private PlayerStateMachine playerStateMachine;
+        [SerializeField] 
+        private Transform playerTransform;
+
+        [SerializeField] 
+        private PlayerStateMachine playerStateMachine;
+
         private Rigidbody slingRB;
         private SpringJoint springJoint;
 
