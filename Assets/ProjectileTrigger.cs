@@ -2,29 +2,19 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace NR {
-    public class ProjectileTrigger : Activator {
+    public class ProjectileTrigger : Activator, IShootable {
         public UnityEvent OnProjectileHit;
-        public UnityEvent OnProjectileLeave;
+
         [SerializeField]
         private bool destroyProjectile;
 
-        void OnTriggerEnter(Collider obj) {
-            if (obj.gameObject.CompareTag("Projectile")) {
-                if (destroyProjectile) {
-                    obj.GetComponent<Projectile>().HideSelf();
-                }
-                OnProjectileHit.Invoke();
-                isActive = true;
-                OnActivate?.Invoke();
+        public void OnShot(Projectile projectile) {
+            if (destroyProjectile) {
+                projectile.HideSelf();
             }
-            //animator.SetBool("Door", true);
-        }
-
-        void OnTriggerExit(Collider obj) {
-            if (obj.gameObject.CompareTag("Projectile")) {
-                OnProjectileLeave.Invoke(); 
-            }
-            //animator.SetBool("WaterUp", false);
+            OnProjectileHit.Invoke();
+            isActive = true;
+            OnActivate?.Invoke();
         }
     }
 }

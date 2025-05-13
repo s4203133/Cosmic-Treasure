@@ -1,0 +1,174 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &383884943173182810
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.51093
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.51093
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.51093
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      propertyPath: m_Name
+      value: ProjectileTarget
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4389423164433017647}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1782320360931576857}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4932410210464029487}
+  m_SourcePrefab: {fileID: 100100000, guid: 4d361dc6763caad4f985e2409b3bdb6e, type: 3}
+--- !u!1 &689820966124541963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d361dc6763caad4f985e2409b3bdb6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 383884943173182810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4389423164433017647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689820966124541963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2378da3baab3071449686c30abe40a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  OnProjectileHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4932410210464029487}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hit
+          m_BoolArgument: 0
+        m_CallState: 2
+  destroyProjectile: 1
+--- !u!65 &1782320360931576857
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689820966124541963}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.080003, y: 5.0028267, z: 0.6}
+  m_Center: {x: 6.508473e-14, y: 4.3314687e-14, z: 0.1905001}
+--- !u!95 &4932410210464029487
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689820966124541963}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c650100b867e944380e01698caf0e16, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

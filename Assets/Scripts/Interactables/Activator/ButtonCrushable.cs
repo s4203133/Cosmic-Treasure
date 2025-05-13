@@ -8,6 +8,13 @@ namespace NR {
         [SerializeField]
         private ButtonType buttonType;
 
+        [SerializeField]
+        private MeshRenderer buttonRenderer;
+
+        [SerializeField]
+        private Color pressedColour;
+        private Color startColour;
+
         private bool buttonReady = true;
 
         [SerializeField]
@@ -23,6 +30,7 @@ namespace NR {
                     animator.SetBool("Repeat", false);
                     break;
             }
+            startColour = buttonRenderer.material.color;
         }
 
         public void OnHit() {
@@ -31,6 +39,7 @@ namespace NR {
                 OnActivate?.Invoke();
                 animator.SetBool("Hit", true);
                 buttonReady = false;
+                buttonRenderer.material.color = pressedColour;
             }
         }
 
@@ -43,6 +52,7 @@ namespace NR {
         public void ButtonReady() {
             animator.SetBool("Hit", false);
             buttonReady = true;
+            buttonRenderer.material.color = startColour;
         }
     }
 }

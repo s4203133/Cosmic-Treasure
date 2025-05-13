@@ -89828,6 +89828,7 @@ MonoBehaviour:
   projectile: {fileID: 4803378746823847004, guid: 1a81fbd8f35a4c34da697f75c7879f35,
     type: 3}
   forceMultiplier: 10
+  lineLength: 0.9
   lineRenderer: {fileID: 4552735624508568182}
   trajectoryPoints: 10
 --- !u!23 &3465571381600053241
@@ -90924,9 +90925,7 @@ MonoBehaviour:
           m_StringArgument: Door
           m_BoolArgument: 0
         m_CallState: 2
-  OnProjectileLeave:
-    m_PersistentCalls:
-      m_Calls: []
+  destroyProjectile: 0
 --- !u!65 &4355719409462494951
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90942,7 +90941,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

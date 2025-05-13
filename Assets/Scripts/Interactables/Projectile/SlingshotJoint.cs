@@ -22,7 +22,6 @@ namespace NR {
         public Action SlingshotUpdate;
         public Action SlingshotReleased;
 
-        private bool connected;
 
 
         protected override void Start() {
@@ -33,7 +32,7 @@ namespace NR {
             interactActions.AddListener(playerDrag.DisconnectSlingshot);
             lr.positionCount = linePositions.Length;
             linePoints = new Vector3[linePositions.Length];
-            PlayerDeath.OnPlayerDied += OnReleased;
+            
         }
 
         public void SetParentTransform(Transform slingTransform) {
@@ -41,16 +40,14 @@ namespace NR {
         }
 
         public override void OnGrappled() {
-            connected = true;
             StartCoroutine("UpdatePosition");
             playerDrag.ConnectToSlingshot(rb);
+            PlayerDeath.OnPlayerDied += OnReleased;
         }
 
         public override void OnReleased() {
-            if (!connected) {
-                return;
-            }
-            connected = false;
+            PlayerDeath.OnPlayerDied -= OnReleased;
+            Debug.Log("released");
             StopCoroutine("UpdatePosition");
             playerDrag.DisconnectSlingshot();
             SlingshotReleased?.Invoke();
