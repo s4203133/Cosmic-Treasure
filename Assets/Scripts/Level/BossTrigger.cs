@@ -1,7 +1,8 @@
 using UnityEngine;
+using LMO;
 
 namespace NR {
-    public class BossTrigger : MonoBehaviour {
+    public class BossTrigger : MonoBehaviour, IResettable {
         [SerializeField]
         private ShipBoss boss;
 
@@ -19,7 +20,12 @@ namespace NR {
 
             if (other.CompareTag("Player")) {
                 boss.Activate();
+                triggered = true;
             }
+        }
+
+        public void Reset() {
+            triggered = false;
         }
     }
 

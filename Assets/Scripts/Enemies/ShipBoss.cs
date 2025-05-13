@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
+using LMO;
 
 namespace NR {
 
@@ -12,12 +13,14 @@ namespace NR {
         public Mesh mesh;
     }
 
-    public class ShipBoss : MonoBehaviour {
+    public class ShipBoss : MonoBehaviour, IResettable {
         [SerializeField]
         private ShipState[] damageStates;
 
         [SerializeField]
         private List<Material> damageMaterials;
+
+        private List<Material> startMaterials = new List<Material>();
 
         [SerializeField]
         private GameObject middleCannon;
@@ -27,6 +30,9 @@ namespace NR {
 
         [SerializeField]
         private Transform shootTarget;
+
+        [SerializeField]
+        private GameObject[] targets;
 
         public UnityEvent OnSink;
         public UnityEvent OnDeath;
@@ -38,7 +44,7 @@ namespace NR {
         private bool midHit;
         private bool rightHit;
 
-        private bool isShooting = true;
+        private bool isShooting = false;
 
         [SerializeField]
         private float shootSpeed = 100;
@@ -56,9 +62,11 @@ namespace NR {
         private void Awake() {
             _meshFilter = GetComponent<MeshFilter>();
             _meshRenderer = GetComponent<MeshRenderer>();
+            _meshRenderer.GetMaterials(startMaterials);
         }
 
         public void Activate() {
+            isShooting = true;
             StartCoroutine(ShootingLoop());
         }
 
@@ -108,7 +116,21 @@ namespace NR {
         public void DoneSinking() {
             OnDeath.Invoke();
         }
-        
+
+        public void Reset() {
+            leftHit = false;
+            midHit = false;
+            rightHit = false;
+            firstHit = true;
+            _meshRenderer.SetMaterials(startMaterials);
+            _meshFilter.mesh = damageStates[0].mesh;
+            middleCannon.SetActive(true);
+            foreach (var target in targets) {
+                target.SetActive(true);
+            }
+            isShooting = false;
+        }
+
         public void HitLeft() {
             leftHit = true;
             ShowDamage();

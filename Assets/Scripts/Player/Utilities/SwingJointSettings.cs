@@ -33,9 +33,9 @@ namespace LMO {
         public void InitialiseJoint(Transform player, Vector3 connectPoint, GrapplePoint grapplePoint) {
             //<NR>
             float grappleMaxDistance = maxDistance;
-            if (grapplePoint as SwingJoint != null) {
+            if (grappleIsSwing) {
                 grappleMaxDistance = grapplePoint.DetectionRange - 2;
-            } else if (grapplePoint as SlingshotJoint != null) {
+            } else if (grappleIsSlingShot) {
                 grappleMaxDistance = grapplePoint.DetectionRange + 5;
             }
             //</NR>
