@@ -124,6 +124,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   DamageAmount: 0
+  rb: {fileID: 0}
 --- !u!1 &8558573574854987002
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +166,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4473112437423412337}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 73d65e58bd0060841ae2a7c064912675,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 73d65e58bd0060841ae2a7c064912675,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 73d65e58bd0060841ae2a7c064912675,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73d65e58bd0060841ae2a7c064912675,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -214,6 +230,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 73d65e58bd0060841ae2a7c064912675,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2394559573369902920, guid: 73d65e58bd0060841ae2a7c064912675,
         type: 3}
@@ -350,7 +371,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.85
+  m_Radius: 1
   m_Center: {x: 0, y: 0.77, z: 0}
 --- !u!95 &6865518928435303037
 Animator:

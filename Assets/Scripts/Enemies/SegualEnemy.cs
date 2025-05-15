@@ -31,6 +31,7 @@ namespace WWH {
         public float DamageAmount;
         private bool HasSeenPlayer;
         private float FindPlayerCountDown;
+        public Rigidbody rb;
 
         // Start is called before the first frame update
         void Start() {
@@ -73,10 +74,11 @@ namespace WWH {
                 //Mathf.Lerp(player.transform.position.x, transform.position.x, Time.deltaTime);
                 if (Vector3.Distance(player.transform.position, SegualModel.transform.position) <= 2.5 && canAttack == true) {
                     PlayerHealth -= DamageAmount;
+                    rb.AddForce(transform.up * 1000);
                     if (PlayerHealth < currentPlayerHealth) {
                         currentPlayerHealth = PlayerHealth;
                         canAttack = false;
-                        // animator.SetBool("SlimeAttack", false);
+                        animator.SetBool("SlimeAttack", false);
                     }
                 }                
             }
@@ -92,12 +94,12 @@ namespace WWH {
                     CurrentPoint = point;
                     if (Vector3.Distance(transform.position, CurrentPoint.position) <= 1) {
                         timer += Time.deltaTime;
-                        //animator.SetBool("SlimeIdle", true);
+                        animator.SetBool("SlimeIdle", true);
                         float rand = Random.Range(2, 7);
                         if (timer >= rand) {
                             PointIteration += 1;
                             timer = 0;
-                            // animator.SetBool("SlimeIdle", false);
+                            animator.SetBool("SlimeIdle", false);
                         }
                     }
                 }

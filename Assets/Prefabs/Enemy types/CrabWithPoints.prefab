@@ -263,11 +263,48 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crab (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8893426828584771291, guid: fcbfb69d5e118fe4981c2156d94f04ba, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 991411272411062234, guid: fcbfb69d5e118fe4981c2156d94f04ba,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 762657220509327977}
   m_SourcePrefab: {fileID: 100100000, guid: fcbfb69d5e118fe4981c2156d94f04ba, type: 3}
+--- !u!95 &838370167727084359 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4644339691554633834, guid: fcbfb69d5e118fe4981c2156d94f04ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 5464695310413736749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1275252004913990914 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6513583433740248623, guid: fcbfb69d5e118fe4981c2156d94f04ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 5464695310413736749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5049744794601207031 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 991411272411062234, guid: fcbfb69d5e118fe4981c2156d94f04ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 5464695310413736749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &762657220509327977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049744794601207031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d67670871600164cafdcc54ea9e3030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 1275252004913990914}
+  SlimeAnims: {fileID: 838370167727084359}
 --- !u!4 &8107858009088698903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4274648907784225082, guid: fcbfb69d5e118fe4981c2156d94f04ba,
