@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using LMO;
 using Unity.VisualScripting;
+using UnityEditor.Recorder.AOV;
 
 
 namespace WWH {
@@ -83,13 +84,15 @@ namespace WWH {
                 PointIteration = 0;                
             }            
         }
+
         public void Reset() {
             
-            if (!Slime.activeInHierarchy) {
+            if (Slime != null && !Slime.activeInHierarchy) {
                 Slime.SetActive(true);
                 Slime.transform.position = EnemyStartingPosition;
             }
         }
+
         // Update is called once per frame
         void Update() {            
                 Patrolling();
@@ -101,6 +104,10 @@ namespace WWH {
                     timer2 = 0;
                 }
             }            
+        }
+
+        private void OnDisable() {
+            PlayerDeath.OnPlayerDied -= Reset;
         }
     }
 }

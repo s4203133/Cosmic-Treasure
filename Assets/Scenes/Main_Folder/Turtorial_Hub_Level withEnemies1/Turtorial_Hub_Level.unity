@@ -19790,6 +19790,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1221b2739cb3d340afa9296daf07966, type: 3}
+--- !u!1 &536415373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1275252004913990914, guid: 4c9bbbe034b4e3a49b85aa81660edfae,
+    type: 3}
+  m_PrefabInstance: {fileID: 855221628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &536510026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31429,6 +31435,11 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 4157691921166722987}
+    - target: {fileID: 1731682087426316846, guid: 4c9bbbe034b4e3a49b85aa81660edfae,
+        type: 3}
+      propertyPath: Slime
+      value: 
+      objectReference: {fileID: 536415373}
     - target: {fileID: 1731682087426316846, guid: 4c9bbbe034b4e3a49b85aa81660edfae,
         type: 3}
       propertyPath: player
@@ -81175,7 +81186,7 @@ Transform:
   m_GameObject: {fileID: 4356816820215104493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 509.8, y: -26, z: 129.6}
+  m_LocalPosition: {x: 509.8, y: -27.5, z: 129.6}
   m_LocalScale: {x: 1000, y: 48.7, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
