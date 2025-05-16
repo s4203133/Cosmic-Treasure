@@ -2,38 +2,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using LMO;
+using Unity.VisualScripting;
 
 
 namespace WWH {
-    public class Enemy1 : MonoBehaviour {
+    public class Enemy1 : MonoBehaviour, IResettable {
+        
         public List<Vector3> Rays;
         public float distance;
         public NavMeshAgent Enemy;
         public List<Transform> PatrolPoints;
         private int PointIteration;
         private Transform CurrentPoint;
-        public bool IsAtEnd;
+       
         private float timer;
         public Animator animator;
         public GameObject SlimeModel;
 
-        public SpawnPlayer spawnplayer;
         public GameObject player;
-        public float PlayerHealth;
-        private float StartingPlayerHealth;
-        private float currentPlayerHealth;
         private float timer2;
         public LayerMask layer;
         private bool canAttack;
         public float DamageAmount;
-        public Rigidbody rb;
+
+        public GameObject Slime;
+        private Vector3 EnemyStartingPosition;
 
         // Start is called before the first frame update
-        void Start() {
-            IsAtEnd = false;
+        void Start() {            
             canAttack = true;
-            StartingPlayerHealth = PlayerHealth;
-            currentPlayerHealth = PlayerHealth;
+            EnemyStartingPosition = Slime.transform.position;
         }
         
         void RayDirection() {
@@ -42,27 +40,19 @@ namespace WWH {
                 Vector3 angle = Quaternion.Euler(ray.x, ray.y, ray.z) * Vector3.forward;
                 Debug.DrawRay(transform.position, transform.TransformDirection(angle) * distance, Color.red);
                 if (Physics.Raycast(transform.position, transform.TransformDirection(angle), out hit, distance, layer)) {
-                        Debug.Log("hit");
+                        
                         if (hit.distance > 1) {
                             Enemy.SetDestination(hit.collider.transform.position);
                             transform.LookAt(hit.transform.position);
-                            
-                            //lerp to look at the player. if player out of sight get last location. if not there then reset
                         }
                     if (hit.distance <= 1 && canAttack == true) {
                         //play attack animation
-                        animator.SetBool("SlimeAttack", true);
+                        animator.SetBool("SlimeAttack", true);                        
+                        animator.SetBool("SlimeIdle", false);                       
                         
-                        animator.SetBool("SlimeIdle", false);
-                        PlayerHealth -= DamageAmount;
-                        
-                        rb.AddForce(transform.up * 1000);
-                        if (PlayerHealth < currentPlayerHealth) {
-                            currentPlayerHealth = PlayerHealth;
+                        if (animator.GetBool("SlimeAttack")) {                            
                             canAttack = false;
-                            animator.SetBool("SlimeAttack", false);
-                            
-                            //animator.SetBool("SlimeAttack", false);
+                            animator.SetBool("SlimeAttack", false);                    
                         }
                     }                   
                 }
@@ -90,19 +80,20 @@ namespace WWH {
                 }
             }
             if (PointIteration >= PatrolPoints.Count) {
-                PointIteration = 0;
-                IsAtEnd = false;
+                PointIteration = 0;                
+            }            
+        }
+        public void Reset() {
+            
+            if (!Slime.activeInHierarchy) {
+                Slime.SetActive(true);
+                Slime.transform.position = EnemyStartingPosition;
             }
         }
         // Update is called once per frame
         void Update() {            
                 Patrolling();
                 RayDirection();           
-            if (PlayerHealth <= 0) {
-                PlayerHealth = StartingPlayerHealth;
-                //spawnplayer.ResetPlayer();
-            }            
-            //Debug.Log(PlayerHealth);
             if (canAttack == false) {
                 timer2 += Time.deltaTime;
                 if (timer2 >= 2) {

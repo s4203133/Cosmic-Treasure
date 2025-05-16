@@ -39,6 +39,9 @@ namespace LMO {
             OnPlayerDied += InputHandler.Disable;
             SpawnPlayer.OnPlayerRespawned += ReInitialisePlayer;
             SpawnPlayer.OnPlayerRespawned += InputHandler.Enable;
+
+            //WWH
+            PlayerHealth.PlayerKilledByEnemy += Death;
         }
 
         private void UnsubscribeEvents() {
@@ -46,6 +49,9 @@ namespace LMO {
             OnPlayerDied -= InputHandler.Enable;
             SpawnPlayer.OnPlayerRespawned -= ReInitialisePlayer;
             SpawnPlayer.OnPlayerRespawned -= InputHandler.Enable;
+
+            //WWH
+            PlayerHealth.PlayerKilledByEnemy -= Death;
         }
     }
 }

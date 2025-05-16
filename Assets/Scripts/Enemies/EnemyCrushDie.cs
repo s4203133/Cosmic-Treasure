@@ -7,7 +7,7 @@ namespace NR {
         [SerializeField]private GameObject enemy;        
        
         public void OnHit() {
-            Destroy(enemy);
+            enemy.SetActive(false);
            
         }
 
