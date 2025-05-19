@@ -25,10 +25,16 @@ public class MainMenu : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    public void PlayClicked() {
+    public void PlayFirstLevel() {
         Time.timeScale = 1;        
         input.SwitchCurrentActionMap("Movement");
         SceneManager.LoadScene("First_Level");
+    }
+    public void PlayTutorialLevel()
+    {
+        Time.timeScale = 1;
+        input.SwitchCurrentActionMap("Movement");
+        SceneManager.LoadScene("Turtorial_Hub_Level");
     }
     public void FullScreenButton() {
         fullscreen += 1;
@@ -48,6 +54,11 @@ public class MainMenu : MonoBehaviour {
         Application.Quit();
     }
     public void ResolutionOptions() {
+        Menu.gameObject.SetActive(false);
+        ResolutionTypes.gameObject.SetActive(true);
+    }
+    public void LevelSelector()
+    {
         Menu.gameObject.SetActive(false);
         ResolutionTypes.gameObject.SetActive(true);
     }
