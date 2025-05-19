@@ -6,17 +6,27 @@ using System.Linq;
 using LMO;
 
 namespace NR {
-
+    /// <summary>
+    /// A serialized class used in ShipBoss's 'damageStates' property.
+    /// Associates the damage to the ship (represented as a string) with the corresponding mesh.
+    /// </summary>
     [System.Serializable]
     public class ShipState {
         public string damage;
         public Mesh mesh;
     }
 
+    /// <summary>
+    /// Behaviour for the boss at the end of level 1.
+    /// Periodically fires cannonballs aimed at the player once activated.
+    /// When a target in the prefab is hit, the damage is shown in the mesh.
+    /// After all three targets are hit, the ship sinks and an event is called.
+    /// </summary>
     public class ShipBoss : MonoBehaviour, IResettable {
         [SerializeField]
         private ShipState[] damageStates;
 
+        // The damaged meshes have more materials than the undamaged mesh, so they are swapped at runtime.
         [SerializeField]
         private List<Material> damageMaterials;
 
@@ -72,20 +82,27 @@ namespace NR {
 
         private IEnumerator ShootingLoop() {
             while (isShooting) {
-                Vector3 launch = TrajectoryCalculator.CalculateLaunchVelocity(shootPos.position, shootTarget.position, shootSpeed, shootHigh);
                 shootTime += Time.deltaTime;
-                if (shootTime > shootDelay && launch != Vector3.zero) {
-                    shootPos.forward = launch;
-                    shootTime = 0;
-                    Projectile cannonShot = ProjectileParent.Instance.SpawnProjectile(shootPos, shootSpeed, true);
-                    Vector3 indicatePos = shootTarget.position;
-                    indicatePos.y += 0.5f;
-                    ProjectileParent.Instance.SpawnIndicator(indicatePos, 0.5f, cannonShot as EnemyProjectile);
+                if (shootTime > shootDelay) {
+                    Vector3 launch = TrajectoryCalculator.CalculateLaunchVelocity(shootPos.position, shootTarget.position, shootSpeed, shootHigh);
+                    if (launch != Vector3.zero) {
+                        shootPos.forward = launch;
+                        shootTime = 0;
+                        Projectile cannonShot = ProjectileParent.Instance.SpawnProjectile(shootPos, shootSpeed, true);
+                        Vector3 indicatePos = shootTarget.position;
+                        indicatePos.y += 0.5f;
+                        ProjectileParent.Instance.SpawnIndicator(indicatePos, 0.5f, cannonShot as EnemyProjectile);
+                    }
                 }
                 yield return null;
             }
         }
 
+        /// <summary>
+        /// When a target is hit, change to the appropriate mesh.
+        /// The damage is represented by a string.
+        /// If all are hit, start sinking.
+        /// </summary>
         private void ShowDamage() {
             if (firstHit) {
                 _meshRenderer.SetMaterials(damageMaterials);
@@ -117,6 +134,7 @@ namespace NR {
             OnDeath.Invoke();
         }
 
+        // As this inherits from IResettable, it calls this when the player dies.
         public void Reset() {
             leftHit = false;
             midHit = false;
@@ -130,6 +148,8 @@ namespace NR {
             }
             isShooting = false;
         }
+
+        // Below are called by targets, using unity events.
 
         public void HitLeft() {
             leftHit = true;

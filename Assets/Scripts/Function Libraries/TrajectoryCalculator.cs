@@ -1,6 +1,9 @@
 using UnityEngine;
 
 namespace NR {
+    /// <summary>
+    /// Function library for calculations related to projectiles.
+    /// </summary>
     public static class TrajectoryCalculator {
         //Adapted from materials provided by University of Gloucestershire
         //Computer Games Programming - CT4101 Programming and Mathematics - Projectile Prediction
@@ -32,6 +35,14 @@ namespace NR {
         }
 
         //Adapted from https://www.forrestthewoods.com/blog/solving_ballistic_trajectories/
+        /// <summary>
+        /// Caculates and returns the angle a projectile should be launched at to hit a specified target.
+        /// </summary>
+        /// <param name="origin">Initial position of the projectile.</param>
+        /// <param name="targetPos">Desired position for the projectile to shoot towards.</param>
+        /// <param name="speed">Scalar speed of the projectile.</param>
+        /// <param name="shootHigh">Type of arc (true returns a higher angle)</param>
+        /// <returns>Angle of launch, as Vector3.</returns>
         public static Vector3 CalculateLaunchVelocity(Vector3 origin, Vector3 targetPos, float speed, bool shootHigh = false) {
             Vector3 difference = targetPos - origin;
             Vector3 diffXZ = new Vector3(difference.x, 0f, difference.z);

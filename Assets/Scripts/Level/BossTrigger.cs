@@ -2,6 +2,10 @@ using UnityEngine;
 using LMO;
 
 namespace NR {
+    /// <summary>
+    /// An invisible trigger that starts the ship boss's firing behaviour.
+    /// Resets when the player dies.
+    /// </summary>
     public class BossTrigger : MonoBehaviour, IResettable {
         [SerializeField]
         private ShipBoss boss;

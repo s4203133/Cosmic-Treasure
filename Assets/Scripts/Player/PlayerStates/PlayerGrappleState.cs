@@ -36,16 +36,12 @@ namespace LMO {
             grapple.ConnectJoint(constraintPosition);
 
             PlayerDeath.OnPlayerDied += grapple.DisconnectJoint;
-            //<NR>
-            PlayerHealth.OnDamageTaken += ReleaseGrapple;
-            //</NR>
+            PlayerHealth.OnDamageTaken += ReleaseGrapple; //<NR>
         }
 
         public override void OnStateExit() {
             PlayerDeath.OnPlayerDied -= grapple.DisconnectJoint;
-            //<NR>
-            PlayerHealth.OnDamageTaken -= ReleaseGrapple;
-            //</NR>
+            PlayerHealth.OnDamageTaken -= ReleaseGrapple; //<NR>
         }
 
         //<NR>

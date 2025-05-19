@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace NR {
+    /// <summary>
+    /// Base class for objects that can be triggered by Activator objects.
+    /// </summary>
     public class Activateable : MonoBehaviour {
         public Activator activator;
 
@@ -18,6 +21,9 @@ namespace NR {
             }
         }
 
+        /// <summary>
+        /// Virtual to be overridden by child classes.
+        /// </summary>
         public virtual void Activate() {
             interactActions?.Invoke();
         }

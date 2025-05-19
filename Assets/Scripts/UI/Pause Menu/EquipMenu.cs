@@ -5,6 +5,10 @@ using LMO;
 using System.Linq;
 
 namespace NR {
+    /// <summary>
+    /// Functionality for the player's equip menu, allowing them to change outfit.
+    /// Once finished, prompts the PlayerSaveLoader to update.
+    /// </summary>
     public class EquipMenu : MonoBehaviour {
         [SerializeField]
         private TMP_Dropdown hatDropdown;

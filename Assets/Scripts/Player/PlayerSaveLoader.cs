@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace NR {
+    /// <summary>
+    /// The singleton manager for a player's save file in-level.
+    /// Holds a reference to the player save and loads a player's outfit into the game.
+    /// </summary>
     public class PlayerSaveLoader : MonoBehaviour {
         public static PlayerSaveLoader Instance;
 
@@ -19,6 +23,7 @@ namespace NR {
                 Destroy(this);
             }
             LoadOutfit();
+            //Applying upgrades would be done here.
         }
 
         public void LoadOutfit() {

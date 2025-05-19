@@ -1,9 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using LMO;
 
 namespace NR {
+    /// <summary>
+    /// A platform that disappears shortlyafter being stepped on by the player.
+    /// Triggered by the player's FallingPlatformDetector when landed on.
+    /// </summary>
     public class FallingPlatform : MonoBehaviour {
         public float cooldown = 3;
         private Animator animator;
@@ -19,6 +21,7 @@ namespace NR {
             }
         }
 
+        // Called by animator, once the diappear animation is visually finished.
         public void StartCooldown() {
             StartCoroutine(WaitForCooldown());
         }
@@ -28,6 +31,7 @@ namespace NR {
             animator.SetBool("Fall", false);
         }
 
+        // Called by animator, once the reappear animation is visually finished.
         public void ResetPlatform() {
             ready = true;
         }

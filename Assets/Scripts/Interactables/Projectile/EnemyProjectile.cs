@@ -1,6 +1,10 @@
 using UnityEngine;
 
 namespace NR {
+    /// <summary>
+    /// Variant of projectiles fired by enemies (ship boss).
+    /// Spawns an explosion when it hits the ground, which kills the player.
+    /// </summary>
     public class EnemyProjectile : Projectile {
         private GameObject indicator;
 

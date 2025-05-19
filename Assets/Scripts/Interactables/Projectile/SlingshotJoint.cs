@@ -4,6 +4,11 @@ using System;
 using System.Collections;
 
 namespace NR {
+    /// <summary>
+    /// Behaviour for the grappleable part of slingshots.
+    /// While grappled, it notifies the associated Slingshot script through an Action, and notes the player's position.
+    /// When released,it notifies with an Action to fire a projectile.
+    /// </summary>
     [RequireComponent(typeof(LineRenderer))]
     public class SlingshotJoint : GrapplePoint {
         private Transform slingshotTransform;
@@ -12,7 +17,7 @@ namespace NR {
         private Vector3 playerDragPos;
         public Vector3 PlayerDragPosition => playerDragPos;
 
-        [SerializeField]
+        [SerializeField, Tooltip("Points in the world for the 'draw string' line renderer to connect to.")]
         private Transform[] linePositions;
         private Vector3[] linePoints;
 
@@ -47,7 +52,6 @@ namespace NR {
 
         public override void OnReleased() {
             PlayerDeath.OnPlayerDied -= OnReleased;
-            Debug.Log("released");
             StopCoroutine("UpdatePosition");
             playerDrag.DisconnectSlingshot();
             SlingshotReleased?.Invoke();

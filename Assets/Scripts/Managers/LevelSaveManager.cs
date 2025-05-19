@@ -3,6 +3,10 @@ using LMO;
 using UnityEngine;
 
 namespace NR {
+    /// <summary>
+    /// Singleton that handles saving level data.
+    /// This is used for keeping track of what gems the player has collected and unloading those that have been.
+    /// </summary>
     public class LevelSaveManager : MonoBehaviour {
         public static LevelSaveManager Instance { get; private set; }
 

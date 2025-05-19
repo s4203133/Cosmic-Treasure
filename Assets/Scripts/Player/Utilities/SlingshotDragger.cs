@@ -2,6 +2,10 @@ using UnityEngine;
 using LMO;
 
 namespace NR {
+    /// <summary>
+    /// Player component that fixes the player to a slingshot joint with a spring joint when grappled.
+    /// Part of the player prefab, and found by slingshot joints.
+    /// </summary>
     public class SlingshotDragger : MonoBehaviour {
         [SerializeField] 
         private Transform playerTransform;

@@ -5,6 +5,11 @@ using TMPro;
 using System.Linq;
 
 namespace NR {
+    /// <summary>
+    /// Functionalty of shop UI.
+    /// Can be assigned buyable items, and updates Ui to display all of these (excluding ones the player owns).
+    /// Adds bought items to the player's inventory (more permanent saving advised for later).
+    /// </summary>
     public class ShopMenu : MonoBehaviour {
         [SerializeField]
         private List<PlayerOutfitItem> buyableClothes;

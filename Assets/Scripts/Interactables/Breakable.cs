@@ -2,6 +2,10 @@ using UnityEngine;
 using LMO;
 
 namespace NR {
+    /// <summary>
+    /// What mesh (and associated materials) the object should have at different health increments.
+    /// Should be ordered in reverse health order, with the last entry being minimum health and first the default.
+    /// </summary>
     [System.Serializable]
     public class BreakMesh {
         public int health;
@@ -9,6 +13,10 @@ namespace NR {
         public Material[] materials;
     }
 
+    /// <summary>
+    /// What type of projectile damages a breakable object.
+    /// Only checked when shot, so it can be changed at runtime if needed.
+    /// </summary>
     public enum BreakableMode {
         NONE,
         PLAYER,
@@ -16,6 +24,11 @@ namespace NR {
         ALL
     }
 
+    /// <summary>
+    /// Behaviour for objects that can be broken by projectiles.
+    /// When shot (by appropriate projectile type) health is decremented and model updated if specified.
+    /// When health reaches 0, the object is deactivated. This resets when the player dies.
+    /// </summary>
     public class Breakable : MonoBehaviour, IShootable, IResettable {
         public BreakableMode mode;
 

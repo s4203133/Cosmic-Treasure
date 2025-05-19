@@ -1,6 +1,10 @@
 using UnityEngine;
 
 namespace NR {
+    /// <summary>
+    /// Adds functions to objects with animators that can be called by Unity Events.
+    /// Streamlines the process of caling animations through events.
+    /// </summary>
     [RequireComponent(typeof(Animator))]
     public class AnimatorEventHandler : MonoBehaviour {
         Animator animator;

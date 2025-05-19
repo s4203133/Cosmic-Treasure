@@ -3,6 +3,10 @@ using UnityEngine;
 
 
 namespace NR {
+    /// <summary>
+    /// Activateable object that lerps between two positions when activated.
+    /// Can be configured in-editor.
+    /// </summary>
     public class MoveablePart : Activateable {
         public Vector3 start;
         public Vector3 end;

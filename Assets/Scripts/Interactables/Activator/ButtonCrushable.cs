@@ -2,6 +2,10 @@ using LMO;
 using UnityEngine;
 
 namespace NR {
+    /// <summary>
+    /// An activator that triggers when the player ground pounds onto it.
+    /// Can be setup as single-use or reuseable.
+    /// </summary>
     public class ButtonCrushable : Activator, ICrushable {
         public enum ButtonType { Reusable, SingleUse };
 

@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEditor;
 
 namespace NR {
+    /// <summary>
+    /// Developer tools for configuring moveable parts more easily.
+    /// Adds buttons for setting start/end positions quickly, and visual aids for the positions and activator object.
+    /// </summary>
     [CustomEditor(typeof(MoveablePart))]
     [CanEditMultipleObjects]
     public class MoveablePartEditor : Editor {

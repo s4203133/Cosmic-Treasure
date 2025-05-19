@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 
 namespace NR {
+    /// <summary>
+    /// Behaviour for each projectile, with functionality for launching and hiding when needed.
+    /// </summary>
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(TrailRenderer))]
     public class Projectile : MonoBehaviour {

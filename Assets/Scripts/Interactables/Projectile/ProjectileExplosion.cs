@@ -3,6 +3,11 @@ using UnityEngine;
 using LMO;
 
 namespace NR {
+    /// <summary>
+    /// Explosion that appears when an enemy projectile hits the ground.
+    /// Scales over time, and interpolated between supplied colours.
+    /// While enabled, this will kill the player on contact.
+    /// </summary>
     public class ProjectileExplosion : MonoBehaviour {
         [SerializeField]
         private Color[] colours;
@@ -42,6 +47,7 @@ namespace NR {
             int colourIndex = 0;
 
             while (currentTime < duration) {
+                // Divides the interpolation into shorter lerps between each colour in the sequence.
                 float colourTime = (currentTime % colourDivision) / colourDivision;
                 Color newColour = Color.Lerp(startColour, endColour, colourTime);
 

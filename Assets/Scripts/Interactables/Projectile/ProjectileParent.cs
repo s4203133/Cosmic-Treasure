@@ -1,7 +1,11 @@
 using UnityEngine;
 
 namespace NR {
-
+    /// <summary>
+    /// Manager script that spawns projectiles without needing to instantiate/destroy them every time (for performance).
+    /// Spawns projectiles, explosions & indicators when the game starts (5 of each type), which are disabled.
+    /// Whenevera projectile (or associated object) is needed, one of these 5 are activated and used.
+    /// </summary>
     public class ProjectileParent : MonoBehaviour {
         public static ProjectileParent Instance;
 
@@ -57,6 +61,13 @@ namespace NR {
             }
         }
 
+        /// <summary>
+        /// Spawns a projectile (either player or enemy) and launches it as needed.
+        /// </summary>
+        /// <param name="launchTransform">A transform that is angled in the direction to fire the shot.</param>
+        /// <param name="force">The power of the shot.</param>
+        /// <param name="enemy">Whether to spawn an enemy projectile (true) or player projectile (false).</param>
+        /// <returns>A reference to the used projectile's script.</returns>
         public Projectile SpawnProjectile(Transform launchTransform, float force, bool enemy = false) {
             Projectile useProjectile;
             if (enemy) {
