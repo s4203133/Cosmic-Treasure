@@ -36,6 +36,12 @@ public class MainMenu : MonoBehaviour {
         input.SwitchCurrentActionMap("Movement");
         SceneManager.LoadScene("Turtorial_Hub_Level");
     }
+    public void BackMainMenu()
+    {
+        Time.timeScale = 1;
+        input.SwitchCurrentActionMap("Movement");
+        SceneManager.LoadScene("Main Menu");
+    }
     public void FullScreenButton() {
         fullscreen += 1;
         if (fullscreen == 1) {
