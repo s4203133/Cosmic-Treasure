@@ -5059,6 +5059,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activator: {fileID: 2081815285}
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
   start: {x: 722.71, y: 15.39, z: 100.6}
   end: {x: 722.71, y: 2.66, z: 100.6}
   speed: 1
@@ -50964,6 +50967,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activator: {fileID: 1624946205}
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
   start: {x: 658.88, y: 13.98, z: 101.082825}
   end: {x: 683.66, y: 13.98, z: 101.082825}
   speed: 0.1
@@ -51792,6 +51798,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6066200481630848901, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6066200481630848901, guid: 0fe5604c12449f24fa9a64efbaa08111,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6066200481630848901, guid: 0fe5604c12449f24fa9a64efbaa08111,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6066200481630848901, guid: 0fe5604c12449f24fa9a64efbaa08111,
+        type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
@@ -51827,6 +51848,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6489795824796783387, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489795824796783387, guid: 0fe5604c12449f24fa9a64efbaa08111,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: -10
       objectReference: {fileID: 0}
@@ -51855,6 +51881,21 @@ PrefabInstance:
       propertyPath: spawnPlayer
       value: 
       objectReference: {fileID: 1580298385}
+    - target: {fileID: 8638113697732162020, guid: 0fe5604c12449f24fa9a64efbaa08111,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638113697732162020, guid: 0fe5604c12449f24fa9a64efbaa08111,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638113697732162020, guid: 0fe5604c12449f24fa9a64efbaa08111,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8638113697732162020, guid: 0fe5604c12449f24fa9a64efbaa08111,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -52051,6 +52092,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activator: {fileID: 6842089277986077628}
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
   start: {x: 325.49, y: 51.01, z: 121.57}
   end: {x: 341.98, y: 51.01, z: 121.57}
   speed: 0.25
@@ -52431,6 +52475,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activator: {fileID: 428676336}
+  interactActions:
+    m_PersistentCalls:
+      m_Calls: []
   start: {x: 620.12, y: -0.97, z: 100.6}
   end: {x: 620.12, y: 14.07, z: 100.6}
   speed: 1
@@ -53272,6 +53319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6c7a6bee7300d4880315be2cbc7504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
 --- !u!1839735485 &6915015144845286940
 Tilemap:
   m_ObjectHideFlags: 0
