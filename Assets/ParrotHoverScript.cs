@@ -1,66 +1,103 @@
 using UnityEngine;
 using LMO;
+using TMPro;
 
 public class ParrotHoverScript : MonoBehaviour
 {
-    //public GameObject companionAnchor;
-    //public float speed = 0.3f; // how fast it'll catch up, 0.3 seconds
-    //private Rigidbody rb;
+    [Header("ACTIVATING ANIMATION")]
+    [SerializeField] private GameObject parrot;
+    [SerializeField] private GameObject playerObjectToParentTo;
+    [SerializeField] private GameObject targetObjectToMoveTo;
+    [SerializeField] private float startAnimationSpeed;
 
-    //////////////////////////////////////////////////
+    [Header("FOLLOW SETTINGS")]
+    [SerializeField] private GameObject playerObjectToFollow;
+    [SerializeField] private float radiusToFollow;
+    private Vector3 offset;
+    private bool isFollowing;
 
-    public GameObject parrot;
-    [Header("Scale Settings")]
-    private float targetScale;
-    private float currentScale;
-    [Range(0f, 1f)]
-    [SerializeField] private float smoothness;
-    [SerializeField] private float parrotSize;
+    [SerializeField] private float turnSpeed;
+    [SerializeField] private float moveSpeed;
 
-    //////////////////////////////////////////////////
+    [SerializeField] private Vector2 changeTargetPointTimerRange;
+    private float changeTargetPointTimer;
 
-    //Vector3 refVel = Vector3.zero;
-    //public float smoothVal = .2f; // Higher = 'Smoother'
-
-    void Start()
-    {
-        //companionAnchor = GameObject.Find("companionAnchor");
-        //rb = GetComponent<Rigidbody>();
-        targetScale = 0;
-        currentScale = 0;
+    private void Start() {
+        isFollowing = true;
     }
 
     private void OnEnable() {
-        PlayerHover.OnHoverStarted += ShowParrot;
-        PlayerHover.OnHoverContinued += ShowParrot;
-        PlayerHover.OnHoverEnded += HideParrot;
+        PlayerHover.OnHoverStarted += StartHoverAnimation;
+        PlayerHover.OnHoverContinued += StartHoverAnimation;
+        PlayerHover.OnHoverEnded += StopHoverAnimation;
     }
 
     private void OnDisable() {
-        PlayerHover.OnHoverStarted -= ShowParrot;
-        PlayerHover.OnHoverContinued -= ShowParrot;
-        PlayerHover.OnHoverEnded -= HideParrot;
+        PlayerHover.OnHoverStarted -= StartHoverAnimation;
+        PlayerHover.OnHoverContinued -= StartHoverAnimation;
+        PlayerHover.OnHoverEnded -= StopHoverAnimation;
     }
 
     void FixedUpdate()
     {
-                /* float dist = Vector3.SqrMagnitude(transform.position - companionAnchor.transform.position);
-
-                if (dist >= 10.0f)
-                {
-                    transform.position = Vector3.Lerp(transform.position, companionAnchor.transform.position, smoothVal);
-                    //rb.MovePosition(Vector3.SmoothDamp(transform.position, companionAnchor.transform.position, ref refVel, smoothVal));
-                }*/
-        currentScale = Mathf.Lerp(currentScale, targetScale, smoothness);
-        parrot.transform.localScale = Vector3.one * currentScale;
+        FollowPlayer();
     }
 
-    private void ShowParrot() {
-        targetScale = parrotSize;
+    private void FollowPlayer() {
+        parrot.transform.localScale = Vector3.one * 0.5f;
+        if (isFollowing) {
+            Vector3 targetPosition = playerObjectToFollow.transform.position + offset;
+            parrot.transform.position = Vector3.Lerp(parrot.transform.position, targetPosition, moveSpeed);
+            parrot.transform.LookAt(targetPosition);
+            Countdown();
+        }
+        else {
+            MoveToPlayerHand();
+        }
     }
 
-    private void HideParrot() {
-        currentScale = 0f;
-        targetScale = 0f;
+    private void MoveToPlayerHand() {
+        Vector3 targetPosition = targetObjectToMoveTo.transform.position + Vector3.up * 0.3f;
+        parrot.transform.position = Vector3.Lerp(parrot.transform.position, targetPosition, startAnimationSpeed);
+        parrot.transform.rotation = playerObjectToFollow.transform.rotation;
+    }
+
+    private void Countdown() {
+        changeTargetPointTimer -= TimeValues.FixedDelta;
+        if(changeTargetPointTimer <= 0) {
+            changeTargetPointTimer = Random.Range(changeTargetPointTimerRange.x, changeTargetPointTimerRange.y);
+            GetNewRandomPoint();
+        }
+    }
+
+    private void GetNewRandomPoint() {
+        offset = new Vector3(Random.Range(-radiusToFollow, radiusToFollow), 0.25f, Random.Range(-radiusToFollow, radiusToFollow));
+        PreventOffsetClippingPlayer();
+    }
+
+    private void PreventOffsetClippingPlayer() {
+        if (offset.x > 0) {
+            offset.x = Mathf.Max(offset.x, 1);
+        }
+        if (offset.z > 0) {
+            offset.z = Mathf.Max(offset.z, 1);
+        }
+
+        if (offset.x < 0) {
+            offset.x = Mathf.Min(-offset.x, -1);
+        }
+        if (offset.z < 0) {
+            offset.z = Mathf.Min(-offset.z, -1);
+        }
+    }
+
+    private void StartHoverAnimation() {
+        parrot.transform.SetParent(playerObjectToParentTo.transform);
+        isFollowing = false;
+    }
+
+    private void StopHoverAnimation() {
+        parrot.transform.SetParent(null);
+        isFollowing = true;
     }
 }
