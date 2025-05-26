@@ -13,6 +13,9 @@ namespace LMO {
         [SerializeField] private bool playerMustFacePointToConnect;
         public bool PlayerMustFacePointToConnect => playerMustFacePointToConnect;
 
+        protected bool canConnect;
+        public bool CanConnect => canConnect;
+
         [HideInInspector] public float distanceFromPlayer;
         [HideInInspector] public float angleToPlayer;
 
@@ -34,6 +37,7 @@ namespace LMO {
         protected virtual void Start() {
             detectionRangeSqrd = detectionRange * detectionRange;
             disconnectWhenPlayerFalls = true;
+            canConnect = true;
         }
 
 

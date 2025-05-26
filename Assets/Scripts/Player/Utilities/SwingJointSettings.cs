@@ -40,16 +40,7 @@ namespace LMO {
             }
             //</NR>
 
-
-
             target = grapplePoint;
-            if (grappleIsSwing) {
-                Debug.Log("Swing Joint");
-            } else if (grappleIsSlingShot) {
-                Debug.Log("Sling Shot Joint");
-            }
-
-
 
             currentJoint = player.gameObject.AddComponent<SpringJoint>();
             currentJoint.autoConfigureConnectedAnchor = false;

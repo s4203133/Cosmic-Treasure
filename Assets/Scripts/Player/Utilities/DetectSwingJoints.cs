@@ -65,6 +65,9 @@ namespace LMO {
                 }
 
                 GrapplePoint thisJoint = allJoints[i];
+                if (!thisJoint.CanConnect) {
+                    continue;
+                }
 
                 Vector3 jointPosition = thisJoint.transform.position;
                 Vector3 playerPosition = playerTransform.position + Vector3.up;

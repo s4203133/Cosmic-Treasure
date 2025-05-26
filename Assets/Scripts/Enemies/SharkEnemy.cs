@@ -1,6 +1,4 @@
-using LMO;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SharkEnemy : MonoBehaviour
@@ -24,6 +22,7 @@ public class SharkEnemy : MonoBehaviour
     private float AttackCooldown;
     
     private Vector3 EnemyStartingPosition;
+
     private void Start() {
         canAttack = true;
         EnemyStartingPosition = Enemy.transform.position;
@@ -35,6 +34,7 @@ public class SharkEnemy : MonoBehaviour
             canAttack = false;            
         }
     }
+
     void RayDetectionUp() {
         foreach (Vector3 ray in Rays) {
             RaycastHit hit = new RaycastHit();
@@ -45,6 +45,7 @@ public class SharkEnemy : MonoBehaviour
             }
         }
     }
+
     void Patrolling() {
         foreach (Transform point in PatrolPoints) {
             if (point == PatrolPoints[PointIteration]) {
@@ -68,13 +69,14 @@ public class SharkEnemy : MonoBehaviour
             PointIteration = 0;            
         }
     }
+
     public void Reset() {
         if (!Enemy.activeInHierarchy) {
             Enemy.SetActive(true);
             Enemy.transform.position = EnemyStartingPosition;            
         }
     }
-    // Update is called once per frame
+
     void Update() {
         
         Patrolling();        

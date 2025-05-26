@@ -19,11 +19,9 @@ public class MultiObjectPuzzle : MonoBehaviour
     private void TestAllActivators() {
         for(int i = 0; i < targetActivators.Length; i++) {
             if (!targetActivators[i].isActive) {
-                Debug.Log("Activator " + i + " is not active!");
                 return;
             }
         }
-        Debug.Log("All Activators are active!");
         Actions?.Invoke();
     }
 

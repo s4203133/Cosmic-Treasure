@@ -38,6 +38,10 @@ public class EnemyDeath : MonoBehaviour, ISpinnable, IResettable {
         
     }
     public void Reset() {
+        if(agent == null) {
+            Debug.Log("No Agent On This Enemy!", gameObject);
+            return;
+        }
         agent.isStopped = false;
         enemyCollider.enabled = true;
         SlimeHealth = StartingHealth;

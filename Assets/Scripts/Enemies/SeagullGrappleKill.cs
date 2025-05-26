@@ -1,15 +1,30 @@
 using LMO;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.AI;
+using WWH;
 
-public class SeagullGrappleKill : GrapplePoint
+public class SeagullGrappleKill : GrapplePoint, IResettable
 {
-
     public GameObject Seagull;
-    public override void OnReleased() {
-        base.OnReleased();
+    private NavMeshAgent agent;
+    private Animator anim;
+    private SegualEnemy seagull;
 
-        Seagull.SetActive(false);       
+    protected override void Start() {
+        base.Start();
+        agent = GetComponentInParent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        seagull = GetComponentInParent<SegualEnemy>();
+    }
+
+    public override void OnReleased() {
+        agent.isStopped = true;
+        anim.SetBool("Death", true);
+        seagull.enabled = false;
+        canConnect = false;
+    }
+
+    public void Reset() {
+        canConnect = true;
     }
 }
