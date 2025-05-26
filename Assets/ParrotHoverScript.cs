@@ -22,6 +22,8 @@ public class ParrotHoverScript : MonoBehaviour
     [SerializeField] private Vector2 changeTargetPointTimerRange;
     private float changeTargetPointTimer;
 
+    [SerializeField] private LayerMask groundLayers;
+
     private void Start() {
         isFollowing = true;
     }
@@ -46,14 +48,19 @@ public class ParrotHoverScript : MonoBehaviour
     private void FollowPlayer() {
         parrot.transform.localScale = Vector3.one * 0.5f;
         if (isFollowing) {
-            Vector3 targetPosition = playerObjectToFollow.transform.position + offset;
-            parrot.transform.position = Vector3.Lerp(parrot.transform.position, targetPosition, moveSpeed);
-            parrot.transform.LookAt(targetPosition);
+            MoveToRandomPosition();
             Countdown();
         }
         else {
             MoveToPlayerHand();
         }
+    }
+
+    private void MoveToRandomPosition() {
+        Vector3 targetPosition = playerObjectToFollow.transform.position + offset;
+        PreventClippingThroughFloor(ref targetPosition);
+        parrot.transform.position = Vector3.Lerp(parrot.transform.position, targetPosition, moveSpeed);
+        parrot.transform.LookAt(targetPosition);
     }
 
     private void MoveToPlayerHand() {
@@ -73,6 +80,13 @@ public class ParrotHoverScript : MonoBehaviour
     private void GetNewRandomPoint() {
         offset = new Vector3(Random.Range(-radiusToFollow, radiusToFollow), 0.25f, Random.Range(-radiusToFollow, radiusToFollow));
         PreventOffsetClippingPlayer();
+    }
+
+    private void PreventClippingThroughFloor(ref Vector3 targetPosition) {
+        RaycastHit hit;
+        if(Physics.Raycast(targetPosition + Vector3.up, Vector3.down, out hit, 1.25f, groundLayers)) {
+            targetPosition = hit.point + (Vector3.up * 0.2f);
+        }
     }
 
     private void PreventOffsetClippingPlayer() {
