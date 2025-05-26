@@ -35,11 +35,13 @@ namespace LMO {
             constraintPosition.y = playerTransform.position.y;
             grapple.ConnectJoint(constraintPosition);
 
+            InputHandler.grappleEnded += ReleaseGrapple;
             PlayerDeath.OnPlayerDied += grapple.DisconnectJoint;
             PlayerHealth.OnDamageTaken += ReleaseGrapple; //<NR>
         }
 
         public override void OnStateExit() {
+            InputHandler.grappleEnded -= ReleaseGrapple;
             PlayerDeath.OnPlayerDied -= grapple.DisconnectJoint;
             PlayerHealth.OnDamageTaken -= ReleaseGrapple; //<NR>
         }
@@ -48,6 +50,7 @@ namespace LMO {
         protected void ReleaseGrapple() {
             grapple.DisconnectJoint();
             Grapple.OnGrappleEnded?.Invoke();
+            stateMachine.Idle();
         }
         //</NR>
 
@@ -75,6 +78,7 @@ namespace LMO {
         protected void Spin() {
             grapple.ConnectedObject.Interact();
             grapple.DisconnectJoint();
+            Grapple.OnGrapplePulled?.Invoke();
             Grapple.OnGrappleEnded?.Invoke();
             stateMachine.ChangeState(stateMachine.spinState);
         }

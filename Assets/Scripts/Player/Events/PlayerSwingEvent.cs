@@ -23,6 +23,7 @@ namespace LMO {
 
         public void SubscribeEvents() {
             Grapple.OnGrappleStarted += ConnectGrappleRope;
+            Grapple.OnGrapplePulled += PullGrappleRope;
             Grapple.OnGrappleEnded += EndSwing;
             PlayerSwingState.OnSwingStart += StartSwing;
             PlayerSwingState.OnSwingEnd += EndSwing;
@@ -33,6 +34,7 @@ namespace LMO {
 
         public void UnsubscribeEvents() {
             Grapple.OnGrappleStarted -= ConnectGrappleRope;
+            Grapple.OnGrapplePulled -= PullGrappleRope;
             Grapple.OnGrappleEnded -= EndSwing;
             PlayerSwingState.OnSwingStart -= StartSwing;
             PlayerSwingState.OnSwingEnd -= EndSwing;
@@ -49,6 +51,10 @@ namespace LMO {
 
         private void ConnectGrappleRope() {
             rope.SetRopeTarget(grapple.NearestObject.transform);
+        }
+
+        private void PullGrappleRope() {
+            camShake.shakeTypes.medium.Shake();
         }
 
         private void EndSwing() {

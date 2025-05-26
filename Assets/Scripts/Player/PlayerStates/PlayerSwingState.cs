@@ -33,8 +33,9 @@ namespace LMO {
                 return;
             }
 
-            InputHandler.grappleStarted += DisconnectGrapple;
-            InputHandler.jumpStarted += JumpFromGrapple;
+            //InputHandler.grappleStarted += DisconnectGrapple;
+            //InputHandler.grappleStarted += JumpFromGrapple;
+            InputHandler.grappleEnded += JumpFromGrapple;
 
             StartSwing();
         }
@@ -44,8 +45,9 @@ namespace LMO {
         }
 
         public override void OnStateExit() {
-            InputHandler.grappleStarted -= DisconnectGrapple;
-            InputHandler.jumpStarted -= JumpFromGrapple;
+            //InputHandler.grappleStarted -= DisconnectGrapple;
+            //InputHandler.grappleStarted -= JumpFromGrapple;
+            InputHandler.grappleEnded -= JumpFromGrapple;
 
             EndSwing();
         }

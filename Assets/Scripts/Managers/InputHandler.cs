@@ -183,6 +183,7 @@ namespace LMO {
         
         private void SubscribeGrappleEvents() {
             grapple.started += OnGrapple;
+            grapple.canceled += OnGrapple;
         }
 
         private void UnsubscribeGrappleEvents() {

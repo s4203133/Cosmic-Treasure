@@ -20,6 +20,7 @@ namespace LMO {
         private bool connectedToJoint;
 
         public static Action OnGrappleStarted;
+        public static Action OnGrapplePulled;
         public static Action OnGrappleEnded;
 
         private void Awake() {
