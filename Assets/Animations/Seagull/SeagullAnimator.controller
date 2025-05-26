@@ -31,9 +31,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.028330034
   m_TransitionOffset: 0
-  m_ExitTime: 0.9074074
+  m_ExitTime: 0.0000000011039045
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -162,8 +162,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BasicSeagullIdle
-  m_Speed: 1
+  m_Name: SeagullAttack
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4931093439805776174}
@@ -177,7 +177,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 73d65e58bd0060841ae2a7c064912675,
+  m_Motion: {fileID: 1827226128182048838, guid: b9c1c96e9d4e5b642a30c4aee12f94a0,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -191,8 +191,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Take 001
-  m_Speed: 1
+  m_Name: SeagullMoving
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7097898807854664081}
@@ -206,7 +206,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 7afb9a863ac7d6a43a20896832765eeb,
+  m_Motion: {fileID: 1827226128182048838, guid: d546cb63ad131b34aba2d0e5cb9587e1,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -234,7 +234,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
+  m_Motion: {fileID: 7400000, guid: 76abcbd8b8d769e438b9f5083f3bd37f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
