@@ -11,6 +11,13 @@ namespace LMO {
         private Transform ropeEndPoint;
         private Vector3 currentGrapplePosition;
 
+        [Header("HOOK")]
+        [SerializeField] private GameObject hook;
+        [SerializeField] private GameObject hookOriginalParent;
+        private Vector3 hookOriginalPosition;
+        private Quaternion hookOriginalRotation;
+
+        [Header("SETTINGS")]
         [SerializeField] private int segments;
         [SerializeField] private float speed;
         [SerializeField] private float waveCount;
@@ -26,6 +33,8 @@ namespace LMO {
         public bool AlreadyConnected => isConnected;
 
         public void Initialise() {
+            hookOriginalPosition = hook.transform.localPosition;
+            hookOriginalRotation = hook.transform.localRotation;
             lineRenderer.positionCount = segments + 1;
             spring = new Spring();
             spring.SetTarget(0);
@@ -51,6 +60,8 @@ namespace LMO {
                 Vector3 offset = up * waveHeight * Mathf.Sin(delta * waveCount * Mathf.PI * spring.Value * ropeShape.Evaluate(delta));
                 lineRenderer.SetPosition(i, Vector3.Lerp(startPos, currentGrapplePosition, delta) + offset);
             }
+
+            hook.transform.position = currentGrapplePosition;
         }
 
         public void SetRopeTarget(Transform target) {
@@ -65,6 +76,8 @@ namespace LMO {
             isConnected = false;
             lineRenderer.positionCount = 0;
             spring.Reset();
+            hook.transform.localPosition = hookOriginalPosition;
+            hook.transform.localRotation = hookOriginalRotation;
         }
     }
 
