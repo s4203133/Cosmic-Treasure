@@ -86,6 +86,10 @@ public class ParrotHoverScript : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(targetPosition + Vector3.up, Vector3.down, out hit, 1.25f, groundLayers)) {
             targetPosition = hit.point + (Vector3.up * 0.2f);
+            return;
+        }
+        if(Physics.Raycast(transform.position, (targetPosition - transform.position).normalized, out hit, Vector3.Distance(transform.position, targetPosition), groundLayers)) {
+            targetPosition = hit.point - ((targetPosition - transform.position).normalized * 0.25f);
         }
     }
 
