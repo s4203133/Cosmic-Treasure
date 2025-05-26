@@ -1,8 +1,12 @@
 using UnityEngine;
 using LMO;
+using UnityEngine.AI;
 
 public class EnemyDeath : MonoBehaviour, ISpinnable, IResettable {
     [SerializeField] private GameObject Enemy;
+    private NavMeshAgent agent;
+    private SphereCollider enemyCollider;
+    
     public float SlimeHealth;
     private float CurrentSlimeHealth;
     private float timer = 0;
@@ -12,6 +16,9 @@ public class EnemyDeath : MonoBehaviour, ISpinnable, IResettable {
     private float StartingHealth;
 
     private void Start() {
+        agent = GetComponentInParent<NavMeshAgent>();
+        enemyCollider = GetComponent<SphereCollider>();
+
         CurrentSlimeHealth = SlimeHealth;
         timer = 0;
         canhit = true;
@@ -19,26 +26,36 @@ public class EnemyDeath : MonoBehaviour, ISpinnable, IResettable {
         StartingHealth = SlimeHealth;
     }
     public void OnHit() {
-        if (canhit == true) {
-            SlimeHealth -= 10;
-            canhit = false;
-        }
+        agent.isStopped = true;
+        enemyCollider.enabled = false;
+        SlimeAnims.SetBool("SlimeDead", true);
+
+        //if (canhit == true) {
+        //    SlimeHealth -= 10;
+        //    canhit = false;
+        //}
 
         
     }
     public void Reset() {
+        agent.isStopped = false;
+        enemyCollider.enabled = true;
         SlimeHealth = StartingHealth;
-        Debug.Log(SlimeHealth);
+        SlimeAnims.SetBool("SlimeDead", false);
+        //DeathTimer = 0;
+        canhit = true;
     }
+
     public void Update() {
         if (SlimeHealth <= 0) {
+            agent.isStopped = true;
+            enemyCollider.enabled = false;
             SlimeAnims.SetBool("SlimeDead", true);
-            DeathTimer += Time.deltaTime;
-            if (DeathTimer >= 1.2f) {
-                //Destroy(Enemy);
-                Enemy.SetActive(false);
-            }
-            
+
+            //DeathTimer += Time.deltaTime;
+            //if (DeathTimer >= 1.2f) {
+            //    Enemy.SetActive(false);
+            //}
         }
         if (canhit == false) {
             timer += Time.deltaTime;

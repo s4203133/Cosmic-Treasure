@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using LMO;
-using Unity.VisualScripting;
-using UnityEditor.Recorder.AOV;
 
 
 namespace WWH {
@@ -59,12 +57,12 @@ namespace WWH {
                 }
             }
         }
+
         void Patrolling() {
             foreach (Transform point in PatrolPoints) {
                 if (point == PatrolPoints[PointIteration]) {
                     if (transform.position != point.transform.position) {
                         Enemy.SetDestination(point.transform.position);
-                        
                     }
                     CurrentPoint = point;
                     if (Vector3.Distance(transform.position, CurrentPoint.position) <= 1) {
@@ -94,9 +92,12 @@ namespace WWH {
         }
 
         // Update is called once per frame
-        void Update() {            
-                Patrolling();
-                RayDirection();           
+        void Update() {
+            if (animator.GetBool("SlimeDead")) {
+                return;
+            }
+            Patrolling();
+            RayDirection();           
             if (canAttack == false) {
                 timer2 += Time.deltaTime;
                 if (timer2 >= 2) {

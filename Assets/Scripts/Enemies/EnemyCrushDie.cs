@@ -7,9 +7,7 @@ namespace NR {
        
         public void OnHit() {
             enemy.SetActive(false);
-           
         }
-
     }
 }
 

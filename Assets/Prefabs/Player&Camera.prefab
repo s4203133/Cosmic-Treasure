@@ -1379,7 +1379,7 @@ MonoBehaviour:
   targetObjectToMoveTo: {fileID: 1320954480892833787}
   startAnimationSpeed: 0.15
   playerObjectToFollow: {fileID: 1444023720415131255}
-  radiusToFollow: 5
+  radiusToFollow: 4.5
   turnSpeed: 0.2
   moveSpeed: 0.035
   changeTargetPointTimerRange: {x: 1.5, y: 4}
@@ -4826,9 +4826,9 @@ MonoBehaviour:
   m_CameraRadius: 0.5
   m_Strategy: 0
   m_MaximumEffort: 8
-  m_SmoothingTime: 0.25
-  m_Damping: 0.2
-  m_DampingWhenOccluded: 0.1
+  m_SmoothingTime: 0.1
+  m_Damping: 0.5
+  m_DampingWhenOccluded: 1
   m_OptimalTargetDistance: 0
 --- !u!114 &8092764544201553449
 MonoBehaviour:
@@ -8818,8 +8818,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  standUpDuration: 0
-  coolDownDuration: 0
+  standUpDuration: 0.4
+  coolDownDuration: 0.3
   playerSpawn: {fileID: 0}
 --- !u!1 &6733154612554555184
 GameObject:

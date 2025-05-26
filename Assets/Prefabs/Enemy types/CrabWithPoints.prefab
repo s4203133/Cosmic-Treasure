@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1234406065877289631}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9915115, z: -0, w: 0.13001882}
-  m_LocalPosition: {x: 12.79, y: 0, z: 5.39}
+  m_LocalPosition: {x: -3.51, y: 0, z: -1.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578322721178798144}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.4998757, z: -0, w: 0.8660972}
+  m_LocalRotation: {x: 0, y: -0.49987906, z: 0, w: 0.8660953}
   m_LocalPosition: {x: 459.67, y: 1.17, z: 100.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -92,7 +92,7 @@ Transform:
   m_GameObject: {fileID: 3652226675539403544}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7933466, z: -0, w: 0.6087702}
-  m_LocalPosition: {x: 0, y: 0, z: 9.119995}
+  m_LocalPosition: {x: 0.2, y: 0, z: 11.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -123,7 +123,7 @@ Transform:
   m_GameObject: {fileID: 5261622591707091013}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99144024, z: -0, w: 0.13056202}
-  m_LocalPosition: {x: 8.614655, y: 0, z: 10.159996}
+  m_LocalPosition: {x: -8.13, y: 0, z: 6.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240,6 +240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6043360939930546435, guid: fcbfb69d5e118fe4981c2156d94f04ba,
         type: 3}
+      propertyPath: Slime
+      value: 
+      objectReference: {fileID: 1275252004913990914}
+    - target: {fileID: 6043360939930546435, guid: fcbfb69d5e118fe4981c2156d94f04ba,
+        type: 3}
       propertyPath: PatrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 9075158121944518770}
@@ -262,6 +267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957757215413240037, guid: fcbfb69d5e118fe4981c2156d94f04ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8893426828584771291, guid: fcbfb69d5e118fe4981c2156d94f04ba, type: 3}
@@ -303,7 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d67670871600164cafdcc54ea9e3030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 1275252004913990914}
   SlimeAnims: {fileID: 838370167727084359}
 --- !u!4 &8107858009088698903 stripped
 Transform:
