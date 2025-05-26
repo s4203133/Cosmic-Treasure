@@ -91,6 +91,7 @@ namespace WWH {
         private void Fly() {
             if (HasSeenPlayer == true && canAttack == true) {
                 //SeagullGroundCheck();
+                SegualModel.transform.LookAt(player.transform.position);
                 SegualModel.transform.position = Vector3.Lerp(SegualModel.transform.position, player.transform.position, 0.05f);
                 if (Vector3.Distance(player.transform.position, SegualModel.transform.position) <= 0.1 && canAttack == true) {
                     canAttack = false;                    
@@ -98,6 +99,7 @@ namespace WWH {
             }
 
             if (FindPlayerCountDown > 1) {
+                SegualModel.transform.LookAt(new Vector3(CurrentPoint.transform.position.x, SegualModel.transform.position.y, CurrentPoint.transform.position.z));
                 SegualModel.transform.position = Vector3.Lerp(SegualModel.transform.position, SegualModelHolder.transform.position, 0.07f);
                 if (Vector3.Distance(SegualModel.transform.position, SegualModelHolder.transform.position) <= 0.1) {
                     canAttack = true;
