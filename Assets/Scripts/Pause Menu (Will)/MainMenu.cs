@@ -42,6 +42,12 @@ public class MainMenu : MonoBehaviour {
         input.SwitchCurrentActionMap("Movement");
         SceneManager.LoadScene("Main Menu");
     }
+    public void HubIsland()
+    {
+        Time.timeScale = 1;
+        input.SwitchCurrentActionMap("Movement");
+        SceneManager.LoadScene("Hub_Island");
+    }
     public void FullScreenButton() {
         fullscreen += 1;
         if (fullscreen == 1) {
