@@ -1383,6 +1383,9 @@ MonoBehaviour:
   turnSpeed: 0.2
   moveSpeed: 0.035
   changeTargetPointTimerRange: {x: 1.5, y: 4}
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 5184
 --- !u!54 &5741816577070583027
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3545,7 +3548,9 @@ MonoBehaviour:
   grapplePointDetector: {fileID: 7527452181049185547}
   swingRope:
     lineRenderer: {fileID: 1140257365083411880}
-    ropeStartPoint: {fileID: 5880262094118403227}
+    ropeStartPoint: {fileID: 4954034281064579012}
+    hook: {fileID: 1320954480892833787}
+    hookOriginalParent: {fileID: 5454979235186567955}
     segments: 25
     speed: 0.45
     waveCount: 5
@@ -7723,7 +7728,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5832099822513635561}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0701065, y: 0.000010329531, z: -0.0000033028768, w: 0.9975395}
+  m_LocalRotation: {x: 0.07010567, y: 0.000006920425, z: -0.0000022001914, w: 0.99753964}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
