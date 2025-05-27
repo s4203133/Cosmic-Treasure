@@ -17,7 +17,7 @@ public class SettingsMenu : MonoBehaviour {
     {
         resolutions = Screen.resolutions;
 
-        resolutionDropdown.ClearOptions();
+        //resolutionDropdown.ClearOptions();
 
         List<string> LoadOptions = new List<string>();
 
@@ -37,8 +37,8 @@ public class SettingsMenu : MonoBehaviour {
 
         
         //resolutionsDropdown.AppOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
+        //resolutionDropdown.value = currentResolutionIndex;
+        //resolutionDropdown.RefreshShownValue();
     }
 
     public void SetResolution(int resolutionIndex)
