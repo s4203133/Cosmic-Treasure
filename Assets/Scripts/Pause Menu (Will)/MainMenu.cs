@@ -1,8 +1,5 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,42 +7,42 @@ public class MainMenu : MonoBehaviour {
 
     public Image cursor;
     public Transform ResolutionTypes, Menu;
-    public PlayerInput input;
+    //public PlayerInput input;
     //private InputAction clicked;
    
    
 
-    public VirtualMouseInput MouseInput;
+    //public VirtualMouseInput MouseInput;
     private int fullscreen = 1;
     // Start is called before the first frame update
     void Start() {
         Time.timeScale = 0;
-        input.SwitchCurrentActionMap("UI");
+        //input.SwitchCurrentActionMap("UI");
         //clicked = input.actions.FindAction("click");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
     public void PlayFirstLevel() {
         Time.timeScale = 1;        
-        input.SwitchCurrentActionMap("Movement");
+        //input.SwitchCurrentActionMap("Movement");
         SceneManager.LoadScene("First_Level");
     }
     public void PlayTutorialLevel()
     {
         Time.timeScale = 1;
-        input.SwitchCurrentActionMap("Movement");
+        //input.SwitchCurrentActionMap("Movement");
         SceneManager.LoadScene("Turtorial_Hub_Level");
     }
     public void BackMainMenu()
     {
         Time.timeScale = 1;
-        input.SwitchCurrentActionMap("Movement");
+        //input.SwitchCurrentActionMap("Movement");
         SceneManager.LoadScene("Main Menu");
     }
     public void HubIsland()
     {
         Time.timeScale = 1;
-        input.SwitchCurrentActionMap("Movement");
+        //input.SwitchCurrentActionMap("Movement");
         SceneManager.LoadScene("Hub_Island");
     }
     public void FullScreenButton() {

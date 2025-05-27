@@ -66,7 +66,9 @@ namespace LMO {
         }
 
         private void OnDisable() {
-            currentState.OnStateExit();
+            if(currentState != null) {
+                currentState.OnStateExit();
+            }
         }
 
         private void OnTriggerEnter(Collider other) {

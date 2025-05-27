@@ -16,17 +16,29 @@ public class GamepadUIButton : MonoBehaviour
     private Image image;
     private Button button;
 
-    private void Awake() {
-        image = GetComponent<Image>();
-        button = GetComponent<Button>();
+    private bool initialised;
+
+    private void Start() {
+        Initialise();
 
         if (startHighlighted) {
             Highlight();
-            ActivateInput();
+        }
+    }
+
+    private void Initialise() {
+        if (!initialised) {
+            image = GetComponent<Image>();
+            button = GetComponent<Button>();
+            initialised = true;
         }
     }
 
     private void OnDisable() {
+        DeactivateInput();
+    }
+
+    private void OnDestroy() {
         DeactivateInput();
     }
 
@@ -56,12 +68,14 @@ public class GamepadUIButton : MonoBehaviour
     }
 
     public void Highlight() {
+        Initialise();
         image.color = highlightedColour;
         isHighlighted = true;
         ActivateInput();
     }
 
-    public void UnHighlight(){
+    public void UnHighlight() {
+        Initialise();
         image.color = Color.white;
         isHighlighted = false;
         DeactivateInput();

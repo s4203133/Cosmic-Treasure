@@ -5,6 +5,7 @@ using UnityEngine.VFX;
 namespace LMO {
 
     public class LaunchCannon : MonoBehaviour {
+        [SerializeField] private int sceneToLoad;
         [SerializeField] private GameObject cannonPlayer;
 
         [SerializeField] private VisualEffect launchVFX;
@@ -39,7 +40,12 @@ namespace LMO {
             yield return endScene;
             fadeScreen.gameObject.SetActive(false);
             endScreen.Open();
-            SceneLoadManager.instance.LoadScene(sceneIndexData.EndLevelScene);
+            if (sceneToLoad < 0) {
+                SceneLoadManager.instance.LoadScene(sceneIndexData.EndLevelScene);
+            }
+            else {
+                SceneLoadManager.instance.LoadScene(sceneToLoad);
+            }
         }
     }
 }

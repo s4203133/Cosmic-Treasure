@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DataTransferManager : MonoBehaviour
 {
+    [SerializeField] private SceneIndexData sceneIndexData;
     LevelSaveManager levelSave;
     private bool resetVariables;
 
@@ -16,10 +17,12 @@ public class DataTransferManager : MonoBehaviour
 
     private void OnEnable() {
         InputHandler.pauseStarted += ToggleReset;
+        //Cannon.OnCannonLaunched += GetCurrentLevel;
     }
 
     private void OnDisable() {
         InputHandler.pauseStarted -= ToggleReset;
+        //Cannon.OnCannonLaunched -= GetCurrentLevel;
     }
 
     private void ToggleReset() {
@@ -29,7 +32,7 @@ public class DataTransferManager : MonoBehaviour
     }
 
     private void OnLevelWasLoaded(int level) {
-        if (SceneManager.GetActiveScene().buildIndex == 0) {
+        if (level == 0) {
             resetVariables = false;
             return;
         }
@@ -44,5 +47,9 @@ public class DataTransferManager : MonoBehaviour
         if (levelSave != null) {
             levelSave.ClearData();
         }
+    }
+    
+    private void GetCurrentLevel() {
+        sceneIndexData.currentLevel = SceneManager.GetActiveScene().buildIndex;
     }
 }

@@ -11,6 +11,8 @@ namespace LMO {
         [SerializeField] private float loadDelay;
         private WaitForSeconds delay;
 
+        [SerializeField] private SceneIndexData sceneIndexData;
+
         public static Action OnSceneStartedLoading;
 
         void Awake() {
@@ -53,6 +55,17 @@ namespace LMO {
             IEnumerator DelayLoad() {
                 yield return delay;
                 SceneManager.LoadScene(sceneIndex);
+            }
+        }
+
+        public void LoadNextScene() {
+            switch (sceneIndexData.currentLevel) {
+                case (1):
+                    LoadScene(6);
+                    break;
+                case (6):
+                    LoadScene(8);
+                    break;
             }
         }
     }

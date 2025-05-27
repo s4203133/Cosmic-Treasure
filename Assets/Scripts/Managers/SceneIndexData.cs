@@ -8,4 +8,6 @@ public class SceneIndexData : ScriptableObject
     
     [SerializeField] private int worldMapScene;
     public int WorldMapScene => worldMapScene;
+
+    [HideInInspector] public int currentLevel;
 }

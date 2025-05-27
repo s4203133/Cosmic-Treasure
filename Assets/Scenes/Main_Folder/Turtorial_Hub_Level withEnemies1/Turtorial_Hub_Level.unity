@@ -53473,6 +53473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadDelay: 1.1
+  sceneIndexData: {fileID: 0}
 --- !u!1001 &1391225465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94681,6 +94682,11 @@ PrefabInstance:
       propertyPath: fadeScreen
       value: 
       objectReference: {fileID: 1663690219}
+    - target: {fileID: 6139456400110109777, guid: 53f5ec8f4d60f2e4cb31185b56c959b7,
+        type: 3}
+      propertyPath: sceneToLoad
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6334144734060676538, guid: 53f5ec8f4d60f2e4cb31185b56c959b7,
         type: 3}
       propertyPath: cameraShaker
