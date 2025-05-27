@@ -2,20 +2,24 @@ using UnityEngine;
 
 public class CageBreak : MonoBehaviour
 {
-    public GameObject cageObject; // Optional: reference to disable or destroy
+    public GameObject breakParticles;  // Drag prefab here
+    public AudioClip breakSound;
 
     public void BreakCage()
     {
-        // Play animation, sound, particles, etc.
-        Debug.Log("Cage broken!");
+        // Play particle effect
+        if (breakParticles != null)
+        {
+            Instantiate(breakParticles, transform.position, Quaternion.identity);
+        }
 
-        if (cageObject != null)
+        // Play sound
+        if (breakSound != null)
         {
-            Destroy(cageObject); // Remove cage
+            AudioSource.PlayClipAtPoint(breakSound, transform.position);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+
+        // Destroy cage
+        Destroy(gameObject);
     }
 }
