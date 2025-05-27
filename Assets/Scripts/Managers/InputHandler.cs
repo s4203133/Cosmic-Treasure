@@ -18,6 +18,11 @@ namespace LMO {
         private InputAction quit;
         private InputAction pause;
 
+        private InputAction UILeft;
+        private InputAction UIRight;
+        private InputAction UIUp;
+        private InputAction UIDown;
+
         // Input Delegates
         public delegate void InputEvent();
         public delegate void Vector2Event(Vector2 value);
@@ -43,6 +48,11 @@ namespace LMO {
         public static InputEvent quitStarted;
 
         public static InputEvent pauseStarted;
+
+        public static InputEvent Left;
+        public static InputEvent Right;
+        public static InputEvent Up;
+        public static InputEvent Down;
 
         public static Action Enable;
         public static Action Disable;
@@ -122,6 +132,30 @@ namespace LMO {
         }
         //</NR>
 
+        private void OnLeft(InputAction.CallbackContext context) {
+            if (context.started) {
+                Left?.Invoke();
+            }
+        }
+
+        private void OnRight(InputAction.CallbackContext context) {
+            if (context.started) {
+                Right?.Invoke();
+            }
+        }
+
+        private void OnUp(InputAction.CallbackContext context) {
+            if (context.started) {
+                Up?.Invoke();
+            }
+        }
+
+        private void OnDown(InputAction.CallbackContext context) {
+            if (context.started) {
+                Down?.Invoke();
+            }
+        }
+
         private void InitialiseInputActions() {
             move = inputActions.FindAction("Move");
             jump = inputActions.FindAction("Jump");
@@ -131,6 +165,10 @@ namespace LMO {
             grapple = inputActions.FindAction("Grapple");
             quit = inputActions.FindAction("Quit");
             pause = inputActions.FindAction("Pause");
+            UILeft = inputActions.FindAction("UILeft");
+            UIRight = inputActions.FindAction("UIRight");
+            UIUp = inputActions.FindAction("UIUp");
+            UIDown = inputActions.FindAction("UIDown");
         }
 
         private void SubscribeMoveEvents() {
@@ -208,6 +246,20 @@ namespace LMO {
         }
         //</NR>
 
+        private void SubscribeUIEvents() {
+            UILeft.started += OnLeft;
+            UIRight.started += OnRight;
+            UIUp.started += OnUp;
+            UIDown.started += OnDown;
+        }
+
+        private void UnsubscribeUIEvents() {
+            UILeft.started -= OnLeft;
+            UIRight.started -= OnRight;
+            UIUp.started -= OnUp;
+            UIDown.started -= OnDown;
+        }
+
         private void SubscribeInputEvents() {
             SubscribeMoveEvents();
             SubscribeJumpEvents();
@@ -217,6 +269,7 @@ namespace LMO {
             SubscribeGrappleEvents();
             SubscribeQuitEvents();
             SubscribePauseEvents();
+            SubscribeUIEvents();
             Enable += EnableInput;
             Disable += DisableInput;
         }
@@ -230,6 +283,7 @@ namespace LMO {
             UnsubscribeGrappleEvents();
             UnsubscribeQuitEvents();
             UnsubscribePauseEvents();
+            UnsubscribeUIEvents();
             Enable -= EnableInput;
             Disable -= DisableInput;
         }
@@ -244,6 +298,10 @@ namespace LMO {
             grapple?.Enable();
             quit?.Enable();
             pause?.Enable();
+            UILeft?.Enable();
+            UIRight?.Enable();
+            UIUp?.Enable();
+            UIDown?.Enable();
         }
 
         private void DisableInputActions() {
@@ -256,6 +314,10 @@ namespace LMO {
             quit?.Disable();
             pause?.Disable();
             inputActions?.Disable();
+            UILeft?.Disable();
+            UIRight?.Disable();
+            UIUp?.Disable();
+            UIDown?.Disable();
         }
 
         private void EnableInput() {
