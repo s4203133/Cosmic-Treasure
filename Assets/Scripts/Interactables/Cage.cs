@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Break : MonoBehaviour
+public class CageBreak : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject cageObject; // Optional: reference to disable or destroy
 
-    // Update is called once per frame
-    void Update()
+    public void BreakCage()
     {
-        
+        // Play animation, sound, particles, etc.
+        Debug.Log("Cage broken!");
+
+        if (cageObject != null)
+        {
+            Destroy(cageObject); // Remove cage
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
