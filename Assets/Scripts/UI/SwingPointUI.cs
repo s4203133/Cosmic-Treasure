@@ -28,17 +28,23 @@ namespace LMO {
             grapplePointDetector.OnSwingPointFound += AssignGrapplePoint;
             grapplePointDetector.OnSwingPointOutOfRange += Hide;
             Grapple.OnGrappleStarted += Hide;
+            GrapplePoint.GrapplePointBackOnScreen += EnableOnScreenUI;
+            GrapplePoint.GrapplePointNoLongerOnScreen += DisableOffScreenUI;
         }
 
         private void OnDisable() {
             grapplePointDetector.OnSwingPointFound -= AssignGrapplePoint;
             grapplePointDetector.OnSwingPointOutOfRange -= Hide;
             Grapple.OnGrappleStarted -= Hide;
+            GrapplePoint.GrapplePointBackOnScreen -= EnableOnScreenUI;
+            GrapplePoint.GrapplePointNoLongerOnScreen -= DisableOffScreenUI;
         }
 
         void Update() {
             if (img.enabled) {
-                transform.position = mainCam.WorldToScreenPoint(targetGrapplePoint.transform.position + positionOffset);
+                if (Vector3.Dot((targetGrapplePoint.transform.position - mainCam.transform.position).normalized, mainCam.transform.forward) > 0) {
+                    transform.position = mainCam.WorldToScreenPoint(targetGrapplePoint.transform.position + positionOffset);
+                }
             }
         }
 
@@ -48,16 +54,36 @@ namespace LMO {
             }
         }
 
-            public void AssignGrapplePoint() {
+        public void AssignGrapplePoint() {
             targetGrapplePoint = grapplePointDetector.NearestGrapplePoint().gameObject;
-
             if (grapple.ConnectedObject != null) {
                 if (targetGrapplePoint == grapple.ConnectedObject.gameObject) {
                     Hide();
                     return;
                 }
             }
+            Show();
+        }
 
+        private void DisableOffScreenUI(GameObject grapplePoint) {
+            if(targetGrapplePoint == null) {
+                return;
+            }
+            if(grapplePoint == targetGrapplePoint) {
+                Hide();
+            }
+        }
+
+        private void EnableOnScreenUI(GameObject grapplePoint) {
+            if (targetGrapplePoint == null) {
+                return;
+            }
+            if (grapplePoint == targetGrapplePoint) {
+                Show();
+            }
+        }
+
+        private void Show() {
             transform.position = mainCam.WorldToScreenPoint(targetGrapplePoint.transform.position);
             img.enabled = true;
         }

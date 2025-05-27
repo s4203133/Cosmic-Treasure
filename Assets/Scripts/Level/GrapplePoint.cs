@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,6 +24,8 @@ namespace LMO {
 
         [Space(15)]
         [SerializeField] protected UnityEvent interactActions;
+        public static Action<GameObject> GrapplePointNoLongerOnScreen;
+        public static Action<GameObject> GrapplePointBackOnScreen;
 
         public void Interact() {
             interactActions?.Invoke();
@@ -33,6 +36,14 @@ namespace LMO {
         public virtual void OnGrappled() { }
         public virtual void OnReleased() { }
         //</NR>
+
+        private void OnBecameInvisible() {
+            GrapplePointNoLongerOnScreen?.Invoke(gameObject);
+        }
+
+        private void OnBecameVisible() {
+            GrapplePointBackOnScreen?.Invoke(gameObject);
+        }
 
         protected virtual void Start() {
             detectionRangeSqrd = detectionRange * detectionRange;
