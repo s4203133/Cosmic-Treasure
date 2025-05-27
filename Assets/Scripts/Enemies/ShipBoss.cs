@@ -22,7 +22,7 @@ namespace NR {
     /// When a target in the prefab is hit, the damage is shown in the mesh.
     /// After all three targets are hit, the ship sinks and an event is called.
     /// </summary>
-    public class ShipBoss : MonoBehaviour, IResettable {
+    public class ShipBoss : MonoBehaviour /*IResettable*/ {
         [SerializeField]
         private ShipState[] damageStates;
 
@@ -135,19 +135,19 @@ namespace NR {
         }
 
         // As this inherits from IResettable, it calls this when the player dies.
-        public void Reset() {
-            leftHit = false;
-            midHit = false;
-            rightHit = false;
-            firstHit = true;
-            _meshRenderer.SetMaterials(startMaterials);
-            _meshFilter.mesh = damageStates[0].mesh;
-            middleCannon.SetActive(true);
-            foreach (var target in targets) {
-                target.SetActive(true);
-            }
-            isShooting = false;
-        }
+        //public void Reset() {
+        //    leftHit = false;
+        //    midHit = false;
+        //    rightHit = false;
+        //    firstHit = true;
+        //    _meshRenderer.SetMaterials(startMaterials);
+        //    _meshFilter.mesh = damageStates[0].mesh;
+        //    middleCannon.SetActive(true);
+        //    foreach (var target in targets) {
+        //        target.SetActive(true);
+        //    }
+        //    isShooting = false;
+        //}
 
         // Below are called by targets, using unity events.
 

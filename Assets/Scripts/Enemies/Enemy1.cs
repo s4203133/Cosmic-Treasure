@@ -5,7 +5,7 @@ using LMO;
 
 
 namespace WWH {
-    public class Enemy1 : MonoBehaviour, IResettable {
+    public class Enemy1 : MonoBehaviour {
         
         public List<Vector3> Rays;
         public float distance;
@@ -83,13 +83,13 @@ namespace WWH {
             }            
         }
 
-        public void Reset() {
-            
-            if (Slime != null && !Slime.activeInHierarchy) {
-                Slime.SetActive(true);
-                Slime.transform.position = EnemyStartingPosition;
-            }
-        }
+        //public void Reset() {
+        //    
+        //    if (Slime != null && !Slime.activeInHierarchy) {
+        //        Slime.SetActive(true);
+        //        Slime.transform.position = EnemyStartingPosition;
+        //    }
+        //}
 
         // Update is called once per frame
         void Update() {
@@ -107,8 +107,8 @@ namespace WWH {
             }            
         }
 
-        private void OnDisable() {
-            PlayerDeath.OnPlayerDied -= Reset;
-        }
+        //private void OnDisable() {
+        //    PlayerDeath.OnPlayerDied -= Reset;
+        //}
     }
 }

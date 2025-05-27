@@ -5,7 +5,7 @@ using UnityEngine.VFX;
 
 namespace LMO {
 
-    public class Collectible : MonoBehaviour, IResettable {
+    public class Collectible : MonoBehaviour {
         [SerializeField] protected FloatVariable counter;
         private Vector3 startPosition;
 
@@ -76,11 +76,11 @@ namespace LMO {
 
         }
 
-        public void Reset() {
-            gameObject.SetActive(true);
-            collected = false;
-            collectedVFX.Reinit();
-            transform.position = startPosition;
-        }
+        //public void Reset() {
+        //    gameObject.SetActive(true);
+        //    collected = false;
+        //    collectedVFX.Reinit();
+        //    transform.position = startPosition;
+        //}
     }
 }

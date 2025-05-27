@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using WWH;
 
-public class SeagullGrappleKill : GrapplePoint, IResettable
+public class SeagullGrappleKill : GrapplePoint
 {
     private Transform thisTransform;
     private NavMeshAgent agent;
@@ -37,11 +37,11 @@ public class SeagullGrappleKill : GrapplePoint, IResettable
         hitGround = false;
     }
 
-    public void Reset() {
-        canConnect = true;
-        hitGround = false;
-        killed = false;
-    }
+    //public void Reset() {
+    //    canConnect = true;
+    //    hitGround = false;
+    //    killed = false;
+    //}
 
     private void Update() {
         if (killed) {

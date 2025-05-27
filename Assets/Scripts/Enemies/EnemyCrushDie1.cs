@@ -3,7 +3,7 @@ using LMO;
 using UnityEngine.AI;
 
 namespace NR {
-    public class EnemyCrushDie1 : MonoBehaviour, ICrushable, IResettable {
+    public class EnemyCrushDie1 : MonoBehaviour, ICrushable {
         private NavMeshAgent agent;
         private GameObject enemy;
         private SphereCollider enemyCollider;
@@ -26,10 +26,10 @@ namespace NR {
             SlimeAnims.SetBool("SlimeDead", true);
         }
 
-        public void Reset() {
-            SlimeAnims.SetBool("SlimeDead", false);
-            enemyCollider.enabled = true;
-            agent.isStopped = false;
-        }
+        //public void Reset() {
+        //    SlimeAnims.SetBool("SlimeDead", false);
+        //    enemyCollider.enabled = true;
+        //    agent.isStopped = false;
+        //}
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using LMO;
 using UnityEngine.AI;
 
-public class EnemyDeath : MonoBehaviour, ISpinnable, IResettable {
+public class EnemyDeath : MonoBehaviour, ISpinnable {
     [SerializeField] private GameObject Enemy;
     private NavMeshAgent agent;
     private SphereCollider enemyCollider;
@@ -37,18 +37,18 @@ public class EnemyDeath : MonoBehaviour, ISpinnable, IResettable {
 
         
     }
-    public void Reset() {
-        if(agent == null) {
-            Debug.Log("No Agent On This Enemy!", gameObject);
-            return;
-        }
-        agent.isStopped = false;
-        enemyCollider.enabled = true;
-        SlimeHealth = StartingHealth;
-        SlimeAnims.SetBool("SlimeDead", false);
-        //DeathTimer = 0;
-        canhit = true;
-    }
+    //public void Reset() {
+    //    if(agent == null) {
+    //        Debug.Log("No Agent On This Enemy!", gameObject);
+    //        return;
+    //    }
+    //    agent.isStopped = false;
+    //    enemyCollider.enabled = true;
+    //    SlimeHealth = StartingHealth;
+    //    SlimeAnims.SetBool("SlimeDead", false);
+    //    //DeathTimer = 0;
+    //    canhit = true;
+    //}
 
     public void Update() {
         if (SlimeHealth <= 0) {

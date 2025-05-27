@@ -13,11 +13,11 @@ namespace LMO {
         }
 
         private void SubscribeInput() {
-            InputHandler.selectedStarted += GlobalEventManager.OnSceneRestarted;
+            //InputHandler.quitStarted += GlobalEventManager.OnSceneRestarted;
         }
 
         private void UnsubscribeInput() {
-            InputHandler.selectedStarted -= GlobalEventManager.OnSceneRestarted;
+            //InputHandler.quitStarted -= GlobalEventManager.OnSceneRestarted;
 
         }
     }

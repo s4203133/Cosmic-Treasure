@@ -19,7 +19,7 @@ namespace NR {
 
         private void Start() {
             UpdateOptions();
-            InputHandler.pauseStarted += ShowMenu;
+            //InputHandler.pauseStarted += ShowMenu;
             gameObject.SetActive(false);
         }
 

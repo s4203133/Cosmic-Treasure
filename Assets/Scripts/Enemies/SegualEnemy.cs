@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace WWH {
-    public class SegualEnemy : MonoBehaviour, IResettable {
+    public class SegualEnemy : MonoBehaviour {
         public List<Vector3> Rays;
         public float distance;
         public NavMeshAgent Enemy;
@@ -130,19 +130,19 @@ namespace WWH {
             }
         }
 
-        public void Reset() {
-            if (!this.enabled) {
-                this.enabled = true;
-                Enemy.isStopped = false;
-                animator.SetBool("Attacking", false);
-                animator.SetBool("Death", false);
-            }
-
-            if (!Seagull.activeInHierarchy) {
-                Seagull.SetActive(true);
-                Seagull.transform.position = EnemyStartingPosition;
-            }
-        }
+        //public void Reset() {
+        //    if (!this.enabled) {
+        //        this.enabled = true;
+        //        Enemy.isStopped = false;
+        //        animator.SetBool("Attacking", false);
+        //        animator.SetBool("Death", false);
+        //    }
+        //
+        //    if (!Seagull.activeInHierarchy) {
+        //        Seagull.SetActive(true);
+        //        Seagull.transform.position = EnemyStartingPosition;
+        //    }
+        //}
 
         private void FixedUpdate() {
             Fly();
