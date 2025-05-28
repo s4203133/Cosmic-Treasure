@@ -6,12 +6,13 @@ namespace LMO {
 
         // Observers
         private PlayerVFX playerVFX;
+        private PlayerAudioManager audioManager;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
             PlayerController controller = player.Controller;
-
             playerVFX = controller.playerVFX;
+            audioManager = controller.playerAudioManager;
         }
 
         public void SubscribeEvents() {
@@ -26,10 +27,12 @@ namespace LMO {
 
         private void StartRun() {
             playerVFX.StartRunParticles();
+            audioManager.PlayRunning();
         }
 
         private void StopRun() {
             playerVFX?.StopRunParticles();
+            audioManager.StopRunning();
         }
     }
 }

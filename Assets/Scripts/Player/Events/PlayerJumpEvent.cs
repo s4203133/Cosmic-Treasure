@@ -10,6 +10,7 @@ namespace LMO {
         private PlayerStateMachine stateMachine;
         private HighJumpTrail trail;
         private PlayerMovement movement;
+        private PlayerAudioManager audioManager;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
@@ -20,6 +21,7 @@ namespace LMO {
             stateMachine = controller.playerStateMachine;
             trail = controller.PlayerEffectTrail;
             movement = controller.playerMovment;
+            audioManager = controller.playerAudioManager;
         }
 
         public void SubscribeEvents() {
@@ -37,6 +39,7 @@ namespace LMO {
             playerVFX.PlayJumpParticles();
             playerVFX.StopRunParticles();
             movement.FinishedMoving();
+            audioManager.PlayJump();
         }
 
         private void PlayerSpringJumpEvents() {
@@ -45,6 +48,7 @@ namespace LMO {
             stateMachine.Fall();
             trail.StartTrail();
             movement.FinishedMoving();
+            audioManager.PlayJump();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace LMO {
         private PlayerSquashAndStretch squishy;
         private HighJumpTrail jumpTrail;
         private FOVChanger fovChanger;
+        private PlayerAudioManager audioManager;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
@@ -15,6 +16,7 @@ namespace LMO {
             squishy = player.SqashAndStretch;
             jumpTrail = player.Trail;
             fovChanger = player.FOV_Changer;
+            audioManager = player.Controller.playerAudioManager;
         }
 
         // When the player dives, notify other systems so they can respond
@@ -31,6 +33,8 @@ namespace LMO {
             squishy.Dive.Play();
             jumpTrail.StartTrail();
             fovChanger.StartChange();
+            audioManager.PlayDive();
+            audioManager.StopGroundPound();
         }
     }
 }

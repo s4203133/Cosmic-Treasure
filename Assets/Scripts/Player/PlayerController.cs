@@ -26,6 +26,7 @@ namespace LMO {
         [SerializeField] private LedgeHopUp ledgeHopUp;
         [SerializeField] private PlayerFloat floaty;
         [SerializeField] private PlayerVFX vfx;
+        [SerializeField] private PlayerAudioManager audioManager;
         [SerializeField] private Animator animator;
         [SerializeField] private PlayerSquashAndStretch squashAndStretch;
         [SerializeField] private HighJumpTrail effectTrail;
@@ -52,6 +53,7 @@ namespace LMO {
         public LedgeHopUp LedgeHopUp => ledgeHopUp;
         public PlayerFloat playerFloat => floaty;
         public PlayerVFX playerVFX => vfx;
+        public PlayerAudioManager playerAudioManager => audioManager;
         public Animator playerAnimator => animator;
         public PlayerSquashAndStretch playerSquashAndStretch => squashAndStretch;
         public HighJumpTrail PlayerEffectTrail => effectTrail;

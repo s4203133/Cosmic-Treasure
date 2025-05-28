@@ -54,6 +54,7 @@ namespace LMO {
                 collectedVFX.Play();
                 StartCoroutine(DisableCollectVFX());
                 gameObject.SetActive(false);
+                Collected();
             }
             else if (groundDetectionLayers == (groundDetectionLayers | (1 << other.gameObject.layer))) {
                 HitGround();
@@ -70,6 +71,10 @@ namespace LMO {
             yield return disableVFXDelay;
             Destroy(collectedVFX.gameObject, collectedVFXDuration);
             collectedVFX.gameObject.SetActive(false);
+        }
+
+        protected virtual void Collected() {
+
         }
 
         protected virtual void HitGround() {

@@ -22,12 +22,17 @@ namespace LMO {
         public bool CanAirSpin => airSpins < maxAirSpins;
 
         public static Action OnSpin;
+        public static Action OnAirSpin;
         public static Action OnSpinEnd;
 
         public void StartSpin() {
             counter = length;
             spinRangeCollider.enabled = true;
-            OnSpin?.Invoke();
+            if (airSpins == 0) {
+                OnSpin?.Invoke();
+            } else if(airSpins > 0) {
+                OnAirSpin?.Invoke();
+            }
         }
 
         public void Countdown() {

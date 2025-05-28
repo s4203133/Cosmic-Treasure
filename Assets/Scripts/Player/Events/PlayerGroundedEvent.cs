@@ -10,6 +10,8 @@ namespace LMO {
         private PlayerHover playerHover;
         private FOVChanger fovChanger;
         private PlayerMovement movement;
+        private PlayerAudioManager audioManager;
+        private PlayerInput input;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
@@ -19,14 +21,18 @@ namespace LMO {
             playerHover = player.Controller.playerHover;
             fovChanger = player.FOV_Changer;
             movement = player.Controller.playerMovment;
+            audioManager = player.Controller.playerAudioManager;
+            input = player.Controller.playerInput;
         }
 
         public void SubscribeEvents() {
             Grounded.OnLanded += OnPLayerLanded;
+            Grounded.OnLeftGround += LeftGround;
         }
 
         public void UnsubscribeEvents() {
             Grounded.OnLanded -= OnPLayerLanded;
+            Grounded.OnLeftGround -= LeftGround;
         }
 
         public void OnPLayerLanded() {
@@ -36,6 +42,14 @@ namespace LMO {
             playerHover.EnableHover();
             fovChanger.EndChange();
             movement.FinishedMoving();
+            audioManager.PlayLand();
+            if(input.moveInput != Vector2.zero) {
+                audioManager.PlayRunning();
+            }
+        }
+
+        private void LeftGround() {
+            audioManager.StopRunning();
         }
     }
 }

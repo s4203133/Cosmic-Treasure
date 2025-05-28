@@ -11,6 +11,7 @@ namespace LMO {
         private HighJumpTrail trail;
         private Grapple grapple;
         private SwingRope rope;
+        private PlayerAudioManager audioManager;
 
         public void Initialise(EventManager manager) {
             PlayerEventManager player = manager as PlayerEventManager;
@@ -19,6 +20,7 @@ namespace LMO {
             trail = player.Trail;
             grapple = player.Controller.playerGrapple;
             rope = grapple.Rope;
+            audioManager = player.Controller.playerAudioManager;
         }
 
         public void SubscribeEvents() {
@@ -47,24 +49,29 @@ namespace LMO {
             swing.StartSwing(grapple.NearestObject.transform);
             ConnectGrappleRope();
             fovChanger.EndChange();
+            audioManager.PlaySwing();
         }
 
         private void ConnectGrappleRope() {
             rope.SetRopeTarget(grapple.NearestObject.transform);
+            audioManager.PlayShootRope();
         }
 
         private void PullGrappleRope() {
             camShake.shakeTypes.medium.Shake();
+            audioManager.PlayFireSlingShot();
         }
 
         private void EndSwing() {
             swing.EndSwing();
             rope.DetatchRope();
+            audioManager.PlayReleaseRope();
         }
 
         private void JumpFromSwing() {
             trail.StartTrail();
             fovChanger.StartChange();
+            audioManager.PlayJumpFromRope();
         }
 
         private void Land() {
