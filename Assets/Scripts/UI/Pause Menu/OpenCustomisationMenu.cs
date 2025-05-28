@@ -17,20 +17,23 @@ namespace LMO {
 
         protected override void OnInteractiveMenuOpened() {
             base.OnInteractiveMenuOpened();
-            player.position = transformToPlacePlayer.position;
-            player.rotation = transformToPlacePlayer.rotation;
-            stateMachine.Deactivate();
-            cameraSwapper.ActivateCamera();
-            CloseMenu();
-            InputHandler.Disable();
-            Cursor.lockState = CursorLockMode.None;
+            if (interactionMenuOpened) {
+                player.position = transformToPlacePlayer.position;
+                player.rotation = transformToPlacePlayer.rotation;
+                stateMachine.Deactivate();
+                cameraSwapper.ActivateCamera();
+                CloseMenu();
+                InputHandler.Disable();
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
 
         public override void OnInteractiveMenuClosed() {
-            base.OnInteractiveMenuClosed();
             stateMachine.Activate();
             cameraSwapper.DeativateCamera();
+            InputHandler.Enable();
             OpenMenu();
+            base.OnInteractiveMenuClosed();
         }
     }
 }

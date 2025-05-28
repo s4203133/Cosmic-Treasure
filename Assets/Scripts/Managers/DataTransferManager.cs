@@ -16,13 +16,13 @@ public class DataTransferManager : MonoBehaviour
     }
 
     private void OnEnable() {
+        SceneManager.sceneLoaded += LevelLoaded;
         InputHandler.pauseStarted += ToggleReset;
-        //Cannon.OnCannonLaunched += GetCurrentLevel;
     }
 
     private void OnDisable() {
+        SceneManager.sceneLoaded -= LevelLoaded;
         InputHandler.pauseStarted -= ToggleReset;
-        //Cannon.OnCannonLaunched -= GetCurrentLevel;
     }
 
     private void ToggleReset() {
@@ -31,8 +31,8 @@ public class DataTransferManager : MonoBehaviour
         }
     }
 
-    private void OnLevelWasLoaded(int level) {
-        if (level == 0) {
+    private void LevelLoaded(Scene scene, LoadSceneMode loadMode) {
+        if (scene.buildIndex == 0) {
             resetVariables = false;
             return;
         }
@@ -47,9 +47,5 @@ public class DataTransferManager : MonoBehaviour
         if (levelSave != null) {
             levelSave.ClearData();
         }
-    }
-    
-    private void GetCurrentLevel() {
-        sceneIndexData.currentLevel = SceneManager.GetActiveScene().buildIndex;
     }
 }

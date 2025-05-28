@@ -26,14 +26,12 @@ namespace LMO {
         }
 
         protected void OpenMenu() {
-            //Debug.Log("Opening Menu");
             if (menuToDisplay != null) {
                 menuToDisplay.FadeIn();
             }
         }
 
         protected void CloseMenu() {
-            //Debug.Log("Closing Menu");
             if (menuToDisplay != null) {
                 menuToDisplay.FadeOut();
             }

@@ -1,10 +1,12 @@
 using LMO;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GamepadUIButton : MonoBehaviour
 {
     [SerializeField] private bool startHighlighted;
+    private Color unHighlightedColour;
     [SerializeField] private Color highlightedColour;
     private bool isHighlighted;
 
@@ -12,6 +14,9 @@ public class GamepadUIButton : MonoBehaviour
     [SerializeField] private GamepadUIButton rightButton;
     [SerializeField] private GamepadUIButton upButton;
     [SerializeField] private GamepadUIButton downButton;
+
+    [Space(10)]
+    [SerializeField] private UnityEvent OnHighlighted;
 
     private Image image;
     private Button button;
@@ -30,6 +35,7 @@ public class GamepadUIButton : MonoBehaviour
         if (!initialised) {
             image = GetComponent<Image>();
             button = GetComponent<Button>();
+            unHighlightedColour = image.color;
             initialised = true;
         }
     }
@@ -47,7 +53,7 @@ public class GamepadUIButton : MonoBehaviour
         InputHandler.Right += HighlightRightButton;
         InputHandler.Up += HighlightUpButton;
         InputHandler.Down += HighlightDownButton;
-        InputHandler.jumpPerformed += SelectButton;
+        InputHandler.click += SelectButton;
     }
 
     private void DeactivateInput() {
@@ -55,7 +61,7 @@ public class GamepadUIButton : MonoBehaviour
         InputHandler.Right -= HighlightRightButton;
         InputHandler.Up -= HighlightUpButton;
         InputHandler.Down -= HighlightDownButton;
-        InputHandler.jumpPerformed -= SelectButton;
+        InputHandler.click -= SelectButton;
     }
 
     public void SelectButton() {
@@ -71,12 +77,13 @@ public class GamepadUIButton : MonoBehaviour
         Initialise();
         image.color = highlightedColour;
         isHighlighted = true;
+        OnHighlighted?.Invoke();
         ActivateInput();
     }
 
     public void UnHighlight() {
         Initialise();
-        image.color = Color.white;
+        image.color = unHighlightedColour;
         isHighlighted = false;
         DeactivateInput();
     }

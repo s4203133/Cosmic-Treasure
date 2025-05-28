@@ -21,6 +21,9 @@ namespace NR {
         private TMP_Dropdown clothesDropdown;
 
         [SerializeField]
+        private TextMeshProUGUI itemName;
+
+        [SerializeField]
         private TextMeshProUGUI itemDescription;
 
         [SerializeField]
@@ -30,6 +33,9 @@ namespace NR {
 
         private PlayerInventorySave inventorySave;
 
+        [SerializeField]
+        private GamepadUIButton startingButton;
+
         private void Start() {
             inventorySave = PlayerSaveLoader.Instance.playerSave;
             moneyDisplay.text = $"{inventorySave.coins.value.ToString("000")}\n{inventorySave.gems.value.ToString("000")}";
@@ -38,7 +44,7 @@ namespace NR {
                     buyableClothes.Remove(item);
                 }
             }
-            ListItemNames();
+            //ListItemNames();
         }
 
         private void ListItemNames() {
@@ -78,6 +84,27 @@ namespace NR {
             }
         }
 
+        public void BuyItem(PlayerOutfitItem buyableOutfitItem) {
+            if(buyableOutfitItem.purchased) {
+                inventorySave.savedOutfit.hat = buyableOutfitItem;
+                
+                return;
+            }
+            if (inventorySave.coins.value < buyableOutfitItem.coinCost) {
+                ShowBuyPopup("Not enough coins!");
+            }
+            else {
+                inventorySave.coins.value -= buyableOutfitItem.coinCost;
+                moneyDisplay.text = $"{inventorySave.coins.value.ToString("000")}\n{inventorySave.gems.value.ToString("000")}";
+                ShowBuyPopup($"{buyableOutfitItem.itemName} bought!");
+                inventorySave.ownedClothes.Add(buyableOutfitItem);
+                buyableClothes.Remove(buyableOutfitItem);
+                itemDescription.text = "";
+                buyableOutfitItem.purchased = true;
+                inventorySave.savedOutfit.hat = buyableOutfitItem;
+            }
+        }
+
         private void ShowBuyPopup(string text) {
             StopAllCoroutines();
             StartCoroutine(ShowPopupCoroutine(text));
@@ -87,6 +114,11 @@ namespace NR {
             buyPopup.text = text;
             yield return new WaitForSeconds(3);
             buyPopup.text = "";
+        }
+
+        public void DisplayItemInfo(PlayerOutfitItem item) {
+            itemName.text = item.name;
+            itemDescription.text = item.itemDescription;
         }
     }
 }
