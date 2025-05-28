@@ -12,6 +12,8 @@ public class PlayerAudioManager : MonoBehaviour
     [SerializeField] private AudioSource groundPoundLand;
     [SerializeField] private AudioSource dive;
     [SerializeField] private AudioSource hover;
+    [SerializeField] private AudioSource wallJump;
+    [SerializeField] private AudioSource contactWithWall;
 
     [Header("SWINGING")]
     [SerializeField] private AudioSource shootRope;
@@ -40,11 +42,6 @@ public class PlayerAudioManager : MonoBehaviour
     [SerializeField] private AudioSource hitByEnemy;
     [SerializeField] private AudioSource death;
 
-
-    [Header("CANNON")]
-    [SerializeField] private AudioSource enterCannon;
-    [SerializeField] private AudioSource launchCannon;
-
     private void PlaySound(AudioSource sound) {
         sound.pitch = Random.Range(0.88f, 1.12f);
         sound.Play();
@@ -62,6 +59,8 @@ public class PlayerAudioManager : MonoBehaviour
     public void PlayDive() => PlaySound(dive);
     public void PlayHover() => PlaySound(hover);
     public void StopHover() => hover.Stop();
+    public void PlayWallJump() => PlaySound(wallJump);
+    public void PlayContactWithWall() => PlaySound(contactWithWall);
 
     public void PlayShootRope() => PlaySound(shootRope);
     public void PlaySwing() => PlaySound(swing);
@@ -87,7 +86,4 @@ public class PlayerAudioManager : MonoBehaviour
     public void PlayHitByEnemy() => PlaySound(hitByEnemy);
     public void PlayDeath() => PlaySound(death);
 
-
-    public void PlayEnterCannon() => PlaySound(enterCannon);
-    public void PlayLaunchCannon() => PlaySound(launchCannon);
 }

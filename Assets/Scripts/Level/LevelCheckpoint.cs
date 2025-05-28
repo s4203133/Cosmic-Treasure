@@ -11,6 +11,7 @@ namespace LMO {
         [Header("CHECK POINT ANIMATION")]
         [SerializeField] private Animator checkPointAnimator;
         [SerializeField] private string animationTriggerText;
+        [SerializeField] private AudioSource soundEffect;
 
         private bool triggered;
 
@@ -24,8 +25,8 @@ namespace LMO {
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
-                SetSpawnData();
                 TriggerCheckpointAnimation();
+                SetSpawnData();
             }
         }
 
@@ -38,8 +39,14 @@ namespace LMO {
         }
 
         private void TriggerCheckpointAnimation() {
+            if (triggered) {
+                return;
+            }
             if (checkPointAnimator != null) {
                 checkPointAnimator.SetTrigger(animationTriggerText);
+            }
+            if(soundEffect != null) {
+                soundEffect.Play();
             }
         }
 

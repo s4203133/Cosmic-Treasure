@@ -27,11 +27,15 @@ namespace LMO {
         public void SubscribeEvents() {
             PlayerJump.OnJump += PlayerJumpEvents;
             SpringPad.OnSmallSpringJump += PlayerSpringJumpEvents;
+            PlayerWallJump.OnWallJump += audioManager.PlayWallJump;
+            PlayerWallJump.OnWallSlideStart += audioManager.PlayContactWithWall;
         }
 
         public void UnsubscribeEvents() {
             PlayerJump.OnJump -= PlayerJumpEvents;
             SpringPad.OnSmallSpringJump -= PlayerSpringJumpEvents;
+            PlayerWallJump.OnWallJump -= audioManager.PlayWallJump;
+            PlayerWallJump.OnWallSlideStart -= audioManager.PlayContactWithWall;
         }
 
         private void PlayerJumpEvents() {

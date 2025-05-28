@@ -23,6 +23,10 @@ namespace LMO {
 
         private bool hasBeenInteractedWith;
 
+        [Header("SFX")]
+        [SerializeField] private AudioSource enteredCannonSound;
+        [SerializeField] private AudioSource fireCannonSound;
+
         private void Start() {
             boxCollision = GetComponent<BoxCollider>();
             launchDelay = new WaitForSeconds(launchDelayTime);
@@ -69,6 +73,7 @@ namespace LMO {
         }
 
         private void LaunchCannon() {
+            enteredCannonSound.Play();
             StartCoroutine(LaunchPlayerOutCannon());
         }
 
@@ -76,6 +81,7 @@ namespace LMO {
             yield return launchDelay;
             OnCannonLaunched?.Invoke();
             launchCannon.Launch();
+            fireCannonSound.Play();
         }
     }
 }
