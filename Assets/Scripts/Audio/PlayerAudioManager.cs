@@ -24,6 +24,20 @@ public class PlayerAudioManager : MonoBehaviour
     [SerializeField] private AudioSource collectCoin;
     [SerializeField] private AudioSource collectGem;
 
+    [Header("INTERACTABLES")]
+    [SerializeField] private AudioSource openChest;
+    [SerializeField] private AudioSource hitLever;
+    [SerializeField] private AudioSource hitButton;
+    [SerializeField] private AudioSource breakGlassBottle;
+    [SerializeField] private AudioSource openPage;
+
+    [Header("ENEMIES")]
+    [SerializeField] private AudioSource killCrab;
+    [SerializeField] private AudioSource slamSeagull;
+    [SerializeField] private AudioSource hitByEnemy;
+    [SerializeField] private AudioSource death;
+
+
     [Header("CANNON")]
     [SerializeField] private AudioSource enterCannon;
     [SerializeField] private AudioSource launchCannon;
@@ -55,6 +69,17 @@ public class PlayerAudioManager : MonoBehaviour
 
     public void PlayCollectCoin() => PlaySound(collectCoin);
     public void PlayCollectGem() => PlaySound(collectGem);
+
+    public void PlayOpenChest() => PlaySound(openChest);
+    public void PlayHitLever() => PlaySound(hitLever);
+    public void PlayHitButton() => PlaySound(hitButton);
+    public void PlayBreakGlassBottle() => PlaySound(breakGlassBottle);
+    public void PlayOpenPage() => PlaySound(openPage);
+
+    public void PlayKillCrab() => PlaySound(killCrab);
+    public void PlaySlamSeagull() => PlaySound(slamSeagull);
+    public void PlayHitByEnemy() => PlaySound(hitByEnemy);
+    public void PlayDeath() => PlaySound(death);
 
 
     public void PlayEnterCannon() => PlaySound(enterCannon);

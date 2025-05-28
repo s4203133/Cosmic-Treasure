@@ -1,25 +1,35 @@
 using UnityEngine;
+using LMO;
 
-public class CageBreak : MonoBehaviour
+public class CageBreak : MonoBehaviour, IBreakable
 {
     public GameObject breakParticles;  // Drag prefab here
     public AudioClip breakSound;
 
-    public void BreakCage()
+    [Header("RABBIT ANIMATION")]
+    [SerializeField] private Animator rabbitAnimator;
+    [SerializeField] private string triggerName;
+
+    public void Break() {
+        BreakCage();
+    }
+
+    private void BreakCage()
     {
-        // Play particle effect
         if (breakParticles != null)
         {
             Instantiate(breakParticles, transform.position, Quaternion.identity);
         }
 
-        // Play sound
         if (breakSound != null)
         {
             AudioSource.PlayClipAtPoint(breakSound, transform.position);
         }
 
-        // Destroy cage
+        if (rabbitAnimator != null) {
+            rabbitAnimator.SetTrigger(triggerName);
+        }
+
         Destroy(gameObject);
     }
 }

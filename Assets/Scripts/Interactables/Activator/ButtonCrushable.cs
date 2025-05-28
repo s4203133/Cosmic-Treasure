@@ -1,4 +1,5 @@
 using LMO;
+using System;
 using UnityEngine;
 
 namespace NR {
@@ -24,6 +25,8 @@ namespace NR {
         [SerializeField]
         private bool active = true;
 
+        public static Action OnInteracted;
+
         protected override void Awake() {
             base.Awake();
             switch (buttonType) {
@@ -41,6 +44,7 @@ namespace NR {
             if (active && buttonReady) {
                 isActive = true;
                 OnActivate?.Invoke();
+                OnInteracted?.Invoke();
                 animator.SetBool("Hit", true);
                 buttonReady = false;
                 buttonRenderer.material.color = pressedColour;

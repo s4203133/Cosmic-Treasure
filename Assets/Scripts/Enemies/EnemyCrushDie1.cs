@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
-using LMO;
 using UnityEngine.AI;
+using LMO;
 
 namespace NR {
     public class EnemyCrushDie1 : MonoBehaviour, ICrushable {
@@ -13,6 +14,8 @@ namespace NR {
 
         public Animator SlimeAnims;
 
+        public static Action OnEnemyHit;
+
         private void Start() {
             agent = GetComponentInParent<NavMeshAgent>();
             enemyCollider = GetComponent<SphereCollider>();
@@ -24,6 +27,7 @@ namespace NR {
             agent.isStopped = true;
             enemyCollider.enabled = false;
             SlimeAnims.SetBool("SlimeDead", true);
+            OnEnemyHit?.Invoke();   
         }
 
         //public void Reset() {

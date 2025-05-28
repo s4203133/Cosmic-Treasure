@@ -1,6 +1,7 @@
-using LMO;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using LMO;
 using WWH;
 
 public class SeagullGrappleKill : GrapplePoint
@@ -19,6 +20,8 @@ public class SeagullGrappleKill : GrapplePoint
     [SerializeField] private float flyAwaySpeed;
     private Vector3 flyAwayDirection;
 
+    public static Action OnEnemyHit;
+
     protected override void Start() {
         base.Start();
         thisTransform = transform;
@@ -35,6 +38,7 @@ public class SeagullGrappleKill : GrapplePoint
         canConnect = false;
         killed = true;
         hitGround = false;
+        OnEnemyHit?.Invoke();
     }
 
     //public void Reset() {

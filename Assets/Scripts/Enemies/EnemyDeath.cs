@@ -1,6 +1,7 @@
 using UnityEngine;
 using LMO;
 using UnityEngine.AI;
+using System;
 
 public class EnemyDeath : MonoBehaviour, ISpinnable {
     [SerializeField] private GameObject Enemy;
@@ -14,6 +15,8 @@ public class EnemyDeath : MonoBehaviour, ISpinnable {
     public Animator SlimeAnims;
     private float DeathTimer;
     private float StartingHealth;
+
+    public static Action OnEnemyHit;
 
     private void Start() {
         agent = GetComponentInParent<NavMeshAgent>();
@@ -29,13 +32,14 @@ public class EnemyDeath : MonoBehaviour, ISpinnable {
         agent.isStopped = true;
         enemyCollider.enabled = false;
         SlimeAnims.SetBool("SlimeDead", true);
+        OnEnemyHit?.Invoke();
 
         //if (canhit == true) {
         //    SlimeHealth -= 10;
         //    canhit = false;
         //}
 
-        
+
     }
     //public void Reset() {
     //    if(agent == null) {

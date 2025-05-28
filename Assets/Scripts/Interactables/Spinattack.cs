@@ -29,7 +29,7 @@ public class SpinAttack : MonoBehaviour
                 CageBreak cage = collision.gameObject.GetComponent<CageBreak>();
                 if (cage != null)
                 {
-                    cage.BreakCage();
+                   // cage.BreakCage();
                 }
             }
 

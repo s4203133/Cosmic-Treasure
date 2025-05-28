@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -17,6 +18,8 @@ namespace LMO {
         [Header("SPAWNING ITEMS")]
         [SerializeField] private CoinSpawner coinSpawner;
 
+        public static Action OnOpened;
+
         void Awake() {
             animator = GetComponent<Animator>();
         }
@@ -34,6 +37,7 @@ namespace LMO {
                 breakOpenEffect.Play();
                 ActivateOpenColliders();
                 coinSpawner.SpawnCoin();
+                OnOpened?.Invoke();
             }
         }
 

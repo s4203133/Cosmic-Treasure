@@ -37,6 +37,7 @@ namespace LMO {
 
         public SpawnPlayer playerSpawn;
         public static Action PlayerKilledByEnemy;
+
         private void Start() {
             stateMachine = player.playerStateMachine;
             rigidBody = player.RigidBody;
