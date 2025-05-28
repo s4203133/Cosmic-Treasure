@@ -13,7 +13,7 @@ namespace NR {
             LevelSaveManager script = (LevelSaveManager)target;
 
             if (GUILayout.Button("Reset Level Save")) {
-                script.ClearSavedGems();
+                script.ClearData();
             }
         }
     }
