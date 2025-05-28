@@ -4,6 +4,7 @@ using UnityEngine;
 public class CoinSpawnDropped : CoinSpawner
 {
     [SerializeField] private CoinDropped[] coins;
+    public int amount => coins.Length;
 
     private void Start()
     {

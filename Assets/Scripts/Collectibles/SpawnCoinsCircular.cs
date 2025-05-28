@@ -5,6 +5,7 @@ namespace LMO {
     public class SpawnCoinsCircular : CoinSpawner {
 
         [SerializeField] private int numberOfCoins;
+        public int amount => numberOfCoins;
         [SerializeField] private float radius;
         private Vector3 spawnPosition;
         [SerializeField] private float yOffset;
