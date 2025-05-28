@@ -2977,6 +2977,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 704232971}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &67854630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 67854632}
+  - component: {fileID: 67854631}
+  m_Layer: 0
+  m_Name: PlunderCriterea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &67854631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67854630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a75777c09454c4aa13d96aaf43cf47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plunderScore: {fileID: 11400000, guid: 59498e9c02159c247b8722fa85929699, type: 2}
+--- !u!4 &67854632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67854630}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 313.26578, y: 198.0424, z: 9.675762}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &68690769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104086,3 +104131,4 @@ SceneRoots:
   - {fileID: 2145602110}
   - {fileID: 1933311147}
   - {fileID: 658291669}
+  - {fileID: 67854632}

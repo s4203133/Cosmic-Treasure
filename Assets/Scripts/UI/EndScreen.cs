@@ -1,23 +1,20 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class EndScreen : MonoBehaviour
 {
-    [SerializeField] private PlayersLevelStats levelStats;
+    //[SerializeField] private PlayersLevelStats levelStats;
+    [SerializeField] private PlunderScore plunderScore;
+    [SerializeField] private TextMeshProUGUI plunderScoreText;
 
     [Space(15)]
     [SerializeField] private Animator animator;
-
-    [Space(15)]
-    [SerializeField] private TextMeshProUGUI coinCounterText;
-    [SerializeField] private TextMeshProUGUI timesDiedText;
-    [SerializeField] private TextMeshProUGUI timeTookText;
+    //[SerializeField] private TextMeshProUGUI timesDiedText;
+    //[SerializeField] private TextMeshProUGUI timeTookText;
 
     private void Start()
     {
-        InitialiseLevelStatText();
+        DisplayPlunderScore();
     }
 
     public void Open()
@@ -25,36 +22,20 @@ public class EndScreen : MonoBehaviour
         animator.SetTrigger("Open");
     }
 
-    private void InitialiseLevelStatText()
+    private void DisplayPlunderScore()
     {
-        AssignCoinCounterText();
-        AssignDeathsText();
-        AssignTimeText();
-    }
-
-    private void AssignCoinCounterText()
-    {
-        if (coinCounterText != null)
+        if (plunderScoreText != null)
         {
-            coinCounterText.text = levelStats.CoinsCollected.ToString("000");
-        }
-    }
-
-    private void AssignDeathsText()
-    {
-        if (timesDiedText != null)
-        {
-            timesDiedText.text = "x" + levelStats.TimesDied.ToString("00");
-        }
-    }
-
-    private void AssignTimeText()
-    {
-        if (timeTookText != null)
-        {
-            int minutes = (int)(levelStats.TimeTook / 60);
-            int seconds = (int)(levelStats.TimeTook % 60);
-            timeTookText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+            plunderScore.CalculatePlunderScore();
+            if (plunderScore.Score >= 100) {
+                plunderScoreText.text = "100%";
+            }
+            else if (plunderScore.Score <= 0) {
+                plunderScoreText.text = "00%";
+            }
+            else {
+                plunderScoreText.text = plunderScore.Score.ToString("F2") + "%";
+            }
         }
     }
 }

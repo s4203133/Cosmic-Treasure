@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class RabbitCounter : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class RabbitCounter : MonoBehaviour
     private int collected = 0;
 
     public static RabbitCounter Instance;
+
+    public static Action OnCollectedRabbit;
 
     void Awake()
     {
@@ -22,6 +25,7 @@ public class RabbitCounter : MonoBehaviour
     public void AddRabbit()
     {
         collected++;
+        OnCollectedRabbit?.Invoke();
         UpdateUI();
     }
 

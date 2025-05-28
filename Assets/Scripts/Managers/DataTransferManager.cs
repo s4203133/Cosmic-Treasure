@@ -49,3 +49,17 @@ public class DataTransferManager : MonoBehaviour
         }
     }
 }
+
+[System.Serializable]
+public class k {
+
+    private int totalCoins;
+    private int totalGems;
+    private int totalRabbits;
+    private int totalEnemies;
+
+    public int coins;
+    public int gems;
+    public int rabbits;
+    public int enemiesEliminated;
+}
