@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace NR {
         private Animator animator;
         private bool ready = true;
 
+        public static Action OnFall;
+
         private void Awake() {
             animator = GetComponent<Animator>();
         }
@@ -18,6 +21,7 @@ namespace NR {
         public void Fall() {
             if (ready) {
                 animator.SetBool("Fall", true);
+                OnFall?.Invoke();
             }
         }
 

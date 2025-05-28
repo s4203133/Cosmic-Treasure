@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -15,12 +16,15 @@ namespace LMO {
         [SerializeField] private Vector2 breakForceRange;
         [SerializeField] private float breakTorqueRange;
 
+        public static Action HitObject;
+
         private void Awake() {
             breakParticlesDuration = breakParticles.GetVector2("LifeTimeRange").y;
         }
 
         public void Break() {
             IBreakable.OnBroken?.Invoke();
+            HitObject?.Invoke();
 
             // Activate the broken pieces and apply force to them
             brokenPiecesParent.transform.parent = null;
@@ -40,7 +44,7 @@ namespace LMO {
         private void ApplyForceToBrokenPieces() {
             for (int i = 0; i < brokenPieces.Length; i++) {
                 Vector3 forceDirection = (brokenPieces[i].transform.position - transform.position).normalized;
-                brokenPieces[i].AddForce(forceDirection * Random.Range(breakForceRange.x, breakForceRange.y), ForceMode.Impulse);
+                brokenPieces[i].AddForce(forceDirection * UnityEngine.Random.Range(breakForceRange.x, breakForceRange.y), ForceMode.Impulse);
                 brokenPieces[i].AddTorque(RandomTorqueValue(), ForceMode.Impulse);
             }
         }
@@ -48,7 +52,7 @@ namespace LMO {
         // Apply random torque to each broken piece to make them spin
         private Vector3 RandomTorqueValue() {
             float RandomNumber() {
-                return Random.Range(-breakTorqueRange, breakTorqueRange);
+                return UnityEngine.Random.Range(-breakTorqueRange, breakTorqueRange);
             }
             return new Vector3(RandomNumber(), RandomNumber(), RandomNumber());
         }

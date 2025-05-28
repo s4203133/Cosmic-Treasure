@@ -1,4 +1,5 @@
 using LMO;
+using System;
 using UnityEngine;
 
 public class PalmTree : MonoBehaviour, IBreakable
@@ -6,6 +7,8 @@ public class PalmTree : MonoBehaviour, IBreakable
     private InteractAnimation interaction;
     [SerializeField] private CoinSpawner coinSpawner;
     private bool coinsDropped;
+
+    public static Action HitObject;
 
     private void Start()
     {
@@ -15,8 +18,8 @@ public class PalmTree : MonoBehaviour, IBreakable
     public void Break()
     {
         interaction.Play();
-
-        if(!coinsDropped && coinSpawner != null) {
+        HitObject?.Invoke();
+        if (!coinsDropped && coinSpawner != null) {
             coinsDropped = true;
             coinSpawner.SpawnCoin();
         }

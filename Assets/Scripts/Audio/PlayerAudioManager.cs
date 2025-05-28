@@ -26,8 +26,11 @@ public class PlayerAudioManager : MonoBehaviour
 
     [Header("INTERACTABLES")]
     [SerializeField] private AudioSource openChest;
+    [SerializeField] private AudioSource hitObject;
+    [SerializeField] private AudioSource breakObject;
     [SerializeField] private AudioSource hitLever;
     [SerializeField] private AudioSource hitButton;
+    [SerializeField] private AudioSource fallingPlatform;
     [SerializeField] private AudioSource breakGlassBottle;
     [SerializeField] private AudioSource openPage;
 
@@ -71,8 +74,11 @@ public class PlayerAudioManager : MonoBehaviour
     public void PlayCollectGem() => PlaySound(collectGem);
 
     public void PlayOpenChest() => PlaySound(openChest);
+    public void PlayHitObject() => PlaySound(hitObject);
+    public void PlayBreakObject() => PlaySound(breakObject);
     public void PlayHitLever() => PlaySound(hitLever);
     public void PlayHitButton() => PlaySound(hitButton);
+    public void PlayFallingPlatform() => PlaySound(fallingPlatform);
     public void PlayBreakGlassBottle() => PlaySound(breakGlassBottle);
     public void PlayOpenPage() => PlaySound(openPage);
 

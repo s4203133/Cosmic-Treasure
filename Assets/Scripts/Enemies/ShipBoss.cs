@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
-using LMO;
 
 namespace NR {
     /// <summary>
@@ -14,6 +13,13 @@ namespace NR {
     public class ShipState {
         public string damage;
         public Mesh mesh;
+    }
+
+    [System.Serializable]
+    public class ShipAudio {
+        public AudioSource fire;
+        public AudioSource hit;
+        public AudioSource sink;
     }
 
     /// <summary>
@@ -69,6 +75,9 @@ namespace NR {
 
         private bool firstHit = true;
 
+        [SerializeField]
+        private ShipAudio shipAudio;
+
         private void Awake() {
             _meshFilter = GetComponent<MeshFilter>();
             _meshRenderer = GetComponent<MeshRenderer>();
@@ -92,6 +101,7 @@ namespace NR {
                         Vector3 indicatePos = shootTarget.position;
                         indicatePos.y += 0.5f;
                         ProjectileParent.Instance.SpawnIndicator(indicatePos, 0.5f, cannonShot as EnemyProjectile);
+                        shipAudio.fire.Play();
                     }
                 }
                 yield return null;
@@ -127,6 +137,7 @@ namespace NR {
         public void StartSinking() {
             isShooting = false;
             OnSink.Invoke();
+            shipAudio.sink.Play();
         }
 
         //Called by animator
@@ -154,16 +165,19 @@ namespace NR {
         public void HitLeft() {
             leftHit = true;
             ShowDamage();
+            shipAudio.hit.Play();
         }
 
         public void HitMid() {
             midHit = true;
             ShowDamage();
+            shipAudio.hit.Play();
         }
 
         public void HitRight() {
             rightHit = true;
             ShowDamage();
+            shipAudio.hit.Play();
         }
     }
 }

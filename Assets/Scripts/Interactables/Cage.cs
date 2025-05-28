@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using LMO;
 
@@ -9,6 +10,8 @@ public class CageBreak : MonoBehaviour, IBreakable
     [Header("RABBIT ANIMATION")]
     [SerializeField] private Animator rabbitAnimator;
     [SerializeField] private string triggerName;
+
+    public static Action HitObject;
 
     public void Break() {
         BreakCage();
@@ -30,6 +33,7 @@ public class CageBreak : MonoBehaviour, IBreakable
             rabbitAnimator.SetTrigger(triggerName);
         }
 
+        HitObject?.Invoke();    
         Destroy(gameObject);
     }
 }

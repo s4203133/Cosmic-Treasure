@@ -17,6 +17,7 @@ public class EnemyEvents : MonoBehaviour, ICustomEvent {
         SeagullGrappleKill.OnEnemyHit += audioManager.PlaySlamSeagull;
         PlayerHealth.OnDamageTaken += audioManager.PlayHitByEnemy;
         PlayerHealth.PlayerKilledByEnemy += audioManager.PlayDeath;
+        LevelDeathCatcher.OnPlayerFellOutLevel += audioManager.PlayDeath;
     }
 
     public void UnsubscribeEvents() {
@@ -26,5 +27,6 @@ public class EnemyEvents : MonoBehaviour, ICustomEvent {
         SeagullGrappleKill.OnEnemyHit -= audioManager.PlaySlamSeagull;
         PlayerHealth.OnDamageTaken -= audioManager.PlayHitByEnemy;
         PlayerHealth.PlayerKilledByEnemy -= audioManager.PlayDeath;
+        LevelDeathCatcher.OnPlayerFellOutLevel -= audioManager.PlayDeath;
     }
 }

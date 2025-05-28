@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace LMO {
@@ -12,6 +13,8 @@ namespace LMO {
 
         private static Transform player;
 
+        public static Action HitObject;
+
         void Start() {
             thisTransform = transform;
             rigidBody = GetComponent<Rigidbody>();
@@ -21,6 +24,7 @@ namespace LMO {
         }
 
         public void Break() {
+            HitObject?.Invoke();
             rigidBody.isKinematic = false;
             rigidBody.constraints = RigidbodyConstraints.None;
             rigidBody.AddForce((thisTransform.position - player.transform.position).normalized * hitForce, ForceMode.Impulse);
@@ -32,7 +36,7 @@ namespace LMO {
         }
 
         private Vector3 GetRandomTorque() {
-            float RandomNumber() { return Random.Range(-torqueForce, torqueForce); }
+            float RandomNumber() { return UnityEngine.Random.Range(-torqueForce, torqueForce); }
             return new Vector3(RandomNumber(), RandomNumber(), RandomNumber());
         }
     }
