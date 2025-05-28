@@ -7,5 +7,6 @@ namespace NR {
     [CreateAssetMenu(menuName = "Player Save/Player Outfit Save")]
     public class PlayerOutfitSave : ScriptableObject {
         public PlayerOutfitItem hat;
+        public Material material;
     }
 }

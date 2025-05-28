@@ -87,7 +87,12 @@ namespace NR {
         public void BuyItem(PlayerOutfitItem buyableOutfitItem) {
             if(buyableOutfitItem.purchased) {
                 inventorySave.savedOutfit.hat = buyableOutfitItem;
-                
+                if (buyableOutfitItem.clothesTexture == null) {
+                    inventorySave.savedOutfit.material = null;
+                }
+                else {
+                    inventorySave.savedOutfit.material = buyableOutfitItem.clothesTexture;
+                }
                 return;
             }
             if (inventorySave.coins.value < buyableOutfitItem.coinCost) {
@@ -102,6 +107,12 @@ namespace NR {
                 itemDescription.text = "";
                 buyableOutfitItem.purchased = true;
                 inventorySave.savedOutfit.hat = buyableOutfitItem;
+                if (buyableOutfitItem.clothesTexture == null) {
+                    inventorySave.savedOutfit.material = null;
+                }
+                else {
+                    inventorySave.savedOutfit.material = buyableOutfitItem.clothesTexture;
+                }
             }
         }
 

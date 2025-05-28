@@ -15,6 +15,7 @@ namespace NR {
         private Transform playerHatSlot;
 
         private GameObject playerHatInstance;
+        private Material playerMaterial;
 
         private void Awake() {
             if (Instance == null) {
@@ -30,7 +31,16 @@ namespace NR {
             if (playerHatInstance != null) {
                 Destroy(playerHatInstance);
             }
-            playerHatInstance = Instantiate(playerSave.savedOutfit.hat.clothesPrefab, playerHatSlot);
+            if (playerSave.savedOutfit.hat.clothesPrefab != null) {
+                playerHatInstance = Instantiate(playerSave.savedOutfit.hat.clothesPrefab, playerHatSlot);
+            }
+            if (playerSave.savedOutfit.material != null) {
+                playerMaterial = playerSave.savedOutfit.material;
+                FindObjectOfType<ChangeOutfit>().ChangeMaterial(playerMaterial);
+            }
+            else {
+                FindObjectOfType<ChangeOutfit>().ResetMaterial();
+            }
         }
 
         public List<LevelSave> GetSaves() { 

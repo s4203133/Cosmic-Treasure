@@ -3,7 +3,8 @@ using UnityEngine;
 namespace NR {
     // Currently only hats, but any type can be added here.
     public enum OutfitType {
-        Hat
+        Hat,
+        Texture
     }
 
     /// <summary>
@@ -14,6 +15,7 @@ namespace NR {
     [CreateAssetMenu(menuName = "Shop Items/Player Outfit Item")]
     public class PlayerOutfitItem : ShopItem {
         public GameObject clothesPrefab;
+        public Material clothesTexture;
         public OutfitType type;
         public int coinCost;
         public bool purchased;
