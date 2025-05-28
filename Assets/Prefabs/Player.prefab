@@ -293,7 +293,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 128c0dd4e1ee4fd43960900b0c7aea50, type: 2}
@@ -970,7 +970,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5c01a026810818e4895075151e3af71d, type: 2}
@@ -2558,7 +2558,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 999ced29cfb65c94fb2091d837ccf559, type: 2}
@@ -3401,7 +3401,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: ddbf64fac253cb949a7d472d6ef696a3, type: 2}
@@ -4259,7 +4259,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9ea24aae7209c404584f99be82b04344, type: 2}
@@ -4342,7 +4342,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 773faea1f86bcc748a94ca5d421afa79, type: 2}
@@ -4791,8 +4791,11 @@ MonoBehaviour:
   grapple: {fileID: 2129916916387747205}
   swingManager: {fileID: 8832370557245761505}
   wallJump: {fileID: 4403154507928402891}
+  health: {fileID: 0}
+  ledgeHopUp: {fileID: 0}
   floaty: {fileID: 8738275986723755945}
   vfx: {fileID: 6428762329184904783}
+  audioManager: {fileID: 0}
   animator: {fileID: 459519423715532530}
   squashAndStretch: {fileID: 326523840239277552}
   effectTrail: {fileID: 17786077649041044}
@@ -4963,7 +4966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4bcd02594e1e7a4cb198a60cd0747cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 11400000, guid: 5f093b6660cb8c343a4d76cca98d01e9, type: 2}
+  playerSave: {fileID: 0}
   playerHatSlot: {fileID: 2250195232493232553}
 --- !u!1 &4833624514707848822
 GameObject:
@@ -5019,7 +5022,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 70c9ecafe08457a4caadb17f8830a744, type: 2}
@@ -6854,7 +6857,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 128c0dd4e1ee4fd43960900b0c7aea50, type: 2}
@@ -6959,7 +6962,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1cf68dab580f3f24c9a67b75884bbfc9, type: 2}
@@ -7076,8 +7079,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c9d87fa8f870b94d8196b53b7fb60ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  companionAnchor: {fileID: 4691185602523029627}
-  smoothVal: 0.2
+  parrot: {fileID: 0}
+  playerObjectToParentTo: {fileID: 0}
+  targetObjectToMoveTo: {fileID: 0}
+  startAnimationSpeed: 0
+  playerObjectToFollow: {fileID: 0}
+  radiusToFollow: 0
+  turnSpeed: 0
+  moveSpeed: 0
+  changeTargetPointTimerRange: {x: 0, y: 0}
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &1927334337983208191
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8788,6 +8801,8 @@ MonoBehaviour:
   swingRope:
     lineRenderer: {fileID: 6540143201423639460}
     ropeStartPoint: {fileID: 0}
+    hook: {fileID: 0}
+    hookOriginalParent: {fileID: 0}
     segments: 25
     speed: 0.45
     waveCount: 5
@@ -9007,7 +9022,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 41e40221091359f45b96dc30f44ace38, type: 2}
@@ -9106,7 +9121,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 34e856533a5f00a49a4c72ee1950b8d3, type: 2}
