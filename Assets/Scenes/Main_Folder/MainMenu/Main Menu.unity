@@ -1071,6 +1071,9 @@ MonoBehaviour:
   rightButton: {fileID: 0}
   upButton: {fileID: 736007903}
   downButton: {fileID: 8488947999093295659}
+  OnHighlighted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &334530340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1759,6 +1762,9 @@ MonoBehaviour:
   rightButton: {fileID: 698509541}
   upButton: {fileID: 1570177125}
   downButton: {fileID: 1570177125}
+  OnHighlighted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &649112766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,6 +2005,9 @@ MonoBehaviour:
   rightButton: {fileID: 1146252099}
   upButton: {fileID: 1570177125}
   downButton: {fileID: 1570177125}
+  OnHighlighted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &736007898
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,6 +2220,9 @@ MonoBehaviour:
   rightButton: {fileID: 0}
   upButton: {fileID: 8488947999093295659}
   downButton: {fileID: 307589661}
+  OnHighlighted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &785858076
 GameObject:
   m_ObjectHideFlags: 0
@@ -3414,6 +3426,9 @@ MonoBehaviour:
   rightButton: {fileID: 612210438}
   upButton: {fileID: 1570177125}
   downButton: {fileID: 1570177125}
+  OnHighlighted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1291163191
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,6 +4759,9 @@ MonoBehaviour:
   rightButton: {fileID: 0}
   upButton: {fileID: 698509541}
   downButton: {fileID: 698509541}
+  OnHighlighted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1614494443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7095,122 +7113,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &317099280035522088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6286677771281060838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424b6720ff5999446843ba414e58a907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CursorMode: 0
-  m_CursorGraphic: {fileID: 6657576027854725539}
-  m_CursorTransform: {fileID: 2748869437999431533}
-  m_CursorSpeed: 400
-  m_ScrollSpeed: 45
-  m_StickAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Stick
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: d03ee40c-8070-4853-8c74-dcb519d00fe7
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -4940751734778228148, guid: 9c953af5535bbb44ea2feed495b77d04,
-      type: 3}
-  m_LeftButtonAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Button
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: ebbe6ad9-d02e-4e45-a048-fe77e4d3facc
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: d89661f0-d8dc-4ee2-bdca-df3e14556804
-        m_Path: <XInputController>/buttonSouth
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Left Button
-        m_Flags: 0
-      m_Flags: 0
-    m_Reference: {fileID: -3036125513548535195, guid: 9c953af5535bbb44ea2feed495b77d04,
-      type: 3}
-  m_MiddleButtonAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Middle Button
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: cb08aa94-6924-484b-bea5-5f3a8357cf05
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -3238998358706021040, guid: 9c953af5535bbb44ea2feed495b77d04,
-      type: 3}
-  m_RightButtonAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Button
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 3c9e46fa-554a-4839-a4f7-e59ac0a7b1bd
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -2939609362086726885, guid: 9c953af5535bbb44ea2feed495b77d04,
-      type: 3}
-  m_ForwardButtonAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Forward Button
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: b1c7b7a8-e14f-4bea-8836-7603ba70dde7
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -8051518214454065391, guid: 9c953af5535bbb44ea2feed495b77d04,
-      type: 3}
-  m_BackButtonAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Back Button
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: cb13b27c-707c-4da7-b565-3199bdea378a
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -1895578744653873569, guid: 9c953af5535bbb44ea2feed495b77d04,
-      type: 3}
-  m_ScrollWheelAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Scroll Wheel
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 8cfd95c4-c2f2-46ec-bd54-6e94d233f75a
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -2289581757584952228, guid: 9c953af5535bbb44ea2feed495b77d04,
-      type: 3}
 --- !u!1 &320374214987309009
 GameObject:
   m_ObjectHideFlags: 0
@@ -19726,6 +19628,9 @@ MonoBehaviour:
   rightButton: {fileID: 0}
   upButton: {fileID: 0}
   downButton: {fileID: 0}
+  OnHighlighted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &5473882188064419976
 Transform:
   m_ObjectHideFlags: 0
@@ -21288,14 +21193,13 @@ GameObject:
   - component: {fileID: 2748869437999431533}
   - component: {fileID: 6134220488654030883}
   - component: {fileID: 6657576027854725539}
-  - component: {fileID: 317099280035522088}
   m_Layer: 5
   m_Name: PointerImage
   m_TagString: Pointer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6287768084417503054
 Transform:
   m_ObjectHideFlags: 0
@@ -24679,6 +24583,9 @@ MonoBehaviour:
   rightButton: {fileID: 0}
   upButton: {fileID: 307589661}
   downButton: {fileID: 736007903}
+  OnHighlighted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &8501242517274358490
 Transform:
   m_ObjectHideFlags: 0

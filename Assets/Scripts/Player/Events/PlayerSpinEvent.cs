@@ -27,6 +27,7 @@ namespace LMO {
         }
 
         private void StartSpin() {
+            
             playerVFX.PlaySpinVFX();
             squishy.SpinAttack.Play();
             audioManager.PlayAttack();

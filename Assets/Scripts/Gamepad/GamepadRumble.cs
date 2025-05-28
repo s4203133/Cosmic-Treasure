@@ -12,13 +12,19 @@ namespace LMO {
 
         private Gamepad gamePad;
 
+        public Coroutine currentRumble;
+
         public void Rumble() {
-
-            // May need to do checks if the controls scheme changes and a gamepad is no longer connected
-
             gamePad = Gamepad.current;
             if (gamePad != null) {
                 gamePad.SetMotorSpeeds(lowFrequency, highFrequency);
+            }
+        }
+
+        public void CancelRumble() {
+            gamePad = Gamepad.current;
+            if (gamePad != null) {
+                gamePad.SetMotorSpeeds(0, 0);
             }
         }
 
