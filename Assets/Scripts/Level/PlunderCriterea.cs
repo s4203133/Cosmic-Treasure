@@ -1,4 +1,5 @@
 using LMO;
+using NR;
 using UnityEngine;
 using WWH;
 
@@ -40,6 +41,7 @@ public class PlunderCriterea : MonoBehaviour
         CageBreak.HitObject += plunderScore.IncrementRabbits;
         EnemyDeath.OnEnemyHit += plunderScore.IncrementEnemies;
         SeagullGrappleKill.OnEnemyHit += plunderScore.IncrementEnemies;
+        EnemyCrushDie1.OnEnemyHit += plunderScore.IncrementEnemies;
     }
 
     private void OnDisable() {
@@ -48,6 +50,7 @@ public class PlunderCriterea : MonoBehaviour
         CageBreak.HitObject -= plunderScore.IncrementRabbits;
         EnemyDeath.OnEnemyHit -= plunderScore.IncrementEnemies;
         SeagullGrappleKill.OnEnemyHit -= plunderScore.IncrementEnemies;
+        EnemyCrushDie1.OnEnemyHit -= plunderScore.IncrementEnemies;
     }
 
     private int AllEnemies() {
