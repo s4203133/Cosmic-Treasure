@@ -53,9 +53,11 @@ namespace LMO {
         public static InputEvent Right;
         public static InputEvent Up;
         public static InputEvent Down;
+        public static InputEvent click;
 
         public static Action Enable;
         public static Action Disable;
+        private bool playerInputDisabled;
 
         public static bool jumpBeingPressed => jump.IsPressed();
 
@@ -73,6 +75,7 @@ namespace LMO {
         // Invoke events when input is recieved, updated, or cancelled
 
         private void OnMove(InputAction.CallbackContext context) {
+            if(playerInputDisabled) { return; }
             if (context.started) {
                 moveStarted?.Invoke(context.ReadValue<Vector2>());
             } else if (context.performed) {
@@ -84,6 +87,10 @@ namespace LMO {
 
         private void OnJump(InputAction.CallbackContext context) {
             if (context.started) {
+                click?.Invoke();
+            }
+            if (playerInputDisabled) { return; }
+            if (context.started) {
                 jumpStarted?.Invoke();
             } else if (context.performed) {
                 jumpPerformed?.Invoke();
@@ -93,24 +100,28 @@ namespace LMO {
         }
 
         private void OnSpin(InputAction.CallbackContext context) {
+            if (playerInputDisabled) { return; }
             if (context.started) {
                 SpinStarted?.Invoke();
             }
         }
 
         private void OnGroundPound(InputAction.CallbackContext context) {
+            if (playerInputDisabled) { return; }
             if (context.started) {
                 groundPoundStarted?.Invoke();
             }
         }
 
         private void OnSelect(InputAction.CallbackContext context) {
+            if (playerInputDisabled) { return; }
             if (context.started) {
                 selectedStarted?.Invoke();
             }
         }
 
         private void OnGrapple(InputAction.CallbackContext context) {
+            if (playerInputDisabled) { return; }
             if (context.started) {
                 grappleStarted?.Invoke();
             } else if (context.canceled) {
@@ -119,6 +130,7 @@ namespace LMO {
         }
 
         private void OnQuit(InputAction.CallbackContext context) {
+            if (playerInputDisabled) { return; }
             if (context.started) {
                 quitStarted?.Invoke();
             }
@@ -126,6 +138,7 @@ namespace LMO {
 
         //<NR>
         private void OnPause(InputAction.CallbackContext context) {
+            if (playerInputDisabled) { return; }
             if (context.started) {
                 pauseStarted?.Invoke();
             }
@@ -321,11 +334,11 @@ namespace LMO {
         }
 
         private void EnableInput() {
-            inputActions?.Enable();
+            playerInputDisabled = false;
         }
 
         private void DisableInput() {
-            inputActions?.Disable();
+            playerInputDisabled = true;
         }
     }
 }

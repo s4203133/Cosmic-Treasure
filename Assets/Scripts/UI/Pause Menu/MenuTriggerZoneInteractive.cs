@@ -5,7 +5,9 @@ namespace LMO {
     public class MenuTriggerZoneInteractive : MenuTriggerZone
     {
         [SerializeField] private GameObject menuToDisplayOnInteraction;
-        private bool interactionMenuOpened;
+        [SerializeField] private GamepadUIButton startingButton;
+        protected bool interactionMenuOpened;
+        private bool justClosed;
 
         protected override void OnZoneEntered() {
             base.OnZoneEntered();
@@ -18,16 +20,22 @@ namespace LMO {
         }
 
         protected virtual void OnInteractiveMenuOpened() {
+            if (justClosed) {
+                return;
+            }
             if (!interactionMenuOpened) {
                 DisplayMenu();
                 interactionMenuOpened = true;
+                startingButton.Highlight();
             }
         }
 
         public virtual void OnInteractiveMenuClosed() {
             if (interactionMenuOpened) {
-                HideMenu();
                 interactionMenuOpened = false;
+                justClosed = true;
+                Invoke("SetCanOpen", 0.1f);
+                HideMenu();
             }
         }
 
@@ -37,6 +45,10 @@ namespace LMO {
 
         protected void HideMenu() {
             menuToDisplayOnInteraction.SetActive(false);
+        }
+
+        private void SetCanOpen() {
+            justClosed = false;
         }
     }
 }

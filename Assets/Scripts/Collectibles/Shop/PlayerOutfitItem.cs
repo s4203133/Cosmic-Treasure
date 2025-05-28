@@ -16,5 +16,6 @@ namespace NR {
         public GameObject clothesPrefab;
         public OutfitType type;
         public int coinCost;
+        public bool purchased;
     }
 }

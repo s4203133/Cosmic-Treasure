@@ -39,6 +39,7 @@ namespace LMO {
             Active = false;
             InitialiseStates();
             ActivateStateMachine();
+            InputHandler.Enable();
             //currentState = emptyState;
         }
 
