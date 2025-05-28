@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GamepadUIButton startButton;
     private PlayerStateMachine player;
 
+    private bool isQuitting;
+
     private void Start() {
         player = FindObjectOfType<PlayerStateMachine>();    
     }
@@ -20,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     private void ShowPauseMenu() {
+        if (isQuitting) { return; }
         pauseMenu.SetActive(true);
         startButton.Highlight();
         InputHandler.Disable();
@@ -28,6 +31,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Resume() {
+        if (isQuitting) { return; }
         InputHandler.Enable();
         player.Activate();
         pauseMenu.SetActive(false);
@@ -36,6 +40,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit() {
         Time.timeScale = 1f;
+        isQuitting = true;
         SceneLoadManager.instance.LoadScene(0);
     }
 }
