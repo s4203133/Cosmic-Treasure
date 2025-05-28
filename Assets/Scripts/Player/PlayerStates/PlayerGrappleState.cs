@@ -67,7 +67,7 @@ namespace LMO {
         }
 
         protected void LookAtGrappleTarget() {
-            if(grapple.ConnectedObject.transform == null) {
+            if(grapple.ConnectedObject == null || grapple.ConnectedObject.transform == null) {
                 return;
             }
             Vector3 targetDirection = grapple.ConnectedObject.transform.position;

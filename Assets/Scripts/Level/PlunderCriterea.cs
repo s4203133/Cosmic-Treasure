@@ -16,6 +16,10 @@ public class PlunderCriterea : MonoBehaviour
         int numOfRabbits = FindObjectsOfType(typeof(RabbitCounter)).Length;
         int numOfEnemies = AllEnemies();
         plunderScore.SetTotals(numOfCoins, numOfGems, numOfRabbits, numOfEnemies);
+
+        plunderScore.coins = 0;
+        plunderScore.rabbits = 0;
+        plunderScore.enemiesEliminated = 0;
     }
 
     private void OnEnable() {

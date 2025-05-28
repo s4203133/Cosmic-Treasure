@@ -1,13 +1,13 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour {
 
 
-    public AudioMixer audioMixer;
-    public Dropdown resolutionDropdown;
+    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private TextMeshProUGUI volumeText;
 
     //Resolution Options
 
@@ -50,6 +50,18 @@ public class SettingsMenu : MonoBehaviour {
     public void SetVolume (float volume)
     {
         audioMixer.SetFloat("volume", volume);
+    }
+
+    public void AddVolume(float volume) {
+        float currentVolume;
+        audioMixer.GetFloat("volume", out currentVolume);
+
+        currentVolume += volume;
+        currentVolume = Mathf.Min(currentVolume, 0);
+        currentVolume = Mathf.Max(currentVolume, -80);
+
+        audioMixer.SetFloat("volume", currentVolume);
+        volumeText.text = (((currentVolume + 80) * (100 / 80)) * 1.25).ToString("00");
     }
 
 
