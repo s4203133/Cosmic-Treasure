@@ -37,6 +37,10 @@ public class DataTransferManager : MonoBehaviour
             return;
         }
 
+        if(scene.buildIndex != 2) {
+            sceneIndexData.currentLevel = scene.buildIndex;
+        }
+
         if (resetVariables) {
             ResetCollectibles();
         }

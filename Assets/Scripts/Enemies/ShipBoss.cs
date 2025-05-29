@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
+using LMO;
 
 namespace NR {
     /// <summary>
@@ -61,6 +62,7 @@ namespace NR {
         private bool rightHit;
 
         private bool isShooting = false;
+        private Coroutine shooting;
 
         [SerializeField]
         private float shootSpeed = 100;
@@ -84,9 +86,25 @@ namespace NR {
             _meshRenderer.GetMaterials(startMaterials);
         }
 
+        private void OnEnable() {
+            LevelDeathCatcher.OnPlayerFellOutLevel += StopShooting;
+            PlayerHealth.PlayerKilledByEnemy += StopShooting;
+        }
+
+        private void OnDisable() {
+            LevelDeathCatcher.OnPlayerFellOutLevel -= StopShooting;
+            PlayerHealth.PlayerKilledByEnemy -= StopShooting;
+        }
+
         public void Activate() {
             isShooting = true;
-            StartCoroutine(ShootingLoop());
+            shooting = StartCoroutine(ShootingLoop());
+        }
+
+        private void StopShooting() {
+            if(shooting != null) {
+                StopCoroutine(shooting);
+            }
         }
 
         private IEnumerator ShootingLoop() {

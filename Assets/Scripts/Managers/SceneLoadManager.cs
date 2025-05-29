@@ -60,7 +60,7 @@ namespace LMO {
 
         public void LoadNextScene() {
             switch (sceneIndexData.currentLevel) {
-                case (1):
+                case (3):
                     LoadScene(6);
                     break;
                 case (6):

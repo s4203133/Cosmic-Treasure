@@ -4,6 +4,7 @@ using UnityEngine;
 namespace LMO {
 
     public class CameraSwapper : MonoBehaviour {
+        public bool canChange;
         [SerializeField] private CinemachineVirtualCamera targetCamera;
         [SerializeField] private int newPriority;
         private int previousPriority;
@@ -12,6 +13,7 @@ namespace LMO {
 
         private void Start() {
             previousPriority = targetCamera.Priority;
+            canChange = true;
         }
 
         private void OnTriggerEnter(Collider other) {
@@ -28,6 +30,9 @@ namespace LMO {
         }
 
         public void ActivateCamera() {
+            if(!canChange) {
+                return;
+            }
             targetCamera.Priority = newPriority;
             if (cameraShaker != null) {
                 cameraShaker.RegisterAlternateCamera(targetCamera);

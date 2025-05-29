@@ -16,6 +16,7 @@ namespace NR {
 
         [SerializeField] private GemCounter gemCounter;
         [SerializeField] private FloatVariable coinCounter;
+        [SerializeField] private FloatVariable gemsCounter;
 
         private void Awake() {
             if (Instance == null) { 
@@ -51,10 +52,11 @@ namespace NR {
         }
 
         public void ClearSavedGems() {
-            foreach (var gem in gemsInLevel) {
-                //gem.Reset();
-            }
+            //foreach (var gem in gemsInLevel) {
+            //    gem.Reset();
+            //}
             levelSaveObject.gemsCollected.Clear();
+            gemsCounter.value = 0;
         }
 
         private void GemCollected(Collectible gem) {

@@ -3,9 +3,6 @@
 namespace LMO {
 
     public class PlayerGroundPoundEvent : MonoBehaviour, ICustomEvent {
-        [Header("SUBJECT")]
-        [SerializeField] private PlayerGroundPound playerGroundPound;
-
         // Observers
         private PlayerVFX playerVFX;
         private PlayerSquashAndStretch squishy;
@@ -22,17 +19,11 @@ namespace LMO {
 
         // When the player dives, notify other systems so they can respond
         public void SubscribeEvents() {
-            if (playerGroundPound == null) {
-                return;
-            }
             PlayerGroundPound.OnGroundPoundInitialised += audioManager.PlayGroundPound;
             PlayerGroundPound.OnGroundPoundLanded += GroundPoundLand;
         }
 
         public void UnsubscribeEvents() {
-            if (playerGroundPound == null) {
-                return;
-            }
             PlayerGroundPound.OnGroundPoundInitialised -= audioManager.PlayGroundPound;
             PlayerGroundPound.OnGroundPoundLanded -= GroundPoundLand;
         }

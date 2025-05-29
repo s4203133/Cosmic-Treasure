@@ -1,4 +1,3 @@
-using LMO;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -39,7 +38,15 @@ public class TextWriter : MonoBehaviour
         StartCoroutine(WriteText());
     }
 
+    public void ClearText() {
+        if(instructionText == null) {
+            return;
+        }
+        instructionText.text = "";
+    }
+
     private IEnumerator WriteText() {
+        ClearText();
         yield return new WaitForSeconds(0.1f);
         instructionText.text = "";
         string newText = "";
